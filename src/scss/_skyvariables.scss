@@ -1,0 +1,105 @@
+$sky-font-family-base: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$sky-font-family-narrow: 'Oswald', sans-serif !default;
+
+$sky-padding: 10px !default;
+$sky-padding-half: $sky-padding / 2 !default;
+$sky-padding-double: $sky-padding * 2 !default;
+$sky-padding-plus-half: $sky-padding + $sky-padding-half !default;
+$sky-padding-3_4: floor(($sky-padding * 0.75)) !default;
+
+$sky-margin: 10px !default;
+$sky-margin-half: $sky-margin / 2 !default;
+$sky-margin-double: $sky-margin * 2 !default;
+$sky-margin-triple: $sky-margin * 3 !default;
+
+$sky-color-green: #1ab394 !default;
+$sky-color-blue: #1c84c6 !default;
+$sky-color-aqua: #23c6c8 !default;
+$sky-color-yellow: #f8ac59 !default;
+$sky-color-red: #ed5565 !default;
+$sky-color-white: #fff !default;
+$sky-color-purple: #6533c5 !default;
+
+$sky-color-gray: lighten(#000, 40%) !default; // #666
+$sky-color-gray-light: lighten(#000, 60%) !default; // #999
+$sky-color-gray-lighter: lighten(#000, 80%) !default; // #ccc
+$sky-color-gray-lightest: lighten(#000, 90%) !default; // #e6e6e6
+
+$sky-border-color: #e7eaec !default;
+
+$sky-body-background-color: #f3f3f4 !default;
+
+$sky-font-size-base: 14px !default;
+
+$sky-font-size-xxxl: floor(($sky-font-size-base * 3.5)) !default; // ~42px
+$sky-font-size-xxl: floor(($sky-font-size-base * 2.5)) !default; // ~30px
+$sky-font-size-xl: floor(($sky-font-size-base * 1.333)) !default; // ~16px
+$sky-font-size-lg: ceil(($sky-font-size-base * 1.07)) !default; // ~14px
+$sky-font-size-sm: ceil(($sky-font-size-base * 0.833)) !default; // ~10px
+
+$sky-alternate-font-size-xxxl: floor(($sky-font-size-base * 4)) !default; // ~48px
+$sky-alternate-font-size-xxl: floor(($sky-font-size-base * 3.5)) !default; // ~42px
+$sky-alternate-font-size-xl: floor(($sky-font-size-base * 2.333)) !default; // ~28px
+$sky-alternate-font-size-lg: ceil(($sky-font-size-base * 2)) !default; // ~24px
+$sky-alternate-font-size-base: ceil(($sky-font-size-base * 1.833)) !default; // ~22px
+$sky-alternate-font-size-sm: ceil(($sky-font-size-base * 1.667)) !default; // ~20px
+
+$sky-text-color: #292a2b !default;
+$sky-selected-color: #eeeffb !default;
+$sky-text-deemphasized-color: #707374 !default;
+
+// begin transitions
+$sky-transition-time-short: 150ms !default;
+$sky-transition-time-medium: 250ms !default;
+$sky-transition-time-long: 500ms !default;
+// end transitions
+
+//begin tile
+$sky-tile-header-tool-padding: $sky-padding-plus-half !default;
+$sky-tile-form-background: #F2F2F2 !default;
+//end tile
+
+// begin context menu
+$sky-context-menu-size: 24px !default;
+// end context menu
+
+$sky-screen-sm-min: 768px;
+$sky-screen-md-min: 992px;
+$sky-screen-lg-min: 1200px;
+
+$sky-screen-xs-max: $sky-screen-sm-min - 1;
+$sky-screen-sm-max: $sky-screen-md-min - 1;
+$sky-screen-md-max: $sky-screen-lg-min - 1;
+
+// begin color palette
+$sky-palette-multi: (
+  scale-color($sky-color-blue, $lightness: 8%),
+  scale-color($sky-color-yellow, $lightness: 12%),
+  scale-color($sky-color-green, $lightness: 8%),
+  scale-color($sky-color-purple, $lightness: 26%, $saturation: -30%),
+  scale-color($sky-color-aqua, $lightness: 8%),
+  scale-color($sky-color-red, $lightness: 12%),
+  scale-color($sky-color-gray, $lightness: 28%),
+  scale-color($sky-color-blue, $lightness: 48%),
+  scale-color($sky-color-yellow, $lightness: 42%),
+  scale-color($sky-color-green, $lightness: 48%),
+  scale-color($sky-color-purple, $lightness: 56%, $saturation: -30%),
+  scale-color($sky-color-aqua, $lightness: 48%),
+  scale-color($sky-color-red, $lightness: 42%),
+  scale-color($sky-color-gray, $lightness: 48%)
+);
+
+$sky-palette-mono: (
+  scale-color($sky-color-blue, $lightness: -25%),
+  $sky-color-blue,
+  scale-color($sky-color-blue, $lightness: 25%),
+  scale-color($sky-color-blue, $lightness: 50%),
+  scale-color($sky-color-blue, $lightness: 75%)
+);
+// end color palette
+
+// begin avatar
+$sky-avatar-height: 100px !default;
+$sky-avatar-width: $sky-avatar-height !default;
+$sky-avatar-border-width: 2px !default;
+// end avatar

@@ -25,7 +25,7 @@ export class ListStateDispatcher extends StateDispatcher<ListStateAction> {
   }
 
   public toolbarAddItems(items: ListToolbarItemModel[], index: number = -1): void {
-    this.next(new ListToolbarItemsLoadAction(items));
+    setTimeout(() => this.next(new ListToolbarItemsLoadAction(items)));
   }
 
   public searchSetFunctions(sortFunctions: ((data: any, searchText: string) => boolean)[]): void {

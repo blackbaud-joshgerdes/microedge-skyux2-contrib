@@ -1,0 +1,55 @@
+{
+  "name": "microedge-skyux2-contrib",
+  "version": "1.0.0",
+  "description": "Holding place for Microedge SkyUX 2 components that are yet contributed to the main SkyUX 2 repo.",
+  "scripts": {
+    "prepublish": "rimraf -- dist && npm run release",
+    "release": "cp -r ./src ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackbaud/microedge-skyux2-contrib.git"
+  },
+  "keywords": [
+    "skyux",
+    "skyux2",
+    "microedge",
+    "blackbaud",
+    "contrib"
+  ],
+  "author": "Brandon Stirnaman <brandon.stirnaman@microedge.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blackbaud/microedge-skyux2-contrib/issues"
+  },
+  "homepage": "https://github.com/blackbaud/microedge-skyux2-contrib#readme",
+  "peerDependencies": {
+    "@angular/common": "2.1.0",
+    "@angular/compiler": "2.1.0",
+    "@angular/core": "2.1.0",
+    "@angular/forms": "2.1.0",
+    "animate.css": "^3.5.1",
+    "blackbaud-skyux2": "2.0.0-alpha.9",
+    "font-awesome": "^4.6.3",
+    "microedge-rxstate": "~1.0.2",
+    "moment": "^2.15.2",
+    "ng2-dragula": "^1.2.2-0",
+    "rxjs": "5.0.0-beta.12"
+  },
+  "devDependencies": {
+    "@angular/common": "2.1.0",
+    "@angular/compiler": "2.1.0",
+    "@angular/compiler-cli": "2.1.0",
+    "@angular/core": "2.1.0",
+    "@angular/forms": "2.1.0",
+    "animate.css": "^3.5.1",
+    "blackbaud-skyux2": "2.0.0-alpha.9",
+    "font-awesome": "^4.6.3",
+    "microedge-rxstate": "~1.0.2",
+    "moment": "^2.15.2",
+    "ng2-dragula": "^1.2.2-0",
+    "rimraf": "2.5.4",
+    "typescript": "^2.0.6",
+    "rxjs": "5.0.0-beta.12"
+  }
+}
