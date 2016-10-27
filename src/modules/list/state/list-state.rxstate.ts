@@ -3,7 +3,7 @@ import {
   ListSortSetAvailableAction, ListSortSetFieldSelectorsAction, ListSortSetGlobalAction
 } from './sort/actions';
 import { ListSortLabelModel } from './sort/label.model';
-import { StateDispatcher, StateOrchestrator } from 'microedge-rxstate/core';
+import { StateDispatcher, StateOrchestrator } from 'microedge-rxstate/dist';
 import { ListStateAction } from './list-state-action.type';
 import { ListToolbarItemsLoadAction, ListToolbarSetExistsAction } from './toolbar/actions';
 import { ListToolbarItemModel } from './toolbar/toolbar-item.model';

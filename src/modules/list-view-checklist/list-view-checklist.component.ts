@@ -3,7 +3,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { ListViewComponent } from '../list/list-view.component';
-import { AsyncList } from 'microedge-rxstate/core';
+import { AsyncList } from 'microedge-rxstate/dist';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ChecklistState, ChecklistStateDispatcher, ChecklistStateModel } from './state';

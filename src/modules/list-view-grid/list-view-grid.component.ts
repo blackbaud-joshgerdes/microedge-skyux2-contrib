@@ -16,7 +16,7 @@ import { ListSortLabelModel } from '../list/state/sort/label.model';
 import { Observable } from 'rxjs';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { SkyModalService } from '../modal';
-import { getValue } from 'microedge-rxstate/helpers';
+import { getValue } from 'microedge-rxstate/dist/helpers';
 import { getData } from '../list/helpers';
 
 @Component({

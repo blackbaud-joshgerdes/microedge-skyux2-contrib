@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StateDispatcher, StateOrchestrator } from 'microedge-rxstate/core';
+import { StateDispatcher, StateOrchestrator } from 'microedge-rxstate/dist';
 import { ListToolbarStateAction } from './toolbar-state-action.type';
 
 @Injectable()

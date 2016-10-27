@@ -15,7 +15,7 @@ import { ListSortModel } from './state/sort/sort.model';
 import { ListSearchModel } from './state/search/search.model';
 import { ListFilterModel } from './state/filters/filter.model';
 import { getData, compare } from './helpers';
-import { getValue } from 'microedge-rxstate/helpers';
+import { getValue } from 'microedge-rxstate/dist/helpers';
 import { ListViewsLoadAction, ListViewsSetActiveAction } from './state/views/actions';
 import { ListViewModel } from './state/views/view.model';
 import { ListItemModel } from './state/items/item.model';

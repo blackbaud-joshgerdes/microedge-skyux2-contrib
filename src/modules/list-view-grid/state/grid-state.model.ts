@@ -1,4 +1,4 @@
-import { AsyncList } from 'microedge-rxstate/core';
+import { AsyncList } from 'microedge-rxstate/dist';
 import { ListViewGridColumnModel } from './columns/column.model';
 
 export class GridStateModel {

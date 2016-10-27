@@ -6,7 +6,7 @@ import {
   ListPagingCurrentSetPageCountAction
 } from './state/current/actions';
 import { Component, Input, ChangeDetectionStrategy, forwardRef } from '@angular/core';
-import { getValue } from 'microedge-rxstate/helpers';
+import { getValue } from 'microedge-rxstate/dist/helpers';
 import { ListPagingComponent } from '../list/list-paging.component';
 import { ListStateDispatcher } from '../list/state';
 import { PagingStateDispatcher, PagingState, PagingStateModel } from './state';

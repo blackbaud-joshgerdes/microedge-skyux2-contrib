@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StateNode } from 'microedge-rxstate/core';
+import { StateNode } from 'microedge-rxstate/dist';
 import { PagingStateModel } from './paging-state.model';
 import { PagingStateDispatcher } from './paging-state.rxstate';
 import { ListPagingConfigOrchestrator } from './config/config.orchestrator';

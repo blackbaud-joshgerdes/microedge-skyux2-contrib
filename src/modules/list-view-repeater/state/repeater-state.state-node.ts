@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StateNode } from 'microedge-rxstate/core';
+import { StateNode } from 'microedge-rxstate/dist';
 
 import { RepeaterStateModel } from './repeater-state.model';
 import { RepeaterStateDispatcher } from './repeater-state.rxstate';

@@ -3,7 +3,7 @@ import { Component, ViewContainerRef, ViewChild, Input, TemplateRef, OnInit} fro
 @Component({
   selector: 'sky-list-toolbar-item-renderer',
   template: '<template #container></template>',
-  styleUrls: ['./list-toolbar-item-renderer.component.scss']
+  styles: [require('./list-toolbar-item-renderer.component.scss')]
 })
 export class SkyListToolbarItemRendererComponent implements OnInit {
   @Input() public template: TemplateRef<any>;

@@ -14,12 +14,12 @@ import { SkyListToolbarItemComponent } from './list-toolbar-item.component';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { SkyListToolbarSortComponent } from './list-toolbar-sort.component';
 import { ListSortLabelModel } from '../list/state/sort/label.model';
-import { getValue } from 'microedge-rxstate/helpers';
+import { getValue } from 'microedge-rxstate/dist/helpers';
 
 @Component({
   selector: 'sky-list-toolbar',
-  templateUrl: './list-toolbar.component.html',
-  styleUrls: ['./list-toolbar.component.scss'],
+  template: require('./list-toolbar.component.html'),
+  styles: [require('./list-toolbar.component.scss')],
   providers: [
     ListToolbarState,
     ListToolbarStateDispatcher,
@@ -88,10 +88,10 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
 
     this.dispatcher.toolbarAddItems([
       this.type !== 'search' ?
-        new ListToolbarItemModel({ template: this.searchTemplate, location: 'center' }) :
+        new ListToolbarItemModel({ id: 'search', template: this.searchTemplate, location: 'center' }) :
         undefined,
-      new ListToolbarItemModel({ template: this.sortSelectorTemplate, location: 'right' }),
-      new ListToolbarItemModel({ template: this.viewSelectorTemplate, location: 'right' })
+      new ListToolbarItemModel({ id: 'sort-selector', template: this.sortSelectorTemplate, location: 'right' }),
+      new ListToolbarItemModel({ id: 'view-selector', template: this.viewSelectorTemplate, location: 'right' })
     ].filter(s => s !== undefined));
   }
 
