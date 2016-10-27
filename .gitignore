@@ -8,6 +8,7 @@ Thumbs.db
 .DS_Store
 
 # Ignored files
+coverage
 *.js
 *.map
 *.d.ts
