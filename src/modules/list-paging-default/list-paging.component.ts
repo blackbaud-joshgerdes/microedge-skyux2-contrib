@@ -5,7 +5,7 @@ import {
   ListPagingCurrentSetDisplayedPagesAction, ListPagingCurrentSetPageNumberAction,
   ListPagingCurrentSetPageCountAction
 } from './state/current/actions';
-import { Component, Input, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, forwardRef, OnInit } from '@angular/core';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 import { ListPagingComponent } from '../list/list-paging.component';
 import { ListStateDispatcher } from '../list/state';
@@ -15,8 +15,8 @@ import { ListState } from '../list/state';
 
 @Component({
   selector: 'sky-list-paging',
-  templateUrl: './list-paging.component.html',
-  styleUrls: ['./list-paging.component.scss'],
+  template: require('./list-paging.component.html'),
+  styles: [require('./list-paging.component.scss')],
   providers: [
     /* tslint:disable */
     { provide: ListPagingComponent, useExisting: forwardRef(() => SkyListPagingComponent)},
@@ -27,7 +27,7 @@ import { ListState } from '../list/state';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListPagingComponent extends ListPagingComponent {
+export class SkyListPagingComponent extends ListPagingComponent implements OnInit {
   @Input() public pageSize: Observable<number> | number;
   @Input() public maxPages: Observable<number> | number;
   @Input() public pageNumber: Observable<number> | number;
@@ -39,7 +39,9 @@ export class SkyListPagingComponent extends ListPagingComponent {
     private pagingStateDispatcher: PagingStateDispatcher
   ) {
     super(state);
+  }
 
+  ngOnInit() {
     Observable.combineLatest(
       this.state.map(s => s.items).distinctUntilChanged(),
       this.pagingState.map(s => s.config).distinctUntilChanged(),
@@ -105,12 +107,16 @@ export class SkyListPagingComponent extends ListPagingComponent {
 
       // subscribe to or use inputs
       getValue(this.pageSize, (pageSize: number) =>
-        this.pagingStateDispatcher.next(new ListPagingConfigSetItemsPerPageAction(pageSize || 10))
+        this.pagingStateDispatcher.next(
+          new ListPagingConfigSetItemsPerPageAction(Number(pageSize || 10))
+        )
       );
       getValue(this.maxPages, (maxPages: number) =>
-        this.pagingStateDispatcher.next(new ListPagingConfigSetMaxPagesAction(maxPages || 5))
+        this.pagingStateDispatcher.next(
+          new ListPagingConfigSetMaxPagesAction(Number(maxPages || 5))
+        )
       );
-      getValue(this.pageNumber, (pageNumber: number) => this.setPage(pageNumber || 1));
+      getValue(this.pageNumber, (pageNumber: number) => this.setPage(Number(pageNumber || 1)));
   }
 
   get currentPageNumber() {

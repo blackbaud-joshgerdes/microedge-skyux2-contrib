@@ -148,7 +148,7 @@ describe('List Toolbar Component', () => {
       expect(element.query(By.css('sky-list-toolbar-item-renderer[cmp-id="view-selector"]')).nativeElement.textContent.trim()).toBe('');
     });
 
-    describe('', () => {
+    describe('with views', () => {
       beforeEach(async(() => {
         dispatcher.next(new ListViewsLoadAction([
           new ListViewModel('test1', 'test1'),
