@@ -5,7 +5,8 @@
   "scripts": {
     "prepublish": "rimraf -- dist && npm run release",
     "release": "cp -r ./src ./dist",
-    "test:unit": "karma start config/karma.conf.js"
+    "test:unit": "karma start config/karma.conf.js",
+    "test": "npm run test:unit"
   },
   "repository": {
     "type": "git",
