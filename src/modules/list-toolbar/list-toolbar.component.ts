@@ -175,12 +175,6 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
       .map(c => c.searchEnabled);
   }
 
-  private get isFilterEnabled() {
-    return this.toolbarState.map(s => s.config)
-      .distinctUntilChanged()
-      .map(c => c.filterEnabled);
-  }
-
   private get isViewSelectorEnabled() {
     return this.toolbarState.map(s => s.config)
       .distinctUntilChanged()

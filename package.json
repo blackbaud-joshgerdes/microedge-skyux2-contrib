@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Holding place for Microedge SkyUX 2 components that are yet contributed to the main SkyUX 2 repo.",
   "scripts": {
-    "prepublish": "rimraf -- dist && npm run release",
+    "prepublish": "rimraf dist && npm run release",
     "release": "cp -r ./src ./dist",
     "test:unit": "karma start config/karma.conf.js",
+    "pretest": "rimraf coverage",
     "test": "npm run test:unit"
   },
   "repository": {
@@ -51,10 +52,13 @@
     "@types/node": "6.0.46",
     "@types/webpack": "1.12.35",
     "animate.css": "^3.5.1",
+    "base64-image-loader": "^1.1.0",
     "blackbaud-skyux2": "2.0.0-alpha.9",
     "codelyzer": "^1.0.0-beta.3",
     "core-js": "2.4.1",
+    "file-loader": "^0.9.0",
     "font-awesome": "^4.6.3",
+    "font-awesome-webpack": "0.0.4",
     "fontfaceobserver": "2.0.5",
     "intl": "1.2.5",
     "istanbul-instrumenter-loader": "0.2.0",
@@ -67,6 +71,8 @@
     "karma-mocha-reporter": "2.2.0",
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.8.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
     "microedge-rxstate": "~1.0.3",
     "moment": "^2.15.2",
     "ng2-dragula": "^1.2.2-0",
@@ -85,6 +91,7 @@
     "tslint": "3.15.1",
     "tslint-loader": "2.1.5",
     "typescript": "^2.0.6",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
     "zone.js": "0.6.26"
   }

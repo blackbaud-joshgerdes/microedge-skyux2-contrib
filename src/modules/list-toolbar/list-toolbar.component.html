@@ -8,7 +8,7 @@
   </div>
   <div class="search" *ngIf="type === 'search'">
     <div class="primary-bar">
-      <sky-list-toolbar-item-renderer [template]="search" [attr.cmp-id]="item.id"></sky-list-toolbar-item-renderer>
+      <sky-list-toolbar-item-renderer [template]="search" cmp-id="search"></sky-list-toolbar-item-renderer>
     </div>
     <div class="secondary-bar">
       <sky-list-toolbar-item-renderer *ngFor="let item of leftTemplates | async" [template]="item.template" [attr.cmp-id]="item.id"></sky-list-toolbar-item-renderer>
@@ -33,7 +33,7 @@
     </sky-dropdown-button>
     <sky-dropdown-menu>
       <div *ngFor="let item of sortSelectors | async">
-        <sky-dropdown-item [ngClass]="{ selected: item.selected }">
+        <sky-dropdown-item [class.selected]="item.selected" [attr.cmp-id]="item.sort.fieldSelector + '_asc'">
           <button type="button" (click)="setSort(item.sort, false)">
             {{item.sort.text}} ({{
               item.sort.fieldType == 'string' ? 'A-Z' :
@@ -43,7 +43,7 @@
             }})
           </button>
         </sky-dropdown-item>
-        <sky-dropdown-item [ngClass]="{ selected: item.selectedDesc }">
+        <sky-dropdown-item [class.selected]="item.selectedDesc" [attr.cmp-id]="item.sort.fieldSelector + '_desc'">
           <button type="button" (click)="setSort(item.sort, true)">
             {{item.sort.text}} ({{
               item.sort.fieldType == 'string' ? 'Z-A' :
@@ -63,7 +63,7 @@
       <i class="fa fa-lg fa-table"></i>
     </sky-dropdown-button>
     <sky-dropdown-menu>
-      <sky-dropdown-item *ngFor="let item of views | async" [ngClass]="{ selected: (view | async) == item.id }">
+      <sky-dropdown-item *ngFor="let item of views | async" [ngClass]="{ selected: (view | async) == item.id }" [attr.cmp-id]="item.id">
         <button type="button" (click)="setActiveView(item)">
           {{item.name}}
         </button>
