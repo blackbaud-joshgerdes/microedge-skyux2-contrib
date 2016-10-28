@@ -7,4 +7,5 @@ Thumbs.db
 .DS_Store
 
 # Ignored files
+coverage
 !*.d.ts
