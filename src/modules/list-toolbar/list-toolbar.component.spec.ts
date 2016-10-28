@@ -1,6 +1,7 @@
 import {
   ComponentFixture,
-  TestBed
+  TestBed,
+  async
 } from '@angular/core/testing';
 import {
   ListState,
@@ -19,36 +20,31 @@ describe('List Toolbar Component', () => {
       fixture: any,
       element: any;
 
-  beforeEach((done) => {
+  beforeEach(async(() => {
     dispatcher = new ListStateDispatcher();
     state = new ListState(new ListStateModel(), dispatcher);
 
-    TestBed
-      .configureTestingModule({
-        declarations: [
-          ListToolbarTestComponent
-        ],
-        imports: [
-          SkyListToolbarModule
-        ],
-        providers: [
-          { provide: ListState, useValue: state },
-          { provide: ListStateDispatcher, useValue: dispatcher }
-        ]
-      })
-      .compileComponents().then(() => {
-        fixture = TestBed.createComponent(ListToolbarTestComponent);
-        element = fixture.nativeElement as HTMLElement;
-        fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [
+        ListToolbarTestComponent
+      ],
+      imports: [
+        SkyListToolbarModule
+      ],
+      providers: [
+        { provide: ListState, useValue: state },
+        { provide: ListStateDispatcher, useValue: dispatcher }
+      ]
+    });
 
-        // always skip the first update to ListState, when state is ready
-        // run detectChanges once more then begin tests
-        state.skip(1).take(1).subscribe((s: any) => {
-          fixture.detectChanges();
-          done();
-        });
-      });
-  });
+    fixture = TestBed.createComponent(ListToolbarTestComponent);
+    element = fixture.nativeElement as HTMLElement;
+    fixture.detectChanges();
+
+    // always skip the first update to ListState, when state is ready
+    // run detectChanges once more then begin tests
+    state.skip(1).take(1).subscribe(() => fixture.detectChanges());
+  }));
 
   it('should add search by default', () => {
     expect(element.querySelector("[cmp-id='search']")).not.toBeNull();
