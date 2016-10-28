@@ -5,7 +5,7 @@
 var path = require('path');
 
 // Helper functions
-var _root = path.resolve(__dirname, '..', '..');
+var _root = path.resolve(__dirname, '..');
 
 function hasProcessFlag(flag) {
   return process.argv.join('').indexOf(flag) > -1;
