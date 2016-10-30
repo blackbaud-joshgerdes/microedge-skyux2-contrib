@@ -54,7 +54,7 @@ export class SkyListViewGridComponent
   constructor(
     state: ListState,
     private dispatcher: ListStateDispatcher,
-    public gridState: GridState,
+    private gridState: GridState,
     private gridDispatcher: GridStateDispatcher,
     private modalService: SkyModalService,
     private dragulaService: DragulaService
@@ -105,7 +105,7 @@ export class SkyListViewGridComponent
         }
       });
 
-    this.gridDispatcher.next(new ListViewGridColumnsLoadAction(columnModels));
+    this.gridDispatcher.next(new ListViewGridColumnsLoadAction(columnModels, true));
 
     /* tslint:disable */
     /* istanbul ignore next */
@@ -178,16 +178,19 @@ export class SkyListViewGridComponent
   }
 
   get items() {
-    return this.state.map(s => s.displayedItems.items);
+    return this.state.map(s => s.displayedItems.items)
+      .distinctUntilChanged();
   }
 
   get columns() {
-    return this.gridState.map(s => s.displayedColumns.items);
+    return this.gridState.map(s => s.displayedColumns.items)
+      .distinctUntilChanged();
   }
 
   public getSortDirection(sortField: string) {
-    return this.state
-      .map(s => s.sort.fieldSelectors.filter(f => f.fieldSelector === sortField)[0])
+    return this.state.map(s => s.sort)
+      .distinctUntilChanged()
+      .map(sort => sort.fieldSelectors.filter(f => f.fieldSelector === sortField)[0])
       .map(field => field ? (field.descending ? 'desc' : 'asc') : undefined);
   }
 
@@ -227,6 +230,7 @@ export class SkyListViewGridComponent
   }
 
   private get loading() {
-    return this.state.map(s => s.displayedItems.loading);
+    return this.state.map(s => s.displayedItems.loading)
+      .distinctUntilChanged();
   }
 }

@@ -5,7 +5,8 @@
     <template let-row="row">{{row.column2}}</template>
   </sky-list-view-grid-column>
   <sky-list-view-grid-column id="column3" field="column3" type="number" heading="Column3" [template]="template1"></sky-list-view-grid-column>
-  <sky-list-view-grid-column field="column4" type="date" heading="Column4" [hidden]="true"></sky-list-view-grid-column>
+  <sky-list-view-grid-column id="column4" type="date" heading="Column4" [hidden]="true"></sky-list-view-grid-column>
+  <sky-list-view-grid-column heading="Column5" [hidden]="true"></sky-list-view-grid-column>
 </sky-list-view-grid>
 
 <template let-value="value" #template1>

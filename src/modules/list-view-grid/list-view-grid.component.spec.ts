@@ -1,5 +1,6 @@
 import {
   ComponentFixture,
+  ComponentFixtureAutoDetect,
   TestBed,
   async
 } from '@angular/core/testing';
@@ -18,8 +19,7 @@ import { ListItemsLoadAction } from '../list/state/items/actions';
 import { ListDisplayedItemsLoadAction } from '../list/state/displayed-items/actions';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { ListViewGridTestComponent } from './fixtures/list-view-grid.component.fixture';
-import { SkyListViewGridComponent } from './list-view-grid.component';
-import { SkyListViewGridModule } from './';
+import { SkyListViewGridComponent, SkyListViewGridModule } from './';
 import { SkyListToolbarModule } from '../list-toolbar';
 
 describe('List View Grid Component', () => {
@@ -44,7 +44,8 @@ describe('List View Grid Component', () => {
       ],
       providers: [
         { provide: ListState, useValue: state },
-        { provide: ListStateDispatcher, useValue: dispatcher }
+        { provide: ListStateDispatcher, useValue: dispatcher },
+        { provide: ComponentFixtureAutoDetect, useValue: true }
       ]
     });
 
@@ -56,7 +57,7 @@ describe('List View Grid Component', () => {
 
     let items = [
       new ListItemModel('1', false, { column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') }),
-      new ListItemModel('2', false, { column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute') }),
+      new ListItemModel('2', false, { column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
       new ListItemModel('3', false, { column1: '11', column2: 'Carrot', column3: 11, column4: moment().add(4, 'minute') }),
       new ListItemModel('4', false, { column1: '12', column2: 'Daikon', column3: 12, column4: moment().add(2, 'minute') }),
       new ListItemModel('5', false, { column1: '13', column2: 'Edamame', column3: 13, column4: moment().add(5, 'minute') }),
@@ -120,9 +121,9 @@ describe('List View Grid Component', () => {
 
     beforeEach(() => fixture.detectChanges());
 
-    it('should have 3 checked columns, 1 unchecked', () => {
+    it('should have 3 checked columns, 2 unchecked', () => {
       expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(3);
-      expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(1);
+      expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(2);
     });
 
     it('should let user clear all columns', () => {
@@ -131,7 +132,7 @@ describe('List View Grid Component', () => {
       fixture.detectChanges();
 
       expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(0);
-      expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(4);
+      expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(5);
     });
 
     it('should let user select all columns', () => {
@@ -139,7 +140,7 @@ describe('List View Grid Component', () => {
       selectAllLink.click();
       fixture.detectChanges();
 
-      expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(4);
+      expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(5);
       expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(0);
     });
 
@@ -150,6 +151,10 @@ describe('List View Grid Component', () => {
 
       (columnSelector.querySelector('sky-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement).click();
       expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(1);
+
+      let closeButton = (document.querySelector('[cmp-id="apply-changes"]') as HTMLButtonElement);
+      closeButton.click();
+      fixture.detectChanges();
     });
   });
 });
