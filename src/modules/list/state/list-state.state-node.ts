@@ -13,8 +13,8 @@ import { ListToolbarOrchestrator } from './toolbar/toolbar.orchestrator';
 
 @Injectable()
 export class ListState extends StateNode<ListStateModel> {
-  constructor(initialState: ListStateModel, dispatcher: ListStateDispatcher) {
-    super(initialState, dispatcher);
+  constructor(dispatcher: ListStateDispatcher) {
+    super(new ListStateModel(), dispatcher);
 
     this
       .register('views', ListViewsOrchestrator)

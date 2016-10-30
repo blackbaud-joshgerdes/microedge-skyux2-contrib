@@ -27,6 +27,10 @@
     }
   }
 
+  tbody {
+    background-color: $sky-color-white;
+  }
+
   tr.sky-list-view-grid-row {
     border-bottom: 1px dotted #ccc;
 

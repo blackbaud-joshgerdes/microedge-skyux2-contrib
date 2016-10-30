@@ -7,7 +7,7 @@ import { SkyCheckboxComponent } from '../checkbox';
 @Component({
   selector: 'sky-list-view-checklist-item',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./list-view-checklist-item.component.scss'],
+  styles: [require('./list-view-checklist-item.component.scss')],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListViewChecklistItemComponent implements AfterContentInit {

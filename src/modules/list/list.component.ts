@@ -7,7 +7,7 @@ import {
 import {
   ListDisplayedItemsLoadAction, ListDisplayedItemsSetLoadingAction
 } from './state/displayed-items/actions';
-import { ListState, ListStateDispatcher, ListStateModel } from './state';
+import { ListState, ListStateDispatcher } from './state';
 import { Observable } from 'rxjs/Observable';
 import { ListViewComponent } from './list-view.component';
 import { ListPagingComponent } from './list-paging.component';
@@ -25,8 +25,8 @@ import * as moment from 'moment';
 @Component({
   selector: 'sky-list',
   template: '<ng-content></ng-content>',
-  styleUrls: ['./list.component.scss'],
-  providers: [ListState, ListStateDispatcher, ListStateModel],
+  styles: [require('./list.component.scss')],
+  providers: [ListState, ListStateDispatcher],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListComponent implements AfterContentInit {
@@ -275,22 +275,6 @@ export class SkyListComponent implements AfterContentInit {
     return this.state.map(s =>
       s.items.lastUpdate ? moment(s.items.lastUpdate).toDate() : undefined
     );
-  }
-
-  public clearSelections() {
-    this.state.map(s => s.items.items)
-      .take(1)
-      .subscribe(items => {
-        this.dispatcher.next(new ListItemsSetItemsSelectedAction(items, false));
-      });
-  }
-
-  public selectAll() {
-    this.state.map(s => s.items.items)
-      .take(1)
-      .subscribe(items => {
-        this.dispatcher.next(new ListItemsSetItemsSelectedAction(items, true));
-      });
   }
 
   public get views() {

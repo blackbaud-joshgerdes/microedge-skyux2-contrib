@@ -7,8 +7,7 @@ import {
 import { By } from '@angular/platform-browser';
 import {
   ListState,
-  ListStateDispatcher,
-  ListStateModel
+  ListStateDispatcher
 } from '../list/state';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListItemsLoadAction } from '../list/state/items/actions';
@@ -19,13 +18,14 @@ import { BehaviorSubject, Subject } from 'rxjs';
 describe('List Paging Component', () => {
   let state: ListState,
       dispatcher: ListStateDispatcher,
+      component: ListPagingDefaultTestComponent,
       fixture: any,
       nativeElement: HTMLElement,
       element: DebugElement;
 
   beforeEach(async(() => {
     dispatcher = new ListStateDispatcher();
-    state = new ListState(new ListStateModel(), dispatcher);
+    state = new ListState(dispatcher);
 
     TestBed.configureTestingModule({
       declarations: [
@@ -43,6 +43,7 @@ describe('List Paging Component', () => {
     fixture = TestBed.createComponent(ListPagingDefaultTestComponent);
     nativeElement = fixture.nativeElement as HTMLElement;
     element = fixture.debugElement as DebugElement;
+    component = fixture.componentInstance;
     fixture.detectChanges();
 
     // always skip the first update to ListState, when state is ready
@@ -79,6 +80,20 @@ describe('List Paging Component', () => {
     });
 
     it('should show selected page (1) with a special style', () => {
+      expect(element.query(By.css('.sky-list-paging-link[cmp-id="1"] a')).nativeElement.classList.contains('current')).toBe(true);
+    });
+
+    it('should not let you set page number to (5)', () => {
+      component.pagingComponent.setPage(5);
+      fixture.detectChanges();
+
+      expect(element.query(By.css('.sky-list-paging-link[cmp-id="1"] a')).nativeElement.classList.contains('current')).toBe(true);
+    });
+
+    it('should not let you set page number to (0)', () => {
+      component.pagingComponent.setPage(0);
+      fixture.detectChanges();
+
       expect(element.query(By.css('.sky-list-paging-link[cmp-id="1"] a')).nativeElement.classList.contains('current')).toBe(true);
     });
 

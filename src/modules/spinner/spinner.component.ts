@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sky-spinner',
-  templateUrl: './spinner.component.html',
-  styleUrls: [
-    './spinner.component.scss'
-  ]
+  template: require('./spinner.component.html'),
+  styles: [require('./spinner.component.scss')]
 })
 export class SkySpinnerComponent {
 }

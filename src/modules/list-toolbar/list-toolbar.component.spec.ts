@@ -7,8 +7,7 @@ import {
 import { By } from '@angular/platform-browser';
 import {
   ListState,
-  ListStateDispatcher,
-  ListStateModel
+  ListStateDispatcher
 } from '../list/state';
 import { ListViewsLoadAction } from '../list/state/views/actions';
 import { ListViewModel } from '../list/state/views/view.model';
@@ -28,7 +27,7 @@ describe('List Toolbar Component', () => {
 
   beforeEach(async(() => {
     dispatcher = new ListStateDispatcher();
-    state = new ListState(new ListStateModel(), dispatcher);
+    state = new ListState(dispatcher);
 
     TestBed.configureTestingModule({
       declarations: [

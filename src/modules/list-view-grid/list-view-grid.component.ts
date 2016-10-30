@@ -21,8 +21,8 @@ import { getData } from '../list/helpers';
 
 @Component({
   selector: 'sky-list-view-grid',
-  templateUrl: './list-view-grid.component.html',
-  styleUrls: ['./list-view-grid.component.scss'],
+  template: require('./list-view-grid.component.html'),
+  styles: [require('./list-view-grid.component.scss')],
   providers: [
     /* tslint:disable */
     { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewGridComponent)},
@@ -54,7 +54,7 @@ export class SkyListViewGridComponent
   constructor(
     state: ListState,
     private dispatcher: ListStateDispatcher,
-    private gridState: GridState,
+    public gridState: GridState,
     private gridDispatcher: GridStateDispatcher,
     private modalService: SkyModalService,
     private dragulaService: DragulaService
@@ -108,12 +108,17 @@ export class SkyListViewGridComponent
     this.gridDispatcher.next(new ListViewGridColumnsLoadAction(columnModels));
 
     /* tslint:disable */
+    /* istanbul ignore next */
     this.dragulaService.drag.subscribe(([, el]: any) =>
       el.classList.add('dragging')
     );
+
+    /* istanbul ignore next */
     this.dragulaService.dragend.subscribe(([, el]: any) =>
       el.classList.remove('dragging')
     );
+
+    /* istanbul ignore next */
     this.dragulaService.drop.subscribe(([,, container]: any) => {
       let columnIds: string[] = [];
       let nodes = container.getElementsByTagName('th');
@@ -135,9 +140,10 @@ export class SkyListViewGridComponent
         });
     });
 
+    /* istanbul ignore next */
     this.dragulaService.setOptions('heading', {
       moves: (el: any) => !el.classList.contains('locked'),
-      accepts: ([,,, sibling]: any) => !sibling.classList.contains('locked')
+      accepts: ([,,, sibling]: any) => sibling === undefined || !sibling.classList.contains('locked')
     });
     /* tslint:enable */
   }
@@ -145,7 +151,7 @@ export class SkyListViewGridComponent
   public ngAfterViewInit() {
     this.dispatcher.toolbarAddItems([
       new ListToolbarItemModel(
-        { template: this.chooseColumnsTemplate, location: 'center', index: 0, view: this.id }
+        { id: 'column-selector', template: this.chooseColumnsTemplate, location: 'center', index: 0, view: this.id }
       )
     ]);
   }

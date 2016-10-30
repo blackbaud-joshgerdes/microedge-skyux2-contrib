@@ -5,6 +5,7 @@ import {
 import { ListViewComponent } from '../list/list-view.component';
 import { AsyncList } from 'microedge-rxstate/dist';
 import { ListItemModel } from '../list/state/items/item.model';
+import { ListItemsSetItemsSelectedAction } from '../list/state/items/actions';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ChecklistState, ChecklistStateDispatcher, ChecklistStateModel } from './state';
 import { ListViewChecklistItemsLoadAction } from './state/items/actions';
@@ -15,8 +16,8 @@ import { getData } from '../list/helpers';
 
 @Component({
   selector: 'sky-list-view-checklist',
-  templateUrl: './list-view-checklist.component.html',
-  styleUrls: ['./list-view-checklist.component.scss'],
+  template: require('./list-view-checklist.component.html'),
+  styles: [require('./list-view-checklist.component.scss')],
   providers: [
     /* tslint:disable */
     { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewChecklistComponent)},
@@ -87,10 +88,10 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
   public ngAfterViewInit() {
     this.dispatcher.toolbarAddItems([
       new ListToolbarItemModel(
-        { template: this.selectAllTemplate, location: 'right', index: 500, view: this.id }
+        { id: 'select-all', template: this.selectAllTemplate, location: 'right', index: 500, view: this.id }
       ),
       new ListToolbarItemModel(
-        { template: this.clearSelectionsTemplate, location: 'right', index: 500, view: this.id }
+        { id: 'clear-all', template: this.clearSelectionsTemplate, location: 'right', index: 500, view: this.id }
       )
     ]);
   }
@@ -132,5 +133,21 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
 
   public setItemSelection(item: any, selected: boolean) {
     this.dispatcher.itemsSetSelected(item, selected);
+  }
+
+  public clearSelections() {
+    this.state.map(s => s.items.items)
+      .take(1)
+      .subscribe(items => {
+        this.dispatcher.next(new ListItemsSetItemsSelectedAction(items, false));
+      });
+  }
+
+  public selectAll() {
+    this.state.map(s => s.items.items)
+      .take(1)
+      .subscribe(items => {
+        this.dispatcher.next(new ListItemsSetItemsSelectedAction(items, true));
+      });
   }
 }

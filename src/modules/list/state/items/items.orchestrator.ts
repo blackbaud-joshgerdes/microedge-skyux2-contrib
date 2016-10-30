@@ -34,7 +34,7 @@ export class ListItemsOrchestrator extends ListStateOrchestrator<AsyncList<ListI
         [...newListItems],
         action.dataChanged ? moment() : state.lastUpdate,
         false,
-        state.count
+        newListItems.length
       );
     }
 
@@ -62,7 +62,7 @@ export class ListItemsOrchestrator extends ListStateOrchestrator<AsyncList<ListI
   }
 
   private setItemsSelected(
-    state: AsyncList<ListItemModel> ,
+    state: AsyncList<ListItemModel>,
     action: ListItemsSetItemsSelectedAction): AsyncList<ListItemModel> {
     const newItems = state.items.map(g =>
       new ListItemModel(g.id,

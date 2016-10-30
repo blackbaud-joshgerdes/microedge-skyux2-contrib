@@ -8,7 +8,7 @@ import { getData } from '../list/helpers';
 @Component({
   selector: 'sky-list-view-grid-cell',
   template: '<template #cell></template>',
-  styleUrls: ['./list-view-grid-cell.component.scss'],
+  styles: [require('./list-view-grid-cell.component.scss')],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListViewGridCellComponent implements OnInit {

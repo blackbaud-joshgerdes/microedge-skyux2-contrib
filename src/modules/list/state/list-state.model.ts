@@ -14,16 +14,4 @@ export class ListStateModel {
   public sort: ListSortModel = new ListSortModel();
   public filters: ListFilterModel[] = [];
   public toolbar: ListToolbarModel = new ListToolbarModel();
-
-  constructor(data?: any) {
-    if (data) {
-      this.views = data.views;
-      this.search = data.search;
-      this.items = data.items;
-      this.displayedItems = data.displayedItems;
-      this.sort = data.sort;
-      this.filters = data.filters;
-      this.toolbar = data.toolbar;
-    }
-  }
 }

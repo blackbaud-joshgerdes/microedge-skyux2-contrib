@@ -19,8 +19,8 @@ import { SkyListViewRepeaterEditorComponent } from './list-view-repeater-editor.
 
 @Component({
   selector: 'sky-list-view-repeater',
-  templateUrl: './list-view-repeater.component.html',
-  styleUrls: ['./list-view-repeater.component.scss'],
+  template: require('./list-view-repeater.component.html'),
+  styles: [require('./list-view-repeater.component.scss')],
   providers: [
     /* tslint:disable */
     { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewRepeaterComponent)},
