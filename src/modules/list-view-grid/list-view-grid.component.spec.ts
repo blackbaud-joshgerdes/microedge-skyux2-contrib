@@ -102,7 +102,7 @@ describe('List View Grid Component', () => {
   });
 
   describe('column selector', () => {
-    let columnSelector;
+    let columnSelector: any;
 
     beforeAll(() => {
       let columnSelectorButton = element.query(By.css('sky-list-toolbar-item-renderer[cmp-id="column-selector"]'));

@@ -1,13 +1,11 @@
 import {
   Component, Input, ContentChild, forwardRef, ChangeDetectionStrategy
 } from '@angular/core';
-import { Observable } from 'rxjs';
 import { ListViewComponent } from '../list/list-view.component';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ListItemModel } from '../list/state/items/item.model';
 import { RepeaterState, RepeaterStateDispatcher, RepeaterStateModel } from './state';
 import { ListViewRepeaterSetExpandedAction } from './state/expanded/actions';
-import { ListViewRepeaterSetEditingAction } from './state/editing/actions';
 import { SkyListViewRepeaterLeftComponent } from './list-view-repeater-left.component';
 import { SkyListViewRepeaterRightComponent } from './list-view-repeater-right.component';
 import { SkyListViewRepeaterTitleComponent } from './list-view-repeater-title.component';
@@ -15,7 +13,6 @@ import {
   SkyListViewRepeaterDescriptionComponent
 } from './list-view-repeater-description.component';
 import { SkyListViewRepeaterContentComponent } from './list-view-repeater-content.component';
-import { SkyListViewRepeaterEditorComponent } from './list-view-repeater-editor.component';
 
 @Component({
   selector: 'sky-list-view-repeater',
@@ -46,8 +43,6 @@ export class SkyListViewRepeaterComponent extends ListViewComponent {
   private descriptionComponent: SkyListViewRepeaterDescriptionComponent;
   @ContentChild(SkyListViewRepeaterContentComponent)
   private contentComponent: SkyListViewRepeaterContentComponent;
-  @ContentChild(SkyListViewRepeaterEditorComponent)
-  private editorComponent: SkyListViewRepeaterEditorComponent;
 
   constructor(
     state: ListState,
@@ -72,30 +67,6 @@ export class SkyListViewRepeaterComponent extends ListViewComponent {
           new ListViewRepeaterSetExpandedAction(item.id, !expanded[item.id])
         );
       });
-  }
-
-  public beginEditing(item: ListItemModel) {
-    this.repeaterState.map(s => s.editing)
-      .take(1)
-      .subscribe(editing => {
-        this.repeaterDispatcher.next(new ListViewRepeaterSetEditingAction(item.id, true));
-      });
-  }
-
-  public stopEditing(item: ListItemModel) {
-    this.repeaterState.map(s => s.editing)
-      .take(1)
-      .subscribe(editing => {
-        this.repeaterDispatcher.next(new ListViewRepeaterSetEditingAction(item.id, false));
-      });
-  }
-
-  public showReadOnly(item: ListItemModel) {
-    return Observable.of(true);
-  }
-
-  public showEditor(item: ListItemModel) {
-    return Observable.of(false);
   }
 
   public showContent(item: ListItemModel) {
@@ -124,9 +95,5 @@ export class SkyListViewRepeaterComponent extends ListViewComponent {
 
   get contentTemplate() {
     return this.contentComponent !== undefined ? this.contentComponent.template : undefined;
-  }
-
-  get editorTemplate() {
-    return this.editorComponent !== undefined ? this.editorComponent.template : undefined;
   }
 }

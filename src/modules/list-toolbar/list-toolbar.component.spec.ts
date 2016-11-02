@@ -1,9 +1,9 @@
 import {
   ComponentFixture,
   TestBed,
-  async,
-  DebugElement
+  async
 } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
   ListState,
