@@ -76,7 +76,7 @@
     "microedge-rxstate": "~1.0.3",
     "moment": "^2.15.2",
     "ng2-dragula": "^1.2.2-0",
-    "node-sass": "^3.10.1",
+    "node-sass": "^3.11.2",
     "normalize-scss": "5.0.3",
     "raw-loader": "0.5.1",
     "remap-istanbul": "devCrossNet/remap-istanbul",

@@ -11,8 +11,6 @@ import { SkyListComponent } from './list.component';
   ],
   exports: [
     SkyListComponent
-  ],
-  providers: [
   ]
 })
 export class SkyListModule {

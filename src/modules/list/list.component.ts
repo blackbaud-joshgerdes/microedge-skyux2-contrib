@@ -63,6 +63,8 @@ export class SkyListComponent implements AfterContentInit {
         this.dispatcher.next(
           new ListViewsLoadAction(this.listViews.map(v => new ListViewModel(v.id, v.label)))
         );
+      } else {
+        return;
       }
     }
 
@@ -124,6 +126,8 @@ export class SkyListComponent implements AfterContentInit {
 
             return true;
           });
+
+          lastFilterResults = result;
         }
 
         if (!dataChanged && !searchChanged && lastSearchResults !== undefined) {
@@ -216,9 +220,6 @@ export class SkyListComponent implements AfterContentInit {
         if (searchText !== undefined && searchText.length > 0 && this.searchAsyncFunction) {
           this.dispatcher.next(new ListDisplayedItemsSetLoadingAction());
           let searchResult: any = this.searchAsyncFunction(searchText);
-          if (typeof searchResult.then === 'function') {
-            searchResult = Observable.fromPromise(searchResult);
-          }
 
           lastSearchData = searchResult.take(1);
           return lastSearchData;
@@ -229,7 +230,6 @@ export class SkyListComponent implements AfterContentInit {
 
     let lastItems: ListItemModel[];
     let lastDataItems: any[];
-    let lastDate: any;
     return Observable.combineLatest(
       data.distinctUntilChanged(),
       searchResults.distinctUntilChanged(),
@@ -255,8 +255,12 @@ export class SkyListComponent implements AfterContentInit {
         });
 
         if (dataItems !== lastDataItems) {
-          lastDate = new Date();
           lastItems = items;
+          lastDataItems = dataItems;
+        }
+
+        if (asyncSearchResults !== undefined) {
+          return items;
         }
 
         return lastItems;

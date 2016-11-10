@@ -23,8 +23,6 @@ import { SkyListFiltersModalComponent } from './list-filters-modal.component';
   ],
   entryComponents: [
     SkyListFiltersModalComponent
-  ],
-  providers: [
   ]
 })
 export class SkyListFiltersModule {

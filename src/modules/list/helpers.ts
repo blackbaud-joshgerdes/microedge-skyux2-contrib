@@ -1,19 +1,11 @@
 export function getData(item: any, selector: string): any {
-  if (selector === undefined) {
-    throw new Error('getData requires a non-null selector');
-  }
-
-  if (item === undefined) {
-    return undefined;
-  }
-
   let resultFieldParts = selector.split('.');
   if (resultFieldParts.length > 0 && resultFieldParts[0] === '') {
     resultFieldParts.shift();
   }
 
   let result = item;
-  if (resultFieldParts.length > 0 && result !== undefined) {
+  if (resultFieldParts.length > 0) {
     for (let index = 0; index < resultFieldParts.length; index++) {
       let part = resultFieldParts[index];
       if (result[part] === undefined) {

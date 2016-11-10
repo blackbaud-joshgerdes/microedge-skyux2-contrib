@@ -21,6 +21,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { ListViewGridTestComponent } from './fixtures/list-view-grid.component.fixture';
 import { SkyListViewGridComponent, SkyListViewGridModule } from './';
 import { SkyListToolbarModule } from '../list-toolbar';
+import { SkyListFiltersModule } from '../list-filters';
 
 describe('List View Grid Component', () => {
   let state: ListState,
@@ -40,12 +41,12 @@ describe('List View Grid Component', () => {
       ],
       imports: [
         SkyListViewGridModule,
-        SkyListToolbarModule
+        SkyListToolbarModule,
+        SkyListFiltersModule
       ],
       providers: [
         { provide: ListState, useValue: state },
-        { provide: ListStateDispatcher, useValue: dispatcher },
-        { provide: ComponentFixtureAutoDetect, useValue: true }
+        { provide: ListStateDispatcher, useValue: dispatcher }
       ]
     });
 

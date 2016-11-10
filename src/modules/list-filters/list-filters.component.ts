@@ -11,8 +11,8 @@ import { SkyListFiltersModalComponent } from './list-filters-modal.component';
 
 @Component({
   selector: 'sky-list-filters',
-  templateUrl: './list-filters.component.html',
-  styleUrls: ['./list-filters.component.scss']
+  template: require('./list-filters.component.html'),
+  styles: [require('./list-filters.component.scss')]
 })
 export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit {
   @Input() public modalTitle: string = 'Filters';

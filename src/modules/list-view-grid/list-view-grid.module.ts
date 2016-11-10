@@ -36,8 +36,6 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
     SkyListViewGridComponent,
     SkyListViewGridColumnComponent,
     SkyListViewGridCellComponent
-  ],
-  providers: [
   ]
 })
 export class SkyListViewGridModule {
