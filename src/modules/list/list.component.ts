@@ -2,7 +2,7 @@ import {
   Component, ContentChildren, QueryList, AfterContentInit, ChangeDetectionStrategy, Input
 } from '@angular/core';
 import {
-  ListItemsLoadAction, ListItemsSetLoadingAction, ListItemsSetItemsSelectedAction
+  ListItemsLoadAction, ListItemsSetLoadingAction
 } from './state/items/actions';
 import {
   ListDisplayedItemsLoadAction, ListDisplayedItemsSetLoadingAction
@@ -56,20 +56,19 @@ export class SkyListComponent implements AfterContentInit {
   }
 
   public ngAfterContentInit() {
-    let defaultView: ListViewComponent = this.defaultView;
-    if (defaultView === undefined) {
-      if (this.listViews.length > 0) {
-        defaultView = this.listViews.first;
-        this.dispatcher.next(
-          new ListViewsLoadAction(this.listViews.map(v => new ListViewModel(v.id, v.label)))
-        );
-      } else {
-        return;
-      }
-    }
+    if (this.listViews.length > 0) {
+      let defaultView: ListViewComponent =
+        (this.defaultView === undefined) ? this.listViews.first : this.defaultView;
 
-    // activate the default view
-    this.dispatcher.next(new ListViewsSetActiveAction(defaultView.id));
+      this.dispatcher.next(
+        new ListViewsLoadAction(this.listViews.map(v => new ListViewModel(v.id, v.label)))
+      );
+
+      // activate the default view
+      this.dispatcher.next(new ListViewsSetActiveAction(defaultView.id));
+    } else {
+      return;
+    }
 
     // set sort fields
     getValue(this.sortFields, (sortFields: string[]) =>

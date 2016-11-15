@@ -18,15 +18,30 @@ import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { ListViewsLoadAction } from '../list/state/views/actions';
 import { ListViewModel } from '../list/state/views/view.model';
 import { ListItemModel } from '../list/state/items/item.model';
-import { ListItemsLoadAction } from '../list/state/items/actions';
+import {
+  ListItemsLoadAction,
+  ListItemsSetItemsSelectedAction,
+  ListItemsSetItemSelectedAction,
+  ListItemsSetLoadingAction
+} from '../list/state/items/actions';
 import { ListDisplayedItemsLoadAction } from '../list/state/displayed-items/actions';
 import { ListTestComponent } from './fixtures/list.component.fixture';
 import { ListAsyncTestComponent } from './fixtures/list-async.component.fixture';
+import { ListDualTestComponent } from './fixtures/list-dual.component.fixture';
 import { ListEmptyTestComponent } from './fixtures/list-empty.component.fixture';
 import { SkyListComponent, SkyListModule } from './';
 import { SkyListToolbarModule } from '../list-toolbar';
 import { SkyListViewGridModule, SkyListViewGridComponent } from '../list-view-grid';
 import { SkyListFiltersModule } from '../list-filters';
+import { ListFilterModel } from './state/filters/filter.model';
+import { ListFiltersClearAction } from './state/filters/actions';
+import { ListSearchSetFunctionsAction } from './state/search/actions';
+import { ListSortFieldSelectorModel } from './state/sort/field-selector.model';
+import { ListSortLabelModel } from './state/sort/label.model';
+import { ListSortSetFieldSelectorsAction } from './state/sort/actions';
+import { ListToolbarItemModel } from './state/toolbar/toolbar-item.model';
+import { ListToolbarItemsLoadAction } from './state/toolbar/actions';
+import { ListViewComponent } from './list-view.component';
 
 describe('List Component', () => {
   describe('List Fixture', () => {
@@ -177,6 +192,14 @@ describe('List Component', () => {
         });
       }));
 
+      it('should sort based on sort state', () => {
+        dispatcher.next(new ListSortSetFieldSelectorsAction(['column1']));
+        fixture.detectChanges();
+        element.query(By.css('th.heading')).triggerEventHandler('click', null);
+        fixture.detectChanges();
+        expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe('');
+      });
+
       it('should filter based on defined filter', async(() => {
         fixture.detectChanges();
         element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', null);
@@ -256,14 +279,6 @@ describe('List Component', () => {
             expect(u).toBeUndefined();
           });
         }));
-      });
-
-      describe('views', () => {
-        it('should return list of views', () => {
-          expect(component.list.views.length).toBe(1);
-          expect(component.list.views[0] instanceof SkyListViewGridComponent).toBeTruthy();
-          expect(component.list.views[0].label).toBe('Grid View');
-        });
       });
     });
 
@@ -533,5 +548,222 @@ describe('List Component', () => {
         expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(0);
       });
     });
+  });
+
+  describe('Dual view Fixture', () => {
+    describe('List Component with Observable', () => {
+      let state: ListState,
+          dispatcher: ListStateDispatcher,
+          component: ListTestComponent,
+          fixture: any,
+          nativeElement: HTMLElement,
+          element: DebugElement,
+          items: Observable<any>,
+          bs: BehaviorSubject<any>;
+
+      beforeEach(async(() => {
+        dispatcher = new ListStateDispatcher();
+        state = new ListState(dispatcher);
+
+        let itemsArray = [
+          { id: '1', column1: '30', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') },
+          { id: '2', column1: '01', column2: 'Banana', column3: 3, column4: moment().add(6, 'minute') },
+          { id: '3', column1: '11', column2: 'Banana', column3: 11, column4: moment().add(4, 'minute') },
+          { id: '4', column1: '12', column2: 'Carrot', column3: 12, column4: moment().add(2, 'minute') },
+          { id: '5', column1: '12', column2: 'Edamame', column3: 12, column4: moment().add(5, 'minute') },
+          { id: '6', column1: null, column2: null, column3: 20, column4: moment().add(3, 'minute') },
+          { id: '7', column1: '22', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') }
+        ];
+
+        bs = new BehaviorSubject<Array<any>>(itemsArray);
+        items = bs.asObservable();
+
+        TestBed.configureTestingModule({
+          declarations: [
+            ListDualTestComponent
+          ],
+          imports: [
+            SkyListModule,
+            SkyListFiltersModule,
+            SkyListToolbarModule,
+            SkyListViewGridModule,
+            FormsModule
+          ],
+          providers: [
+            { provide: 'items', useValue: items }
+          ]
+        })
+        .overrideComponent(SkyListComponent, {
+          set: {
+            providers: [
+              { provide: ListState, useValue: state },
+              { provide: ListStateDispatcher, useValue: dispatcher }
+            ]
+          }
+        });
+
+        fixture = TestBed.createComponent(ListDualTestComponent);
+        nativeElement = fixture.nativeElement as HTMLElement;
+        element = fixture.debugElement as DebugElement;
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+
+        // always skip the first update to ListState, when state is ready
+        // run detectChanges once more then begin tests
+        state.skip(1).take(1).subscribe(() => fixture.detectChanges());
+        fixture.detectChanges();
+      }));
+
+      it('should switch views when clicking view selector', () => {
+        fixture.detectChanges();
+        expect(element.queryAll(By.css('sky-list-view-grid[ng-reflect-name="First"] th.heading')).length).toBe(2);
+        element.query(
+          By.css('sky-list-toolbar-item-renderer[cmp-id="view-selector"] button')
+        ).triggerEventHandler('click', null);
+        fixture.detectChanges();
+        element.query(
+          By.css('sky-dropdown-item[cmp-id="' + component.list.views[1].id + '"] button')
+        ).triggerEventHandler('click', null);
+        fixture.detectChanges();
+        expect(element.queryAll(By.css('sky-list-view-grid[ng-reflect-name="Second"] th.heading')).length).toBe(1);
+        element.query(
+          By.css('sky-dropdown-item[cmp-id="' + component.list.views[0].id + '"] button')
+        ).triggerEventHandler('click', null);
+        fixture.detectChanges();
+      });
+
+      it('should return list of views', () => {
+        expect(component.list.views.length).toBe(2);
+        expect(component.list.views[0] instanceof SkyListViewGridComponent).toBeTruthy();
+        expect(component.list.views[0].label).toBe('First');
+        expect(component.list.views[1] instanceof SkyListViewGridComponent).toBeTruthy();
+        expect(component.list.views[1].label).toBe('Second');
+      });
+    });
+  });
+
+  describe('Models and State', () => {
+    it('should construct ListFilterModel without data', () => {
+      let model = new ListFilterModel();
+      expect(model.label).toBeUndefined();
+      expect(model.type).toBeUndefined();
+      expect(model.view).toBeUndefined();
+    });
+
+    it('should construct ListFiltersClearAction', () => {
+      let action = new ListFiltersClearAction();
+      expect(action).not.toBeUndefined();
+    });
+
+    it('should construct ListItemModel without data', () => {
+      let model = new ListItemModel('1', false);
+      expect(model.id).toBe('1');
+      expect(model.selected).toBeFalsy();
+      expect(model.data).toBeUndefined();
+    });
+
+    it('should construct ListItemModel and throw error if id is undefined', () => {
+      expect(() => { new ListItemModel(undefined, false); }).toThrow(new Error('All list item models require an ID'));
+    });
+
+    it('should construct ListItemsSetItemsSelectedAction', () => {
+      let action = new ListItemsSetItemsSelectedAction([new ListItemModel('1', false)]);
+      expect(action).not.toBeUndefined();
+    });
+
+    it('should construct ListItemsSetLoadingAction', () => {
+      let action = new ListItemsSetLoadingAction(true);
+      expect(action).not.toBeUndefined();
+    });
+
+    it('should run ListItemsLoadAction action without refresh', async(() => {
+      let listDispatcher = new ListStateDispatcher();
+      let listState = new ListState(listDispatcher);
+      let items = [
+        new ListItemModel('1', false),
+        new ListItemModel('2', false)
+      ];
+
+      listDispatcher.next(new ListItemsLoadAction(items));
+      listState.take(1).subscribe(s => {
+        expect(s.items.count).toBe(2);
+      });
+      listDispatcher.next(new ListItemsLoadAction(items, false, false, 50));
+      listState.take(1).subscribe(s => {
+        expect(s.items.count).toBe(50);
+      });
+    }));
+
+    it('should run ListItemsSetItemsSelectedAction action setting select properly', async(() => {
+      let listDispatcher = new ListStateDispatcher();
+      let listState = new ListState(listDispatcher);
+      let items = [
+        new ListItemModel('1', false),
+        new ListItemModel('2', false)
+      ];
+
+      listDispatcher.next(new ListItemsLoadAction(items));
+      listDispatcher.next(new ListItemsSetItemsSelectedAction([new ListItemModel('3', false)], true));
+      listState.take(1).subscribe(s => {
+        expect(s.items.items.filter(i => i.selected).length).toBe(0);
+      });
+    }));
+
+    it('should run ListItemsSetItemSelectedAction action setting select properly', async(() => {
+      let listDispatcher = new ListStateDispatcher();
+      let listState = new ListState(listDispatcher);
+      let items = [
+        new ListItemModel('1', false),
+        new ListItemModel('2', false)
+      ];
+
+      listDispatcher.next(new ListItemsLoadAction(items));
+      listDispatcher.next(new ListItemsSetItemSelectedAction('3', false));
+      listState.take(1).subscribe(s => {
+        expect(s.items.items.filter(i => i.selected).length).toBe(0);
+      });
+    }));
+
+    it('should construct ListSearchSetFunctionsAction', () => {
+      let action = new ListSearchSetFunctionsAction();
+      expect(action).not.toBeUndefined();
+    });
+
+    it('should construct ListSortFieldSelectorModel without data', () => {
+      let model = new ListSortFieldSelectorModel();
+      expect(model.descending).toBeFalsy();
+      expect(model.fieldSelector).toBeUndefined();
+    });
+
+    it('should construct ListSortLabelModel without data', () => {
+      let model = new ListSortLabelModel();
+      expect(model.global).toBeFalsy();
+      expect(model.text).toBeUndefined();
+      expect(model.fieldSelector).toBeUndefined();
+      expect(model.fieldType).toBeUndefined();
+    });
+
+    it('should run ListSortSetFieldSelectorsAction action', async(() => {
+      let listDispatcher = new ListStateDispatcher();
+      let listState = new ListState(listDispatcher);
+
+      listDispatcher.next(new ListSortSetFieldSelectorsAction(['test']));
+      listState.take(1).subscribe(s => {
+        expect(s.items.items.filter(i => i.selected).length).toBe(0);
+      });
+    }));
+
+    it('should construct ListToolbarItemModel without data', () => {
+      let model = new ListToolbarItemModel();
+      expect(model.template).toBeUndefined();
+      expect(model.location).toBeUndefined();
+      expect(model.view).toBeUndefined();
+      expect(model.id).toBeUndefined();
+    });
+
+    it('should construct ListToolbarItemsLoadAction action', async(() => {
+      let action = new ListToolbarItemsLoadAction([new ListToolbarItemModel()]);
+      expect(action).not.toBeUndefined();
+    }));
   });
 });

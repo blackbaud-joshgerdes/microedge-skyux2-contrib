@@ -20,10 +20,6 @@ export class ListSortOrchestrator extends ListStateOrchestrator<ListSortModel> {
     state: ListSortModel,
     action: ListSortSetFieldSelectorsAction): ListSortModel {
     let fieldSelectors = action.fieldSelectors;
-    if (typeof fieldSelectors === 'string') {
-      fieldSelectors = [fieldSelectors];
-    }
-
     let selectors = fieldSelectors.map(selector => {
       let fieldSelector: string = selector;
       let descending: boolean = false;

@@ -1,6 +1,5 @@
 import {
   ComponentFixture,
-  ComponentFixtureAutoDetect,
   TestBed,
   async
 } from '@angular/core/testing';
@@ -22,6 +21,8 @@ import { ListViewRepeaterTestComponent } from './fixtures/list-view-repeater.com
 import { ListViewRepeaterTestEmptyComponent } from './fixtures/list-view-repeater-empty.component.fixture';
 import { ListViewRepeaterTestTemplateComponent } from './fixtures/list-view-repeater-template.component.fixture';
 import { SkyListViewRepeaterComponent, SkyListViewRepeaterModule } from './';
+import { RepeaterState, RepeaterStateDispatcher, RepeaterStateModel } from './state';
+import { ListViewRepeaterSetExpandedAction } from './state/expanded/actions';
 
 describe('List View Repeater Component', () => {
 
@@ -46,8 +47,7 @@ describe('List View Repeater Component', () => {
         ],
         providers: [
           { provide: ListState, useValue: state },
-          { provide: ListStateDispatcher, useValue: dispatcher },
-          { provide: ComponentFixtureAutoDetect, useValue: true }
+          { provide: ListStateDispatcher, useValue: dispatcher }
         ]
       });
 
@@ -139,8 +139,7 @@ describe('List View Repeater Component', () => {
         ],
         providers: [
           { provide: ListState, useValue: state },
-          { provide: ListStateDispatcher, useValue: dispatcher },
-          { provide: ComponentFixtureAutoDetect, useValue: true }
+          { provide: ListStateDispatcher, useValue: dispatcher }
         ]
       });
 
@@ -211,8 +210,7 @@ describe('List View Repeater Component', () => {
         ],
         providers: [
           { provide: ListState, useValue: state },
-          { provide: ListStateDispatcher, useValue: dispatcher },
-          { provide: ComponentFixtureAutoDetect, useValue: true }
+          { provide: ListStateDispatcher, useValue: dispatcher }
         ]
       });
 
@@ -265,5 +263,17 @@ describe('List View Repeater Component', () => {
     it('should return proper label', () => {
       expect(component.repeater.label).toBe('TestRepeaterTemplate');
     });
+  });
+
+  describe('Models and State', () => {
+    it('should run ListViewRepeaterSetExpandedAction action without expanded', async(() => {
+      let repeaterDispatcher = new RepeaterStateDispatcher();
+      let repeaterState = new RepeaterState(new RepeaterStateModel(), repeaterDispatcher);
+
+      repeaterDispatcher.next(new ListViewRepeaterSetExpandedAction('test'));
+      repeaterState.subscribe(s => {
+        expect(s.expanded['test']).toBeFalsy();
+      });
+    }));
   });
 });

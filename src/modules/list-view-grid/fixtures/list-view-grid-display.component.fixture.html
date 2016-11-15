@@ -1,9 +1,5 @@
-<sky-list-toolbar searchEnabled="true" viewSelectorEnabled="true" sortSelectorEnabled="true">
-  <sky-list-toolbar-item id="custom-item" location="left" [index]="0">
-    <template>Custom Item</template>
-  </sky-list-toolbar-item>
-</sky-list-toolbar>
-<sky-list-view-grid fit="scroll" [name]="gridview" [hiddenColumns]="hiddenColumns" [width]="600" [height]="400">
+<sky-list-toolbar></sky-list-toolbar>
+<sky-list-view-grid fit="scroll" [name]="gridview" [displayedColumns]="displayedColumns" [search]="itemSearch">
   <sky-list-view-grid-column field="column1" heading="Column1" [locked]="true"></sky-list-view-grid-column>
   <sky-list-view-grid-column field="column2" heading="Column2" [width]="150">
     <template let-row="row">{{row.column2}}</template>
@@ -15,15 +11,10 @@
   <sky-list-view-grid-column id="hiddenCol2" field="column1" heading="Column7"></sky-list-view-grid-column>
 </sky-list-view-grid>
 
-<sky-list-view-grid fit="scroll" [name]="gridview2" [hiddenColumns]="hiddenColumns" [width]="600" [height]="400">
-  <sky-list-view-grid-column field="column1" heading="Column1" [locked]="true"></sky-list-view-grid-column>
-  <sky-list-view-grid-column field="column2" heading="Column2" [width]="150"></sky-list-view-grid-column>
-</sky-list-view-grid>
-
 <template let-value="value" #template1>
   {{value}}
 </template>
 
-<template #toolbarItem>
-  Custom
+<template #template2>
+  Testing
 </template>

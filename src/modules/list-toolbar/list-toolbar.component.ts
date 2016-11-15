@@ -146,11 +146,12 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
     return Observable.combineLatest(
       this.state.map(s => s.toolbar).distinctUntilChanged(),
       this.view.distinctUntilChanged(),
-      (toolbar: ListToolbarModel, view: string) => toolbar.items.filter(
+      (toolbar: ListToolbarModel, view: string) => {
+        return toolbar.items.filter(
         (i: ListToolbarItemModel) =>
           i.location === 'right' && (i.view === undefined || i.view === view)
-      )
-    );
+      );
+      });
   }
 
   public setActiveView(view: any): void {
