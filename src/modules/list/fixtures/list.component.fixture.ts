@@ -10,19 +10,22 @@ import { BehaviorSubject } from 'rxjs';
 export class ListTestComponent {
   @ViewChild(SkyListComponent) public list: SkyListComponent;
 
-  constructor(@Inject('items') private items: any) {
+  constructor(@Inject('items') public items: any) {
   }
 
-  private get options() {
+  public get options() {
     let bs = new BehaviorSubject<Array<any>>(['banana', 'apple']);
     return bs.asObservable();
   }
 
   public itemSearch(item: any, searchText: string) {
-    return item.column2.toLowerCase().indexOf(searchText) !== -1 ? item.column2.toLowerCase() : -1;
+    return item.column2.toLowerCase().indexOf(searchText) !== -1 ?
+      item.column2.toLowerCase() : -1;
   }
 
-  private filterOnStatus(item: any, filter: ListFilterDataModel) {
-    return item.data.column2 !== null ? item.data.column2.toLowerCase().indexOf(filter.value) !== -1 : false;
+  public filterOnStatus(item: any, filter: ListFilterDataModel) {
+    /* tslint:disable */
+    return item.data.column2 !== null ?
+      item.data.column2.toLowerCase().indexOf(filter.value) !== -1 : false;
   }
 }

@@ -8,6 +8,6 @@ import { SkyListComponent } from '../list.component';
 export class ListDualTestComponent {
   @ViewChild(SkyListComponent) public list: SkyListComponent;
 
-  constructor(@Inject('items') private items: any) {
+  constructor(@Inject('items') public items: any) {
   }
 }

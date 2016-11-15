@@ -88,10 +88,22 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
   public ngAfterViewInit() {
     this.dispatcher.toolbarAddItems([
       new ListToolbarItemModel(
-        { id: 'select-all', template: this.selectAllTemplate, location: 'right', index: 500, view: this.id }
+        {
+          id: 'select-all',
+          template: this.selectAllTemplate,
+          location: 'right',
+          index: 500,
+          view: this.id
+        }
       ),
       new ListToolbarItemModel(
-        { id: 'clear-all', template: this.clearSelectionsTemplate, location: 'right', index: 500, view: this.id }
+        {
+          id: 'clear-all',
+          template: this.clearSelectionsTemplate,
+          location: 'right',
+          index: 500,
+          view: this.id
+        }
       )
     ]);
   }

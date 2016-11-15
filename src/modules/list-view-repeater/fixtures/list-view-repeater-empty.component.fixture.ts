@@ -6,5 +6,5 @@ import { SkyListViewRepeaterComponent } from '../list-view-repeater.component';
   template: require('./list-view-repeater-empty.component.fixture.html')
 })
 export class ListViewRepeaterTestEmptyComponent {
-  @ViewChild(SkyListViewRepeaterComponent) repeater: SkyListViewRepeaterComponent;
+  @ViewChild(SkyListViewRepeaterComponent) public repeater: SkyListViewRepeaterComponent;
 }

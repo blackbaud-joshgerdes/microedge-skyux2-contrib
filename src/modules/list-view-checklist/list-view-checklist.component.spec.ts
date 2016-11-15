@@ -1,5 +1,4 @@
 import {
-  ComponentFixture,
   TestBed,
   async
 } from '@angular/core/testing';
@@ -15,10 +14,13 @@ import { ListViewModel } from '../list/state/views/view.model';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListItemsLoadAction } from '../list/state/items/actions';
 import { ListDisplayedItemsLoadAction } from '../list/state/displayed-items/actions';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { ListViewChecklistTestComponent } from './fixtures/list-view-checklist.component.fixture';
-import { ListViewChecklistEmptyTestComponent } from './fixtures/list-view-checklist-empty.component.fixture';
-import { SkyListViewChecklistComponent, SkyListViewChecklistModule } from './';
+import {
+  ListViewChecklistTestComponent
+} from './fixtures/list-view-checklist.component.fixture';
+import {
+  ListViewChecklistEmptyTestComponent
+} from './fixtures/list-view-checklist-empty.component.fixture';
+import { SkyListViewChecklistModule } from './';
 import { ListViewChecklistItemsLoadAction } from './state/items/actions';
 import { ListViewChecklistItemModel } from './state/items/item.model';
 import { ChecklistState, ChecklistStateDispatcher, ChecklistStateModel } from './state';
@@ -31,8 +33,7 @@ describe('List View Checklist Component', () => {
         fixture: any,
         nativeElement: HTMLElement,
         element: DebugElement,
-        items: Array<any>,
-        bs: BehaviorSubject<any>;
+        items: Array<any>;
 
     beforeEach(async(() => {
       dispatcher = new ListStateDispatcher();
@@ -58,18 +59,27 @@ describe('List View Checklist Component', () => {
       fixture.detectChanges();
 
       items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple', column3: 'aa', column4: moment().add(1, 'minute') }),
-        new ListItemModel('2', false, { column1: '01', column2: 'Banana', column3: 'bb', column4: moment().add(6, 'minute'), column5: 'test' }),
-        new ListItemModel('3', false, { column1: '11', column2: 'Banana', column3: 'cc', column4: moment().add(4, 'minute') }),
-        new ListItemModel('4', false, { column1: '12', column2: 'Daikon', column3: 'dd', column4: moment().add(2, 'minute') }),
-        new ListItemModel('5', false, { column1: '13', column2: 'Edamame', column3: 'ee', column4: moment().add(5, 'minute') }),
-        new ListItemModel('6', false, { column1: '20', column2: 'Fig', column3: 'ff', column4: moment().add(3, 'minute') }),
-        new ListItemModel('7', false, { column1: '21', column2: 'Grape', column3: 'gg', column4: moment().add(7, 'minute') })
+        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+          column3: 'aa', column4: moment().add(1, 'minute') }),
+        new ListItemModel('2', false, { column1: '01', column2: 'Banana',
+          column3: 'bb', column4: moment().add(6, 'minute'), column5: 'test' }),
+        new ListItemModel('3', false, { column1: '11', column2: 'Banana',
+          column3: 'cc', column4: moment().add(4, 'minute') }),
+        new ListItemModel('4', false, { column1: '12', column2: 'Daikon',
+          column3: 'dd', column4: moment().add(2, 'minute') }),
+        new ListItemModel('5', false, { column1: '13', column2: 'Edamame',
+          column3: 'ee', column4: moment().add(5, 'minute') }),
+        new ListItemModel('6', false, { column1: '20', column2: 'Fig',
+          column3: 'ff', column4: moment().add(3, 'minute') }),
+        new ListItemModel('7', false, { column1: '21', column2: 'Grape',
+          column3: 'gg', column4: moment().add(7, 'minute') })
       ];
 
       dispatcher.next(new ListItemsLoadAction(items, true));
       dispatcher.next(new ListDisplayedItemsLoadAction(items));
-      dispatcher.next(new ListViewsLoadAction([new ListViewModel(component.checklist.id, component.checklist.label)]));
+      dispatcher.next(new ListViewsLoadAction([
+        new ListViewModel(component.checklist.id, component.checklist.label)
+      ]));
       dispatcher.viewsSetActive(component.checklist.id);
       fixture.detectChanges();
 
@@ -81,8 +91,12 @@ describe('List View Checklist Component', () => {
 
     it('should show checklist with proper labels', () => {
       expect(element.queryAll(By.css('sky-list-view-checklist-item')).length).toBe(7);
-      expect(element.query(By.css('sky-list-view-checklist-item sky-checkbox-label strong')).nativeElement.textContent.trim()).toBe('1');
-      expect(element.query(By.css('sky-list-view-checklist-item sky-checkbox-label div')).nativeElement.textContent.trim()).toBe('Apple');
+      expect(element.query(
+        By.css('sky-list-view-checklist-item sky-checkbox-label strong')
+      ).nativeElement.textContent.trim()).toBe('1');
+      expect(element.query(
+        By.css('sky-list-view-checklist-item sky-checkbox-label div')
+      ).nativeElement.textContent.trim()).toBe('Apple');
     });
 
     it('should search based on input text', async(() => {
@@ -136,12 +150,15 @@ describe('List View Checklist Component', () => {
       fixture.detectChanges();
 
       items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') })
+        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+          column3: 1, column4: moment().add(1, 'minute') })
       ];
 
       dispatcher.next(new ListItemsLoadAction(items, true));
       dispatcher.next(new ListDisplayedItemsLoadAction(items));
-      dispatcher.next(new ListViewsLoadAction([new ListViewModel(component.checklist.id, component.checklist.label)]));
+      dispatcher.next(new ListViewsLoadAction([
+        new ListViewModel(component.checklist.id, component.checklist.label)
+      ]));
       dispatcher.viewsSetActive(component.checklist.id);
       fixture.detectChanges();
 
@@ -153,7 +170,9 @@ describe('List View Checklist Component', () => {
 
     it('should display 1 empty item', () => {
       expect(element.queryAll(By.css('sky-list-view-checklist-item')).length).toBe(1);
-      expect(element.query(By.css('sky-list-view-checklist-item sky-checkbox-label')).nativeElement.textContent.trim()).toBe('');
+      expect(element.query(
+        By.css('sky-list-view-checklist-item sky-checkbox-label')
+      ).nativeElement.textContent.trim()).toBe('');
     });
 
     it('should search based on input text', async(() => {

@@ -1,9 +1,6 @@
 import {
-  ComponentFixture,
   TestBed,
-  async,
-  fakeAsync,
-  tick
+  async
 } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -13,10 +10,7 @@ import {
   ListStateDispatcher
 } from '../list/state';
 import * as moment from 'moment';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
-
-import { ListViewsLoadAction } from '../list/state/views/actions';
-import { ListViewModel } from '../list/state/views/view.model';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { ListItemModel } from '../list/state/items/item.model';
 import {
   ListItemsLoadAction,
@@ -24,7 +18,6 @@ import {
   ListItemsSetItemSelectedAction,
   ListItemsSetLoadingAction
 } from '../list/state/items/actions';
-import { ListDisplayedItemsLoadAction } from '../list/state/displayed-items/actions';
 import { ListTestComponent } from './fixtures/list.component.fixture';
 import { ListAsyncTestComponent } from './fixtures/list-async.component.fixture';
 import { ListDualTestComponent } from './fixtures/list-dual.component.fixture';
@@ -41,7 +34,6 @@ import { ListSortLabelModel } from './state/sort/label.model';
 import { ListSortSetFieldSelectorsAction } from './state/sort/actions';
 import { ListToolbarItemModel } from './state/toolbar/toolbar-item.model';
 import { ListToolbarItemsLoadAction } from './state/toolbar/actions';
-import { ListViewComponent } from './list-view.component';
 
 describe('List Component', () => {
   describe('List Fixture', () => {
@@ -59,14 +51,22 @@ describe('List Component', () => {
         dispatcher = new ListStateDispatcher();
         state = new ListState(dispatcher);
 
+        /* tslint:disable */
         let itemsArray = [
-          { id: '1', column1: '30', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') },
-          { id: '2', column1: '01', column2: 'Banana', column3: 3, column4: moment().add(6, 'minute') },
-          { id: '3', column1: '11', column2: 'Banana', column3: 11, column4: moment().add(4, 'minute') },
-          { id: '4', column1: '12', column2: 'Carrot', column3: 12, column4: moment().add(2, 'minute') },
-          { id: '5', column1: '12', column2: 'Edamame', column3: 12, column4: moment().add(5, 'minute') },
-          { id: '6', column1: null, column2: null, column3: 20, column4: moment().add(3, 'minute') },
-          { id: '7', column1: '22', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') }
+          { id: '1', column1: '30', column2: 'Apple',
+            column3: 1, column4: moment().add(1, 'minute') },
+          { id: '2', column1: '01', column2: 'Banana',
+            column3: 3, column4: moment().add(6, 'minute') },
+          { id: '3', column1: '11', column2: 'Banana',
+            column3: 11, column4: moment().add(4, 'minute') },
+          { id: '4', column1: '12', column2: 'Carrot',
+            column3: 12, column4: moment().add(2, 'minute') },
+          { id: '5', column1: '12', column2: 'Edamame',
+            column3: 12, column4: moment().add(5, 'minute') },
+          { id: '6', column1: null, column2: null,
+            column3: 20, column4: moment().add(3, 'minute') },
+          { id: '7', column1: '22', column2: 'Grape',
+            column3: 21, column4: moment().add(7, 'minute') }
         ];
 
         bs = new BehaviorSubject<Array<any>>(itemsArray);
@@ -109,7 +109,9 @@ describe('List Component', () => {
       }));
 
       function setSearchInput(text: string) {
-        let searchInputElement = element.query(By.css('.toolbar-item-container input[type="text"]')).nativeElement;
+        let searchInputElement = element.query(
+          By.css('.toolbar-item-container input[type="text"]')
+        ).nativeElement;
         searchInputElement.value = text;
         searchInputElement.dispatchEvent(new Event('input'));
         fixture.detectChanges();
@@ -117,7 +119,9 @@ describe('List Component', () => {
       }
 
       function setFilterSelect(text: string, modal: boolean = false) {
-        let filterSelect = modal ? document.querySelector('.sky-list-filters-modal-bar select') : element.query(By.css('.sky-list-filters-inline-bar select')).nativeElement;
+        let filterSelect = modal ?
+          document.querySelector('.sky-list-filters-modal-bar select') :
+          element.query(By.css('.sky-list-filters-inline-bar select')).nativeElement;
         filterSelect.value = text;
         filterSelect.dispatchEvent(new Event('change'));
         fixture.detectChanges();
@@ -132,9 +136,12 @@ describe('List Component', () => {
         expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
         fixture.detectChanges();
         bs.next([
-          { id: '1', column1: '1', column2: 'Large', column3: 2, column4: moment().add(15, 'minute') },
-          { id: '2', column1: '22', column2: 'Small', column3: 3, column4: moment().add(60, 'minute') },
-          { id: '3', column1: '33', column2: 'Medium', column3: 4, column4: moment().add(45, 'minute') }
+          { id: '1', column1: '1', column2: 'Large',
+            column3: 2, column4: moment().add(15, 'minute') },
+          { id: '2', column1: '22', column2: 'Small',
+            column3: 3, column4: moment().add(60, 'minute') },
+          { id: '3', column1: '33', column2: 'Medium',
+            column3: 4, column4: moment().add(45, 'minute') }
         ]);
         fixture.detectChanges();
         expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
@@ -142,8 +149,10 @@ describe('List Component', () => {
 
       it('should update displayed items when data is updated', () => {
         let newItems = [
-          { id: '11', column1: '11', column2: 'Coffee', column3: 11, column4: moment().add(11, 'minute') },
-          { id: '12', column1: '12', column2: 'Tea', column3: 12, column4: moment().add(12, 'minute') }
+          { id: '11', column1: '11', column2: 'Coffee',
+            column3: 11, column4: moment().add(11, 'minute') },
+          { id: '12', column1: '12', column2: 'Tea',
+            column3: 12, column4: moment().add(12, 'minute') }
         ];
 
         bs.next(newItems);
@@ -156,7 +165,9 @@ describe('List Component', () => {
         setSearchInput('banana')
         .then(() => {
           fixture.detectChanges();
-          element.query(By.css('button[cmp-id="search"] i')).triggerEventHandler('click', null);
+          element.query(
+            By.css('button[cmp-id="search"] i')
+          ).triggerEventHandler('click', undefined);
           fixture.detectChanges();
           expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
         });
@@ -164,45 +175,59 @@ describe('List Component', () => {
 
       it('should sort', () => {
         expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
-        element.query(By.css('th.heading')).triggerEventHandler('click', null);
+        element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
-        expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe('');
+        expect(element.query(
+          By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+        ).nativeElement.textContent.trim()).toBe('');
         fixture.detectChanges();
-        element.query(By.css('th.heading')).triggerEventHandler('click', null);
+        element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
-        expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe('01');
+        expect(element.query(
+          By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+        ).nativeElement.textContent.trim()).toBe('01');
         fixture.detectChanges();
-        element.queryAll(By.css('th.heading'))[2].triggerEventHandler('click', null);
+        element.queryAll(By.css('th.heading'))[2].triggerEventHandler('click', undefined);
         fixture.detectChanges();
-        expect(element.query(By.css('sky-list-view-grid-cell[cmp-id=".column3"]')).nativeElement.textContent.trim()).toBe('21');
+        expect(element.query(
+          By.css('sky-list-view-grid-cell[cmp-id=".column3"]')
+        ).nativeElement.textContent.trim()).toBe('21');
       });
 
       it('should sort based on column using cached search', async(() => {
         setSearchInput('banana')
         .then(() => {
           fixture.detectChanges();
-          element.query(By.css('button[cmp-id="search"] i')).triggerEventHandler('click', null);
+          element.query(
+            By.css('button[cmp-id="search"] i')
+          ).triggerEventHandler('click', undefined);
           fixture.detectChanges();
           expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
-          expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe('01');
+          expect(element.query(
+            By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+          ).nativeElement.textContent.trim()).toBe('01');
 
-          element.query(By.css('th.heading')).triggerEventHandler('click', null);
+          element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
           fixture.detectChanges();
-          expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe('11');
+          expect(element.query(
+            By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+          ).nativeElement.textContent.trim()).toBe('11');
         });
       }));
 
       it('should sort based on sort state', () => {
         dispatcher.next(new ListSortSetFieldSelectorsAction(['column1']));
         fixture.detectChanges();
-        element.query(By.css('th.heading')).triggerEventHandler('click', null);
+        element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
-        expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe('');
+        expect(element.query(
+          By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+        ).nativeElement.textContent.trim()).toBe('');
       });
 
       it('should filter based on defined filter', async(() => {
         fixture.detectChanges();
-        element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', null);
+        element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         setFilterSelect('banana').then(() => {
           expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
@@ -215,40 +240,55 @@ describe('List Component', () => {
 
       it('should filter using cached filter', async(() => {
         fixture.detectChanges();
-        element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', null);
+        element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         setFilterSelect('banana').then(() => {
-          expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe("01");
+          expect(element.query(
+            By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+          ).nativeElement.textContent.trim()).toBe('01');
 
-          element.query(By.css('th.heading')).triggerEventHandler('click', null);
+          element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
           fixture.detectChanges();
-          expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe("11");
+          expect(element.query(
+            By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+          ).nativeElement.textContent.trim()).toBe('11');
         });
       }));
 
       it('should filter using modal then clear active filter', async(() => {
         fixture.whenStable().then(() => {
           fixture.detectChanges();
-          element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', null);
+          element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', undefined);
           fixture.detectChanges();
-          element.query(By.css('.sky-list-filters-inline-bar button[cmp-id="filter-show-more"]')).triggerEventHandler('click', null);
+          element.query(
+            By.css('.sky-list-filters-inline-bar button[cmp-id="filter-show-more"]')
+          ).triggerEventHandler('click', undefined);
           fixture.detectChanges();
-          document.querySelector('sky-modal-footer button[cmp-id="clear-filters"]').dispatchEvent(new Event('click'));
+          document.querySelector('sky-modal-footer button[cmp-id="clear-filters"]')
+            .dispatchEvent(new Event('click'));
           fixture.detectChanges();
 
           return fixture.whenStable();
         })
         .then(() => setFilterSelect('banana', true))
         .then(() => {
-            document.querySelector('sky-modal-footer button[cmp-id="apply-filters"]').dispatchEvent(new Event('click'));
+            document.querySelector('sky-modal-footer button[cmp-id="apply-filters"]')
+              .dispatchEvent(new Event('click'));
             fixture.detectChanges();
 
             expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
-            expect(element.query(By.css('.sky-list-filters-modal-active span.filter-button')).nativeElement.textContent.trim()).toBe('banana');
-            expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe('01');
-            expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column2"]')).nativeElement.textContent.trim()).toBe('Banana');
+            expect(element.query(
+              By.css('.sky-list-filters-modal-active span.filter-button')
+            ).nativeElement.textContent.trim()).toBe('banana');
+            expect(element.query(
+              By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+            ).nativeElement.textContent.trim()).toBe('01');
+            expect(element.query(
+              By.css('sky-list-view-grid-cell[cmp-id="column2"]')
+            ).nativeElement.textContent.trim()).toBe('Banana');
 
-            document.querySelector('.sky-list-filters-modal-active span.filter-button i').dispatchEvent(new Event('click'));
+            document.querySelector('.sky-list-filters-modal-active span.filter-button i')
+              .dispatchEvent(new Event('click'));
             fixture.detectChanges();
 
             expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
@@ -295,13 +335,20 @@ describe('List Component', () => {
         state = new ListState(dispatcher);
 
         let items = [
-          { id: '1', column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') },
-          { id: '2', column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute') },
-          { id: '3', column1: '11', column2: 'Carrot', column3: 11, column4: moment().add(4, 'minute') },
-          { id: '4', column1: '12', column2: 'Daikon', column3: 12, column4: moment().add(2, 'minute') },
-          { id: '5', column1: '13', column2: 'Edamame', column3: 13, column4: moment().add(5, 'minute') },
-          { id: '6', column1: '20', column2: 'Fig', column3: 20, column4: moment().add(3, 'minute') },
-          { id: '7', column1: '21', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') }
+          { id: '1', column1: '1', column2: 'Apple',
+            column3: 1, column4: moment().add(1, 'minute') },
+          { id: '2', column1: '01', column2: 'Banana',
+            column3: 1, column4: moment().add(6, 'minute') },
+          { id: '3', column1: '11', column2: 'Carrot',
+            column3: 11, column4: moment().add(4, 'minute') },
+          { id: '4', column1: '12', column2: 'Daikon',
+            column3: 12, column4: moment().add(2, 'minute') },
+          { id: '5', column1: '13', column2: 'Edamame',
+            column3: 13, column4: moment().add(5, 'minute') },
+          { id: '6', column1: '20', column2: 'Fig',
+            column3: 20, column4: moment().add(3, 'minute') },
+          { id: '7', column1: '21', column2: 'Grape',
+            column3: 21, column4: moment().add(7, 'minute') }
         ];
 
         TestBed.configureTestingModule({
@@ -340,7 +387,6 @@ describe('List Component', () => {
         fixture.detectChanges();
       }));
 
-
       it('should load data', () => {
         expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
       });
@@ -363,8 +409,10 @@ describe('List Component', () => {
         state = new ListState(dispatcher);
 
         let itemsArray = [
-          { id: '1', column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') },
-          { id: '2', column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute') }
+          { id: '1', column1: '1', column2: 'Apple',
+            column3: 1, column4: moment().add(1, 'minute') },
+          { id: '2', column1: '01', column2: 'Banana',
+            column3: 1, column4: moment().add(6, 'minute') }
         ];
 
         bs = new BehaviorSubject<Array<any>>(itemsArray);
@@ -407,7 +455,9 @@ describe('List Component', () => {
       }));
 
       function setSearchInput(text: string) {
-        let searchInputElement = element.query(By.css('.toolbar-item-container input[type="text"]')).nativeElement;
+        let searchInputElement = element.query(
+          By.css('.toolbar-item-container input[type="text"]')
+        ).nativeElement;
         searchInputElement.value = text;
         searchInputElement.dispatchEvent(new Event('input'));
         fixture.detectChanges();
@@ -422,7 +472,8 @@ describe('List Component', () => {
         setSearchInput('banana')
         .then(() => {
           fixture.detectChanges();
-          element.query(By.css('button[cmp-id="search"] i')).triggerEventHandler('click', null);
+          element.query(By.css('button[cmp-id="search"] i'))
+            .triggerEventHandler('click', undefined);
           fixture.detectChanges();
           expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
         });
@@ -432,13 +483,16 @@ describe('List Component', () => {
         setSearchInput('banana')
         .then(() => {
           fixture.detectChanges();
-          element.query(By.css('button[cmp-id="search"] i')).triggerEventHandler('click', null);
+          element.query(By.css('button[cmp-id="search"] i'))
+            .triggerEventHandler('click', undefined);
           fixture.detectChanges();
           expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
 
-          element.query(By.css('th.heading')).triggerEventHandler('click', null);
+          element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
           fixture.detectChanges();
-          expect(element.query(By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe("301");
+          expect(element.query(
+            By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()
+          ).toBe('301');
         });
       }));
 
@@ -446,14 +500,16 @@ describe('List Component', () => {
         setSearchInput('banana')
         .then(() => {
           fixture.detectChanges();
-          element.query(By.css('button[cmp-id="search"] i')).triggerEventHandler('click', null);
+          element.query(By.css('button[cmp-id="search"] i'))
+            .triggerEventHandler('click', undefined);
           fixture.detectChanges();
           expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
 
           setSearchInput('banana')
           .then(() => {
             fixture.detectChanges();
-            element.query(By.css('button[cmp-id="search"] i')).triggerEventHandler('click', null);
+            element.query(By.css('button[cmp-id="search"] i'))
+              .triggerEventHandler('click', undefined);
             fixture.detectChanges();
             expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
           });
@@ -463,13 +519,15 @@ describe('List Component', () => {
       it('should open filter modal when filter button clicked', async(() => {
         fixture.detectChanges();
         fixture.whenStable().then(() => {
-          element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', null);
+          element.query(By.css('button[cmp-id="filter"]'))
+            .triggerEventHandler('click', undefined);
           fixture.detectChanges();
           fixture.whenStable().then(() => {
               expect(element.queryAll(By.css('.sky-list-filters-inline-bar')).length).toBe(0);
               expect(document.querySelectorAll('.sky-modal').length).toBe(1);
 
-              document.querySelector('button.sky-modal-btn-close').dispatchEvent(new Event('click'));
+              document.querySelector('button.sky-modal-btn-close')
+                .dispatchEvent(new Event('click'));
           });
         });
       }));
@@ -493,8 +551,10 @@ describe('List Component', () => {
         state = new ListState(dispatcher);
 
         let itemsArray = [
-          { id: '1', column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') },
-          { id: '2', column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute') }
+          { id: '1', column1: '1', column2: 'Apple',
+            column3: 1, column4: moment().add(1, 'minute') },
+          { id: '2', column1: '01', column2: 'Banana',
+            column3: 1, column4: moment().add(6, 'minute') }
         ];
 
         bs = new BehaviorSubject<Array<any>>(itemsArray);
@@ -536,14 +596,6 @@ describe('List Component', () => {
         fixture.detectChanges();
       }));
 
-      function setSearchInput(text: string) {
-        let searchInputElement = element.query(By.css('.toolbar-item-container input[type="text"]')).nativeElement;
-        searchInputElement.value = text;
-        searchInputElement.dispatchEvent(new Event('input'));
-        fixture.detectChanges();
-        return fixture.whenStable();
-      }
-
       it('should be empty', () => {
         expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(0);
       });
@@ -565,14 +617,22 @@ describe('List Component', () => {
         dispatcher = new ListStateDispatcher();
         state = new ListState(dispatcher);
 
+        /* tslint:disable */
         let itemsArray = [
-          { id: '1', column1: '30', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') },
-          { id: '2', column1: '01', column2: 'Banana', column3: 3, column4: moment().add(6, 'minute') },
-          { id: '3', column1: '11', column2: 'Banana', column3: 11, column4: moment().add(4, 'minute') },
-          { id: '4', column1: '12', column2: 'Carrot', column3: 12, column4: moment().add(2, 'minute') },
-          { id: '5', column1: '12', column2: 'Edamame', column3: 12, column4: moment().add(5, 'minute') },
-          { id: '6', column1: null, column2: null, column3: 20, column4: moment().add(3, 'minute') },
-          { id: '7', column1: '22', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') }
+          { id: '1', column1: '30', column2: 'Apple',
+            column3: 1, column4: moment().add(1, 'minute') },
+          { id: '2', column1: '01', column2: 'Banana',
+            column3: 3, column4: moment().add(6, 'minute') },
+          { id: '3', column1: '11', column2: 'Banana',
+            column3: 11, column4: moment().add(4, 'minute') },
+          { id: '4', column1: '12', column2: 'Carrot',
+            column3: 12, column4: moment().add(2, 'minute') },
+          { id: '5', column1: '12', column2: 'Edamame',
+            column3: 12, column4: moment().add(5, 'minute') },
+          { id: '6', column1: null, column2: null,
+            column3: 20, column4: moment().add(3, 'minute') },
+          { id: '7', column1: '22', column2: 'Grape',
+            column3: 21, column4: moment().add(7, 'minute') }
         ];
 
         bs = new BehaviorSubject<Array<any>>(itemsArray);
@@ -616,19 +676,23 @@ describe('List Component', () => {
 
       it('should switch views when clicking view selector', () => {
         fixture.detectChanges();
-        expect(element.queryAll(By.css('sky-list-view-grid[ng-reflect-name="First"] th.heading')).length).toBe(2);
+        expect(element.queryAll(
+          By.css('sky-list-view-grid[ng-reflect-name="First"] th.heading')
+        ).length).toBe(2);
         element.query(
           By.css('sky-list-toolbar-item-renderer[cmp-id="view-selector"] button')
-        ).triggerEventHandler('click', null);
+        ).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         element.query(
           By.css('sky-dropdown-item[cmp-id="' + component.list.views[1].id + '"] button')
-        ).triggerEventHandler('click', null);
+        ).triggerEventHandler('click', undefined);
         fixture.detectChanges();
-        expect(element.queryAll(By.css('sky-list-view-grid[ng-reflect-name="Second"] th.heading')).length).toBe(1);
+        expect(element.queryAll(
+          By.css('sky-list-view-grid[ng-reflect-name="Second"] th.heading')
+        ).length).toBe(1);
         element.query(
           By.css('sky-dropdown-item[cmp-id="' + component.list.views[0].id + '"] button')
-        ).triggerEventHandler('click', null);
+        ).triggerEventHandler('click', undefined);
         fixture.detectChanges();
       });
 
@@ -663,7 +727,8 @@ describe('List Component', () => {
     });
 
     it('should construct ListItemModel and throw error if id is undefined', () => {
-      expect(() => { new ListItemModel(undefined, false); }).toThrow(new Error('All list item models require an ID'));
+      expect(() => { new ListItemModel(undefined, false); })
+        .toThrow(new Error('All list item models require an ID'));
     });
 
     it('should construct ListItemsSetItemsSelectedAction', () => {
@@ -703,7 +768,8 @@ describe('List Component', () => {
       ];
 
       listDispatcher.next(new ListItemsLoadAction(items));
-      listDispatcher.next(new ListItemsSetItemsSelectedAction([new ListItemModel('3', false)], true));
+      listDispatcher.next(
+        new ListItemsSetItemsSelectedAction([new ListItemModel('3', false)], true));
       listState.take(1).subscribe(s => {
         expect(s.items.items.filter(i => i.selected).length).toBe(0);
       });

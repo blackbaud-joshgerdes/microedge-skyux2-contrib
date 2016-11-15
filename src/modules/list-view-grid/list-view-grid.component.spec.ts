@@ -1,9 +1,8 @@
 import {
-  ComponentFixture,
   TestBed,
   async
 } from '@angular/core/testing';
-import { DebugElement, TemplateRef } from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import {
   ListState,
@@ -11,16 +10,21 @@ import {
 } from '../list/state';
 import * as moment from 'moment';
 
-import { ListViewsLoadAction, ListViewsSetActiveAction } from '../list/state/views/actions';
+import {
+  ListViewsLoadAction
+} from '../list/state/views/actions';
 import { ListViewModel } from '../list/state/views/view.model';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListItemsLoadAction } from '../list/state/items/actions';
 import { ListDisplayedItemsLoadAction } from '../list/state/displayed-items/actions';
-import { BehaviorSubject, Subject } from 'rxjs';
 import { ListViewGridTestComponent } from './fixtures/list-view-grid.component.fixture';
-import { ListViewGridDisplayTestComponent } from './fixtures/list-view-grid-display.component.fixture';
-import { ListViewGridEmptyTestComponent } from './fixtures/list-view-grid-empty.component.fixture';
-import { SkyListViewGridComponent, SkyListViewGridModule } from './';
+import {
+  ListViewGridDisplayTestComponent
+} from './fixtures/list-view-grid-display.component.fixture';
+import {
+  ListViewGridEmptyTestComponent
+} from './fixtures/list-view-grid-empty.component.fixture';
+import { SkyListViewGridModule } from './';
 import { SkyListToolbarModule } from '../list-toolbar';
 import { SkyListFiltersModule } from '../list-filters';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
@@ -64,18 +68,27 @@ describe('List View Grid Component', () => {
       fixture.detectChanges();
 
       let items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') }),
-        new ListItemModel('2', false, { column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
-        new ListItemModel('3', false, { column1: '11', column2: 'Carrot', column3: 11, column4: moment().add(4, 'minute') }),
-        new ListItemModel('4', false, { column1: '12', column2: 'Daikon', column3: 12, column4: moment().add(2, 'minute') }),
-        new ListItemModel('5', false, { column1: '13', column2: 'Edamame', column3: 13, column4: moment().add(5, 'minute') }),
-        new ListItemModel('6', false, { column1: '20', column2: 'Fig', column3: 20, column4: moment().add(3, 'minute') }),
-        new ListItemModel('7', false, { column1: '21', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') })
+        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+          column3: 1, column4: moment().add(1, 'minute') }),
+        new ListItemModel('2', false, { column1: '01', column2: 'Banana',
+          column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
+        new ListItemModel('3', false, { column1: '11', column2: 'Carrot',
+          column3: 11, column4: moment().add(4, 'minute') }),
+        new ListItemModel('4', false, { column1: '12', column2: 'Daikon',
+          column3: 12, column4: moment().add(2, 'minute') }),
+        new ListItemModel('5', false, { column1: '13', column2: 'Edamame',
+          column3: 13, column4: moment().add(5, 'minute') }),
+        new ListItemModel('6', false, { column1: '20', column2: 'Fig',
+          column3: 20, column4: moment().add(3, 'minute') }),
+        new ListItemModel('7', false, { column1: '21', column2: 'Grape',
+          column3: 21, column4: moment().add(7, 'minute') })
       ];
 
       dispatcher.next(new ListItemsLoadAction(items, true));
       dispatcher.next(new ListDisplayedItemsLoadAction(items));
-      dispatcher.next(new ListViewsLoadAction([new ListViewModel(component.grid.id, component.grid.label)]));
+      dispatcher.next(new ListViewsLoadAction([
+        new ListViewModel(component.grid.id, component.grid.label)
+      ]));
       dispatcher.viewsSetActive(component.grid.id);
       fixture.detectChanges();
 
@@ -87,14 +100,24 @@ describe('List View Grid Component', () => {
 
     it('should show 5 columns', () => {
       expect(element.queryAll(By.css('th.heading')).length).toBe(5);
-      expect(element.query(By.css('th[cmp-id="column1"]')).nativeElement.textContent.trim()).toBe('Column1');
-      expect(element.query(By.css('th[cmp-id="column2"]')).nativeElement.textContent.trim()).toBe('Column2');
-      expect(element.query(By.css('th[cmp-id="column3"]')).nativeElement.textContent.trim()).toBe('Column3');
-      expect(element.query(By.css('th[cmp-id="column4"]')).nativeElement.textContent.trim()).toBe('Column4');
+      expect(element.query(
+        By.css('th[cmp-id="column1"]')
+      ).nativeElement.textContent.trim()).toBe('Column1');
+      expect(element.query(
+        By.css('th[cmp-id="column2"]')
+      ).nativeElement.textContent.trim()).toBe('Column2');
+      expect(element.query(
+        By.css('th[cmp-id="column3"]')
+      ).nativeElement.textContent.trim()).toBe('Column3');
+      expect(element.query(
+        By.css('th[cmp-id="column4"]')
+      ).nativeElement.textContent.trim()).toBe('Column4');
     });
 
     it('should enable sort selector button in toolbar with all 6 sort options', () => {
-      expect(element.query(By.css('sky-list-toolbar-item-renderer[cmp-id="sort-selector"]'))).not.toBeNull();
+      expect(element.query(
+        By.css('sky-list-toolbar-item-renderer[cmp-id="sort-selector"]')
+      )).not.toBeNull();
       expect(element.query(By.css('sky-dropdown-item[cmp-id="column1_asc"]'))).not.toBeNull();
       expect(element.query(By.css('sky-dropdown-item[cmp-id="column1_desc"]'))).not.toBeNull();
       expect(element.query(By.css('sky-dropdown-item[cmp-id="column2_asc"]'))).not.toBeNull();
@@ -118,7 +141,9 @@ describe('List View Grid Component', () => {
     it('should have a column selector button in the toolbar', () => {
       fixture.detectChanges();
 
-      let columnSelectorButton = element.query(By.css('sky-list-toolbar-item-renderer[cmp-id="column-selector"]'));
+      let columnSelectorButton = element.query(
+        By.css('sky-list-toolbar-item-renderer[cmp-id="column-selector"]')
+      );
       expect(columnSelectorButton).not.toBeNull();
     });
 
@@ -126,8 +151,10 @@ describe('List View Grid Component', () => {
       let columnSelector: any;
 
       beforeAll(() => {
-        let columnSelectorButton = element.query(By.css('sky-list-toolbar-item-renderer[cmp-id="column-selector"]'));
-        columnSelectorButton.query(By.css('button')).triggerEventHandler('click', null);
+        let columnSelectorButton = element.query(
+          By.css('sky-list-toolbar-item-renderer[cmp-id="column-selector"]')
+        );
+        columnSelectorButton.query(By.css('button')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
 
         columnSelector = document.querySelector('sky-list-view-grid-column-selector');
@@ -170,7 +197,9 @@ describe('List View Grid Component', () => {
         clearAllLink.click();
         fixture.detectChanges();
 
-        (columnSelector.querySelector('sky-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement).click();
+        (columnSelector
+          .querySelector('sky-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement)
+          .click();
         expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(1);
 
         let closeButton = (document.querySelector('[cmp-id="apply-changes"]') as HTMLButtonElement);
@@ -243,18 +272,27 @@ describe('List View Grid Component', () => {
       fixture.detectChanges();
 
       let items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') }),
-        new ListItemModel('2', false, { column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
-        new ListItemModel('3', false, { column1: '11', column2: 'Carrot', column3: 11, column4: moment().add(4, 'minute') }),
-        new ListItemModel('4', false, { column1: '12', column2: 'Daikon', column3: 12, column4: moment().add(2, 'minute') }),
-        new ListItemModel('5', false, { column1: '13', column2: 'Edamame', column3: 13, column4: moment().add(5, 'minute') }),
-        new ListItemModel('6', false, { column1: '20', column2: 'Fig', column3: 20, column4: moment().add(3, 'minute') }),
-        new ListItemModel('7', false, { column1: '21', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') })
+        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+          column3: 1, column4: moment().add(1, 'minute') }),
+        new ListItemModel('2', false, { column1: '01', column2: 'Banana',
+          column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
+        new ListItemModel('3', false, { column1: '11', column2: 'Carrot',
+          column3: 11, column4: moment().add(4, 'minute') }),
+        new ListItemModel('4', false, { column1: '12', column2: 'Daikon',
+          column3: 12, column4: moment().add(2, 'minute') }),
+        new ListItemModel('5', false, { column1: '13', column2: 'Edamame',
+          column3: 13, column4: moment().add(5, 'minute') }),
+        new ListItemModel('6', false, { column1: '20', column2: 'Fig',
+          column3: 20, column4: moment().add(3, 'minute') }),
+        new ListItemModel('7', false, { column1: '21', column2: 'Grape',
+          column3: 21, column4: moment().add(7, 'minute') })
       ];
 
       dispatcher.next(new ListItemsLoadAction(items, true));
       dispatcher.next(new ListDisplayedItemsLoadAction(items));
-      dispatcher.next(new ListViewsLoadAction([new ListViewModel(component.grid.id, component.grid.label)]));
+      dispatcher.next(new ListViewsLoadAction([
+        new ListViewModel(component.grid.id, component.grid.label)
+      ]));
       dispatcher.viewsSetActive(component.grid.id);
       fixture.detectChanges();
 
@@ -266,8 +304,12 @@ describe('List View Grid Component', () => {
 
     it('should show 2 columns', () => {
       expect(element.queryAll(By.css('th.heading')).length).toBe(2);
-      expect(element.query(By.css('th[cmp-id="column3"]')).nativeElement.textContent.trim()).toBe('Column3');
-      expect(element.query(By.css('th[cmp-id="column4"]')).nativeElement.textContent.trim()).toBe('Column4');
+      expect(element.query(
+        By.css('th[cmp-id="column3"]')).nativeElement.textContent.trim()
+      ).toBe('Column3');
+      expect(element.query(
+        By.css('th[cmp-id="column4"]')
+      ).nativeElement.textContent.trim()).toBe('Column4');
     });
   });
 
@@ -305,7 +347,8 @@ describe('List View Grid Component', () => {
     }));
 
     it('should throw columns require error', () => {
-      expect(() => { fixture.detectChanges(); }).toThrowError(/Grid view requires at least one sky-list-view-grid-column to render./);
+      expect(() => { fixture.detectChanges(); })
+        .toThrowError(/Grid view requires at least one sky-list-view-grid-column to render./);
     });
   });
 

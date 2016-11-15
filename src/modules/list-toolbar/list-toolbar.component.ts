@@ -88,10 +88,22 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
 
     this.dispatcher.toolbarAddItems([
       this.type !== 'search' ?
-        new ListToolbarItemModel({ id: 'search', template: this.searchTemplate, location: 'center' }) :
+        new ListToolbarItemModel({
+          id: 'search',
+          template: this.searchTemplate,
+          location: 'center'
+        }) :
         undefined,
-      new ListToolbarItemModel({ id: 'sort-selector', template: this.sortSelectorTemplate, location: 'right' }),
-      new ListToolbarItemModel({ id: 'view-selector', template: this.viewSelectorTemplate, location: 'right' })
+      new ListToolbarItemModel({
+        id: 'sort-selector',
+        template: this.sortSelectorTemplate,
+        location: 'right'
+      }),
+      new ListToolbarItemModel({
+        id: 'view-selector',
+        template: this.viewSelectorTemplate,
+        location: 'right'
+      })
     ].filter(s => s !== undefined));
   }
 
@@ -105,7 +117,12 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
 
     let sortModels = this.toolbarSorts.map(sort =>
       new ListSortLabelModel(
-        { text: sort.label, fieldSelector: sort.field, fieldType: sort.type, global: true }
+        {
+          text: sort.label,
+          fieldSelector: sort.field,
+          fieldType: sort.type,
+          global: true
+        }
       )
     );
 

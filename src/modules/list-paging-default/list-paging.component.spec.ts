@@ -1,5 +1,4 @@
 import {
-  ComponentFixture,
   TestBed,
   async
 } from '@angular/core/testing';
@@ -12,8 +11,9 @@ import {
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListItemsLoadAction } from '../list/state/items/actions';
 import { SkyListPagingDefaultModule } from './';
-import { ListPagingDefaultTestComponent } from './fixtures/list-paging-default.component.fixture';
-import { BehaviorSubject, Subject } from 'rxjs';
+import {
+  ListPagingDefaultTestComponent
+} from './fixtures/list-paging-default.component.fixture';
 import { PagingStateDispatcher, PagingState, PagingStateModel } from './state';
 import { SkyListPagingComponent } from './list-paging.component';
 import { ListPagingCurrentSetPageNumberAction } from './state/current/actions';
@@ -88,89 +88,126 @@ describe('List Paging Component', () => {
     });
 
     it('should have a disabled previous button', () => {
-      expect(element.query(By.css('.sky-paging-caret[cmp-id="previous"]')).nativeElement.classList.contains('disabled')).toBe(true);
+      expect(element.query(
+        By.css('.sky-paging-caret[cmp-id="previous"]')
+      ).nativeElement.classList.contains('disabled')).toBe(true);
     });
 
     it('should have an enabled next button', () => {
-      expect(element.query(By.css('.sky-paging-caret[cmp-id="next"]')).nativeElement.classList.contains('disabled')).toBe(false);
+      expect(element.query(
+        By.css('.sky-paging-caret[cmp-id="next"]')
+      ).nativeElement.classList.contains('disabled')).toBe(false);
     });
 
     it('should show selected page (1) with a special style', () => {
-      expect(element.query(By.css('.sky-list-paging-link[cmp-id="1"] a')).nativeElement.classList.contains('current')).toBe(true);
+      expect(element.query(
+        By.css('.sky-list-paging-link[cmp-id="1"] a')
+      ).nativeElement.classList.contains('current')).toBe(true);
     });
 
     it('should not let you set page number to (5)', () => {
       component.pagingComponent.setPage(5);
       fixture.detectChanges();
 
-      expect(element.query(By.css('.sky-list-paging-link[cmp-id="1"] a')).nativeElement.classList.contains('current')).toBe(true);
+      expect(element.query(
+        By.css('.sky-list-paging-link[cmp-id="1"] a')
+      ).nativeElement.classList.contains('current')).toBe(true);
     });
 
     it('should not let you set page number to (0)', () => {
       component.pagingComponent.setPage(0);
       fixture.detectChanges();
 
-      expect(element.query(By.css('.sky-list-paging-link[cmp-id="1"] a')).nativeElement.classList.contains('current')).toBe(true);
+      expect(element.query(
+        By.css('.sky-list-paging-link[cmp-id="1"] a')
+      ).nativeElement.classList.contains('current')).toBe(true);
     });
 
     describe('after clicking page 3', () => {
       beforeEach(async(() => {
-        element.query(By.css('.sky-list-paging-link[cmp-id="3"] a')).triggerEventHandler('click', null);
+        element.query(
+          By.css('.sky-list-paging-link[cmp-id="3"] a')
+        ).triggerEventHandler('click', undefined);
         fixture.detectChanges();
       }));
 
       it('should have a enabled previous button', () => {
-        expect(element.query(By.css('.sky-paging-caret[cmp-id="previous"]')).nativeElement.classList.contains('disabled')).toBe(false);
+        expect(element.query(
+          By.css('.sky-paging-caret[cmp-id="previous"]')
+        ).nativeElement.classList.contains('disabled')).toBe(false);
       });
 
       it('should have an enabled next button', () => {
-        expect(element.query(By.css('.sky-paging-caret[cmp-id="next"]')).nativeElement.classList.contains('disabled')).toBe(false);
+        expect(element.query(
+          By.css('.sky-paging-caret[cmp-id="next"]')
+        ).nativeElement.classList.contains('disabled')).toBe(false);
       });
 
       it('should show selected page (3) with a special style', () => {
-        expect(element.query(By.css('.sky-list-paging-link[cmp-id="3"] a')).nativeElement.classList.contains('current')).toBe(true);
+        expect(element.query(
+          By.css('.sky-list-paging-link[cmp-id="3"] a')
+        ).nativeElement.classList.contains('current')).toBe(true);
       });
 
       it('should not show page (1)', () => {
-        expect(element.query(By.css('.sky-list-paging-link[cmp-id="1"]'))).toBeNull();
+        expect(element.query(
+          By.css('.sky-list-paging-link[cmp-id="1"]')
+        )).toBeNull();
       });
 
       it('should show page (4)', () => {
-        expect(element.query(By.css('.sky-list-paging-link[cmp-id="4"]'))).not.toBeNull();
+        expect(element.query(
+          By.css('.sky-list-paging-link[cmp-id="4"]')
+        )).not.toBeNull();
       });
 
       describe('and clicking next', () => {
         beforeEach(async(() => {
-          element.query(By.css('.sky-paging-caret[cmp-id="next"]')).triggerEventHandler('click', null);
+          element.query(By.css('.sky-paging-caret[cmp-id="next"]'))
+            .triggerEventHandler('click', undefined);
           fixture.detectChanges();
         }));
 
         it('should have a enabled previous button', () => {
-          expect(element.query(By.css('.sky-paging-caret[cmp-id="previous"]')).nativeElement.classList.contains('disabled')).toBe(false);
+          expect(element.query(
+            By.css('.sky-paging-caret[cmp-id="previous"]')
+          ).nativeElement.classList.contains('disabled')).toBe(false);
         });
 
         it('should have a disabled next button', () => {
-          expect(element.query(By.css('.sky-paging-caret[cmp-id="next"]')).nativeElement.classList.contains('disabled')).toBe(true);
+          expect(element.query(
+            By.css('.sky-paging-caret[cmp-id="next"]')
+          ).nativeElement.classList.contains('disabled')).toBe(true);
         });
       });
 
       describe('and clicking previous twice', () => {
         beforeEach(async(() => {
-          element.query(By.css('.sky-paging-caret[cmp-id="previous"]')).triggerEventHandler('click', null);
-          element.query(By.css('.sky-paging-caret[cmp-id="previous"]')).triggerEventHandler('click', null);
+          element.query(
+            By.css('.sky-paging-caret[cmp-id="previous"]')
+          ).triggerEventHandler('click', undefined);
+          element.query(
+            By.css('.sky-paging-caret[cmp-id="previous"]')
+          ).triggerEventHandler('click', undefined);
           fixture.detectChanges();
         }));
 
         it('should have a disabled previous button', () => {
-          expect(element.query(By.css('.sky-paging-caret[cmp-id="previous"]')).nativeElement.classList.contains('disabled')).toBe(true);
+          expect(element.query(
+            By.css('.sky-paging-caret[cmp-id="previous"]')
+          ).nativeElement.classList.contains('disabled')).toBe(true);
         });
 
         it('should have an enabled next button', () => {
-          expect(element.query(By.css('.sky-paging-caret[cmp-id="next"]')).nativeElement.classList.contains('disabled')).toBe(false);
+          expect(element.query(
+            By.css('.sky-paging-caret[cmp-id="next"]')
+          ).nativeElement.classList.contains('disabled')).toBe(false);
         });
 
         it('should show selected page (1) with a special style', () => {
-          expect(element.query(By.css('.sky-list-paging-link[cmp-id="1"] a')).nativeElement.classList.contains('current')).toBe(true);
+          expect(element.query(
+            By.css('.sky-list-paging-link[cmp-id="1"] a')
+          ).nativeElement.classList.contains('current')).toBe(true);
         });
       });
     });

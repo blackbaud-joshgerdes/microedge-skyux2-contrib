@@ -8,17 +8,18 @@ import { BehaviorSubject } from 'rxjs';
   template: require('./list-empty.component.fixture.html')
 })
 export class ListEmptyTestComponent {
-  @ViewChild(SkyListComponent) private list: SkyListComponent;
+  @ViewChild(SkyListComponent) public list: SkyListComponent;
 
-  constructor(@Inject('items') private items: any) {
+  constructor(@Inject('items') public items: any) {
   }
 
-  private get options() {
+  public get options() {
     let bs = new BehaviorSubject<Array<any>>(['banana', 'apple']);
     return bs.asObservable();
   }
 
-  private filterOnStatus(item: any, filter: ListFilterDataModel) {
-    return item.data.column2 !== null ? item.data.column2.toLowerCase().indexOf(filter.value) !== -1 : false;
+  public filterOnStatus(item: any, filter: ListFilterDataModel) {
+    return item.data.column2 !== undefined ?
+      item.data.column2.toLowerCase().indexOf(filter.value) !== -1 : false;
   }
 }

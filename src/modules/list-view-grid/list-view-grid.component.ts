@@ -151,7 +151,13 @@ export class SkyListViewGridComponent
   public ngAfterViewInit() {
     this.dispatcher.toolbarAddItems([
       new ListToolbarItemModel(
-        { id: 'column-selector', template: this.chooseColumnsTemplate, location: 'center', index: 0, view: this.id }
+        {
+          id: 'column-selector',
+          template: this.chooseColumnsTemplate,
+          location: 'center',
+          index: 0,
+          view: this.id
+        }
       )
     ]);
   }

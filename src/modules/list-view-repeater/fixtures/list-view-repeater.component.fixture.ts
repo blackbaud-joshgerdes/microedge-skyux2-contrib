@@ -9,7 +9,7 @@ import { ListItemModel } from '../../list/state/items/item.model';
 export class ListViewRepeaterTestComponent {
   @ViewChild(SkyListViewRepeaterComponent) public repeater: SkyListViewRepeaterComponent;
 
-  private itemSearch(item: ListItemModel, searchText: string) {
+  public itemSearch(item: ListItemModel, searchText: string) {
     return false;
   }
 }

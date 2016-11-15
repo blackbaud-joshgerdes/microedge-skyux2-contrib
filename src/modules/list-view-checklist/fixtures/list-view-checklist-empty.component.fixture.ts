@@ -7,5 +7,5 @@ import { SkyListViewChecklistComponent } from '../list-view-checklist.component'
 })
 export class ListViewChecklistEmptyTestComponent {
   public tempValue: string = undefined;
-  @ViewChild(SkyListViewChecklistComponent) checklist: SkyListViewChecklistComponent;
+  @ViewChild(SkyListViewChecklistComponent) public checklist: SkyListViewChecklistComponent;
 }

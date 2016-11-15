@@ -1,5 +1,4 @@
 import {
-  ComponentFixture,
   TestBed,
   async
 } from '@angular/core/testing';
@@ -16,11 +15,14 @@ import { ListViewModel } from '../list/state/views/view.model';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListItemsLoadAction } from '../list/state/items/actions';
 import { ListDisplayedItemsLoadAction } from '../list/state/displayed-items/actions';
-import { BehaviorSubject, Subject } from 'rxjs';
 import { ListViewRepeaterTestComponent } from './fixtures/list-view-repeater.component.fixture';
-import { ListViewRepeaterTestEmptyComponent } from './fixtures/list-view-repeater-empty.component.fixture';
-import { ListViewRepeaterTestTemplateComponent } from './fixtures/list-view-repeater-template.component.fixture';
-import { SkyListViewRepeaterComponent, SkyListViewRepeaterModule } from './';
+import {
+  ListViewRepeaterTestEmptyComponent
+} from './fixtures/list-view-repeater-empty.component.fixture';
+import {
+  ListViewRepeaterTestTemplateComponent
+} from './fixtures/list-view-repeater-template.component.fixture';
+import { SkyListViewRepeaterModule } from './';
 import { RepeaterState, RepeaterStateDispatcher, RepeaterStateModel } from './state';
 import { ListViewRepeaterSetExpandedAction } from './state/expanded/actions';
 
@@ -58,18 +60,27 @@ describe('List View Repeater Component', () => {
       fixture.detectChanges();
 
       let items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') }),
-        new ListItemModel('2', false, { column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
-        new ListItemModel('3', false, { column1: '11', column2: 'Carrot', column3: 11, column4: moment().add(4, 'minute') }),
-        new ListItemModel('4', false, { column1: '12', column2: 'Daikon', column3: 12, column4: moment().add(2, 'minute') }),
-        new ListItemModel('5', false, { column1: '13', column2: 'Edamame', column3: 13, column4: moment().add(5, 'minute') }),
-        new ListItemModel('6', false, { column1: '20', column2: 'Fig', column3: 20, column4: moment().add(3, 'minute') }),
-        new ListItemModel('7', false, { column1: '21', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') })
+        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+          column3: 1, column4: moment().add(1, 'minute') }),
+        new ListItemModel('2', false, { column1: '01', column2: 'Banana',
+          column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
+        new ListItemModel('3', false, { column1: '11', column2: 'Carrot',
+          column3: 11, column4: moment().add(4, 'minute') }),
+        new ListItemModel('4', false, { column1: '12', column2: 'Daikon',
+          column3: 12, column4: moment().add(2, 'minute') }),
+        new ListItemModel('5', false, { column1: '13', column2: 'Edamame',
+          column3: 13, column4: moment().add(5, 'minute') }),
+        new ListItemModel('6', false, { column1: '20', column2: 'Fig',
+          column3: 20, column4: moment().add(3, 'minute') }),
+        new ListItemModel('7', false, { column1: '21', column2: 'Grape',
+          column3: 21, column4: moment().add(7, 'minute') })
       ];
 
       dispatcher.next(new ListItemsLoadAction(items, true));
       dispatcher.next(new ListDisplayedItemsLoadAction(items));
-      dispatcher.next(new ListViewsLoadAction([new ListViewModel(component.repeater.id, component.repeater.label)]));
+      dispatcher.next(new ListViewsLoadAction([
+        new ListViewModel(component.repeater.id, component.repeater.label)
+      ]));
       dispatcher.viewsSetActive(component.repeater.id);
       fixture.detectChanges();
 
@@ -82,15 +93,23 @@ describe('List View Repeater Component', () => {
     it('should show title and description for rows', () => {
       expect(element.queryAll(By.css('.sky-list-view-repeater-title')).length).toBe(7);
       expect(element.queryAll(By.css('.sky-list-view-repeater-description')).length).toBe(7);
-      expect(element.query(By.css('.sky-list-view-repeater-title')).nativeElement.textContent.trim()).toBe('Apple');
-      expect(element.query(By.css('.sky-list-view-repeater-description')).nativeElement.textContent.trim()).toBe('1');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-title')).nativeElement.textContent.trim()
+      ).toBe('Apple');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-description')
+      ).nativeElement.textContent.trim()).toBe('1');
     });
 
     it('should show left and right content for rows', () => {
       expect(element.queryAll(By.css('.sky-list-view-repeater-left')).length).toBe(7);
       expect(element.queryAll(By.css('.sky-list-view-repeater-right')).length).toBe(7);
-      expect(element.query(By.css('.sky-list-view-repeater-left')).nativeElement.textContent.trim()).toBe('left');
-      expect(element.query(By.css('.sky-list-view-repeater-right')).nativeElement.textContent.trim()).toBe('right');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-left')
+      ).nativeElement.textContent.trim()).toBe('left');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-right')
+      ).nativeElement.textContent.trim()).toBe('right');
     });
 
     it('should return proper label', () => {
@@ -105,13 +124,17 @@ describe('List View Repeater Component', () => {
       expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(0);
 
       let repeaterItem = element.query(By.css('.sky-repeater-item'));
-      repeaterItem.query(By.css('button.sky-chevron')).triggerEventHandler('click', new Event('click'));
+      repeaterItem.query(By.css('button.sky-chevron'))
+        .triggerEventHandler('click', new Event('click'));
       fixture.detectChanges();
 
       expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(1);
-      expect(element.query(By.css('.sky-list-view-repeater-content')).nativeElement.textContent.trim()).toBe('content');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-content')).nativeElement.textContent.trim()
+      ).toBe('content');
 
-      repeaterItem.query(By.css('button.sky-chevron')).triggerEventHandler('click', new Event('click'));
+      repeaterItem.query(By.css('button.sky-chevron'))
+        .triggerEventHandler('click', new Event('click'));
       fixture.detectChanges();
 
       expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(0);
@@ -150,18 +173,27 @@ describe('List View Repeater Component', () => {
       fixture.detectChanges();
 
       let items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') }),
-        new ListItemModel('2', false, { column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
-        new ListItemModel('3', false, { column1: '11', column2: 'Carrot', column3: 11, column4: moment().add(4, 'minute') }),
-        new ListItemModel('4', false, { column1: '12', column2: 'Daikon', column3: 12, column4: moment().add(2, 'minute') }),
-        new ListItemModel('5', false, { column1: '13', column2: 'Edamame', column3: 13, column4: moment().add(5, 'minute') }),
-        new ListItemModel('6', false, { column1: '20', column2: 'Fig', column3: 20, column4: moment().add(3, 'minute') }),
-        new ListItemModel('7', false, { column1: '21', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') })
+        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+          column3: 1, column4: moment().add(1, 'minute') }),
+        new ListItemModel('2', false, { column1: '01', column2: 'Banana',
+          column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
+        new ListItemModel('3', false, { column1: '11', column2: 'Carrot',
+          column3: 11, column4: moment().add(4, 'minute') }),
+        new ListItemModel('4', false, { column1: '12', column2: 'Daikon',
+          column3: 12, column4: moment().add(2, 'minute') }),
+        new ListItemModel('5', false, { column1: '13', column2: 'Edamame',
+          column3: 13, column4: moment().add(5, 'minute') }),
+        new ListItemModel('6', false, { column1: '20', column2: 'Fig',
+          column3: 20, column4: moment().add(3, 'minute') }),
+        new ListItemModel('7', false, { column1: '21', column2: 'Grape',
+          column3: 21, column4: moment().add(7, 'minute') })
       ];
 
       dispatcher.next(new ListItemsLoadAction(items, true));
       dispatcher.next(new ListDisplayedItemsLoadAction(items));
-      dispatcher.next(new ListViewsLoadAction([new ListViewModel(component.repeater.id, component.repeater.label)]));
+      dispatcher.next(new ListViewsLoadAction([
+        new ListViewModel(component.repeater.id, component.repeater.label)
+      ]));
       dispatcher.viewsSetActive(component.repeater.id);
       fixture.detectChanges();
 
@@ -173,15 +205,22 @@ describe('List View Repeater Component', () => {
 
     it('should show empty rows', () => {
       expect(element.queryAll(By.css('.sky-repeater-item')).length).toBe(7);
-      expect(element.query(By.css('.sky-list-view-repeater-title')).nativeElement.textContent.trim()).toBe('');
-      expect(element.query(By.css('.sky-list-view-repeater-description')).nativeElement.textContent.trim()).toBe('');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-title')
+      ).nativeElement.textContent.trim()).toBe('');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-description')
+      ).nativeElement.textContent.trim()).toBe('');
 
       let repeaterItem = element.query(By.css('.sky-repeater-item'));
-      repeaterItem.query(By.css('button.sky-chevron')).triggerEventHandler('click', new Event('click'));
+      repeaterItem.query(By.css('button.sky-chevron'))
+        .triggerEventHandler('click', new Event('click'));
       fixture.detectChanges();
 
       expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(1);
-      expect(element.query(By.css('.sky-list-view-repeater-content')).nativeElement.textContent.trim()).toBe('');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-content')
+      ).nativeElement.textContent.trim()).toBe('');
     });
 
     it('should return proper label', () => {
@@ -221,18 +260,27 @@ describe('List View Repeater Component', () => {
       fixture.detectChanges();
 
       let items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple', column3: 1, column4: moment().add(1, 'minute') }),
-        new ListItemModel('2', false, { column1: '01', column2: 'Banana', column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
-        new ListItemModel('3', false, { column1: '11', column2: 'Carrot', column3: 11, column4: moment().add(4, 'minute') }),
-        new ListItemModel('4', false, { column1: '12', column2: 'Daikon', column3: 12, column4: moment().add(2, 'minute') }),
-        new ListItemModel('5', false, { column1: '13', column2: 'Edamame', column3: 13, column4: moment().add(5, 'minute') }),
-        new ListItemModel('6', false, { column1: '20', column2: 'Fig', column3: 20, column4: moment().add(3, 'minute') }),
-        new ListItemModel('7', false, { column1: '21', column2: 'Grape', column3: 21, column4: moment().add(7, 'minute') })
+        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+          column3: 1, column4: moment().add(1, 'minute') }),
+        new ListItemModel('2', false, { column1: '01', column2: 'Banana',
+          column3: 1, column4: moment().add(6, 'minute'), column5: 'test' }),
+        new ListItemModel('3', false, { column1: '11', column2: 'Carrot',
+          column3: 11, column4: moment().add(4, 'minute') }),
+        new ListItemModel('4', false, { column1: '12', column2: 'Daikon',
+          column3: 12, column4: moment().add(2, 'minute') }),
+        new ListItemModel('5', false, { column1: '13', column2: 'Edamame',
+          column3: 13, column4: moment().add(5, 'minute') }),
+        new ListItemModel('6', false, { column1: '20', column2: 'Fig',
+          column3: 20, column4: moment().add(3, 'minute') }),
+        new ListItemModel('7', false, { column1: '21', column2: 'Grape',
+          column3: 21, column4: moment().add(7, 'minute') })
       ];
 
       dispatcher.next(new ListItemsLoadAction(items, true));
       dispatcher.next(new ListDisplayedItemsLoadAction(items));
-      dispatcher.next(new ListViewsLoadAction([new ListViewModel(component.repeater.id, component.repeater.label)]));
+      dispatcher.next(new ListViewsLoadAction([
+        new ListViewModel(component.repeater.id, component.repeater.label)
+      ]));
       dispatcher.viewsSetActive(component.repeater.id);
       fixture.detectChanges();
 
@@ -247,17 +295,28 @@ describe('List View Repeater Component', () => {
       expect(element.queryAll(By.css('.sky-list-view-repeater-description')).length).toBe(7);
       expect(element.queryAll(By.css('.sky-list-view-repeater-left')).length).toBe(7);
       expect(element.queryAll(By.css('.sky-list-view-repeater-right')).length).toBe(7);
-      expect(element.query(By.css('.sky-list-view-repeater-title')).nativeElement.textContent.trim()).toBe('temp Apple');
-      expect(element.query(By.css('.sky-list-view-repeater-description')).nativeElement.textContent.trim()).toBe('temp 1');
-      expect(element.query(By.css('.sky-list-view-repeater-left')).nativeElement.textContent.trim()).toBe('temp left');
-      expect(element.query(By.css('.sky-list-view-repeater-right')).nativeElement.textContent.trim()).toBe('temp right');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-title')).nativeElement.textContent.trim()
+      ).toBe('temp Apple');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-description')).nativeElement.textContent.trim()
+      ).toBe('temp 1');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-left')).nativeElement.textContent.trim()
+      ).toBe('temp left');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-right')).nativeElement.textContent.trim()
+      ).toBe('temp right');
 
       let repeaterItem = element.query(By.css('.sky-repeater-item'));
-      repeaterItem.query(By.css('button.sky-chevron')).triggerEventHandler('click', new Event('click'));
+      repeaterItem.query(By.css('button.sky-chevron'))
+        .triggerEventHandler('click', new Event('click'));
       fixture.detectChanges();
 
       expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(1);
-      expect(element.query(By.css('.sky-list-view-repeater-content')).nativeElement.textContent.trim()).toBe('temp content');
+      expect(element.query(
+        By.css('.sky-list-view-repeater-content')
+      ).nativeElement.textContent.trim()).toBe('temp content');
     });
 
     it('should return proper label', () => {
