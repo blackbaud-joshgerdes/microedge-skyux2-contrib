@@ -17,6 +17,7 @@ import { ListViewModel } from '../list/state/views/view.model';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListItemsLoadAction } from '../list/state/items/actions';
 import { ListDisplayedItemsLoadAction } from '../list/state/displayed-items/actions';
+import { ListViewGridFixturesModule } from './fixtures/list-view-grid-fixtures.module';
 import { ListViewGridTestComponent } from './fixtures/list-view-grid.component.fixture';
 import {
   ListViewGridDisplayTestComponent
@@ -26,7 +27,6 @@ import {
 } from './fixtures/list-view-grid-empty.component.fixture';
 import { SkyListViewGridModule } from './';
 import { SkyListToolbarModule } from '../list-toolbar';
-import { SkyListFiltersModule } from '../list-filters';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
 import { ListViewGridColumnModel } from './state/columns/column.model';
 import { ListViewGridColumnsLoadAction } from './state/columns/actions';
@@ -47,13 +47,10 @@ describe('List View Grid Component', () => {
       state = new ListState(dispatcher);
 
       TestBed.configureTestingModule({
-        declarations: [
-          ListViewGridTestComponent
-        ],
         imports: [
+          ListViewGridFixturesModule,
           SkyListViewGridModule,
-          SkyListToolbarModule,
-          SkyListFiltersModule
+          SkyListToolbarModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -251,13 +248,10 @@ describe('List View Grid Component', () => {
       state = new ListState(dispatcher);
 
       TestBed.configureTestingModule({
-        declarations: [
-          ListViewGridDisplayTestComponent
-        ],
         imports: [
+          ListViewGridFixturesModule,
           SkyListViewGridModule,
-          SkyListToolbarModule,
-          SkyListFiltersModule
+          SkyListToolbarModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -326,13 +320,10 @@ describe('List View Grid Component', () => {
       state = new ListState(dispatcher);
 
       TestBed.configureTestingModule({
-        declarations: [
-          ListViewGridEmptyTestComponent
-        ],
         imports: [
+          ListViewGridFixturesModule,
           SkyListViewGridModule,
-          SkyListToolbarModule,
-          SkyListFiltersModule
+          SkyListToolbarModule
         ],
         providers: [
           { provide: ListState, useValue: state },

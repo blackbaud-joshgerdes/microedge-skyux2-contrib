@@ -18,6 +18,7 @@ import {
   ListItemsSetItemSelectedAction,
   ListItemsSetLoadingAction
 } from '../list/state/items/actions';
+import { ListFixturesModule } from './fixtures/list-fixtures.module';
 import { ListTestComponent } from './fixtures/list.component.fixture';
 import { ListAsyncTestComponent } from './fixtures/list-async.component.fixture';
 import { ListDualTestComponent } from './fixtures/list-dual.component.fixture';
@@ -73,10 +74,8 @@ describe('List Component', () => {
         items = bs.asObservable();
 
         TestBed.configureTestingModule({
-          declarations: [
-            ListTestComponent
-          ],
           imports: [
+            ListFixturesModule,
             SkyListModule,
             SkyListFiltersModule,
             SkyListToolbarModule,
@@ -352,10 +351,8 @@ describe('List Component', () => {
         ];
 
         TestBed.configureTestingModule({
-          declarations: [
-            ListTestComponent
-          ],
           imports: [
+            ListFixturesModule,
             SkyListModule,
             SkyListToolbarModule,
             SkyListViewGridModule,
@@ -419,10 +416,8 @@ describe('List Component', () => {
         items = bs.asObservable();
 
         TestBed.configureTestingModule({
-          declarations: [
-            ListAsyncTestComponent
-          ],
           imports: [
+            ListFixturesModule,
             SkyListModule,
             SkyListToolbarModule,
             SkyListViewGridModule,
@@ -561,10 +556,8 @@ describe('List Component', () => {
         items = bs.asObservable();
 
         TestBed.configureTestingModule({
-          declarations: [
-            ListEmptyTestComponent
-          ],
           imports: [
+            ListFixturesModule,
             SkyListModule,
             SkyListToolbarModule,
             SkyListViewGridModule,
@@ -639,10 +632,8 @@ describe('List Component', () => {
         items = bs.asObservable();
 
         TestBed.configureTestingModule({
-          declarations: [
-            ListDualTestComponent
-          ],
           imports: [
+            ListFixturesModule,
             SkyListModule,
             SkyListFiltersModule,
             SkyListToolbarModule,
