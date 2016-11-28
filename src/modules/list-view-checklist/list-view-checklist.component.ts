@@ -5,7 +5,6 @@ import {
 import { ListViewComponent } from '../list/list-view.component';
 import { AsyncList } from 'microedge-rxstate/dist';
 import { ListItemModel } from '../list/state/items/item.model';
-import { ListItemsSetItemsSelectedAction } from '../list/state/items/actions';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ChecklistState, ChecklistStateDispatcher, ChecklistStateModel } from './state';
 import { ListViewChecklistItemsLoadAction } from './state/items/actions';
@@ -13,6 +12,10 @@ import { ListViewChecklistItemModel } from './state/items/item.model';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
 import { Observable } from 'rxjs';
 import { getData } from '../list/helpers';
+import {
+  ListSelectedSetItemSelectedAction,
+  ListSelectedSetItemsSelectedAction
+} from '../list/state/selected/actions';
 
 @Component({
   selector: 'sky-list-view-checklist',
@@ -58,7 +61,7 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
         let dataChanged = lastLastUpdate === undefined || lastUpdate !== lastLastUpdate;
         lastLastUpdate = lastUpdate;
         let items = displayedItems.items.map(item => {
-          return new ListViewChecklistItemModel(item.id, item.selected, {
+          return new ListViewChecklistItemModel(item.id, {
             label:
               this.labelFieldSelector ? getData(item.data, this.labelFieldSelector) :
               undefined,
@@ -143,15 +146,19 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
     };
   }
 
-  public setItemSelection(item: any, selected: boolean) {
-    this.dispatcher.itemsSetSelected(item, selected);
+  public itemSelected(id: string) {
+    return this.state.map(s => s.selected.item[id]);
+  }
+
+  public setItemSelection(item: ListItemModel, ev: any) {
+    this.dispatcher.next(new ListSelectedSetItemSelectedAction(item.id, ev.checked));
   }
 
   public clearSelections() {
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe(items => {
-        this.dispatcher.next(new ListItemsSetItemsSelectedAction(items, false));
+        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), false));
       });
   }
 
@@ -159,7 +166,7 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe(items => {
-        this.dispatcher.next(new ListItemsSetItemsSelectedAction(items, true));
+        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), true));
       });
   }
 }

@@ -7,6 +7,12 @@ import {
 import {
   ListDisplayedItemsLoadAction, ListDisplayedItemsSetLoadingAction
 } from './state/displayed-items/actions';
+import {
+  ListSelectedLoadAction,
+  ListSelectedSetLoadingAction
+} from './state/selected/actions';
+import { ListSelectedModel } from './state/selected/selected.model';
+import { AsyncItem } from 'microedge-rxstate/dist';
 import { ListState, ListStateDispatcher } from './state';
 import { Observable } from 'rxjs/Observable';
 import { ListViewComponent } from './list-view.component';
@@ -250,8 +256,12 @@ export class SkyListComponent implements AfterContentInit {
             id = moment().toDate().getTime().toString();
           }
 
-          items.push(new ListItemModel(id, selected.indexOf(id) !== -1, item));
+          items.push(new ListItemModel(id, item));
         });
+
+        this.dispatcher.next(new ListSelectedSetLoadingAction());
+        this.dispatcher.next(new ListSelectedLoadAction(selected));
+        this.dispatcher.next(new ListSelectedSetLoadingAction(false));
 
         if (dataItems !== lastDataItems) {
           lastItems = items;
@@ -266,8 +276,13 @@ export class SkyListComponent implements AfterContentInit {
       });
   }
 
-  get selectedItems(): Observable<Array<any>> {
-    return this.state.map(s => s.items.items.filter(x => x.selected));
+  get selectedItems(): Observable<Array<ListItemModel>> {
+    return Observable.combineLatest(
+      this.state.map(s => s.items.items).distinctUntilChanged(),
+      this.state.map(s => s.selected).distinctUntilChanged(),
+      (items: Array<ListItemModel>, selected: AsyncItem<ListSelectedModel>) => {
+        return items.filter(i => selected.item[i.id]);
+      });
   }
 
   get itemCount() {

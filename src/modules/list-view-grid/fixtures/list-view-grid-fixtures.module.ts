@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SkyListViewGridModule, SkyListViewGridColumnSelectorComponent } from '../';
+import { SkyListViewGridModule } from '../';
 import { SkyListToolbarModule } from '../../list-toolbar';
 
 import { ListFixturesModule } from '../../list/fixtures/list-fixtures.module';

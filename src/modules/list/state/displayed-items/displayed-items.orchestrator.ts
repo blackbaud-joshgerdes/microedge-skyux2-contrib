@@ -23,7 +23,7 @@ export class ListDisplayedItemsOrchestrator
   private load(
     state: AsyncList<ListItemModel>,
     action: ListDisplayedItemsLoadAction): AsyncList<ListItemModel> {
-    const newListItems = action.items.map(g => new ListItemModel(g.id, g.selected, g.data));
+    const newListItems = action.items.map(g => new ListItemModel(g.id, g.data));
     return new AsyncList<ListItemModel>(
       [...newListItems],
       moment(),

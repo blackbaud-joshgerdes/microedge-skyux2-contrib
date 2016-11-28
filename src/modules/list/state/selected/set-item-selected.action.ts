@@ -1,3 +1,3 @@
-export class ListItemsSetItemSelectedAction {
+export class ListSelectedSetItemSelectedAction {
   constructor(public id: any, public selected: boolean) {}
 }

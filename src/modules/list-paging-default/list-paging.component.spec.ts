@@ -71,13 +71,13 @@ describe('List Paging Component', () => {
     beforeEach(async(() => {
       // add some base items to be paged
       dispatcher.next(new ListItemsLoadAction([
-        new ListItemModel('1', false, {}),
-        new ListItemModel('2', false, {}),
-        new ListItemModel('3', false, {}),
-        new ListItemModel('4', false, {}),
-        new ListItemModel('5', false, {}),
-        new ListItemModel('6', false, {}),
-        new ListItemModel('7', false, {})
+        new ListItemModel('1', {}),
+        new ListItemModel('2', {}),
+        new ListItemModel('3', {}),
+        new ListItemModel('4', {}),
+        new ListItemModel('5', {}),
+        new ListItemModel('6', {}),
+        new ListItemModel('7', {})
       ], true));
 
       fixture.detectChanges();
@@ -214,11 +214,11 @@ describe('List Paging Component', () => {
 
     it('should reset to item length of count is wrong', () => {
       dispatcher.next(new ListItemsLoadAction([
-        new ListItemModel('1', false, {}),
-        new ListItemModel('2', false, {}),
-        new ListItemModel('3', false, {}),
-        new ListItemModel('4', false, {}),
-        new ListItemModel('5', false, {})
+        new ListItemModel('1', {}),
+        new ListItemModel('2', {}),
+        new ListItemModel('3', {}),
+        new ListItemModel('4', {}),
+        new ListItemModel('5', {})
       ], false, false, 2));
       fixture.detectChanges();
 

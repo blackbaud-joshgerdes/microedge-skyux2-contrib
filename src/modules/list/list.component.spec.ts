@@ -14,10 +14,11 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { ListItemModel } from '../list/state/items/item.model';
 import {
   ListItemsLoadAction,
-  ListItemsSetItemsSelectedAction,
-  ListItemsSetItemSelectedAction,
   ListItemsSetLoadingAction
 } from '../list/state/items/actions';
+import {
+  ListSelectedSetItemsSelectedAction
+} from '../list/state/selected/actions';
 import { ListFixturesModule } from './fixtures/list-fixtures.module';
 import { ListTestComponent } from './fixtures/list.component.fixture';
 import { ListAsyncTestComponent } from './fixtures/list-async.component.fixture';
@@ -711,20 +712,14 @@ describe('List Component', () => {
     });
 
     it('should construct ListItemModel without data', () => {
-      let model = new ListItemModel('1', false);
+      let model = new ListItemModel('1');
       expect(model.id).toBe('1');
-      expect(model.selected).toBeFalsy();
       expect(model.data).toBeUndefined();
     });
 
     it('should construct ListItemModel and throw error if id is undefined', () => {
       expect(() => { new ListItemModel(undefined, false); })
         .toThrow(new Error('All list item models require an ID'));
-    });
-
-    it('should construct ListItemsSetItemsSelectedAction', () => {
-      let action = new ListItemsSetItemsSelectedAction([new ListItemModel('1', false)]);
-      expect(action).not.toBeUndefined();
     });
 
     it('should construct ListItemsSetLoadingAction', () => {
@@ -750,36 +745,10 @@ describe('List Component', () => {
       });
     }));
 
-    it('should run ListItemsSetItemsSelectedAction action setting select properly', async(() => {
-      let listDispatcher = new ListStateDispatcher();
-      let listState = new ListState(listDispatcher);
-      let items = [
-        new ListItemModel('1', false),
-        new ListItemModel('2', false)
-      ];
-
-      listDispatcher.next(new ListItemsLoadAction(items));
-      listDispatcher.next(
-        new ListItemsSetItemsSelectedAction([new ListItemModel('3', false)], true));
-      listState.take(1).subscribe(s => {
-        expect(s.items.items.filter(i => i.selected).length).toBe(0);
-      });
-    }));
-
-    it('should run ListItemsSetItemSelectedAction action setting select properly', async(() => {
-      let listDispatcher = new ListStateDispatcher();
-      let listState = new ListState(listDispatcher);
-      let items = [
-        new ListItemModel('1', false),
-        new ListItemModel('2', false)
-      ];
-
-      listDispatcher.next(new ListItemsLoadAction(items));
-      listDispatcher.next(new ListItemsSetItemSelectedAction('3', false));
-      listState.take(1).subscribe(s => {
-        expect(s.items.items.filter(i => i.selected).length).toBe(0);
-      });
-    }));
+    it('should construct ListSelectedSetItemsSelectedAction', () => {
+      let action = new ListSelectedSetItemsSelectedAction(['1']);
+      expect(action).not.toBeUndefined();
+    });
 
     it('should construct ListSearchSetFunctionsAction', () => {
       let action = new ListSearchSetFunctionsAction();
@@ -799,16 +768,6 @@ describe('List Component', () => {
       expect(model.fieldSelector).toBeUndefined();
       expect(model.fieldType).toBeUndefined();
     });
-
-    it('should run ListSortSetFieldSelectorsAction action', async(() => {
-      let listDispatcher = new ListStateDispatcher();
-      let listState = new ListState(listDispatcher);
-
-      listDispatcher.next(new ListSortSetFieldSelectorsAction(['test']));
-      listState.take(1).subscribe(s => {
-        expect(s.items.items.filter(i => i.selected).length).toBe(0);
-      });
-    }));
 
     it('should construct ListToolbarItemModel without data', () => {
       let model = new ListToolbarItemModel();

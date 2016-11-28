@@ -9,7 +9,6 @@ import { ListToolbarItemsLoadAction, ListToolbarSetExistsAction } from './toolba
 import { ListToolbarItemModel } from './toolbar/toolbar-item.model';
 import { ListSearchSetFunctionsAction, ListSearchSetSearchTextAction } from './search/actions';
 import { ListItemModel } from './items/item.model';
-import { ListItemsSetItemSelectedAction } from './items/actions';
 import { ListDisplayedItemsLoadAction } from './displayed-items/actions';
 import { ListViewsSetActiveAction } from './views/actions';
 import { ListFilterModel } from './filters/filter.model';
@@ -46,10 +45,6 @@ export class ListStateDispatcher extends StateDispatcher<ListStateAction> {
 
   public sortSetGlobal(sortLabels: ListSortLabelModel[]): void {
     this.next(new ListSortSetGlobalAction(sortLabels));
-  }
-
-  public itemsSetSelected(item: ListItemModel, selected: boolean) {
-    this.next(new ListItemsSetItemSelectedAction(item.id, selected));
   }
 
   public itemsSetDisplayed(items: ListItemModel[], itemCount: number = items.length): void {

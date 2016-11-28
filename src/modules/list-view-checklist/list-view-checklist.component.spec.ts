@@ -59,19 +59,19 @@ describe('List View Checklist Component', () => {
       fixture.detectChanges();
 
       items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+        new ListItemModel('1', { column1: '1', column2: 'Apple',
           column3: 'aa', column4: moment().add(1, 'minute') }),
-        new ListItemModel('2', false, { column1: '01', column2: 'Banana',
+        new ListItemModel('2', { column1: '01', column2: 'Banana',
           column3: 'bb', column4: moment().add(6, 'minute'), column5: 'test' }),
-        new ListItemModel('3', false, { column1: '11', column2: 'Banana',
+        new ListItemModel('3', { column1: '11', column2: 'Banana',
           column3: 'cc', column4: moment().add(4, 'minute') }),
-        new ListItemModel('4', false, { column1: '12', column2: 'Daikon',
+        new ListItemModel('4', { column1: '12', column2: 'Daikon',
           column3: 'dd', column4: moment().add(2, 'minute') }),
-        new ListItemModel('5', false, { column1: '13', column2: 'Edamame',
+        new ListItemModel('5', { column1: '13', column2: 'Edamame',
           column3: 'ee', column4: moment().add(5, 'minute') }),
-        new ListItemModel('6', false, { column1: '20', column2: 'Fig',
+        new ListItemModel('6', { column1: '20', column2: 'Fig',
           column3: 'ff', column4: moment().add(3, 'minute') }),
-        new ListItemModel('7', false, { column1: '21', column2: 'Grape',
+        new ListItemModel('7', { column1: '21', column2: 'Grape',
           column3: 'gg', column4: moment().add(7, 'minute') })
       ];
 
@@ -150,7 +150,7 @@ describe('List View Checklist Component', () => {
       fixture.detectChanges();
 
       items = [
-        new ListItemModel('1', false, { column1: '1', column2: 'Apple',
+        new ListItemModel('1', { column1: '1', column2: 'Apple',
           column3: 1, column4: moment().add(1, 'minute') })
       ];
 
@@ -187,7 +187,6 @@ describe('List View Checklist Component', () => {
     it('should create ListViewChecklistItemModel without data', () => {
       let model = new ListViewChecklistItemModel('123', true);
       expect(model.id).toBe('123');
-      expect(model.selected).toBeTruthy();
       expect(model.category).toBeUndefined();
       expect(model.description).toBeUndefined();
       expect(model.label).toBeUndefined();
