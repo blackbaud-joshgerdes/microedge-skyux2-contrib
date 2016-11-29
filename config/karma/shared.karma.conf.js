@@ -1,7 +1,10 @@
+/**
+* Common Karma configuration shared between local / CI testing.
+*/
 module.exports = function (config) {
   'use strict';
 
-  let testWebpackConfig = require('./webpack.test');
+  let testWebpackConfig = require('../webpack/webpack.test');
   let remapIstanbul = require('remap-istanbul');
 
   config.set({
@@ -9,19 +12,19 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
     exclude: [],
     files: [{
-      pattern: './spec-bundle.js',
+      pattern: '../utils/spec-bundle.js',
       watched: false
     }, {
-      pattern: './spec-styles.js',
+      pattern: '../utils/spec-styles.js',
       watched: false
     }],
     preprocessors: {
-      './spec-styles.js': ['webpack'],
-      './spec-bundle.js': ['coverage', 'webpack', 'sourcemap']
+      '../utils/spec-styles.js': ['webpack'],
+      '../utils/spec-bundle.js': ['coverage', 'webpack', 'sourcemap']
     },
     webpack: testWebpackConfig,
     coverageReporter: {
-      dir: '../coverage/',
+      dir: '../../coverage/',
       reporters: [
         { type: 'json' },
         { type: 'html' }
@@ -38,9 +41,6 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    singleRun: true,
-    browsers: [
-      'Chrome'
-    ]
+    singleRun: true
   });
 };
