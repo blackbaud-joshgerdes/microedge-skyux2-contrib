@@ -15,7 +15,7 @@ export class ListViewGridColumnModel {
   constructor(template: TemplateRef<any>, data?: any) {
     this.template = template;
 
-    if (data !== undefined) {
+    if (data) {
       this.id = data.id || data.field;
       this.field = data.field;
       this.type = data.type;

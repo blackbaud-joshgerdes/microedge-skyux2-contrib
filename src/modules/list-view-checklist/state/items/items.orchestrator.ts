@@ -16,7 +16,7 @@ export class ListViewChecklistItemsOrchestrator
   private load(
     state: AsyncList<ListViewChecklistItemModel>,
     action: ListViewChecklistItemsLoadAction): AsyncList<ListViewChecklistItemModel> {
-    const newListItems = action.items.map(g => new ListViewChecklistItemModel(g.id, g.selected, g));
+    const newListItems = action.items.map(g => new ListViewChecklistItemModel(g.id, g));
 
     if (action.refresh) {
       return new AsyncList<ListViewChecklistItemModel>(

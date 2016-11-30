@@ -2,11 +2,17 @@ import {
   Component, ContentChildren, QueryList, AfterContentInit, ChangeDetectionStrategy, Input
 } from '@angular/core';
 import {
-  ListItemsLoadAction, ListItemsSetLoadingAction, ListItemsSetItemsSelectedAction
+  ListItemsLoadAction, ListItemsSetLoadingAction
 } from './state/items/actions';
 import {
   ListDisplayedItemsLoadAction, ListDisplayedItemsSetLoadingAction
 } from './state/displayed-items/actions';
+import {
+  ListSelectedLoadAction,
+  ListSelectedSetLoadingAction
+} from './state/selected/actions';
+import { ListSelectedModel } from './state/selected/selected.model';
+import { AsyncItem } from 'microedge-rxstate/dist';
 import { ListState, ListStateDispatcher } from './state';
 import { Observable } from 'rxjs/Observable';
 import { ListViewComponent } from './list-view.component';
@@ -56,18 +62,19 @@ export class SkyListComponent implements AfterContentInit {
   }
 
   public ngAfterContentInit() {
-    let defaultView: ListViewComponent = this.defaultView;
-    if (defaultView === undefined) {
-      if (this.listViews.length > 0) {
-        defaultView = this.listViews.first;
-        this.dispatcher.next(
-          new ListViewsLoadAction(this.listViews.map(v => new ListViewModel(v.id, v.label)))
-        );
-      }
-    }
+    if (this.listViews.length > 0) {
+      let defaultView: ListViewComponent =
+        (this.defaultView === undefined) ? this.listViews.first : this.defaultView;
 
-    // activate the default view
-    this.dispatcher.next(new ListViewsSetActiveAction(defaultView.id));
+      this.dispatcher.next(
+        new ListViewsLoadAction(this.listViews.map(v => new ListViewModel(v.id, v.label)))
+      );
+
+      // activate the default view
+      this.dispatcher.next(new ListViewsSetActiveAction(defaultView.id));
+    } else {
+      return;
+    }
 
     // set sort fields
     getValue(this.sortFields, (sortFields: string[]) =>
@@ -124,6 +131,8 @@ export class SkyListComponent implements AfterContentInit {
 
             return true;
           });
+
+          lastFilterResults = result;
         }
 
         if (!dataChanged && !searchChanged && lastSearchResults !== undefined) {
@@ -216,9 +225,6 @@ export class SkyListComponent implements AfterContentInit {
         if (searchText !== undefined && searchText.length > 0 && this.searchAsyncFunction) {
           this.dispatcher.next(new ListDisplayedItemsSetLoadingAction());
           let searchResult: any = this.searchAsyncFunction(searchText);
-          if (typeof searchResult.then === 'function') {
-            searchResult = Observable.fromPromise(searchResult);
-          }
 
           lastSearchData = searchResult.take(1);
           return lastSearchData;
@@ -229,7 +235,6 @@ export class SkyListComponent implements AfterContentInit {
 
     let lastItems: ListItemModel[];
     let lastDataItems: any[];
-    let lastDate: any;
     return Observable.combineLatest(
       data.distinctUntilChanged(),
       searchResults.distinctUntilChanged(),
@@ -251,20 +256,33 @@ export class SkyListComponent implements AfterContentInit {
             id = moment().toDate().getTime().toString();
           }
 
-          items.push(new ListItemModel(id, selected.indexOf(id) !== -1, item));
+          items.push(new ListItemModel(id, item));
         });
 
+        this.dispatcher.next(new ListSelectedSetLoadingAction());
+        this.dispatcher.next(new ListSelectedLoadAction(selected));
+        this.dispatcher.next(new ListSelectedSetLoadingAction(false));
+
         if (dataItems !== lastDataItems) {
-          lastDate = new Date();
           lastItems = items;
+          lastDataItems = dataItems;
+        }
+
+        if (asyncSearchResults !== undefined) {
+          return items;
         }
 
         return lastItems;
       });
   }
 
-  get selectedItems(): Observable<Array<any>> {
-    return this.state.map(s => s.items.items.filter(x => x.selected));
+  get selectedItems(): Observable<Array<ListItemModel>> {
+    return Observable.combineLatest(
+      this.state.map(s => s.items.items).distinctUntilChanged(),
+      this.state.map(s => s.selected).distinctUntilChanged(),
+      (items: Array<ListItemModel>, selected: AsyncItem<ListSelectedModel>) => {
+        return items.filter(i => selected.item[i.id]);
+      });
   }
 
   get itemCount() {

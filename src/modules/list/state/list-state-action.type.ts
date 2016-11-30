@@ -1,6 +1,5 @@
 import {
-  ListItemsSetLoadingAction, ListItemsLoadAction, ListItemsSetItemSelectedAction,
-  ListItemsSetItemsSelectedAction
+  ListItemsSetLoadingAction, ListItemsLoadAction
 } from './items/actions';
 import { ListDisplayedItemsLoadAction } from './displayed-items/actions';
 import { ListViewsLoadAction, ListViewsSetActiveAction } from './views/actions';
@@ -10,10 +9,17 @@ import {
 } from './sort/actions';
 import { ListFiltersLoadAction, ListFiltersUpdateAction } from './filters/actions';
 import { ListToolbarItemsLoadAction, ListToolbarSetExistsAction } from './toolbar/actions';
+import {
+  ListSelectedSetLoadingAction,
+  ListSelectedLoadAction,
+  ListSelectedSetItemSelectedAction,
+  ListSelectedSetItemsSelectedAction
+} from './selected/actions';
 
 export type ListStateAction =
-  ListItemsSetLoadingAction | ListItemsLoadAction | ListItemsSetItemSelectedAction |
-  ListItemsSetItemsSelectedAction |
+  ListSelectedSetLoadingAction | ListSelectedLoadAction | ListSelectedSetItemSelectedAction |
+  ListSelectedSetItemsSelectedAction |
+  ListItemsSetLoadingAction | ListItemsLoadAction |
   ListDisplayedItemsLoadAction |
   ListViewsLoadAction | ListViewsSetActiveAction |
   ListSearchSetSearchTextAction | ListSearchSetFunctionsAction |

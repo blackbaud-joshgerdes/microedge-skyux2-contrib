@@ -10,6 +10,7 @@ import { ListSearchOrchestrator } from './search/search.orchestrator';
 import { ListSortOrchestrator } from './sort/sort.orchestrator';
 import { ListFiltersOrchestrator } from './filters/filters.orchestrator';
 import { ListToolbarOrchestrator } from './toolbar/toolbar.orchestrator';
+import { ListSelectedOrchestrator } from './selected/selected.orchestrator';
 
 @Injectable()
 export class ListState extends StateNode<ListStateModel> {
@@ -24,6 +25,7 @@ export class ListState extends StateNode<ListStateModel> {
       .register('sort', ListSortOrchestrator)
       .register('filters', ListFiltersOrchestrator)
       .register('toolbar', ListToolbarOrchestrator)
+      .register('selected', ListSelectedOrchestrator)
       .begin();
   }
 }

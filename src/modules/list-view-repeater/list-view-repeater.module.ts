@@ -10,7 +10,6 @@ import {
   SkyListViewRepeaterDescriptionComponent
 } from './list-view-repeater-description.component';
 import { SkyListViewRepeaterContentComponent } from './list-view-repeater-content.component';
-import { SkyListViewRepeaterEditorComponent } from './list-view-repeater-editor.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { SkyListViewRepeaterEditorComponent } from './list-view-repeater-editor.
     SkyListViewRepeaterTitleComponent,
     SkyListViewRepeaterDescriptionComponent,
     SkyListViewRepeaterContentComponent,
-    SkyListViewRepeaterEditorComponent,
     SkyListViewRepeaterRendererComponent
   ],
   imports: [
@@ -34,7 +32,6 @@ import { SkyListViewRepeaterEditorComponent } from './list-view-repeater-editor.
     SkyListViewRepeaterTitleComponent,
     SkyListViewRepeaterDescriptionComponent,
     SkyListViewRepeaterContentComponent,
-    SkyListViewRepeaterEditorComponent,
     SkyListViewRepeaterRendererComponent
   ],
   providers: [

@@ -38,6 +38,7 @@ export abstract class ListViewComponent implements OnDestroy {
     return this.state.map(s => s.views.active === this.viewId);
   }
 
+  /* istanbul ignore next */
   public onViewActive() {
   }
 

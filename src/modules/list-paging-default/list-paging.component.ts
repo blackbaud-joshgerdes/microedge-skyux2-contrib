@@ -41,7 +41,7 @@ export class SkyListPagingComponent extends ListPagingComponent implements OnIni
     super(state);
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     Observable.combineLatest(
       this.state.map(s => s.items).distinctUntilChanged(),
       this.pagingState.map(s => s.config).distinctUntilChanged(),

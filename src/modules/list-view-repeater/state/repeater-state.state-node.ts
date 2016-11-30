@@ -4,7 +4,6 @@ import { StateNode } from 'microedge-rxstate/dist';
 import { RepeaterStateModel } from './repeater-state.model';
 import { RepeaterStateDispatcher } from './repeater-state.rxstate';
 import { ListViewRepeaterExpandedOrchestrator } from './expanded/expanded.orchestrator';
-import { ListViewRepeaterEditingOrchestrator } from './editing/editing.orchestrator';
 
 @Injectable()
 export class RepeaterState extends StateNode<RepeaterStateModel> {
@@ -13,7 +12,6 @@ export class RepeaterState extends StateNode<RepeaterStateModel> {
 
     this
       .register('expanded', ListViewRepeaterExpandedOrchestrator)
-      .register('editing', ListViewRepeaterEditingOrchestrator)
       .begin();
   }
 }

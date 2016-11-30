@@ -88,10 +88,22 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
 
     this.dispatcher.toolbarAddItems([
       this.type !== 'search' ?
-        new ListToolbarItemModel({ id: 'search', template: this.searchTemplate, location: 'center' }) :
+        new ListToolbarItemModel({
+          id: 'search',
+          template: this.searchTemplate,
+          location: 'center'
+        }) :
         undefined,
-      new ListToolbarItemModel({ id: 'sort-selector', template: this.sortSelectorTemplate, location: 'right' }),
-      new ListToolbarItemModel({ id: 'view-selector', template: this.viewSelectorTemplate, location: 'right' })
+      new ListToolbarItemModel({
+        id: 'sort-selector',
+        template: this.sortSelectorTemplate,
+        location: 'right'
+      }),
+      new ListToolbarItemModel({
+        id: 'view-selector',
+        template: this.viewSelectorTemplate,
+        location: 'right'
+      })
     ].filter(s => s !== undefined));
   }
 
@@ -105,7 +117,12 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
 
     let sortModels = this.toolbarSorts.map(sort =>
       new ListSortLabelModel(
-        { text: sort.label, fieldSelector: sort.field, fieldType: sort.type, global: true }
+        {
+          text: sort.label,
+          fieldSelector: sort.field,
+          fieldType: sort.type,
+          global: true
+        }
       )
     );
 
@@ -146,11 +163,12 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
     return Observable.combineLatest(
       this.state.map(s => s.toolbar).distinctUntilChanged(),
       this.view.distinctUntilChanged(),
-      (toolbar: ListToolbarModel, view: string) => toolbar.items.filter(
+      (toolbar: ListToolbarModel, view: string) => {
+        return toolbar.items.filter(
         (i: ListToolbarItemModel) =>
           i.location === 'right' && (i.view === undefined || i.view === view)
-      )
-    );
+      );
+      });
   }
 
   public setActiveView(view: any): void {
