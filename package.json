@@ -16,10 +16,6 @@
     "blackbaud",
     "contrib"
   ],
-  "main": "dist/bundles/core.umd.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "prepublish": "rimraf dist && npm run release",
     "release": "cp -r ./src ./dist",
