@@ -3,7 +3,7 @@ describe('list-paging component', function () {
 
   it('should display flat paging control - first page', function () {
     return browser
-      .setupTest('/list-paging-default.html')
+      .setupTest('/list-paging.html')
       .compareScreenshot({
         screenshotName: 'list-paging-flat',
         selector: '#screenshot-list-paging-flat'
@@ -12,7 +12,7 @@ describe('list-paging component', function () {
 
   it('should display flat paging control - middle page', function () {
     return browser
-      .setupTest('/list-paging-default.html')
+      .setupTest('/list-paging.html')
       .compareScreenshot({
         screenshotName: 'list-paging-flat-middle',
         selector: '#screenshot-list-paging-flat-middle'
@@ -21,7 +21,7 @@ describe('list-paging component', function () {
 
   it('should display flat paging control - last page', function () {
     return browser
-      .setupTest('/list-paging-default.html')
+      .setupTest('/list-paging.html')
       .compareScreenshot({
         screenshotName: 'list-paging-fla-last',
         selector: '#screenshot-list-paging-flat-last'
@@ -30,7 +30,7 @@ describe('list-paging component', function () {
 
   it('should display condensed paging control - first page', function () {
     return browser
-      .setupTest('/list-paging-default.html')
+      .setupTest('/list-paging.html')
       .compareScreenshot({
         screenshotName: 'list-paging-condensed',
         selector: '#screenshot-list-paging-condensed'
@@ -39,7 +39,7 @@ describe('list-paging component', function () {
 
   it('should display the list paging control - middle page', function () {
     return browser
-      .setupTest('/list-paging-default.html')
+      .setupTest('/list-paging.html')
       .compareScreenshot({
         screenshotName: 'list-paging-condensed-middle',
         selector: '#screenshot-list-paging-condensed-middle'
@@ -48,7 +48,7 @@ describe('list-paging component', function () {
 
   it('should display the list paging control - last page', function () {
     return browser
-      .setupTest('/list-paging-default.html')
+      .setupTest('/list-paging.html')
       .compareScreenshot({
         screenshotName: 'list-paging-condensed-last',
         selector: '#screenshot-list-paging-condensed-last'

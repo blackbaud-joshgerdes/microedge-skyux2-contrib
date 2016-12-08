@@ -15,5 +15,5 @@ import { SkyListPagingComponent } from './list-paging.component';
   providers: [
   ]
 })
-export class SkyListPagingDefaultModule {
+export class SkyListPagingModule {
 }

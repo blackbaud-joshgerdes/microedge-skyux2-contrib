@@ -10,10 +10,10 @@ import {
 } from '../list/state';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListItemsLoadAction } from '../list/state/items/actions';
-import { SkyListPagingDefaultModule } from './';
+import { SkyListPagingModule } from './';
 import {
-  ListPagingDefaultTestComponent
-} from './fixtures/list-paging-default.component.fixture';
+  ListPagingTestComponent
+} from './fixtures/list-paging.component.fixture';
 import { PagingStateDispatcher, PagingState, PagingStateModel } from './state';
 import { SkyListPagingComponent } from './list-paging.component';
 import { ListPagingCurrentSetPageNumberAction } from './state/current/actions';
@@ -23,7 +23,7 @@ describe('List Paging Component', () => {
       dispatcher: ListStateDispatcher,
       pagingState: PagingState,
       pagingDispatcher: PagingStateDispatcher,
-      component: ListPagingDefaultTestComponent,
+      component: ListPagingTestComponent,
       fixture: any,
       nativeElement: HTMLElement,
       element: DebugElement;
@@ -37,10 +37,10 @@ describe('List Paging Component', () => {
 
     TestBed.configureTestingModule({
       declarations: [
-        ListPagingDefaultTestComponent
+        ListPagingTestComponent
       ],
       imports: [
-        SkyListPagingDefaultModule
+        SkyListPagingModule
       ],
       providers: [
         { provide: ListState, useValue: state },
@@ -56,7 +56,7 @@ describe('List Paging Component', () => {
       }
     });
 
-    fixture = TestBed.createComponent(ListPagingDefaultTestComponent);
+    fixture = TestBed.createComponent(ListPagingTestComponent);
     nativeElement = fixture.nativeElement as HTMLElement;
     element = fixture.debugElement as DebugElement;
     component = fixture.componentInstance;
