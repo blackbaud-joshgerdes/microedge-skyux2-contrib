@@ -6,6 +6,7 @@ import { ListSearchModel } from './search/search.model';
 import { ListFilterModel } from './filters/filter.model';
 import { ListToolbarModel } from './toolbar/toolbar.model';
 import { ListSelectedModel } from './selected/selected.model';
+import { ListPagingModel } from './paging/paging.model';
 
 export class ListStateModel {
   public views: ListViewsModel = new ListViewsModel();
@@ -16,4 +17,5 @@ export class ListStateModel {
   public filters: ListFilterModel[] = [];
   public toolbar: ListToolbarModel = new ListToolbarModel();
   public selected: AsyncItem<ListSelectedModel> = new AsyncItem<ListSelectedModel>();
+  public paging: ListPagingModel = new ListPagingModel();
 }

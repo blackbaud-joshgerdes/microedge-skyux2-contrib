@@ -21,7 +21,6 @@ import {
 } from '../list/state/selected/actions';
 import { ListFixturesModule } from './fixtures/list-fixtures.module';
 import { ListTestComponent } from './fixtures/list.component.fixture';
-import { ListAsyncTestComponent } from './fixtures/list-async.component.fixture';
 import { ListDualTestComponent } from './fixtures/list-dual.component.fixture';
 import { ListEmptyTestComponent } from './fixtures/list-empty.component.fixture';
 import { SkyListComponent, SkyListModule } from './';
@@ -302,14 +301,6 @@ describe('List Component', () => {
         });
       }));
 
-      describe('itemCount', () => {
-        it('should return count', async(() => {
-          component.list.itemCount.subscribe(c => {
-            expect(c).toBe(7);
-          });
-        }));
-      });
-
       describe('lastUpdate', () => {
         it('should return last updated date', async(() => {
           component.list.lastUpdate.take(1).subscribe(u => {
@@ -394,147 +385,6 @@ describe('List Component', () => {
       it('should load data', () => {
         expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
       });
-    });
-  });
-
-  describe('Async List Fixture', () => {
-    describe('List Component with Observable', () => {
-      let state: ListState,
-          dispatcher: ListStateDispatcher,
-          component: ListTestComponent,
-          fixture: any,
-          nativeElement: HTMLElement,
-          element: DebugElement,
-          items: Observable<any>,
-          bs: BehaviorSubject<any>;
-
-      beforeEach(async(() => {
-        dispatcher = new ListStateDispatcher();
-        state = new ListState(dispatcher);
-
-        let itemsArray = [
-          { id: '1', column1: '1', column2: 'Apple',
-            column3: 1, column4: moment().add(1, 'minute') },
-          { id: '2', column1: '01', column2: 'Banana',
-            column3: 1, column4: moment().add(6, 'minute') }
-        ];
-
-        bs = new BehaviorSubject<Array<any>>(itemsArray);
-        items = bs.asObservable();
-
-        TestBed.configureTestingModule({
-          imports: [
-            ListFixturesModule,
-            SkyListModule,
-            SkyListToolbarModule,
-            SkyListViewGridModule,
-            SkyListFiltersModule,
-            FormsModule
-          ],
-          providers: [
-            { provide: 'items', useValue: items }
-          ]
-        })
-        .overrideComponent(SkyListComponent, {
-          set: {
-            providers: [
-              { provide: ListState, useValue: state },
-              { provide: ListStateDispatcher, useValue: dispatcher }
-            ]
-          }
-        });
-
-        fixture = TestBed.createComponent(ListAsyncTestComponent);
-        nativeElement = fixture.nativeElement as HTMLElement;
-        element = fixture.debugElement as DebugElement;
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-
-        // always skip the first update to ListState, when state is ready
-        // run detectChanges once more then begin tests
-        state.skip(1).take(1).subscribe(() => fixture.detectChanges());
-        fixture.detectChanges();
-      }));
-
-      function setSearchInput(text: string) {
-        let searchInputElement = element.query(
-          By.css('.toolbar-item-container input[type="text"]')
-        ).nativeElement;
-        searchInputElement.value = text;
-        var event = document.createEvent('Event');
-        event.initEvent('input', true, true);
-        searchInputElement.dispatchEvent(event);
-        fixture.detectChanges();
-        return fixture.whenStable();
-      }
-
-      it('should load array data', () => {
-        expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
-      });
-
-      it('should search based on input text', async(() => {
-        setSearchInput('banana')
-        .then(() => {
-          fixture.detectChanges();
-          element.query(By.css('button[cmp-id="search"] i'))
-            .triggerEventHandler('click', undefined);
-          fixture.detectChanges();
-          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
-        });
-      }));
-
-      it('should sort search results', async(() => {
-        setSearchInput('banana')
-        .then(() => {
-          fixture.detectChanges();
-          element.query(By.css('button[cmp-id="search"] i'))
-            .triggerEventHandler('click', undefined);
-          fixture.detectChanges();
-          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
-
-          element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
-          fixture.detectChanges();
-          expect(element.query(
-            By.css('sky-list-view-grid-cell[cmp-id="column1"]')).nativeElement.textContent.trim()
-          ).toBe('301');
-        });
-      }));
-
-      it('should return last results based on same search', async(() => {
-        setSearchInput('banana')
-        .then(() => {
-          fixture.detectChanges();
-          element.query(By.css('button[cmp-id="search"] i'))
-            .triggerEventHandler('click', undefined);
-          fixture.detectChanges();
-          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
-
-          setSearchInput('banana')
-          .then(() => {
-            fixture.detectChanges();
-            element.query(By.css('button[cmp-id="search"] i'))
-              .triggerEventHandler('click', undefined);
-            fixture.detectChanges();
-            expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
-          });
-        });
-      }));
-
-      it('should open filter modal when filter button clicked', async(() => {
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
-          element.query(By.css('button[cmp-id="filter"]')).nativeElement.click();
-          fixture.detectChanges();
-          fixture.whenStable().then(() => {
-              expect(element.queryAll(By.css('.sky-list-filters-inline-bar')).length).toBe(0);
-              expect(document.querySelectorAll('.sky-modal').length).toBe(1);
-
-              (<HTMLButtonElement><any>document.querySelector('button.sky-modal-btn-close'))
-                .click();
-          });
-        });
-      }));
-
     });
   });
 

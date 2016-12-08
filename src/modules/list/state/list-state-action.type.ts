@@ -15,6 +15,13 @@ import {
   ListSelectedSetItemSelectedAction,
   ListSelectedSetItemsSelectedAction
 } from './selected/actions';
+import {
+  ListPagingSetMaxPagesAction,
+  ListPagingSetItemsPerPageAction,
+  ListPagingSetPageCountAction,
+  ListPagingSetPageNumberAction,
+  ListPagingSetDisplayedPagesAction
+} from './paging/actions';
 
 export type ListStateAction =
   ListSelectedSetLoadingAction | ListSelectedLoadAction | ListSelectedSetItemSelectedAction |
@@ -25,4 +32,7 @@ export type ListStateAction =
   ListSearchSetSearchTextAction | ListSearchSetFunctionsAction |
   ListSortSetFieldSelectorsAction | ListSortSetAvailableAction | ListSortSetGlobalAction |
   ListFiltersLoadAction | ListFiltersUpdateAction |
-  ListToolbarItemsLoadAction | ListToolbarSetExistsAction;
+  ListToolbarItemsLoadAction | ListToolbarSetExistsAction |
+  ListPagingSetMaxPagesAction | ListPagingSetItemsPerPageAction |
+  ListPagingSetPageCountAction | ListPagingSetPageNumberAction |
+  ListPagingSetDisplayedPagesAction;

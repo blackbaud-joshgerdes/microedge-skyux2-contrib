@@ -42,3 +42,4 @@ export * from './list-view-repeater';
 export * from './list-view-checklist';
 export * from './list-paging-default';
 export * from './spinner';
+export * from './list-data-provider-in-memory';
