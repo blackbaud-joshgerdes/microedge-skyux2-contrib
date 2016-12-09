@@ -43,7 +43,6 @@ export class SkyListComponent implements AfterContentInit {
   @Input() public selectedIds: Array<string> | Observable<Array<string>>;
   @Input()
   public sortFields?: string | Array<string> | Observable<Array<string>> | Observable<string>;
-  @Input() public dataIdGenerator: (item: any) => string = (item: any) => item.id;
   /* tslint:disable-next-line */
   @Input('search') private searchFunction: (data: any, searchText: string) => boolean;
 
