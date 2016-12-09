@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { SkyModule } from '../../../../src/core';
+import { MicroedgeSkyContribModule } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -13,7 +13,7 @@ import { Bootstrapper } from '../../../../visual/bootstrapper';
 
 @Component({
   selector: 'sky-demo-app',
-  templateUrl: './list-paging-default.component.visual-fixture.html'
+  templateUrl: './list-paging.component.visual-fixture.html'
 })
 export class AppComponent {
   constructor(private state: ListState, private dispatcher: ListStateDispatcher) {
@@ -32,7 +32,7 @@ export class AppComponent {
 @NgModule({
   imports: [
     BrowserModule,
-    SkyModule
+    MicroedgeSkyContribModule
   ],
   declarations: [
     AppComponent
