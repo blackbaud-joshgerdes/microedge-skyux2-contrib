@@ -1,4 +1,4 @@
-<sky-list [data]="items">
+<sky-list [data]="items" [dataProvider]="dataProvider">
   <sky-list-filters>
     <sky-list-filter [filter]="filterOnStatus" [view]="default">
       <template let-filter="filter">

@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import * as moment from 'moment';
 import { ListDataProvider } from '../list/list-data.provider';
 import { ListDataRequestModel } from '../list/list-data-request.model';
@@ -9,7 +9,8 @@ import { ListFilterModel } from '../list/state/filters/filter.model';
 import { getData, compare } from '../list/helpers';
 
 export class SkyListInMemoryDataProvider extends ListDataProvider {
-  private items: Observable<Array<ListItemModel>> = Observable.of(new Array<ListItemModel>());
+  private items: BehaviorSubject<Array<ListItemModel>> =
+    new BehaviorSubject<Array<ListItemModel>>([]);
   private lastItems: ListItemModel[];
   private lastSearch: ListSearchModel;
   private lastFilters: ListFilterModel[];
@@ -26,9 +27,11 @@ export class SkyListInMemoryDataProvider extends ListDataProvider {
     this.searchFunction = searchFunction;
 
     if (data) {
-      this.items = data.map(items => items.map(d =>
-        new ListItemModel(d.id || moment().toDate().getTime().toString() , d)
-      ));
+      data.subscribe(items => {
+        this.items.next(items.map(d =>
+          new ListItemModel(d.id || moment().toDate().getTime().toString() , d)
+        ));
+      });
     }
   }
 
