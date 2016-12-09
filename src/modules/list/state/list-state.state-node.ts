@@ -4,7 +4,6 @@ import { StateNode } from 'microedge-rxstate/dist';
 import { ListStateModel } from './list-state.model';
 import { ListStateDispatcher } from './list-state.rxstate';
 import { ListItemsOrchestrator } from './items/items.orchestrator';
-import { ListDisplayedItemsOrchestrator } from './displayed-items/displayed-items.orchestrator';
 import { ListViewsOrchestrator } from './views/views.orchestrator';
 import { ListSearchOrchestrator } from './search/search.orchestrator';
 import { ListSortOrchestrator } from './sort/sort.orchestrator';
@@ -21,7 +20,6 @@ export class ListState extends StateNode<ListStateModel> {
     this
       .register('views', ListViewsOrchestrator)
       .register('items', ListItemsOrchestrator)
-      .register('displayedItems', ListDisplayedItemsOrchestrator)
       .register('search', ListSearchOrchestrator)
       .register('sort', ListSortOrchestrator)
       .register('filters', ListFiltersOrchestrator)

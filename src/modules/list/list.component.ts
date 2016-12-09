@@ -5,13 +5,11 @@ import {
   ListItemsLoadAction, ListItemsSetLoadingAction
 } from './state/items/actions';
 import {
-  ListDisplayedItemsLoadAction, ListDisplayedItemsSetLoadingAction
-} from './state/displayed-items/actions';
-import {
   ListSelectedLoadAction,
   ListSelectedSetLoadingAction
 } from './state/selected/actions';
 import { ListDataRequestModel } from './list-data-request.model';
+import { ListDataResponseModel } from './list-data-response.model';
 import { ListDataProvider } from './list-data.provider';
 import { SkyListInMemoryDataProvider } from '../list-data-provider-in-memory';
 import { ListSelectedModel } from './state/selected/selected.model';
@@ -19,7 +17,6 @@ import { AsyncItem } from 'microedge-rxstate/dist';
 import { ListState, ListStateDispatcher } from './state';
 import { Observable } from 'rxjs/Observable';
 import { ListViewComponent } from './list-view.component';
-import { ListPagingComponent } from './list-paging.component';
 import { ListSortModel } from './state/sort/sort.model';
 import { ListSearchModel } from './state/search/search.model';
 import { ListFilterModel } from './state/filters/filter.model';
@@ -51,7 +48,6 @@ export class SkyListComponent implements AfterContentInit {
   @Input('search') private searchFunction: (data: any, searchText: string) => boolean;
 
   @ContentChildren(ListViewComponent) private listViews: QueryList<ListViewComponent>;
-  @ContentChildren(ListPagingComponent) private listPaging: QueryList<ListPagingComponent>;
 
   constructor(
     private state: ListState,
@@ -78,17 +74,13 @@ export class SkyListComponent implements AfterContentInit {
       this.dispatcher.next(new ListSortSetFieldSelectorsAction(sortFields || []))
     );
 
-    this.items.subscribe(result => {
-      this.dispatcher.next(new ListItemsLoadAction(result, true));
-      if (this.listPaging.length === 0) {
-        this.dispatcher.next(new ListDisplayedItemsSetLoadingAction());
-        this.dispatcher.next(new ListDisplayedItemsLoadAction(result));
-      }
+    this.displayedItems.subscribe(result => {
+        this.dispatcher.next(new ListItemsSetLoadingAction());
+        this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
     });
   }
 
-  get items(): Observable<Array<ListItemModel>> {
-    let dataProvider: any = this.dataProvider;
+  get displayedItems(): Observable<ListDataResponseModel> {
     if (!this.data && !this.dataProvider) {
       throw new Error('List requires data or dataProvider to be set.');
     }
@@ -99,7 +91,7 @@ export class SkyListComponent implements AfterContentInit {
     }
 
     if (!this.dataProvider) {
-      dataProvider = new SkyListInMemoryDataProvider(data, this.searchFunction);
+      this.dataProvider = new SkyListInMemoryDataProvider(data, this.searchFunction);
     }
 
     // deal with selected items
@@ -121,10 +113,9 @@ export class SkyListComponent implements AfterContentInit {
         this.dispatcher.next(new ListSelectedLoadAction(selected));
         this.dispatcher.next(new ListSelectedSetLoadingAction(false));
 
-        this.dispatcher.next(new ListItemsSetLoadingAction());
-        return dataProvider.get(new ListDataRequestModel({filters, paging, search, sort}));
+        return this.dataProvider.get(new ListDataRequestModel({filters, paging, search, sort}));
        })
-       .flatMap((o: Observable<Array<ListItemModel>>) => o);
+       .flatMap((o: Observable<ListDataResponseModel>) => o);
   }
 
   public get selectedItems(): Observable<Array<ListItemModel>> {

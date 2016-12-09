@@ -1,7 +1,6 @@
 import {
   ListItemsSetLoadingAction, ListItemsLoadAction
 } from './items/actions';
-import { ListDisplayedItemsLoadAction } from './displayed-items/actions';
 import { ListViewsLoadAction, ListViewsSetActiveAction } from './views/actions';
 import { ListSearchSetSearchTextAction, ListSearchSetFunctionsAction } from './search/actions';
 import {
@@ -27,7 +26,6 @@ export type ListStateAction =
   ListSelectedSetLoadingAction | ListSelectedLoadAction | ListSelectedSetItemSelectedAction |
   ListSelectedSetItemsSelectedAction |
   ListItemsSetLoadingAction | ListItemsLoadAction |
-  ListDisplayedItemsLoadAction |
   ListViewsLoadAction | ListViewsSetActiveAction |
   ListSearchSetSearchTextAction | ListSearchSetFunctionsAction |
   ListSortSetFieldSelectorsAction | ListSortSetAvailableAction | ListSortSetGlobalAction |

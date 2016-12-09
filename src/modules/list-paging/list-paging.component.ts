@@ -1,17 +1,15 @@
-import {
-  ListPagingConfigSetItemsPerPageAction, ListPagingConfigSetMaxPagesAction
-} from './state/config/actions';
-import {
-  ListPagingCurrentSetDisplayedPagesAction, ListPagingCurrentSetPageNumberAction,
-  ListPagingCurrentSetPageCountAction
-} from './state/current/actions';
 import { Component, Input, ChangeDetectionStrategy, forwardRef, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 import { ListPagingComponent } from '../list/list-paging.component';
-import { ListStateDispatcher } from '../list/state';
-import { PagingStateDispatcher, PagingState, PagingStateModel } from './state';
-import { Observable } from 'rxjs';
-import { ListState } from '../list/state';
+import { ListState, ListStateDispatcher } from '../list/state';
+import {
+  ListPagingSetMaxPagesAction,
+  ListPagingSetItemsPerPageAction,
+  ListPagingSetPageCountAction,
+  ListPagingSetPageNumberAction,
+  ListPagingSetDisplayedPagesAction
+} from '../list/state/paging/actions';
 
 @Component({
   selector: 'sky-list-paging',
@@ -19,11 +17,8 @@ import { ListState } from '../list/state';
   styles: [require('./list-paging.component.scss')],
   providers: [
     /* tslint:disable */
-    { provide: ListPagingComponent, useExisting: forwardRef(() => SkyListPagingComponent)},
+    { provide: ListPagingComponent, useExisting: forwardRef(() => SkyListPagingComponent)}
     /* tslint:enable */
-    PagingState,
-    PagingStateModel,
-    PagingStateDispatcher
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -34,45 +29,41 @@ export class SkyListPagingComponent extends ListPagingComponent implements OnIni
 
   constructor(
     state: ListState,
-    private dispatcher: ListStateDispatcher,
-    private pagingState: PagingState,
-    private pagingStateDispatcher: PagingStateDispatcher
+    dispatcher: ListStateDispatcher
   ) {
-    super(state);
+    super(state, dispatcher);
   }
 
   public ngOnInit() {
     Observable.combineLatest(
-      this.state.map(s => s.items).distinctUntilChanged(),
-      this.pagingState.map(s => s.config).distinctUntilChanged(),
-      this.pagingState.map(s => s.current.pageNumber).distinctUntilChanged(),
-      (itemsList, config, pageNumber) => {
-        let items = itemsList.items;
-        let itemCount = items.length > itemsList.count ? items.length : itemsList.count;
+      this.state.map(s => s.items.count).distinctUntilChanged(),
+      this.state.map(s => s.paging.itemsPerPage).distinctUntilChanged(),
+      this.state.map(s => s.paging.maxDisplayedPages).distinctUntilChanged(),
+      this.state.map(s => s.paging.pageNumber).distinctUntilChanged(),
+      (itemCount, itemsPerPage, maxDisplayedPages, pageNumber) => {
         if (itemCount === 0) {
-          this.dispatcher.itemsSetDisplayed([]);
-          this.pagingStateDispatcher.next(new ListPagingCurrentSetDisplayedPagesAction([]));
-          this.pagingStateDispatcher.next(new ListPagingCurrentSetPageCountAction(0));
+          this.dispatcher.next(new ListPagingSetDisplayedPagesAction([]));
+          this.dispatcher.next(new ListPagingSetPageCountAction(0));
           return;
         }
 
-        let pageCount = Math.floor(itemCount / config.itemsPerPage);
+        let pageCount = Math.floor(itemCount / itemsPerPage);
         /* istanbul ignore else */
-        if (pageCount * config.itemsPerPage < itemCount) {
+        if (pageCount * itemsPerPage < itemCount) {
           pageCount += 1;
         }
 
         if (pageNumber > pageCount) {
-          return this.pagingStateDispatcher.next(
-            new ListPagingCurrentSetPageNumberAction(pageCount)
+          return this.dispatcher.next(
+            new ListPagingSetPageNumberAction(pageCount)
           );
         }
 
-        let pageBounds = Math.floor((config.maxDisplayedPages - 1) / 2);
+        let pageBounds = Math.floor((maxDisplayedPages - 1) / 2);
         let lowerBound = pageNumber - pageBounds - 1;
         let upperBound = pageNumber + pageBounds - 1;
 
-        if (pageCount < config.maxDisplayedPages) {
+        if (pageCount < maxDisplayedPages) {
           lowerBound = 0;
           upperBound = pageCount - 1;
         } else {
@@ -80,12 +71,12 @@ export class SkyListPagingComponent extends ListPagingComponent implements OnIni
             upperBound = pageCount - 1;
 
             /* istanbul ignore else */
-            if (upperBound - lowerBound < config.maxDisplayedPages) {
-              lowerBound = upperBound - config.maxDisplayedPages + 1;
+            if (upperBound - lowerBound < maxDisplayedPages) {
+              lowerBound = upperBound - maxDisplayedPages + 1;
             }
           } else if (lowerBound < 0) {
             lowerBound = 0;
-            upperBound = config.maxDisplayedPages - 1;
+            upperBound = maxDisplayedPages - 1;
           }
         }
 
@@ -94,41 +85,37 @@ export class SkyListPagingComponent extends ListPagingComponent implements OnIni
           displayedPageNumbers.push(i + 1);
         }
 
-        this.pagingStateDispatcher.next(
-          new ListPagingCurrentSetDisplayedPagesAction(displayedPageNumbers)
+        this.dispatcher.next(
+          new ListPagingSetDisplayedPagesAction(displayedPageNumbers)
         );
-        this.pagingStateDispatcher.next(new ListPagingCurrentSetPageCountAction(pageCount));
-
-        let itemStart = (pageNumber - 1) * config.itemsPerPage;
-        let displayedItems = items.slice(itemStart, itemStart + config.itemsPerPage);
-        this.dispatcher.itemsSetDisplayed(displayedItems, itemCount);
+        this.dispatcher.next(new ListPagingSetPageCountAction(pageCount));
       })
       .subscribe();
 
       // subscribe to or use inputs
       getValue(this.pageSize, (pageSize: number) =>
-        this.pagingStateDispatcher.next(
-          new ListPagingConfigSetItemsPerPageAction(Number(pageSize))
+        this.dispatcher.next(
+          new ListPagingSetItemsPerPageAction(Number(pageSize))
         )
       );
       getValue(this.maxPages, (maxPages: number) =>
-        this.pagingStateDispatcher.next(
-          new ListPagingConfigSetMaxPagesAction(Number(maxPages))
+        this.dispatcher.next(
+          new ListPagingSetMaxPagesAction(Number(maxPages))
         )
       );
       getValue(this.pageNumber, (pageNumber: number) => this.setPage(Number(pageNumber)));
   }
 
   get currentPageNumber() {
-    return this.pagingState.map(s => s.current.pageNumber);
+    return this.state.map(s => s.paging.pageNumber);
   }
 
   get displayedPages() {
-    return this.pagingState.map(s => s.current.displayedPages);
+    return this.state.map(s => s.paging.displayedPages);
   }
 
   get pageCount() {
-    return this.pagingState.map(s => s.current.pageCount);
+    return this.state.map(s => s.paging.pageCount);
   }
 
   public setPage(pageNumber: number): void {
@@ -136,7 +123,7 @@ export class SkyListPagingComponent extends ListPagingComponent implements OnIni
       return;
     }
 
-    this.pagingState.map(s => s.current.pageCount)
+    this.state.map(s => s.paging.pageCount)
       .filter(x => x > 0)
       .take(1)
       .subscribe(pageCount => {
@@ -144,18 +131,18 @@ export class SkyListPagingComponent extends ListPagingComponent implements OnIni
           return;
         }
 
-        this.pagingStateDispatcher.next(new ListPagingCurrentSetPageNumberAction(pageNumber));
+        this.dispatcher.next(new ListPagingSetPageNumberAction(pageNumber));
       });
   }
 
   public nextPage(): void {
-    this.pagingState.map(s => s.current.pageNumber)
+    this.state.map(s => s.paging.pageNumber)
       .take(1)
       .subscribe(pageNumber => this.setPage(pageNumber + 1));
   }
 
   public previousPage(): void {
-    this.pagingState.map(s => s.current.pageNumber)
+    this.state.map(s => s.paging.pageNumber)
       .take(1)
       .subscribe(pageNumber => this.setPage(pageNumber - 1));
   }

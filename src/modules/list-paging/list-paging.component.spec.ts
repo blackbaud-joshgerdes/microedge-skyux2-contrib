@@ -14,15 +14,11 @@ import { SkyListPagingModule } from './';
 import {
   ListPagingTestComponent
 } from './fixtures/list-paging.component.fixture';
-import { PagingStateDispatcher, PagingState, PagingStateModel } from './state';
-import { SkyListPagingComponent } from './list-paging.component';
-import { ListPagingCurrentSetPageNumberAction } from './state/current/actions';
+import { ListPagingSetPageNumberAction } from '../list/state/paging/actions';
 
 describe('List Paging Component', () => {
   let state: ListState,
       dispatcher: ListStateDispatcher,
-      pagingState: PagingState,
-      pagingDispatcher: PagingStateDispatcher,
       component: ListPagingTestComponent,
       fixture: any,
       nativeElement: HTMLElement,
@@ -31,9 +27,6 @@ describe('List Paging Component', () => {
   beforeEach(async(() => {
     dispatcher = new ListStateDispatcher();
     state = new ListState(dispatcher);
-
-    pagingDispatcher = new PagingStateDispatcher();
-    pagingState = new PagingState(new PagingStateModel(), pagingDispatcher);
 
     TestBed.configureTestingModule({
       declarations: [
@@ -46,14 +39,6 @@ describe('List Paging Component', () => {
         { provide: ListState, useValue: state },
         { provide: ListStateDispatcher, useValue: dispatcher }
       ]
-    })
-    .overrideComponent(SkyListPagingComponent, {
-      set: {
-        providers: [
-          { provide: PagingState, useValue: pagingState },
-          { provide: PagingStateDispatcher, useValue: pagingDispatcher }
-        ]
-      }
     });
 
     fixture = TestBed.createComponent(ListPagingTestComponent);
@@ -83,9 +68,9 @@ describe('List Paging Component', () => {
       fixture.detectChanges();
     }));
 
-    it('should show 3 pages', () => {
+    it('should show 3 pages', async(() => {
       expect(element.queryAll(By.css('.sky-list-paging-link')).length).toBe(3);
-    });
+    }));
 
     it('should have a disabled previous button', () => {
       expect(element.query(
@@ -212,21 +197,8 @@ describe('List Paging Component', () => {
       });
     });
 
-    it('should reset to item length of count is wrong', () => {
-      dispatcher.next(new ListItemsLoadAction([
-        new ListItemModel('1', {}),
-        new ListItemModel('2', {}),
-        new ListItemModel('3', {}),
-        new ListItemModel('4', {}),
-        new ListItemModel('5', {})
-      ], false, false, 2));
-      fixture.detectChanges();
-
-      expect(element.queryAll(By.css('.sky-list-paging-link')).length).toBe(3);
-    });
-
     it('should default to last page if pageNumber set over', () => {
-      pagingDispatcher.next(new ListPagingCurrentSetPageNumberAction(12));
+      dispatcher.next(new ListPagingSetPageNumberAction(12));
       fixture.detectChanges();
 
       expect(element.queryAll(By.css('.sky-list-paging-link')).length).toBe(3);

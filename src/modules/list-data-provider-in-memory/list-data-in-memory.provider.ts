@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { ListDataProvider } from '../list/list-data.provider';
 import { ListDataRequestModel } from '../list/list-data-request.model';
+import { ListDataResponseModel } from '../list/list-data-response.model';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListSearchModel } from '../list/state/search/search.model';
 import { ListFilterModel } from '../list/state/filters/filter.model';
@@ -32,10 +33,23 @@ export class SkyListInMemoryDataProvider extends ListDataProvider {
   }
 
   public count(): Observable<number> {
-    return this.items.count();
+    return this.items.map((items) => items.length);
   }
 
-  public get(request: ListDataRequestModel): Observable<Array<ListItemModel>> {
+  public get(request: ListDataRequestModel): Observable<ListDataResponseModel> {
+    return this.filteredItems(request).map((result: Array<ListItemModel>) => {
+        let paging = request.paging;
+        let itemStart = (paging.pageNumber - 1) * paging.itemsPerPage;
+        let pagedResult = result.slice(itemStart, itemStart + paging.itemsPerPage);
+
+        return new ListDataResponseModel({
+          count: result.length,
+          items: pagedResult
+        });
+    });
+  }
+
+  private filteredItems(request: ListDataRequestModel): Observable<Array<ListItemModel>> {
     return this.items.map(items => {
         let dataChanged = false;
         let filters = request.filters;
