@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SkyListModule } from './list';
+import { SkyListActionBarModule } from './list-action-bar';
 import { SkyListToolbarModule } from './list-toolbar';
 import { SkyListFiltersModule } from './list-filters';
 import { SkyListViewGridModule } from './list-view-grid';
@@ -18,7 +19,8 @@ import { SkySpinnerModule } from './spinner';
     SkyListViewGridModule,
     SkyListViewRepeaterModule,
     SkyListViewChecklistModule,
-    SkyListPagingModule
+    SkyListPagingModule,
+    SkyListActionBarModule
   ],
   exports: [
     SkySpinnerModule,
@@ -28,13 +30,15 @@ import { SkySpinnerModule } from './spinner';
     SkyListViewGridModule,
     SkyListViewRepeaterModule,
     SkyListViewChecklistModule,
-    SkyListPagingModule
+    SkyListPagingModule,
+    SkyListActionBarModule
   ]
 })
 export class MicroedgeSkyContribModule {
 }
 
 export * from './list';
+export * from './list-action-bar';
 export * from './list-toolbar';
 export * from './list-filters';
 export * from './list-view-grid';
