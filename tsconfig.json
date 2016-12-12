@@ -8,7 +8,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "noEmitHelpers": true,
+    "noEmitHelpers": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "lib": [

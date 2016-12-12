@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
-import { SkyModule, SkyListComponent } from '../../../../src/core';
+import { MicroedgeSkyContribModule, SkyListComponent } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -60,7 +60,7 @@ export class AppComponent {
   imports: [
     BrowserModule,
     FormsModule,
-    SkyModule
+    MicroedgeSkyContribModule
   ],
   declarations: [
     AppComponent
