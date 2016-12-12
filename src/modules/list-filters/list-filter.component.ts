@@ -7,6 +7,7 @@ import { ListViewComponent } from '../list/list-view.component';
   template: '<ng-content></ng-content>'
 })
 export class SkyListFilterComponent {
+  @Input() public name: string;
   @Input() public label: string;
   @Input() public type: string;
   @Input() public view: ListViewComponent;
@@ -15,6 +16,12 @@ export class SkyListFilterComponent {
   @Input('template') public templateInput: TemplateRef<any>;
   @ContentChildren(TemplateRef) private templates: QueryList<TemplateRef<any>>;
   /* tslint:enable */
+
+  constructor() {
+    if (this.name === undefined || this.name.length === 0) {
+      throw new Error('Sky List Filter requires a name.');
+    }
+  }
 
   public get template(): TemplateRef<any> {
     return this.templates.length > 0 ? this.templates.first : this.templateInput;
