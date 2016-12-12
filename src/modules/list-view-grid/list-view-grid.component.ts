@@ -193,7 +193,7 @@ export class SkyListViewGridComponent
 
   get items() {
     return Observable.combineLatest(
-      this.state.map(s => s.displayedItems.items).distinctUntilChanged(),
+      this.state.map(s => s.items.items).distinctUntilChanged(),
       this.state.map(s => s.selected.item).distinctUntilChanged(),
       (items, selected) => items
     );
@@ -247,7 +247,7 @@ export class SkyListViewGridComponent
   }
 
   private get loading() {
-    return this.state.map(s => s.displayedItems.loading)
+    return this.state.map(s => s.items.loading)
       .distinctUntilChanged();
   }
 
