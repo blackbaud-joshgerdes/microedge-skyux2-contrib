@@ -182,6 +182,7 @@ export class SkyListViewGridComponent
             )
             .filter(c => c !== undefined);
 
+        this.dispatcher.searchSetFieldSelectors(displayedColumns.map(d => d.field));
         this.dispatcher.searchSetFunctions(setFunctions);
         this.dispatcher.sortSetAvailable(displayedColumns.map(cmp =>
           new ListSortLabelModel({ text: cmp.heading, fieldSelector: cmp.field })

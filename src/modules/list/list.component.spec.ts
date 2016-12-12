@@ -30,7 +30,10 @@ import { SkyListFiltersModule } from '../list-filters';
 import { SkyListFiltersComponent } from '../list-filters/list-filters.component';
 import { ListFilterModel } from './state/filters/filter.model';
 import { ListFiltersClearAction, ListFiltersLoadAction } from './state/filters/actions';
-import { ListSearchSetFunctionsAction } from './state/search/actions';
+import {
+  ListSearchSetFunctionsAction,
+  ListSearchSetFieldSelectorsAction
+} from './state/search/actions';
 import { ListSortFieldSelectorModel } from './state/sort/field-selector.model';
 import { ListSortLabelModel } from './state/sort/label.model';
 import { ListSortSetFieldSelectorsAction } from './state/sort/actions';
@@ -304,6 +307,24 @@ describe('List Component', () => {
             expect(element.queryAll(By.css('.sky-list-filters-modal-active')).length).toBe(0);
         });
       }));
+
+      describe('refreshDisplayedItems', () => {
+        it('should refresh items', async(() => {
+          component.list.refreshDisplayedItems();
+          fixture.detectChanges();
+          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
+        }));
+      });
+
+      describe('itemCount', () => {
+        it('should return item count', () => {
+          component.list.itemCount.take(1).subscribe(u => {
+            state.take(1).subscribe((s) => {
+              expect(u).toBe(s.items.count);
+            });
+          });
+        });
+      });
 
       describe('lastUpdate', () => {
         it('should return last updated date', async(() => {
@@ -775,6 +796,11 @@ describe('List Component', () => {
 
     it('should construct ListSearchSetFunctionsAction', () => {
       let action = new ListSearchSetFunctionsAction();
+      expect(action).not.toBeUndefined();
+    });
+
+    it('should construct ListSearchSetFieldSelectorsAction', () => {
+      let action = new ListSearchSetFieldSelectorsAction();
       expect(action).not.toBeUndefined();
     });
 

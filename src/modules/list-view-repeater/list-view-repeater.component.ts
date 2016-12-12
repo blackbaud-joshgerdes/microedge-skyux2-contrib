@@ -57,6 +57,7 @@ export class SkyListViewRepeaterComponent extends ListViewComponent {
     if (this.searchFunction !== undefined) {
       this.dispatcher.searchSetFunctions([this.searchFunction]);
     }
+    this.dispatcher.searchSetFieldSelectors([]);
   }
 
   public toggleContent(item: ListItemModel) {

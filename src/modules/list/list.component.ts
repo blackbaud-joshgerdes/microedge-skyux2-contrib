@@ -74,8 +74,15 @@ export class SkyListComponent implements AfterContentInit {
     );
 
     this.displayedItems.subscribe(result => {
-        this.dispatcher.next(new ListItemsSetLoadingAction());
-        this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
+      this.dispatcher.next(new ListItemsSetLoadingAction());
+      this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
+    });
+  }
+
+  public refreshDisplayedItems(): void {
+    this.displayedItems.take(1).subscribe(result => {
+      this.dispatcher.next(new ListItemsSetLoadingAction());
+      this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
     });
   }
 
@@ -99,8 +106,13 @@ export class SkyListComponent implements AfterContentInit {
       selectedIds = Observable.of(selectedIds);
     }
 
+    let selectedChanged: boolean = false;
+
     return Observable.combineLatest(
-      selectedIds.distinctUntilChanged(),
+      selectedIds.distinctUntilChanged().map((s: any) => {
+        selectedChanged = true;
+        return s;
+      }),
       this.state.map(s => s.filters).distinctUntilChanged(),
       this.state.map(s => s.paging).distinctUntilChanged(),
       this.state.map(s => s.search).distinctUntilChanged(),
@@ -108,11 +120,19 @@ export class SkyListComponent implements AfterContentInit {
       data.distinctUntilChanged(),
       (selected: Array<string>, filters: ListFilterModel[],
       paging: ListPagingModel, search: ListSearchModel, sort: ListSortModel) => {
-        this.dispatcher.next(new ListSelectedSetLoadingAction());
-        this.dispatcher.next(new ListSelectedLoadAction(selected));
-        this.dispatcher.next(new ListSelectedSetLoadingAction(false));
+        if (selectedChanged) {
+          this.dispatcher.next(new ListSelectedSetLoadingAction());
+          this.dispatcher.next(new ListSelectedLoadAction(selected));
+          this.dispatcher.next(new ListSelectedSetLoadingAction(false));
+          selectedChanged = false;
+        }
 
-        return this.dataProvider.get(new ListDataRequestModel({filters, paging, search, sort}));
+        return this.dataProvider.get(new ListDataRequestModel({
+          filters: filters,
+          paging: paging,
+          search: search,
+          sort: sort
+        }));
        })
        .flatMap((o: Observable<ListDataResponseModel>) => o);
   }
@@ -134,5 +154,9 @@ export class SkyListComponent implements AfterContentInit {
 
   public get views() {
     return this.listViews.toArray();
+  }
+
+  public get itemCount() {
+    return this.dataProvider.count();
   }
 }

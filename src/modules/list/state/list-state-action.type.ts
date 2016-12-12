@@ -2,7 +2,11 @@ import {
   ListItemsSetLoadingAction, ListItemsLoadAction
 } from './items/actions';
 import { ListViewsLoadAction, ListViewsSetActiveAction } from './views/actions';
-import { ListSearchSetSearchTextAction, ListSearchSetFunctionsAction } from './search/actions';
+import {
+  ListSearchSetSearchTextAction,
+  ListSearchSetFunctionsAction,
+  ListSearchSetFieldSelectorsAction
+} from './search/actions';
 import {
   ListSortSetFieldSelectorsAction, ListSortSetAvailableAction, ListSortSetGlobalAction
 } from './sort/actions';
@@ -28,6 +32,7 @@ export type ListStateAction =
   ListItemsSetLoadingAction | ListItemsLoadAction |
   ListViewsLoadAction | ListViewsSetActiveAction |
   ListSearchSetSearchTextAction | ListSearchSetFunctionsAction |
+  ListSearchSetFieldSelectorsAction |
   ListSortSetFieldSelectorsAction | ListSortSetAvailableAction | ListSortSetGlobalAction |
   ListFiltersLoadAction | ListFiltersUpdateAction |
   ListToolbarItemsLoadAction | ListToolbarSetExistsAction |
