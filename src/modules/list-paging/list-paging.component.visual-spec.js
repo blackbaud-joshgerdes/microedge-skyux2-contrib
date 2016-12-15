@@ -1,57 +1,45 @@
 describe('list-paging component', function () {
   'use strict';
 
-  it('should display flat paging control - first page', function () {
+  it('should display first page selected', function () {
     return browser
       .setupTest('/list-paging.html')
       .compareScreenshot({
-        screenshotName: 'list-paging-flat',
-        selector: '#screenshot-list-paging-flat'
+        screenshotName: 'list-paging-first',
+        selector: '#screenshot-list-paging'
       });
   });
 
-  it('should display flat paging control - middle page', function () {
+  it('should display middle page selected', function () {
     return browser
       .setupTest('/list-paging.html')
+      .click('a[cmp-id="next"]')
       .compareScreenshot({
-        screenshotName: 'list-paging-flat-middle',
-        selector: '#screenshot-list-paging-flat-middle'
+        screenshotName: 'list-paging-middle',
+        selector: '#screenshot-list-paging'
       });
   });
 
-  it('should display flat paging control - last page', function () {
+  it('should display middle next page selected', function () {
     return browser
       .setupTest('/list-paging.html')
+      .click('a[cmp-id="next"]')
+      .click('a[cmp-id="next"]')
       .compareScreenshot({
-        screenshotName: 'list-paging-fla-last',
-        selector: '#screenshot-list-paging-flat-last'
+        screenshotName: 'list-paging-middle-next',
+        selector: '#screenshot-list-paging'
       });
   });
 
-  it('should display condensed paging control - first page', function () {
+  it('should display last page selected', function () {
     return browser
       .setupTest('/list-paging.html')
+      .click('a[cmp-id="next"]')
+      .click('a[cmp-id="next"]')
+      .click('a[cmp-id="next"]')
       .compareScreenshot({
-        screenshotName: 'list-paging-condensed',
-        selector: '#screenshot-list-paging-condensed'
-      });
-  });
-
-  it('should display the list paging control - middle page', function () {
-    return browser
-      .setupTest('/list-paging.html')
-      .compareScreenshot({
-        screenshotName: 'list-paging-condensed-middle',
-        selector: '#screenshot-list-paging-condensed-middle'
-      });
-  });
-
-  it('should display the list paging control - last page', function () {
-    return browser
-      .setupTest('/list-paging.html')
-      .compareScreenshot({
-        screenshotName: 'list-paging-condensed-last',
-        selector: '#screenshot-list-paging-condensed-last'
+        screenshotName: 'list-paging-last',
+        selector: '#screenshot-list-paging'
       });
   });
 });
