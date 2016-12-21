@@ -30,7 +30,10 @@ import { SkyListFiltersModule } from '../list-filters';
 import { SkyListFiltersComponent } from '../list-filters/list-filters.component';
 import { ListFilterModel } from './state/filters/filter.model';
 import { ListFiltersClearAction, ListFiltersLoadAction } from './state/filters/actions';
-import { ListSearchSetFunctionsAction } from './state/search/actions';
+import {
+  ListSearchSetFunctionsAction,
+  ListSearchSetFieldSelectorsAction
+} from './state/search/actions';
 import { ListSortFieldSelectorModel } from './state/sort/field-selector.model';
 import { ListSortLabelModel } from './state/sort/label.model';
 import { ListSortSetFieldSelectorsAction } from './state/sort/actions';
@@ -38,7 +41,6 @@ import { ListToolbarItemModel } from './state/toolbar/toolbar-item.model';
 import { ListToolbarItemsLoadAction } from './state/toolbar/actions';
 import { ListFilterDataModel } from './state/filters/filter-data.model';
 import { SkyListInMemoryDataProvider } from '../list-data-provider-in-memory';
-import { ListPagingModel } from './state/paging/paging.model';
 import { ListSearchModel } from './state/search/search.model';
 import { ListSortModel } from './state/sort/sort.model';
 
@@ -305,6 +307,24 @@ describe('List Component', () => {
         });
       }));
 
+      describe('refreshDisplayedItems', () => {
+        it('should refresh items', async(() => {
+          component.list.refreshDisplayedItems();
+          fixture.detectChanges();
+          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
+        }));
+      });
+
+      describe('itemCount', () => {
+        it('should return item count', () => {
+          component.list.itemCount.take(1).subscribe(u => {
+            state.take(1).subscribe((s) => {
+              expect(u).toBe(s.items.count);
+            });
+          });
+        });
+      });
+
       describe('lastUpdate', () => {
         it('should return last updated date', async(() => {
           component.list.lastUpdate.take(1).subscribe(u => {
@@ -458,17 +478,44 @@ describe('List Component', () => {
         expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(0);
       });
 
-      it('displayed items returns without error', () => {
+      it('displayed items returns without error', async(() => {
         let list = fixture.componentInstance.list;
 
+        list.displayedItems.subscribe(d => {
+          expect(d.count).toBe(2);
+          expect(d.items.length).toBe(2);
+        });
+
         expect(list.displayedItems).not.toBe(null);
-      });
+      }));
+
+      it('displayed items returns with generated ids', async(() => {
+        let list = fixture.componentInstance.list;
+
+        bs.next([
+          { column1: '1', column2: 'Apple',
+            column3: 1, column4: moment().add(1, 'minute') },
+          { column1: '01', column2: 'Banana',
+            column3: 1, column4: moment().add(6, 'minute') }
+        ]);
+        fixture.detectChanges();
+
+        list.displayedItems.subscribe(d => {
+          expect(d.count).toBe(2);
+          expect(d.items.length).toBe(2);
+          expect(d.items[0].id).not.toBe(1);
+           expect(d.items[1].id).not.toBe(2);
+        });
+
+        expect(list.displayedItems).not.toBe(null);
+      }));
 
       it('data provider filteredItems with no search function', () => {
         let provider = fixture.componentInstance.list.dataProvider;
         let request = new ListDataRequestModel({
           filters: [new ListFilterModel()],
-          paging: new ListPagingModel(),
+          pageSize: 10,
+          pageNumber: 1,
           search: new ListSearchModel(),
           sort: new ListSortModel()
         });
@@ -485,7 +532,8 @@ describe('List Component', () => {
 
         let request = new ListDataRequestModel({
           filters: [new ListFilterModel()],
-          paging: new ListPagingModel(),
+          pageSize: 10,
+          pageNumber: 1,
           search: new ListSearchModel({ searchText: 'search', functions: [() => {}] }),
           sort: new ListSortModel()
         });
@@ -778,6 +826,11 @@ describe('List Component', () => {
       expect(action).not.toBeUndefined();
     });
 
+    it('should construct ListSearchSetFieldSelectorsAction', () => {
+      let action = new ListSearchSetFieldSelectorsAction();
+      expect(action).not.toBeUndefined();
+    });
+
     it('should construct ListSortFieldSelectorModel without data', () => {
       let model = new ListSortFieldSelectorModel();
       expect(model.descending).toBeFalsy();
@@ -801,7 +854,8 @@ describe('List Component', () => {
     it('should construct ListDataRequestModel without data', () => {
       let model = new ListDataRequestModel();
       expect(model.filters).toBeUndefined();
-      expect(model.paging).toBeUndefined();
+      expect(model.pageSize).toBe(10);
+      expect(model.pageNumber).toBe(1);
       expect(model.search).toBeUndefined();
       expect(model.sort).toBeUndefined();
     });

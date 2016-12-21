@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MicroedgeSkyContribModule } from '../../../../src/core';
+import { SkyModule } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -18,13 +18,13 @@ import { Bootstrapper } from '../../../../visual/bootstrapper';
 export class AppComponent {
   constructor(private state: ListState, private dispatcher: ListStateDispatcher) {
     dispatcher.next(new ListItemsLoadAction([
-      new ListItemModel('1', {}),
-      new ListItemModel('2', {}),
-      new ListItemModel('3', {}),
-      new ListItemModel('4', {}),
-      new ListItemModel('5', {}),
-      new ListItemModel('6', {}),
-      new ListItemModel('7', {})
+      new ListItemModel('1'),
+      new ListItemModel('2'),
+      new ListItemModel('3'),
+      new ListItemModel('4'),
+      new ListItemModel('5'),
+      new ListItemModel('6'),
+      new ListItemModel('7')
     ], true));
   }
 }
@@ -32,7 +32,7 @@ export class AppComponent {
 @NgModule({
   imports: [
     BrowserModule,
-    MicroedgeSkyContribModule
+    SkyModule
   ],
   declarations: [
     AppComponent

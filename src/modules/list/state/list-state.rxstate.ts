@@ -7,7 +7,11 @@ import { StateDispatcher, StateOrchestrator } from 'microedge-rxstate/dist';
 import { ListStateAction } from './list-state-action.type';
 import { ListToolbarItemsLoadAction, ListToolbarSetExistsAction } from './toolbar/actions';
 import { ListToolbarItemModel } from './toolbar/toolbar-item.model';
-import { ListSearchSetFunctionsAction, ListSearchSetSearchTextAction } from './search/actions';
+import {
+  ListSearchSetFunctionsAction,
+  ListSearchSetSearchTextAction,
+  ListSearchSetFieldSelectorsAction
+} from './search/actions';
 import { ListItemModel } from './items/item.model';
 import { ListViewsSetActiveAction } from './views/actions';
 import { ListFilterModel } from './filters/filter.model';
@@ -29,6 +33,10 @@ export class ListStateDispatcher extends StateDispatcher<ListStateAction> {
 
   public searchSetFunctions(sortFunctions: ((data: any, searchText: string) => boolean)[]): void {
     this.next(new ListSearchSetFunctionsAction(sortFunctions));
+  }
+
+  public searchSetFieldSelectors(fieldSelectors: Array<string>): void {
+    this.next(new ListSearchSetFieldSelectorsAction(fieldSelectors));
   }
 
   public searchSetText(searchText: string) {

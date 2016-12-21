@@ -85,6 +85,18 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
     if (this.searchFunction !== undefined) {
       this.dispatcher.searchSetFunctions([this.searchFunction]);
     }
+
+    let fieldSelectors: Array<string> = [];
+    if (this.labelFieldSelector) {
+      fieldSelectors.push(this.labelFieldSelector);
+    }
+    if (this.descriptionFieldSelector) {
+      fieldSelectors.push(this.descriptionFieldSelector);
+    }
+    if (this.categoryFieldSelector) {
+      fieldSelectors.push(this.categoryFieldSelector);
+    }
+    this.dispatcher.searchSetFieldSelectors(fieldSelectors);
   }
 
   public ngAfterViewInit() {

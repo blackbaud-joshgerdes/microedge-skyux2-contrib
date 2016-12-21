@@ -7,5 +7,15 @@ Thumbs.db
 .DS_Store
 
 # Ignored files
-coverage
+/coverage
 !*.d.ts
+.vscode
+/config
+/demo
+/visual
+/webdriver-*
+.editorconfig
+.gitignore
+.npmignore
+tsconfig.json
+tslint.json

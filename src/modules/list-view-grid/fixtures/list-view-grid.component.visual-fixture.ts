@@ -1,7 +1,7 @@
 import { Component, NgModule, ViewChild, AfterViewInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MicroedgeSkyContribModule, SkyListViewGridComponent } from '../../../../src/core';
+import { SkyModule, SkyListViewGridComponent } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -52,7 +52,7 @@ export class AppComponent implements AfterViewInit {
 @NgModule({
   imports: [
     BrowserModule,
-    MicroedgeSkyContribModule
+    SkyModule
   ],
   declarations: [
     AppComponent

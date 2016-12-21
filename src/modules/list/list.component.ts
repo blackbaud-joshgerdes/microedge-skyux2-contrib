@@ -20,7 +20,6 @@ import { ListViewComponent } from './list-view.component';
 import { ListSortModel } from './state/sort/sort.model';
 import { ListSearchModel } from './state/search/search.model';
 import { ListFilterModel } from './state/filters/filter.model';
-import { ListPagingModel } from './state/paging/paging.model';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 import { ListViewsLoadAction, ListViewsSetActiveAction } from './state/views/actions';
 import { ListViewModel } from './state/views/view.model';
@@ -40,11 +39,13 @@ export class SkyListComponent implements AfterContentInit {
   @Input() public data?: Array<any> | Observable<Array<any>> = [];
   @Input() public dataProvider?: ListDataProvider;
   @Input() public defaultView?: ListViewComponent;
+  @Input() public initialTotal?: number;
   @Input() public selectedIds: Array<string> | Observable<Array<string>>;
   @Input()
   public sortFields?: string | Array<string> | Observable<Array<string>> | Observable<string>;
   /* tslint:disable-next-line */
   @Input('search') private searchFunction: (data: any, searchText: string) => boolean;
+  private dataFirstLoad: boolean = false;
 
   @ContentChildren(ListViewComponent) private listViews: QueryList<ListViewComponent>;
 
@@ -54,6 +55,10 @@ export class SkyListComponent implements AfterContentInit {
   ) {}
 
   public ngAfterContentInit() {
+    if (this.data && this.dataProvider && this.initialTotal) {
+      this.dataFirstLoad = true;
+    }
+
     if (this.listViews.length > 0) {
       let defaultView: ListViewComponent =
         (this.defaultView === undefined) ? this.listViews.first : this.defaultView;
@@ -74,8 +79,15 @@ export class SkyListComponent implements AfterContentInit {
     );
 
     this.displayedItems.subscribe(result => {
-        this.dispatcher.next(new ListItemsSetLoadingAction());
-        this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
+      this.dispatcher.next(new ListItemsSetLoadingAction());
+      this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
+    });
+  }
+
+  public refreshDisplayedItems(): void {
+    this.displayedItems.take(1).subscribe(result => {
+      this.dispatcher.next(new ListItemsSetLoadingAction());
+      this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
     });
   }
 
@@ -99,22 +111,51 @@ export class SkyListComponent implements AfterContentInit {
       selectedIds = Observable.of(selectedIds);
     }
 
+    let selectedChanged: boolean = false;
+
     return Observable.combineLatest(
-      selectedIds.distinctUntilChanged(),
       this.state.map(s => s.filters).distinctUntilChanged(),
-      this.state.map(s => s.paging).distinctUntilChanged(),
       this.state.map(s => s.search).distinctUntilChanged(),
       this.state.map(s => s.sort).distinctUntilChanged(),
+      this.state.map(s => s.paging.itemsPerPage).distinctUntilChanged(),
+      this.state.map(s => s.paging.pageNumber).distinctUntilChanged(),
+      selectedIds.distinctUntilChanged().map((s: any) => {
+        selectedChanged = true;
+        return s;
+      }),
       data.distinctUntilChanged(),
-      (selected: Array<string>, filters: ListFilterModel[],
-      paging: ListPagingModel, search: ListSearchModel, sort: ListSortModel) => {
-        this.dispatcher.next(new ListSelectedSetLoadingAction());
-        this.dispatcher.next(new ListSelectedLoadAction(selected));
-        this.dispatcher.next(new ListSelectedSetLoadingAction(false));
+      (filters: ListFilterModel[], search: ListSearchModel,
+       sort: ListSortModel, itemsPerPage: number, pageNumber: number,
+       selected: Array<string>, itemsData: Array<any>) => {
+        if (selectedChanged) {
+          this.dispatcher.next(new ListSelectedSetLoadingAction());
+          this.dispatcher.next(new ListSelectedLoadAction(selected));
+          this.dispatcher.next(new ListSelectedSetLoadingAction(false));
+          selectedChanged = false;
+        }
 
-        return this.dataProvider.get(new ListDataRequestModel({filters, paging, search, sort}));
+        let response: Observable<ListDataResponseModel>;
+        if (this.dataFirstLoad) {
+          this.dataFirstLoad = false;
+          let initialItems = itemsData.map(d =>
+            new ListItemModel(d.id || moment().toDate().getTime().toString(), d));
+          response = Observable.of(new ListDataResponseModel({
+            count: this.initialTotal,
+            items: initialItems
+          }));
+        } else {
+          response = this.dataProvider.get(new ListDataRequestModel({
+            filters: filters,
+            pageSize: itemsPerPage,
+            pageNumber: pageNumber,
+            search: search,
+            sort: sort
+          }));
+        }
+
+        return response;
        })
-       .flatMap((o: Observable<ListDataResponseModel>) => o);
+       .flatMap((o: any[], index: number) => o);
   }
 
   public get selectedItems(): Observable<Array<ListItemModel>> {
@@ -134,5 +175,9 @@ export class SkyListComponent implements AfterContentInit {
 
   public get views() {
     return this.listViews.toArray();
+  }
+
+  public get itemCount() {
+    return this.dataProvider.count();
   }
 }
