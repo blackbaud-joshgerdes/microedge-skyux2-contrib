@@ -17,6 +17,7 @@ import { ListViewsSetActiveAction } from './views/actions';
 import { ListFilterModel } from './filters/filter.model';
 import { ListFiltersUpdateAction, ListFiltersLoadAction } from './filters/actions';
 import { ListItemsLoadAction } from './items/actions';
+import { ListPagingSetPageNumberAction } from './paging/actions';
 
 export class ListStateOrchestrator<T> extends StateOrchestrator<T, ListStateAction> {
 }
@@ -40,6 +41,7 @@ export class ListStateDispatcher extends StateDispatcher<ListStateAction> {
   }
 
   public searchSetText(searchText: string) {
+    this.next(new ListPagingSetPageNumberAction(1));
     this.next(new ListSearchSetSearchTextAction(searchText));
   }
 
@@ -64,6 +66,7 @@ export class ListStateDispatcher extends StateDispatcher<ListStateAction> {
   }
 
   public filtersUpdate(filters: ListFilterModel[]): void {
+    this.next(new ListPagingSetPageNumberAction(1));
     this.next(new ListFiltersUpdateAction(filters));
   }
 

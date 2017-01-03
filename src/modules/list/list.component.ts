@@ -79,14 +79,12 @@ export class SkyListComponent implements AfterContentInit {
     );
 
     this.displayedItems.subscribe(result => {
-      this.dispatcher.next(new ListItemsSetLoadingAction());
       this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
     });
   }
 
   public refreshDisplayedItems(): void {
     this.displayedItems.take(1).subscribe(result => {
-      this.dispatcher.next(new ListItemsSetLoadingAction());
       this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
     });
   }
@@ -127,6 +125,8 @@ export class SkyListComponent implements AfterContentInit {
       (filters: ListFilterModel[], search: ListSearchModel,
        sort: ListSortModel, itemsPerPage: number, pageNumber: number,
        selected: Array<string>, itemsData: Array<any>) => {
+        this.dispatcher.next(new ListItemsSetLoadingAction());
+
         if (selectedChanged) {
           this.dispatcher.next(new ListSelectedSetLoadingAction());
           this.dispatcher.next(new ListSelectedLoadAction(selected));

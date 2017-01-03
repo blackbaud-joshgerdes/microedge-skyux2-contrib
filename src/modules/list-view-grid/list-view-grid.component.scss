@@ -6,6 +6,11 @@
 
   > div {
     overflow: scroll;
+
+    > sky-spinner {
+      padding: 50px 0;
+      position: relative;
+    }
   }
 
   table {
