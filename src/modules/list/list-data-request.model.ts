@@ -6,6 +6,7 @@ export class ListDataRequestModel {
   public filters: ListFilterModel[];
   public pageSize: number = 10;
   public pageNumber: number = 1;
+  public pagingEnabled: boolean = false;
   public search: ListSearchModel;
   public sort: ListSortModel;
 
@@ -14,6 +15,7 @@ export class ListDataRequestModel {
       this.filters = data.filters;
       this.pageSize = data.pageSize;
       this.pageNumber = data.pageNumber;
+      this.pagingEnabled = data.pagingEnabled;
       this.search = data.search;
       this.sort = data.sort;
     }
