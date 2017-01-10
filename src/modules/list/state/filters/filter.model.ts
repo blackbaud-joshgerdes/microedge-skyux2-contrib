@@ -7,6 +7,7 @@ export class ListFilterModel {
   public label: string;
   public view: string;
   public type: string;
+  public defaultValue: any;
   public filterFunction: (item: ListItemModel, filter: any) => boolean;
   public filterModel: ListFilterDataModel = new ListFilterDataModel();
   public template: TemplateRef<any>;
@@ -18,6 +19,7 @@ export class ListFilterModel {
       this.name = data.name;
       this.label = data.label;
       this.type = data.type;
+      this.defaultValue = data.defaultValue;
       this.filterFunction = data.filterFunction;
       this.filterModel = data.filterModel || new ListFilterDataModel();
       this.template = data.template;
