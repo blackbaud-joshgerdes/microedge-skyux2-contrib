@@ -83,10 +83,14 @@ export class SkyListComponent implements AfterContentInit {
     });
   }
 
-  public refreshDisplayedItems(): void {
-    this.displayedItems.take(1).subscribe(result => {
+  public refreshDisplayedItems(): Observable<ListDataResponseModel> {
+    let take = this.displayedItems.take(1);
+
+    take.subscribe(result => {
       this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
     });
+
+    return take;
   }
 
   get displayedItems(): Observable<ListDataResponseModel> {
