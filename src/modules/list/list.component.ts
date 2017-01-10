@@ -25,6 +25,7 @@ import { ListViewsLoadAction, ListViewsSetActiveAction } from './state/views/act
 import { ListViewModel } from './state/views/view.model';
 import { ListItemModel } from './state/items/item.model';
 import { ListSortSetFieldSelectorsAction } from './state/sort/actions';
+import { ListPagingComponent } from './list-paging.component';
 import * as moment from 'moment';
 
 @Component({
@@ -48,6 +49,7 @@ export class SkyListComponent implements AfterContentInit {
   private dataFirstLoad: boolean = false;
 
   @ContentChildren(ListViewComponent) private listViews: QueryList<ListViewComponent>;
+  @ContentChildren(ListPagingComponent) private pagingComponents: QueryList<ListPagingComponent>;
 
   constructor(
     private state: ListState,
@@ -148,6 +150,7 @@ export class SkyListComponent implements AfterContentInit {
             filters: filters,
             pageSize: itemsPerPage,
             pageNumber: pageNumber,
+            pagingEnabled: this.pagingComponents.length > 0,
             search: search,
             sort: sort
           }));
@@ -165,6 +168,10 @@ export class SkyListComponent implements AfterContentInit {
       (items: Array<ListItemModel>, selected: AsyncItem<ListSelectedModel>) => {
         return items.filter(i => selected.item[i.id]);
       });
+  }
+
+  public get selectedItemIds(): Observable<Array<string>> {
+    return this.state.map(s => Object.keys(s.selected.item));
   }
 
   public get lastUpdate() {
