@@ -78,6 +78,11 @@ export class SkyListViewRepeaterComponent extends ListViewComponent {
     return this.state.map(s => s.items.items);
   }
 
+  private get loading() {
+    return this.state.map(s => s.items.loading)
+      .distinctUntilChanged();
+  }
+
   get leftTemplate() {
     return this.leftComponent !== undefined ? this.leftComponent.template : undefined;
   }

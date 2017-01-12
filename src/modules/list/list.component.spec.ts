@@ -17,7 +17,8 @@ import {
   ListItemsSetLoadingAction
 } from '../list/state/items/actions';
 import {
-  ListSelectedSetItemsSelectedAction
+  ListSelectedSetItemsSelectedAction,
+  ListSelectedSetItemSelectedAction
 } from '../list/state/selected/actions';
 import { ListFixturesModule } from './fixtures/list-fixtures.module';
 import { ListTestComponent } from './fixtures/list.component.fixture';
@@ -322,6 +323,20 @@ describe('List Component', () => {
               expect(u).toBe(s.items.count);
             });
           });
+        });
+      });
+
+      describe('selectedItemIds', () => {
+        it('should return selected item ids', () => {
+          let id;
+          items.take(1).subscribe(items => {
+            dispatcher.next(new ListSelectedSetItemSelectedAction(items[0].id, true));
+            id = items[0].id;
+          });
+
+          component.list.selectedItemIds.take(1).subscribe( ids => {
+            expect(ids.indexOf(id) > -1).toBe(true);
+          })
         });
       });
 

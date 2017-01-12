@@ -6,6 +6,7 @@ import { SkyListModule } from '../';
 import { SkyListToolbarModule } from '../../list-toolbar';
 import { SkyListViewGridModule } from '../../list-view-grid';
 import { SkyListFiltersModule } from '../../list-filters';
+import { SkyListPagingModule} from '../../list-paging';
 
 import { ListTestComponent } from './list.component.fixture';
 import { ListDualTestComponent } from './list-dual.component.fixture';
@@ -25,6 +26,7 @@ import { ListPromiseTestComponent } from './list-promise.component.fixture';
     SkyListFiltersModule,
     SkyListToolbarModule,
     SkyListViewGridModule,
+    SkyListPagingModule,
     FormsModule
   ],
   exports: [

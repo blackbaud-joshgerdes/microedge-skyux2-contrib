@@ -180,4 +180,9 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
         this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), true));
       });
   }
+
+  private get loading() {
+    return this.state.map(s => s.items.loading)
+      .distinctUntilChanged();
+  }
 }

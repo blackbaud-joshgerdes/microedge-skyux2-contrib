@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SkyCheckboxModule } from '../checkbox';
+import { SkySpinnerModule } from '../spinner';
 import { SkyListViewChecklistComponent } from './list-view-checklist.component';
 import { SkyListViewChecklistItemComponent } from './list-view-checklist-item.component';
 
@@ -13,7 +14,8 @@ import { SkyListViewChecklistItemComponent } from './list-view-checklist-item.co
   imports: [
     CommonModule,
     FormsModule,
-    SkyCheckboxModule
+    SkyCheckboxModule,
+    SkySpinnerModule
   ],
   exports: [
     SkyListViewChecklistComponent,
