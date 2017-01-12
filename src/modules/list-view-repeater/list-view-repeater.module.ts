@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkyChevronModule } from '../chevron';
+import { SkySpinnerModule } from '../spinner';
 import { SkyListViewRepeaterComponent } from './list-view-repeater.component';
 import { SkyListViewRepeaterRendererComponent } from './list-view-repeater-renderer.component';
 import { SkyListViewRepeaterLeftComponent } from './list-view-repeater-left.component';
@@ -23,7 +24,8 @@ import { SkyListViewRepeaterContentComponent } from './list-view-repeater-conten
   ],
   imports: [
     CommonModule,
-    SkyChevronModule
+    SkyChevronModule,
+    SkySpinnerModule
   ],
   exports: [
     SkyListViewRepeaterComponent,
