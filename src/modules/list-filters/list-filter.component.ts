@@ -11,6 +11,7 @@ export class SkyListFilterComponent implements OnInit {
   @Input() public label: string;
   @Input() public type: string;
   @Input() public view: ListViewComponent;
+  @Input() public defaultValue: any;
   /* tslint:disable */
   @Input('filter') public filterFunction: (item: ListItemModel, filter: any) => boolean;
   @Input('template') public templateInput: TemplateRef<any>;

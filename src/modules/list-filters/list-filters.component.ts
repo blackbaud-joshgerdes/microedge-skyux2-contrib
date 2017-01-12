@@ -9,6 +9,7 @@ import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
 import { ListFilterModel } from '../list/state/filters/filter.model';
 import { ListFilterDataModel } from '../list/state/filters/filter-data.model';
 import { SkyListFiltersModalComponent } from './list-filters-modal.component';
+import { getValue } from 'microedge-rxstate/dist/helpers';
 
 @Component({
   selector: 'sky-list-filters',
@@ -33,11 +34,22 @@ export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit 
       new ListFilterModel(cmp, cmp.view !== undefined ? cmp.view.id : undefined)
     );
 
-    filterModels.forEach(f =>
+    filterModels.forEach(f => {
       f.type === 'inline' ?
         f.filterModel.onChange.subscribe(() => this.applyFilters()) :
-        undefined
-      );
+        undefined;
+
+      getValue(f.defaultValue, (value) => {
+        if (value) {
+          f.filterModel.value = value;
+
+          if (f.type === 'inline')
+          {
+            this.inlineBarExpanded = true;
+          }
+        }
+      });
+    });
 
     this.dispatcher.filtersLoad(filterModels);
   }
