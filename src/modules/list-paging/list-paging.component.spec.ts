@@ -203,6 +203,22 @@ describe('List Paging Component', () => {
 
       expect(element.queryAll(By.css('.sky-list-paging-link')).length).toBe(3);
     });
+  });
 
+  describe('with 3 items', () => {
+    beforeEach(async(() => {
+      // add some base items to be paged
+      dispatcher.next(new ListItemsLoadAction([
+        new ListItemModel('1', {}),
+        new ListItemModel('2', {}),
+        new ListItemModel('3', {})
+      ], true));
+
+      fixture.detectChanges();
+    }));
+
+    it('should show 2 pages', async(() => {
+      expect(element.queryAll(By.css('.sky-list-paging-link')).length).toBe(2);
+    }));
   });
 });
