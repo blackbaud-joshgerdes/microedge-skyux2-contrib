@@ -15,7 +15,7 @@ import { SkyListInMemoryDataProvider } from '../list-data-provider-in-memory';
 import { ListSelectedModel } from './state/selected/selected.model';
 import { AsyncItem } from 'microedge-rxstate/dist';
 import { ListState, ListStateDispatcher } from './state';
-import { Observable } from 'rxjs/Observable';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { ListViewComponent } from './list-view.component';
 import { ListSortModel } from './state/sort/sort.model';
 import { ListSearchModel } from './state/search/search.model';
@@ -47,6 +47,7 @@ export class SkyListComponent implements AfterContentInit {
   /* tslint:disable-next-line */
   @Input('search') private searchFunction: (data: any, searchText: string) => boolean;
   private dataFirstLoad: boolean = false;
+  private refresh: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   @ContentChildren(ListViewComponent) private listViews: QueryList<ListViewComponent>;
   @ContentChildren(ListPagingComponent) private pagingComponents: QueryList<ListPagingComponent>;
@@ -85,17 +86,12 @@ export class SkyListComponent implements AfterContentInit {
     });
   }
 
-  public refreshDisplayedItems(): Observable<ListDataResponseModel> {
-    let take = this.displayedItems.take(1);
-
-    take.subscribe(result => {
-      this.dispatcher.next(new ListItemsLoadAction(result.items, true, true, result.count));
-    });
-
-    return take;
+  public refreshDisplayedItems(): void {
+    // Toggle refresh value to force refresh, just toggling to reduce get calls on displayedItems
+    this.refresh.next(!this.refresh.getValue());
   }
 
-  get displayedItems(): Observable<ListDataResponseModel> {
+  public get displayedItems(): Observable<ListDataResponseModel> {
     if (!this.data && !this.dataProvider) {
       throw new Error('List requires data or dataProvider to be set.');
     }
@@ -118,6 +114,7 @@ export class SkyListComponent implements AfterContentInit {
     let selectedChanged: boolean = false;
 
     return Observable.combineLatest(
+      this.refresh.distinctUntilChanged(),
       this.state.map(s => s.filters).distinctUntilChanged(),
       this.state.map(s => s.search).distinctUntilChanged(),
       this.state.map(s => s.sort).distinctUntilChanged(),
@@ -128,7 +125,7 @@ export class SkyListComponent implements AfterContentInit {
         return s;
       }),
       data.distinctUntilChanged(),
-      (filters: ListFilterModel[], search: ListSearchModel,
+      (refresh: boolean, filters: ListFilterModel[], search: ListSearchModel,
        sort: ListSortModel, itemsPerPage: number, pageNumber: number,
        selected: Array<string>, itemsData: Array<any>) => {
         this.dispatcher.next(new ListItemsSetLoadingAction());
@@ -178,7 +175,7 @@ export class SkyListComponent implements AfterContentInit {
     return this.state.map(s => Object.keys(s.selected.item));
   }
 
-  public get lastUpdate() {
+  public get lastUpdate(): Observable<Date> {
     return this.state.map(s =>
       s.items.lastUpdate ? moment(s.items.lastUpdate).toDate() : undefined
     );
@@ -188,7 +185,7 @@ export class SkyListComponent implements AfterContentInit {
     return this.listViews.toArray();
   }
 
-  public get itemCount() {
+  public get itemCount(): Observable<number> {
     return this.dataProvider.count();
   }
 }
