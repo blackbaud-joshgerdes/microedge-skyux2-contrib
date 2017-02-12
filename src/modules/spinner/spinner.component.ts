@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'sky-spinner',
+  selector: 'sky-contrib-spinner',
   template: require('./spinner.component.html'),
   styles: [require('./spinner.component.scss')]
 })

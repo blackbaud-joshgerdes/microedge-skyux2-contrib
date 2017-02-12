@@ -8,7 +8,7 @@ $transform-size: -12px;
   right: 0;
   bottom: 0;
 
-  .sky-spinner-container {
+  .sky-contrib-spinner-container {
     padding: 15px;
     background-color: #eee;
     box-shadow: 0 0 50px #999;
@@ -23,7 +23,7 @@ $transform-size: -12px;
     top: 50%;
   }
 
-  .sky-spinner-overlay {
+  .sky-contrib-spinner-overlay {
     top: 0;
     left: 0;
     right: 0;
@@ -33,7 +33,7 @@ $transform-size: -12px;
     opacity: 0.1;
   }
 
-  .sky-spinner {
+  .sky-contrib-spinner {
     width: 35px;
     height: 35px;
     position: relative;

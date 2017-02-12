@@ -1,7 +1,7 @@
 import { Component, ViewContainerRef, ViewChild, Input, TemplateRef, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'sky-list-filter-renderer',
+  selector: 'sky-contrib-list-filter-renderer',
   template: '<template #container></template>'
 })
 export class SkyListFilterRendererComponent implements OnInit {

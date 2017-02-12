@@ -18,7 +18,7 @@ import {
 } from '../list/state/selected/actions';
 
 @Component({
-  selector: 'sky-list-view-checklist',
+  selector: 'sky-contrib-list-view-checklist',
   template: require('./list-view-checklist.component.html'),
   styles: [require('./list-view-checklist.component.scss')],
   providers: [

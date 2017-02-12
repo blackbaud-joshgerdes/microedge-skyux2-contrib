@@ -12,7 +12,7 @@ import { SkyListFiltersModalComponent } from './list-filters-modal.component';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 
 @Component({
-  selector: 'sky-list-filters',
+  selector: 'sky-contrib-list-filters',
   template: require('./list-filters.component.html'),
   styles: [require('./list-filters.component.scss')]
 })

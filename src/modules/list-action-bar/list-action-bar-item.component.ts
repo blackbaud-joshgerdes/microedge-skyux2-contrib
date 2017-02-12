@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'sky-list-action-bar-item',
+  selector: 'sky-contrib-list-action-bar-item',
   template: '<template #actionBarItem></template>'
 })
 export class SkyListActionBarItemComponent implements AfterContentInit {

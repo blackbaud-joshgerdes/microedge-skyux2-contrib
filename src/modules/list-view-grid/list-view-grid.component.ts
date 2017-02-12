@@ -23,7 +23,7 @@ import { getValue } from 'microedge-rxstate/dist/helpers';
 import { getData } from '../list/helpers';
 
 @Component({
-  selector: 'sky-list-view-grid',
+  selector: 'sky-contrib-list-view-grid',
   template: require('./list-view-grid.component.html'),
   styles: [require('./list-view-grid.component.scss')],
   providers: [

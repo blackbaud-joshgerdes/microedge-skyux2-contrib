@@ -2,7 +2,7 @@ import { Component, Input, ContentChildren, TemplateRef, QueryList } from '@angu
 import * as moment from 'moment';
 
 @Component({
-  selector: 'sky-list-toolbar-item',
+  selector: 'sky-contrib-list-toolbar-item',
   template: '<ng-content></ng-content>'
 })
 export class SkyListToolbarItemComponent {

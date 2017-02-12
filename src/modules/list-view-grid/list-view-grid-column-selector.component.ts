@@ -4,7 +4,7 @@ import { SkyModalComponent } from '../modal';
 import { SkyListComponent } from '../list';
 
 @Component({
-  selector: 'sky-list-view-grid-column-selector',
+  selector: 'sky-contrib-list-view-grid-column-selector',
   template: require('./list-view-grid-column-selector.component.html'),
   styles: [require('./list-view-grid-column-selector.component.scss')]
 })

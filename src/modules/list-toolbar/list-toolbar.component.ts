@@ -17,7 +17,7 @@ import { ListSortLabelModel } from '../list/state/sort/label.model';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 
 @Component({
-  selector: 'sky-list-toolbar',
+  selector: 'sky-contrib-list-toolbar',
   template: require('./list-toolbar.component.html'),
   styles: [require('./list-toolbar.component.scss')],
   providers: [

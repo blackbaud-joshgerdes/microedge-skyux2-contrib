@@ -12,7 +12,7 @@ import {
 } from '../list/state/paging/actions';
 
 @Component({
-  selector: 'sky-list-paging',
+  selector: 'sky-contrib-list-paging',
   template: require('./list-paging.component.html'),
   styles: [require('./list-paging.component.scss')],
   providers: [

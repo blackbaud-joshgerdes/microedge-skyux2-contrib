@@ -11,6 +11,6 @@
       <sky-list-view-repeater-renderer class="sky-list-view-repeater-content" [template]="contentTemplate" [item]="item" *ngIf="showContent(item) | async"></sky-list-view-repeater-renderer>
     </div>
   </div>
-  <sky-spinner *ngIf="loading | async"></sky-spinner>
+  <sky-contrib-spinner *ngIf="loading | async"></sky-contrib-spinner>
   <ng-content></ng-content>
 </div>

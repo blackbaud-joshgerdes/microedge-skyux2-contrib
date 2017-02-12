@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'sky-list-toolbar-sort',
+  selector: 'sky-contrib-list-toolbar-sort',
   template: ''
 })
 export class SkyListToolbarSortComponent {

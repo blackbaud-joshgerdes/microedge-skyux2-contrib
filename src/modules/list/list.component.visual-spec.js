@@ -13,7 +13,7 @@ describe('list component', function () {
   it('should display column selector modal', function () {
     return browser
       .setupTest('/list.html')
-      .click('sky-list-toolbar-item-renderer[cmp-id="column-selector"] button')
+      .click('sky-contrib-list-toolbar-item-renderer[cmp-id="column-selector"] button')
       .compareScreenshot({
         screenshotName: 'list-column-selector',
         selector: '#screenshot-list'
@@ -23,7 +23,7 @@ describe('list component', function () {
   it('should display sort selector', function () {
     return browser
       .setupTest('/list.html')
-      .click('sky-list-toolbar-item-renderer[cmp-id="sort-selector"] button')
+      .click('sky-contrib-list-toolbar-item-renderer[cmp-id="sort-selector"] button')
       .compareScreenshot({
         screenshotName: 'list-sort-selector',
         selector: '#screenshot-list'
@@ -33,7 +33,7 @@ describe('list component', function () {
   it('should display view selector', function () {
     return browser
       .setupTest('/list.html')
-      .click('sky-list-toolbar-item-renderer[cmp-id="view-selector"] button')
+      .click('sky-contrib-list-toolbar-item-renderer[cmp-id="view-selector"] button')
       .compareScreenshot({
         screenshotName: 'list-view-selector',
         selector: '#screenshot-list'

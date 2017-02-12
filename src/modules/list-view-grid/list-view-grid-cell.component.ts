@@ -7,7 +7,7 @@ import { ListState } from '../list/state';
 import { getData } from '../list/helpers';
 
 @Component({
-  selector: 'sky-list-view-grid-cell',
+  selector: 'sky-contrib-list-view-grid-cell',
   template: '<template #cell></template>',
   styles: [require('./list-view-grid-cell.component.scss')],
   changeDetection: ChangeDetectionStrategy.OnPush

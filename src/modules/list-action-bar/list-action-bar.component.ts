@@ -4,7 +4,7 @@ import { ListSelectedSetItemsSelectedAction } from '../list/state/selected/actio
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'sky-list-action-bar',
+  selector: 'sky-contrib-list-action-bar',
   templateUrl: './list-action-bar.component.html',
   styleUrls: ['./list-action-bar.component.scss']
 })

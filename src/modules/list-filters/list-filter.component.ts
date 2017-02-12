@@ -3,7 +3,7 @@ import { ListItemModel } from '../list/state/items/item.model';
 import { ListViewComponent } from '../list/list-view.component';
 
 @Component({
-  selector: 'sky-list-filter',
+  selector: 'sky-contrib-list-filter',
   template: '<ng-content></ng-content>'
 })
 export class SkyListFilterComponent implements OnInit {

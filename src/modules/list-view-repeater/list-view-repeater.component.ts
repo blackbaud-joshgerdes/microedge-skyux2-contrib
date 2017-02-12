@@ -15,7 +15,7 @@ import {
 import { SkyListViewRepeaterContentComponent } from './list-view-repeater-content.component';
 
 @Component({
-  selector: 'sky-list-view-repeater',
+  selector: 'sky-contrib-list-view-repeater',
   template: require('./list-view-repeater.component.html'),
   styles: [require('./list-view-repeater.component.scss')],
   providers: [

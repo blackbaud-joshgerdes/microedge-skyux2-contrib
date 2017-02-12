@@ -5,7 +5,7 @@ import { ListFilterModel } from '../list/state/filters/filter.model';
 import { ListFilterDataModel } from '../list/state/filters/filter-data.model';
 
 @Component({
-  selector: 'sky-list-filters-modal',
+  selector: 'sky-contrib-list-filters-modal',
   template: require('./list-filters-modal.component.html'),
   styles: [require('./list-filters-modal.component.scss')]
 })

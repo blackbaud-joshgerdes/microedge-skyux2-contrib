@@ -4,7 +4,7 @@ import {
 import { ListItemModel } from '../list/state/items/item.model';
 
 @Component({
-  selector: 'sky-list-view-repeater-renderer',
+  selector: 'sky-contrib-list-view-repeater-renderer',
   template: '<template #container></template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

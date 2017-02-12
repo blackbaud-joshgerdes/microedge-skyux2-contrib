@@ -29,7 +29,7 @@ import { ListPagingComponent } from './list-paging.component';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'sky-list',
+  selector: 'sky-contrib-list',
   template: '<ng-content></ng-content>',
   styles: [require('./list.component.scss')],
   providers: [ListState, ListStateDispatcher],
