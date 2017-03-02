@@ -1,0 +1,9 @@
+<sky-contrib-navbar-submenu-content (mouseenter)="toggle($event); false" (mouseleave)="toggle($event); false">
+  <sky-contrib-navbar-submenu-button (click)="toggle($event); false" disabled="disabled">
+    <ng-content select="sky-contrib-navbar-submenu-title"></ng-content>
+    <i class="fa" [ngClass]="isExpanded ? 'fa-caret-up' : 'fa-caret-down'"></i>
+  </sky-contrib-navbar-submenu-button>
+  <sky-contrib-navbar-submenu-items role="menu" aria-labelledby="sky-contrib-navbar-submenu-button" *ngIf="isExpanded">
+    <ng-content></ng-content>
+  </sky-contrib-navbar-submenu-items>
+</sky-contrib-navbar-submenu-content>

@@ -1,0 +1,15 @@
+@import '../_variables.scss';
+@import '../_mixins.scss';
+
+:host {
+  display: flex;
+  background: $sky-navbar-bg-color;
+  color: $sky-navbar-color;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  padding: 0 10px;
+
+  @media(max-width: 767px) {
+    flex-flow: column wrap;
+  }
+}

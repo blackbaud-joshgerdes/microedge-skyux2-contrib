@@ -8,6 +8,8 @@ import { SkyListViewRepeaterModule } from './list-view-repeater';
 import { SkyListViewChecklistModule } from './list-view-checklist';
 import { SkyListPagingModule } from './list-paging';
 import { SkySpinnerModule } from './spinner';
+import { SkyContribNavbarModule } from './navbar';
+import { SkyContribTabbarModule } from './tabbar';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -20,7 +22,9 @@ import { SkySpinnerModule } from './spinner';
     SkyListViewRepeaterModule,
     SkyListViewChecklistModule,
     SkyListPagingModule,
-    SkyListActionBarModule
+    SkyListActionBarModule,
+    SkyContribNavbarModule,
+    SkyContribTabbarModule
   ],
   exports: [
     SkySpinnerModule,
@@ -31,7 +35,9 @@ import { SkySpinnerModule } from './spinner';
     SkyListViewRepeaterModule,
     SkyListViewChecklistModule,
     SkyListPagingModule,
-    SkyListActionBarModule
+    SkyListActionBarModule,
+    SkyContribNavbarModule,
+    SkyContribTabbarModule
   ]
 })
 export class MicroedgeSkyContribModule {
@@ -47,3 +53,5 @@ export * from './list-view-checklist';
 export * from './list-paging';
 export * from './spinner';
 export * from './list-data-provider-in-memory';
+export * from './navbar';
+export * from './tabbar';

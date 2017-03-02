@@ -1,0 +1,56 @@
+@import '../_variables.scss';
+
+:host {
+  display: block;
+  margin: 0 4px;
+
+  &.right {
+    margin-left: auto;
+  }
+
+  > a {
+    border-bottom: 4px solid $sky-navbar-bg-color;
+    color: $sky-navbar-color;
+    cursor: pointer;
+    display: block;
+    padding: 15px 10px 12px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  > a:focus,
+  > a:hover,
+    &.active > a {
+      border-bottom: 4px solid $sky-color-blue;
+      background-color: $sky-navbar-active-bg-color;
+      color: $sky-navbar-active-color;
+      text-decoration: none;
+  }
+
+  @media(max-width: 767px) {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+:host(.submenu-item) {
+  > a {
+    border-bottom: none;
+    font-size: 13px;
+  }
+
+  > a:focus,
+  > a:hover,
+  &.active > a {
+    border-bottom: none;
+  }
+}
+
+:host(.divider) {
+  border-bottom: 1px solid $sky-navbar-color;
+  cursor: default !important;
+}
+
+:host(.disabled) > a {
+  cursor: default !important;
+}

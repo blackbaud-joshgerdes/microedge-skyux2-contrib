@@ -1,6 +1,6 @@
 {
   "name": "microedge-skyux2-contrib",
-  "version": "1.2.2",
+  "version": "2.1.0",
   "description": "Holding place for Microedge SkyUX 2 components that are yet contributed to the main SkyUX 2 repo.",
   "author": "Brandon Stirnaman <brandon.stirnaman@microedge.com>",
   "homepage": "https://github.com/blackbaud/microedge-skyux2-contrib#readme",
@@ -17,7 +17,7 @@
     "contrib"
   ],
   "scripts": {
-    "prepublish": "rimraf dist && npm run release",
+    "prepublish": "npm run release",
     "release": "cp -r ./src ./dist",
     "ci": "npm run lint && npm run test:ci && npm run build",
     "build": "npm run clean:srctemp && node config/utils/stage-ts.js && cd .srctemp && ../node_modules/.bin/ngc && cd ../ && npm run compile:sass && cd config/rollup && ../../node_modules/.bin/rollup -c && ../../node_modules/.bin/rollup -c rollup.min.config.js && npm run clean:srctemp",

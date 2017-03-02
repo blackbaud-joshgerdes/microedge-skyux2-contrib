@@ -1,0 +1,15 @@
+@import '../_variables.scss';
+@import '../_mixins.scss';
+
+:host {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+
+  padding-left: 15px;
+  @include sky-border('tab', 'bottom');
+}
+

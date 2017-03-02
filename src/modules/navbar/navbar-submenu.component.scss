@@ -1,0 +1,78 @@
+@import '../_variables.scss';
+
+:host {
+  display: flex;
+  margin: 0 4px;
+  font-weight: 600;
+
+  &.right {
+    margin-left: auto;
+  }
+
+  sky-contrib-navbar-submenu-content {
+    display: block;
+  }
+
+  sky-contrib-navbar-submenu-button {
+    border-bottom: 4px solid $sky-navbar-bg-color;
+    color: $sky-navbar-color;
+    cursor: pointer;
+    display: flex;
+    padding: 15px 10px 12px;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      border-bottom: 4px solid $sky-color-blue;
+      background-color: $sky-navbar-active-bg-color;
+      color: $sky-navbar-active-color;
+      text-decoration: none;
+    }
+
+    i {
+      display: inline-block;
+      margin: auto 0 auto 4px;
+    }
+  }
+
+  sky-contrib-navbar-submenu-items {
+    background: $sky-navbar-bg-color;
+    position: absolute;
+    z-index: 1000;
+  }
+
+  @media(max-width: 767px) {
+    margin: 0;
+    width: 100%;
+
+    sky-contrib-navbar-submenu-content {
+      width: 100%;
+    }
+
+    sky-contrib-navbar-submenu-button {
+      i {
+        margin-left: auto;
+      }
+    }
+
+    sky-contrib-navbar-submenu-items {
+      position: relative;
+    }
+  }
+}
+
+:host(.active) {
+  sky-contrib-navbar-submenu-button {
+    border-bottom: 4px solid $sky-color-blue;
+    background-color: $sky-navbar-active-bg-color;
+    color: $sky-navbar-active-color;
+  }
+}
+
+:host(.disabled) {
+  cursor: default !important;
+
+  sky-contrib-navbar-submenu-button {
+    cursor: default;
+  }
+}
