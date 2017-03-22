@@ -1,1 +1,1 @@
-export { SkyModalModule, SkyModalService, SkyModalComponent } from 'blackbaud-skyux2/dist/core';
+export { SkyModalModule, SkyModalService, SkyModalComponent, SKY_MODAL_PROVIDERS } from '@blackbaud/skyux/dist/core';

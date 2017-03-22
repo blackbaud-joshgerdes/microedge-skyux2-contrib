@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkyDropdownModule } from '../dropdown';
 import { SkyListToolbarComponent } from './list-toolbar.component';
@@ -7,6 +7,7 @@ import { SkyListToolbarItemRendererComponent } from './list-toolbar-item-rendere
 import { SkyListToolbarSortComponent } from './list-toolbar-sort.component';
 
 @NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
     SkyListToolbarComponent,
     SkyListToolbarItemComponent,

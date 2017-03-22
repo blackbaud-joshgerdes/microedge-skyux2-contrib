@@ -1,0 +1,7 @@
+<div id="toast-container" [style.position]="position" class="{{positionClass}}">
+  <div *ngFor="let toast of toasts; let i = index; let first = first" class="toast-{{toast.type}} {{toast.classNames}}" [ngClass]="(isAdding && first) ? 'animated bounceIn' : ''" (click)="dismiss(toast)">
+    <div *ngIf="toast.title" class="{{titleClass}}" [innerHTML]="toast.title"></div>
+    <div class="{{messageClass}}" [innerHTML]="toast.message"></div>
+    <div class="toast-close" (click)="removeToast(toast.id)"><i class="fa fa-times" aria-hidden="true"></i></div>
+  </div>
+</div>

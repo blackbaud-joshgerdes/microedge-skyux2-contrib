@@ -1,0 +1,81 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+:host {
+  width: 100%;
+  display: block;
+  position: relative;
+
+  .sky-contrib-checklist {
+    &-header {
+      background-color: $sky-body-background-color;
+
+       > div {
+        border-top: 1px solid $sky-color-gray-lighter;
+        padding: 10px;
+
+        &:first-child {
+          border-top: none;
+        }
+      }
+    }
+
+    &-search {
+      @include sky-search-bar;
+    }
+
+    &-select {
+      padding: 5px 10px;
+
+      button {
+        @include sky-button-link;
+      }
+
+      ul {
+        list-style: inside none;
+        margin: 0;
+        overflow: auto;
+        padding: 0;
+
+        li {
+          float: left;
+          padding: 0;
+          margin-left: 10px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    &-body {
+      ul {
+        list-style: inside none;
+        margin: 0;
+        overflow: auto;
+        padding: 0;
+
+        li {
+          border-bottom: dotted 1px $sky-color-gray-lighter;
+          font-family: $sky-font-family-base;
+          font-size: $sky-font-size-md;
+          padding: 10px;
+          position: relative;
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          label {
+            padding: 0;
+          }
+        }
+
+        sky-checkbox-label {
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@import '../../scss/variables';
+
+:host {
+  display: flex;
+  background: $sky-color-gray-lightest;
+  border: 1px solid $sky-color-gray-lighter;
+  border-radius: 10px;
+  margin: 0 0 8px;
+  padding: 10px 0 10px 10px;
+
+  .sky-contrib-draggable-repeater-item-right {
+    display: flex;
+    flex-grow: 0;
+  }
+
+  sky-contrib-draggable-repeater-item-left {
+    display: flex;
+    flex-grow: 0;
+  }
+
+  .vertical-center {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .sky-contrib-draggable-repeater-item-content {
+    flex-grow: 1;
+    font-size: 13px;
+    padding: 0 10px;
+    word-wrap: break-word;
+    overflow: hidden;
+
+    sky-chevron {
+      float: right;
+    }
+  }
+
+  .sky-contrib-draggable-repeater-item-title {
+    color: $sky-color-green;
+    font-size: 13px;
+    font-weight: bold;
+    word-wrap: break-word;
+    overflow: hidden;
+  }
+
+  .sky-contrib-draggable-repeater-item-right-content {
+    flex-grow: 0;
+  }
+
+  .sky-contrib-draggable-repeater-item-drag-handle {
+    cursor: pointer;
+    flex-grow: 0;
+    padding: 10px;
+  }
+}

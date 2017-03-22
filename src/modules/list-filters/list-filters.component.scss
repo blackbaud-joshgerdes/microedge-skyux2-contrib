@@ -1,5 +1,5 @@
 :host {
-  .sky-list-filters-inline-bar {
+  .sky-contrib-list-filters-inline-bar {
     background-color: #e9f4fc;
     padding: 7px;
     padding-bottom: 8px;
@@ -14,16 +14,16 @@
       border-radius: 10px;
     }
 
-    sky-list-filter-renderer {
+    sky-contrib-list-filter-renderer {
       margin-right: 6px;
     }
 
-    & + .sky-list-filters-modal-active {
+    & + .sky-contrib-list-filters-modal-active {
       border-top: 1px solid #ccc;
     }
   }
 
-  .sky-list-filters-modal-active {
+  .sky-contrib-list-filters-modal-active {
     padding: 7px;
     border-bottom: 1px solid #ccc;
     font-size: 13px;

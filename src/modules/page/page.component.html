@@ -1,0 +1,10 @@
+<div>
+  <div *ngIf="isLoading | async">
+    Loading
+  </div>
+  <div *ngIf="!(isAuthorized | async)">
+    Not authorized
+  </div>
+
+  <ng-content></ng-content>
+</div>

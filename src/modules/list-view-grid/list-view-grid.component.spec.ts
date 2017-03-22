@@ -114,7 +114,7 @@ describe('List View Grid Component', () => {
 
     it('should enable sort selector button in toolbar with all 6 sort options', () => {
       expect(element.query(
-        By.css('sky-list-toolbar-item-renderer[cmp-id="sort-selector"]')
+        By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="sort-selector"]')
       )).not.toBeNull();
       expect(element.query(By.css('sky-dropdown-item[cmp-id="column1_asc"]'))).not.toBeNull();
       expect(element.query(By.css('sky-dropdown-item[cmp-id="column1_desc"]'))).not.toBeNull();
@@ -131,7 +131,7 @@ describe('List View Grid Component', () => {
         dispatcher.next(new ListToolbarItemsLoadAction([item]));
       });
       fixture.detectChanges();
-      let custom = element.query(By.css('sky-list-toolbar-item-renderer[cmp-id="custom-item"]'));
+      let custom = element.query(By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="custom-item"]'));
 
       expect(custom).not.toBeNull();
     });
@@ -140,7 +140,7 @@ describe('List View Grid Component', () => {
       fixture.detectChanges();
 
       let columnSelectorButton = element.query(
-        By.css('sky-list-toolbar-item-renderer[cmp-id="column-selector"]')
+        By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="column-selector"]')
       );
       expect(columnSelectorButton).not.toBeNull();
     });
@@ -150,12 +150,12 @@ describe('List View Grid Component', () => {
 
       beforeAll(() => {
         let columnSelectorButton = element.query(
-          By.css('sky-list-toolbar-item-renderer[cmp-id="column-selector"]')
+          By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="column-selector"]')
         );
         columnSelectorButton.query(By.css('button')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
 
-        columnSelector = document.querySelector('sky-list-view-grid-column-selector');
+        columnSelector = document.querySelector('sky-contrib-list-view-grid-column-selector');
       });
 
       afterAll(() => {
@@ -167,7 +167,7 @@ describe('List View Grid Component', () => {
 
       beforeEach(() => fixture.detectChanges());
 
-      it('should have 3 checked columns, 2 unchecked', () => {
+      it('should have 4 checked columns, 3 unchecked', () => {
         expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(4);
         expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(3);
       });
@@ -196,7 +196,7 @@ describe('List View Grid Component', () => {
         fixture.detectChanges();
 
         (columnSelector
-          .querySelector('sky-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement)
+          .querySelector('sky-contrib-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement)
           .click();
         expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(1);
 
@@ -390,7 +390,7 @@ describe('List View Grid Component', () => {
 
     it('should throw columns require error', () => {
       expect(() => { fixture.detectChanges(); })
-        .toThrowError(/Grid view requires at least one sky-list-view-grid-column to render./);
+        .toThrowError(/Grid view requires at least one sky-contrib-list-view-grid-column to render./);
     });
   });
 

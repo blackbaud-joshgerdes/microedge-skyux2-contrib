@@ -88,12 +88,12 @@ describe('List View Checklist Component', () => {
     }));
 
     it('should show checklist with proper labels', () => {
-      expect(element.queryAll(By.css('sky-list-view-checklist-item')).length).toBe(7);
+      expect(element.queryAll(By.css('sky-contrib-list-view-checklist-item')).length).toBe(7);
       expect(element.query(
-        By.css('sky-list-view-checklist-item sky-checkbox-label strong')
+        By.css('sky-contrib-list-view-checklist-item sky-checkbox-label strong')
       ).nativeElement.textContent.trim()).toBe('1');
       expect(element.query(
-        By.css('sky-list-view-checklist-item sky-checkbox-label div')
+        By.css('sky-contrib-list-view-checklist-item sky-checkbox-label div')
       ).nativeElement.textContent.trim()).toBe('Apple');
     });
 
@@ -101,17 +101,17 @@ describe('List View Checklist Component', () => {
       let searchItems = items.filter(item => component.checklist.search()(item.data, '12'));
       dispatcher.next(new ListItemsLoadAction(searchItems, true));
       fixture.detectChanges();
-      expect(element.queryAll(By.css('sky-list-view-checklist-item')).length).toBe(1);
+      expect(element.queryAll(By.css('sky-contrib-list-view-checklist-item')).length).toBe(1);
 
       searchItems = items.filter(item => component.checklist.search()(item.data, 'banana'));
       dispatcher.next(new ListItemsLoadAction(searchItems, true));
       fixture.detectChanges();
-      expect(element.queryAll(By.css('sky-list-view-checklist-item')).length).toBe(2);
+      expect(element.queryAll(By.css('sky-contrib-list-view-checklist-item')).length).toBe(2);
 
       searchItems = items.filter(item => component.checklist.search()(item.data, 'bb'));
       dispatcher.next(new ListItemsLoadAction(searchItems, true));
       fixture.detectChanges();
-      expect(element.queryAll(By.css('sky-list-view-checklist-item')).length).toBe(1);
+      expect(element.queryAll(By.css('sky-contrib-list-view-checklist-item')).length).toBe(1);
     }));
   });
 
@@ -166,9 +166,9 @@ describe('List View Checklist Component', () => {
     }));
 
     it('should display 1 empty item', () => {
-      expect(element.queryAll(By.css('sky-list-view-checklist-item')).length).toBe(1);
+      expect(element.queryAll(By.css('sky-contrib-list-view-checklist-item')).length).toBe(1);
       expect(element.query(
-        By.css('sky-list-view-checklist-item sky-checkbox-label')
+        By.css('sky-contrib-list-view-checklist-item sky-checkbox-label')
       ).nativeElement.textContent.trim()).toBe('');
     });
 
@@ -176,7 +176,7 @@ describe('List View Checklist Component', () => {
       let searchItems = items.filter(item => component.checklist.search()(item.data, 'banana'));
       dispatcher.next(new ListItemsLoadAction(searchItems, true));
       fixture.detectChanges();
-      expect(element.queryAll(By.css('sky-list-view-checklist-item')).length).toBe(0);
+      expect(element.queryAll(By.css('sky-contrib-list-view-checklist-item')).length).toBe(0);
     }));
   });
 

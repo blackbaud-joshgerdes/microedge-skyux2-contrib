@@ -1,1 +1,1 @@
-export { SkyDropdownModule } from 'blackbaud-skyux2/dist/core';
+export { SkyDropdownModule } from '@blackbaud/skyux/dist/core';

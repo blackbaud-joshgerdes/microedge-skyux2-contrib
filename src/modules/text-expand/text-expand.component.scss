@@ -1,0 +1,27 @@
+@import '../../scss/variables';
+
+.btn-link {
+  background-color: transparent;
+  color: $sky-color-blue;
+  padding: 0;
+  &:hover {
+    color: $sky-color-blue-darker;
+    text-decoration: underline;
+  }
+}
+
+.btn.btn-link-inline {
+  @extend .btn-link;
+  font-size: inherit;
+  line-height: inherit;
+  display: inline;
+  width: auto;
+  height: auto;
+  border: none;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.sky-contrib-text-expand-ellipsis {
+  margin-right: 3px;
+}

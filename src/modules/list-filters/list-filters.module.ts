@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkyModalModule } from '../modal';
 import { SkyListFilterComponent } from './list-filter.component';
@@ -7,6 +7,7 @@ import { SkyListFilterRendererComponent } from './list-filter-renderer.component
 import { SkyListFiltersModalComponent } from './list-filters-modal.component';
 
 @NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
     SkyListFilterComponent,
     SkyListFiltersComponent,

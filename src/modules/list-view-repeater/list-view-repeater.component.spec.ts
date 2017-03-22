@@ -89,24 +89,24 @@ describe('List View Repeater Component', () => {
     }));
 
     it('should show title and description for rows', () => {
-      expect(element.queryAll(By.css('.sky-list-view-repeater-title')).length).toBe(7);
-      expect(element.queryAll(By.css('.sky-list-view-repeater-description')).length).toBe(7);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-title')).length).toBe(7);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-description')).length).toBe(7);
       expect(element.query(
-        By.css('.sky-list-view-repeater-title')).nativeElement.textContent.trim()
+        By.css('.sky-contrib-list-view-repeater-title')).nativeElement.textContent.trim()
       ).toBe('Apple');
       expect(element.query(
-        By.css('.sky-list-view-repeater-description')
+        By.css('.sky-contrib-list-view-repeater-description')
       ).nativeElement.textContent.trim()).toBe('1');
     });
 
     it('should show left and right content for rows', () => {
-      expect(element.queryAll(By.css('.sky-list-view-repeater-left')).length).toBe(7);
-      expect(element.queryAll(By.css('.sky-list-view-repeater-right')).length).toBe(7);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-left')).length).toBe(7);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-right')).length).toBe(7);
       expect(element.query(
-        By.css('.sky-list-view-repeater-left')
+        By.css('.sky-contrib-list-view-repeater-left')
       ).nativeElement.textContent.trim()).toBe('left');
       expect(element.query(
-        By.css('.sky-list-view-repeater-right')
+        By.css('.sky-contrib-list-view-repeater-right')
       ).nativeElement.textContent.trim()).toBe('right');
     });
 
@@ -119,21 +119,21 @@ describe('List View Repeater Component', () => {
     });
 
     it('should toggle content on click', () => {
-      expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(0);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-content')).length).toBe(0);
 
       let repeaterItem = element.query(By.css('.sky-repeater-item'));
       repeaterItem.query(By.css('button.sky-chevron')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(1);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-content')).length).toBe(1);
       expect(element.query(
-        By.css('.sky-list-view-repeater-content')).nativeElement.textContent.trim()
+        By.css('.sky-contrib-list-view-repeater-content')).nativeElement.textContent.trim()
       ).toBe('content');
 
       repeaterItem.query(By.css('button.sky-chevron')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(0);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-content')).length).toBe(0);
     });
   });
 
@@ -201,19 +201,19 @@ describe('List View Repeater Component', () => {
     it('should show empty rows', () => {
       expect(element.queryAll(By.css('.sky-repeater-item')).length).toBe(7);
       expect(element.query(
-        By.css('.sky-list-view-repeater-title')
+        By.css('.sky-contrib-list-view-repeater-title')
       ).nativeElement.textContent.trim()).toBe('');
       expect(element.query(
-        By.css('.sky-list-view-repeater-description')
+        By.css('.sky-contrib-list-view-repeater-description')
       ).nativeElement.textContent.trim()).toBe('');
 
       let repeaterItem = element.query(By.css('.sky-repeater-item'));
       repeaterItem.query(By.css('button.sky-chevron')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(1);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-content')).length).toBe(1);
       expect(element.query(
-        By.css('.sky-list-view-repeater-content')
+        By.css('.sky-contrib-list-view-repeater-content')
       ).nativeElement.textContent.trim()).toBe('');
     });
 
@@ -284,30 +284,30 @@ describe('List View Repeater Component', () => {
     }));
 
     it('should use custom templates', () => {
-      expect(element.queryAll(By.css('.sky-list-view-repeater-title')).length).toBe(7);
-      expect(element.queryAll(By.css('.sky-list-view-repeater-description')).length).toBe(7);
-      expect(element.queryAll(By.css('.sky-list-view-repeater-left')).length).toBe(7);
-      expect(element.queryAll(By.css('.sky-list-view-repeater-right')).length).toBe(7);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-title')).length).toBe(7);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-description')).length).toBe(7);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-left')).length).toBe(7);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-right')).length).toBe(7);
       expect(element.query(
-        By.css('.sky-list-view-repeater-title')).nativeElement.textContent.trim()
+        By.css('.sky-contrib-list-view-repeater-title')).nativeElement.textContent.trim()
       ).toBe('temp Apple');
       expect(element.query(
-        By.css('.sky-list-view-repeater-description')).nativeElement.textContent.trim()
+        By.css('.sky-contrib-list-view-repeater-description')).nativeElement.textContent.trim()
       ).toBe('temp 1');
       expect(element.query(
-        By.css('.sky-list-view-repeater-left')).nativeElement.textContent.trim()
+        By.css('.sky-contrib-list-view-repeater-left')).nativeElement.textContent.trim()
       ).toBe('temp left');
       expect(element.query(
-        By.css('.sky-list-view-repeater-right')).nativeElement.textContent.trim()
+        By.css('.sky-contrib-list-view-repeater-right')).nativeElement.textContent.trim()
       ).toBe('temp right');
 
       let repeaterItem = element.query(By.css('.sky-repeater-item'));
       repeaterItem.query(By.css('button.sky-chevron')).nativeElement.click();
       fixture.detectChanges();
 
-      expect(element.queryAll(By.css('.sky-list-view-repeater-content')).length).toBe(1);
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-content')).length).toBe(1);
       expect(element.query(
-        By.css('.sky-list-view-repeater-content')
+        By.css('.sky-contrib-list-view-repeater-content')
       ).nativeElement.textContent.trim()).toBe('temp content');
     });
 

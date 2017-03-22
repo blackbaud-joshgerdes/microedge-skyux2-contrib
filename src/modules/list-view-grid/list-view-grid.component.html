@@ -12,10 +12,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="sky-list-view-grid-row" *ngFor="let item of items | async" [attr.cmp-id]="item.id">
-        <sky-list-view-grid-cell *ngIf="selectionEnabled | async" [template]="selectTemplate" [item]="item" [isSelected]="isSelected(item.id) | async" [attr.cmp-id]="'select-' + item.id" columnId="select-column" [style.width.px]="100"></sky-list-view-grid-cell>
+      <tr class="sky-contrib-list-view-grid-row" *ngFor="let item of items | async" [attr.cmp-id]="item.id">
+        <sky-contrib-list-view-grid-cell *ngIf="selectionEnabled | async" [template]="selectTemplate" [item]="item" [isSelected]="isSelected(item.id) | async" [attr.cmp-id]="'select-' + item.id" columnId="select-column" [style.width.px]="100"></sky-contrib-list-view-grid-cell>
         <td *ngFor="let column of columns | async; let last = last; let i = index">
-          <sky-list-view-grid-cell [template]="column.template || defaultCellTemplate" [fieldSelector]="column.field" [item]="item" [columnId]="column.id" [attr.cmp-id]="column.id || column.field" [style.width.px]="last ? null : column.width"></sky-list-view-grid-cell>
+          <sky-contrib-list-view-grid-cell [template]="column.template || defaultCellTemplate" [fieldSelector]="column.field" [item]="item" [columnId]="column.id" [attr.cmp-id]="column.id || column.field" [style.width.px]="last ? null : column.width"></sky-contrib-list-view-grid-cell>
         </td>
       </tr>
     </tbody>

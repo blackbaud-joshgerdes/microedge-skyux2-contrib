@@ -130,8 +130,8 @@ describe('List Component', () => {
 
       function setFilterSelect(text: string, modal: boolean = false) {
         let filterSelect = modal ?
-          document.querySelector('.sky-list-filters-modal-bar select') :
-          element.query(By.css('.sky-list-filters-inline-bar select')).nativeElement;
+          document.querySelector('.sky-contrib-list-filters-modal-bar select') :
+          element.query(By.css('.sky-contrib-list-filters-inline-bar select')).nativeElement;
         filterSelect.value = text;
         var event = document.createEvent('Event');
         event.initEvent('change', true, true);
@@ -141,11 +141,11 @@ describe('List Component', () => {
       }
 
       it('should load data', () => {
-        expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
+        expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(7);
       });
 
       it('should load new data', () => {
-        expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
+        expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(7);
         fixture.detectChanges();
         bs.next([
           { id: '1', column1: '1', column2: 'Large',
@@ -156,7 +156,7 @@ describe('List Component', () => {
             column3: 4, column4: moment().add(45, 'minute') }
         ]);
         fixture.detectChanges();
-        expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(3);
+        expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(3);
       });
 
       it('should update displayed items when data is updated', () => {
@@ -170,7 +170,7 @@ describe('List Component', () => {
         bs.next(newItems);
         fixture.detectChanges();
 
-        expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
+        expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(2);
       });
 
       it('should search based on input text', async(() => {
@@ -181,28 +181,28 @@ describe('List Component', () => {
             By.css('button[cmp-id="search"] i')
           ).nativeElement.click();
           fixture.detectChanges();
-          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
+          expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(2);
         });
       }));
 
       it('should sort', () => {
-        expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
+        expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(7);
         element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         expect(element.query(
-          By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+          By.css('sky-contrib-list-view-grid-cell[cmp-id="column1"]')
         ).nativeElement.textContent.trim()).toBe('');
         fixture.detectChanges();
         element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         expect(element.query(
-          By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+          By.css('sky-contrib-list-view-grid-cell[cmp-id="column1"]')
         ).nativeElement.textContent.trim()).toBe('01');
         fixture.detectChanges();
         element.queryAll(By.css('th.heading'))[2].triggerEventHandler('click', undefined);
         fixture.detectChanges();
         expect(element.query(
-          By.css('sky-list-view-grid-cell[cmp-id=".column3"]')
+          By.css('sky-contrib-list-view-grid-cell[cmp-id=".column3"]')
         ).nativeElement.textContent.trim()).toBe('21');
       });
 
@@ -214,15 +214,15 @@ describe('List Component', () => {
             By.css('button[cmp-id="search"] i')
           ).triggerEventHandler('click', undefined);
           fixture.detectChanges();
-          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
+          expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(2);
           expect(element.query(
-            By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+            By.css('sky-contrib-list-view-grid-cell[cmp-id="column1"]')
           ).nativeElement.textContent.trim()).toBe('01');
 
           element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
           fixture.detectChanges();
           expect(element.query(
-            By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+            By.css('sky-contrib-list-view-grid-cell[cmp-id="column1"]')
           ).nativeElement.textContent.trim()).toBe('11');
         });
       }));
@@ -233,7 +233,7 @@ describe('List Component', () => {
         element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         expect(element.query(
-          By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+          By.css('sky-contrib-list-view-grid-cell[cmp-id="column1"]')
         ).nativeElement.textContent.trim()).toBe('');
       });
 
@@ -242,10 +242,10 @@ describe('List Component', () => {
         element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         setFilterSelect('banana').then(() => {
-          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
+          expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(2);
           fixture.detectChanges();
           setFilterSelect('apple').then(() => {
-            expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(1);
+            expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(1);
           });
         });
       }));
@@ -256,13 +256,13 @@ describe('List Component', () => {
         fixture.detectChanges();
         setFilterSelect('banana').then(() => {
           expect(element.query(
-            By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+            By.css('sky-contrib-list-view-grid-cell[cmp-id="column1"]')
           ).nativeElement.textContent.trim()).toBe('01');
 
           element.query(By.css('th.heading')).triggerEventHandler('click', undefined);
           fixture.detectChanges();
           expect(element.query(
-            By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+            By.css('sky-contrib-list-view-grid-cell[cmp-id="column1"]')
           ).nativeElement.textContent.trim()).toBe('11');
         });
       }));
@@ -273,7 +273,7 @@ describe('List Component', () => {
           element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', undefined);
           fixture.detectChanges();
           element.query(
-            By.css('.sky-list-filters-inline-bar button[cmp-id="filter-show-more"]')
+            By.css('.sky-contrib-list-filters-inline-bar button[cmp-id="filter-show-more"]')
           ).nativeElement.click();
           fixture.detectChanges();
           (<HTMLButtonElement><any>document
@@ -288,23 +288,23 @@ describe('List Component', () => {
               .querySelector('sky-modal-footer button[cmp-id="apply-filters"]')).click();
             fixture.detectChanges();
 
-            expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(2);
+            expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(2);
             expect(element.query(
-              By.css('.sky-list-filters-modal-active span.filter-button')
+              By.css('.sky-contrib-list-filters-modal-active span.filter-button')
             ).nativeElement.textContent.trim()).toBe('banana');
             expect(element.query(
-              By.css('sky-list-view-grid-cell[cmp-id="column1"]')
+              By.css('sky-contrib-list-view-grid-cell[cmp-id="column1"]')
             ).nativeElement.textContent.trim()).toBe('01');
             expect(element.query(
-              By.css('sky-list-view-grid-cell[cmp-id="column2"]')
+              By.css('sky-contrib-list-view-grid-cell[cmp-id="column2"]')
             ).nativeElement.textContent.trim()).toBe('Banana');
 
             (<HTMLButtonElement><any>document
-              .querySelector('.sky-list-filters-modal-active span.filter-button i')).click();
+              .querySelector('.sky-contrib-list-filters-modal-active span.filter-button i')).click();
             fixture.detectChanges();
 
-            expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
-            expect(element.queryAll(By.css('.sky-list-filters-modal-active')).length).toBe(0);
+            expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(7);
+            expect(element.queryAll(By.css('.sky-contrib-list-filters-modal-active')).length).toBe(0);
         });
       }));
 
@@ -312,7 +312,7 @@ describe('List Component', () => {
         it('should refresh items', async(() => {
           component.list.refreshDisplayedItems();
           fixture.detectChanges();
-          expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
+          expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(7);
         }));
       });
 
@@ -422,7 +422,7 @@ describe('List Component', () => {
       }));
 
       it('should load data', () => {
-        expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(7);
+        expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(7);
       });
     });
   });
@@ -490,7 +490,7 @@ describe('List Component', () => {
       }));
 
       it('should be empty', () => {
-        expect(element.queryAll(By.css('tr.sky-list-view-grid-row')).length).toBe(0);
+        expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(0);
       });
 
       it('displayed items returns without error', async(() => {
@@ -755,10 +755,10 @@ describe('List Component', () => {
       it('should switch views when clicking view selector', () => {
         fixture.detectChanges();
         expect(element.queryAll(
-          By.css('sky-list-view-grid[ng-reflect-name="First"] th.heading')
+          By.css('sky-contrib-list-view-grid[ng-reflect-name="First"] th.heading')
         ).length).toBe(2);
         element.query(
-          By.css('sky-list-toolbar-item-renderer[cmp-id="view-selector"] button')
+          By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="view-selector"] button')
         ).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         element.query(
@@ -766,7 +766,7 @@ describe('List Component', () => {
         ).triggerEventHandler('click', undefined);
         fixture.detectChanges();
         expect(element.queryAll(
-          By.css('sky-list-view-grid[ng-reflect-name="Second"] th.heading')
+          By.css('sky-contrib-list-view-grid[ng-reflect-name="Second"] th.heading')
         ).length).toBe(1);
         element.query(
           By.css('sky-dropdown-item[cmp-id="' + component.list.views[0].id + '"] button')

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkyModalModule } from '../modal';
 import { SkySpinnerModule } from '../spinner';
@@ -14,6 +14,7 @@ import { SkyListToolbarModule } from '../list-toolbar';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 
 @NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
     SkyListViewGridComponent,
     SkyListViewGridColumnComponent,

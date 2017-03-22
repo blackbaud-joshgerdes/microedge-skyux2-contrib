@@ -68,7 +68,7 @@ export class SkyListViewGridComponent
 
   public ngAfterContentInit() {
     if (this.columnComponents.length === 0) {
-      throw new Error('Grid view requires at least one sky-list-view-grid-column to render.');
+      throw new Error('Grid view requires at least one sky-contrib-list-view-grid-column to render.');
     }
 
     let columnModels = this.columnComponents.map(columnComponent => {

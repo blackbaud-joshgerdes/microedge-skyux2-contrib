@@ -1,0 +1,2 @@
+<span class="sky-contrib-text-expand-text">{{ getContent(content, isExpanded, maxLength) }}</span><span class="sky-contrib-text-expand-ellipsis" *ngIf="content.length > maxLength && !isExpanded">&hellip;</span>
+<button type="button" class="btn btn-link-inline" *ngIf="content.length > maxLength" (click)="toggle()">{{ isExpanded ? 'See less' : 'See more' }}</button>
