@@ -1,1 +1,1 @@
-export { SkyChevronModule } from 'blackbaud-skyux2/dist/modules/chevron';
+export { SkyChevronModule } from '@blackbaud/skyux/dist/modules/chevron';

@@ -91,7 +91,7 @@ describe('List Toolbar Component', () => {
 
       it('should display when sort provided', () => {
         expect(element.query(
-          By.css("sky-list-toolbar-item-renderer[cmp-id='search']")
+          By.css("sky-contrib-list-toolbar-item-renderer[cmp-id='search']")
         )).not.toBeNull();
       });
 
@@ -160,7 +160,7 @@ describe('List Toolbar Component', () => {
 
       it('should show selected sort with a different style', async(() => {
         let sortSelector = element.query(
-          By.css('sky-list-toolbar-item-renderer[cmp-id="sort-selector"]')
+          By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="sort-selector"]')
         );
         let sortSelectorButton = sortSelector.query(By.css('.sky-dropdown-button'));
         sortSelectorButton.triggerEventHandler('click', undefined);
@@ -186,7 +186,7 @@ describe('List Toolbar Component', () => {
     describe('view selector', () => {
       it('should not display when there is one or no views', () => {
         expect(element.query(
-          By.css('sky-list-toolbar-item-renderer[cmp-id="view-selector"]')
+          By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="view-selector"]')
         ).nativeElement.textContent.trim()).toBe('');
       });
 
@@ -207,7 +207,7 @@ describe('List Toolbar Component', () => {
 
         it('should show selected view with a different style', async(() => {
           let viewSelector = element.query(
-            By.css('sky-list-toolbar-item-renderer[cmp-id="view-selector"]')
+            By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="view-selector"]')
           );
           let viewSelectorButton = viewSelector.query(By.css('.sky-dropdown-button'));
           viewSelectorButton.triggerEventHandler('click', undefined);

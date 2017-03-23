@@ -1,0 +1,185 @@
+@import '../../scss/variables';
+@import '../../scss/animate';
+
+#toast-container {
+  position: fixed;
+  z-index: 99999;
+
+  > div {
+    padding: 0 0 0 15px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    width: 320px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    -moz-box-shadow: 0 0 12px #999999;
+    -webkit-box-shadow: 0 0 12px #999999;
+    box-shadow: 0 0 12px #999999;
+    color: $sky-color-white;
+  }
+
+  * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  > :hover {
+    -moz-box-shadow: 0 0 12px #000000;
+    -webkit-box-shadow: 0 0 12px #000000;
+    box-shadow: 0 0 12px #000000;
+    cursor: pointer;
+  }
+}
+
+.toast-close {
+  float: right;
+  width: 15%;
+  text-align: center;
+  -moz-border-radius: 0 3px 3px 0;
+  -webkit-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+  position: absolute;
+  right: 0px;
+  height: 100%;
+
+  .fa-times {
+    position: absolute;
+    left: 40%;
+    top: 40%;
+  }
+}
+
+.toast-title {
+    font-weight: bold;
+}
+
+.toast-message {
+  width: 85%;
+  float: left;
+  word-wrap: break-word;
+  font-weight: bold;
+  padding: 15px 10px 15px 0;
+}
+
+.toast-success {
+  background-color: $sky-color-green;
+
+  .toast-close {
+    background-color: $sky-color-green-lighter;
+    color: $sky-color-green;
+    border: 1px solid $sky-color-green;
+
+    &:hover {
+      background-color: $sky-color-green-light;
+    }
+  }
+
+  a {
+    color: $sky-color-green-lighter;
+
+    &:hover {
+      color: $sky-color-green-light;
+    }
+  }
+}
+
+.toast-info {
+  background-color: $sky-color-blue;
+
+  .toast-close {
+    background-color: $sky-color-blue-lighter;
+    color: $sky-color-blue;
+    border: 1px solid $sky-color-blue;
+
+    &:hover {
+      background-color: $sky-color-blue-light;
+    }
+  }
+
+  a {
+    color: $sky-color-blue-lighter;
+
+    &:hover {
+      color: $sky-color-blue-light;
+    }
+  }
+}
+
+.toast-warning {
+  background-color: $sky-color-yellow;
+
+  .toast-close {
+    background-color: $sky-color-yellow-lighter;
+    color: $sky-color-yellow;
+    border: 1px solid $sky-color-yellow;
+
+    &:hover {
+      background-color: $sky-color-yellow-light;
+    }
+  }
+
+  a {
+    color: $sky-color-yellow-lighter;
+
+    &:hover {
+      color: $sky-color-yellow-light;
+    }
+  }
+}
+
+.toast-error {
+  background-color: $sky-color-red;
+
+  .toast-close {
+    background-color: $sky-color-red-lighter;
+    color: $sky-color-red;
+    border: 1px solid $sky-color-red;
+
+    &:hover {
+      background-color: $sky-color-red-light;
+    }
+  }
+
+  a {
+    color: $sky-color-red-lighter;
+
+    &:hover {
+      color: $sky-color-red-light;
+    }
+  }
+}
+
+.toast-top-center {
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+.toast-bottom-center {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+
+.toast-top-left {
+  top: 12px;
+  left: 12px;
+}
+
+.toast-top-right {
+  top: 12px;
+  right: 12px;
+}
+
+.toast-bottom-right {
+  right: 12px;
+  bottom: 12px;
+}
+
+.toast-bottom-left {
+  bottom: 12px;
+  left: 12px;
+}

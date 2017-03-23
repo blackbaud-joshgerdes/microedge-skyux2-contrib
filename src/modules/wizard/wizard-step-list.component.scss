@@ -1,0 +1,55 @@
+@import '../../scss/variables';
+
+:host /deep/ {
+  ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    position: relative;
+
+    &:after {
+      clear: both;
+      content: " ";
+      display: table;
+    }
+  }
+
+  li {
+    float: left;
+    color: $sky-color-gray;
+    background-color: $sky-color-gray-lighter;
+    border-radius: 3px;
+    padding: 5px 10px;
+
+    max-width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 600;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+
+    &.active, &.active.disabled, &.active.visited.valid {
+      background-color: $sky-color-green;
+      color: $sky-color-white;
+    }
+
+    &.visited.valid {
+      background-color: $sky-color-green-light;
+      color: $sky-color-white;
+    }
+
+    &.active.valid + li.visited.disabled:not(.active) {
+      color: $sky-color-blue;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    &.disabled, &:not(.visited) {
+      color: $sky-color-gray;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+}

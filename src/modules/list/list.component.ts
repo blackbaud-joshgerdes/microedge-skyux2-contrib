@@ -120,12 +120,12 @@ export class SkyListComponent implements AfterContentInit {
       this.state.map(s => s.sort).distinctUntilChanged(),
       this.state.map(s => s.paging.itemsPerPage).distinctUntilChanged(),
       this.state.map(s => s.paging.pageNumber).distinctUntilChanged(),
-      selectedIds.distinctUntilChanged().map((s: any) => {
+      selectedIds.distinctUntilChanged().map((s: Array<string>) => {
         selectedChanged = true;
         return s;
       }),
       data.distinctUntilChanged(),
-      (refresh: boolean, filters: ListFilterModel[], search: ListSearchModel,
+      (refresh: boolean, filters: Array<ListFilterModel>, search: ListSearchModel,
        sort: ListSortModel, itemsPerPage: number, pageNumber: number,
        selected: Array<string>, itemsData: Array<any>) => {
         this.dispatcher.next(new ListItemsSetLoadingAction());
@@ -140,7 +140,7 @@ export class SkyListComponent implements AfterContentInit {
         let response: Observable<ListDataResponseModel>;
         if (this.dataFirstLoad) {
           this.dataFirstLoad = false;
-          let initialItems = itemsData.map(d =>
+          let initialItems = itemsData.map((d: any) =>
             new ListItemModel(d.id || moment().toDate().getTime().toString(), d));
           response = Observable.of(new ListDataResponseModel({
             count: this.initialTotal,
@@ -159,7 +159,7 @@ export class SkyListComponent implements AfterContentInit {
 
         return response;
        })
-       .flatMap((o: any[], index: number) => o);
+       .flatMap((o: Observable<ListDataResponseModel>) => o);
   }
 
   public get selectedItems(): Observable<Array<ListItemModel>> {

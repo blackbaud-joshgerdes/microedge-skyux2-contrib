@@ -3,12 +3,12 @@
     Choose columns to show in the list
   </sky-modal-header>
   <sky-modal-content>
-    <sky-list #list [data]="columns" [selectedIds]="displayedColumnIds | async">
-      <sky-list-toolbar [filterEnabled]="false" type="search" placeholder="Search for columns"></sky-list-toolbar>
+    <sky-contrib-list #list [data]="columns" [selectedIds]="displayedColumnIds | async">
+      <sky-contrib-list-toolbar [filterEnabled]="false" type="search" placeholder="Search for columns"></sky-contrib-list-toolbar>
 
-      <sky-list-view-checklist label="heading">
-      </sky-list-view-checklist>
-    </sky-list>
+      <sky-contrib-list-view-checklist label="heading">
+      </sky-contrib-list-view-checklist>
+    </sky-contrib-list>
   </sky-modal-content>
   <sky-modal-footer>
     <button cmp-id="apply-changes" class="primary" (click)="applyChanges()">Apply changes</button>

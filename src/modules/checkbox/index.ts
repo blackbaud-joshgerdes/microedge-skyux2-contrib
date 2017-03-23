@@ -1,1 +1,1 @@
-export { SkyCheckboxModule, SkyCheckboxComponent } from 'blackbaud-skyux2/dist/core';
+export { SkyCheckboxModule, SkyCheckboxComponent } from '@blackbaud/skyux/dist/core';

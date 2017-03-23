@@ -1,0 +1,9 @@
+<ng-content select="sky-contrib-list-repeater-item-left" *ngIf="!isEditing"></ng-content>
+<div class="sky-contrib-list-repeater-item-title-area">
+  <ng-content select="sky-contrib-list-repeater-item-title" *ngIf="!isEditing"></ng-content>
+  <ng-content select="sky-contrib-list-repeater-item-description" *ngIf="!isEditing"></ng-content>
+</div>
+<sky-chevron [direction]="isExpanded ? 'up' : 'down'" (directionChange)="toggle($event)" *ngIf="!isEditing && isExpandable && !showContent"></sky-chevron>
+<ng-content select="sky-contrib-list-repeater-item-right" *ngIf="!isEditing"></ng-content>
+<ng-content select="sky-contrib-list-repeater-item-content" *ngIf="!isEditing && (!isExpanded || showContent)"></ng-content>
+<ng-content select="sky-contrib-list-repeater-item-editor" *ngIf="isEditing"></ng-content>

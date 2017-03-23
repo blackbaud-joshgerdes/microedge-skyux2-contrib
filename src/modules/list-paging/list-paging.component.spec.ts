@@ -69,7 +69,7 @@ describe('List Paging Component', () => {
     }));
 
     it('should show 3 pages', async(() => {
-      expect(element.queryAll(By.css('.sky-list-paging-link')).length).toBe(3);
+      expect(element.queryAll(By.css('.sky-contrib-list-paging-link')).length).toBe(3);
     }));
 
     it('should have a disabled previous button', () => {
@@ -86,7 +86,7 @@ describe('List Paging Component', () => {
 
     it('should show selected page (1) with a special style', () => {
       expect(element.query(
-        By.css('.sky-list-paging-link[cmp-id="1"] a')
+        By.css('.sky-contrib-list-paging-link[cmp-id="1"] a')
       ).nativeElement.classList.contains('current')).toBe(true);
     });
 
@@ -95,7 +95,7 @@ describe('List Paging Component', () => {
       fixture.detectChanges();
 
       expect(element.query(
-        By.css('.sky-list-paging-link[cmp-id="1"] a')
+        By.css('.sky-contrib-list-paging-link[cmp-id="1"] a')
       ).nativeElement.classList.contains('current')).toBe(true);
     });
 
@@ -104,14 +104,14 @@ describe('List Paging Component', () => {
       fixture.detectChanges();
 
       expect(element.query(
-        By.css('.sky-list-paging-link[cmp-id="1"] a')
+        By.css('.sky-contrib-list-paging-link[cmp-id="1"] a')
       ).nativeElement.classList.contains('current')).toBe(true);
     });
 
     describe('after clicking page 3', () => {
       beforeEach(async(() => {
         element.query(
-          By.css('.sky-list-paging-link[cmp-id="3"] a')
+          By.css('.sky-contrib-list-paging-link[cmp-id="3"] a')
         ).triggerEventHandler('click', undefined);
         fixture.detectChanges();
       }));
@@ -130,19 +130,19 @@ describe('List Paging Component', () => {
 
       it('should show selected page (3) with a special style', () => {
         expect(element.query(
-          By.css('.sky-list-paging-link[cmp-id="3"] a')
+          By.css('.sky-contrib-list-paging-link[cmp-id="3"] a')
         ).nativeElement.classList.contains('current')).toBe(true);
       });
 
       it('should not show page (1)', () => {
         expect(element.query(
-          By.css('.sky-list-paging-link[cmp-id="1"]')
+          By.css('.sky-contrib-list-paging-link[cmp-id="1"]')
         )).toBeNull();
       });
 
       it('should show page (4)', () => {
         expect(element.query(
-          By.css('.sky-list-paging-link[cmp-id="4"]')
+          By.css('.sky-contrib-list-paging-link[cmp-id="4"]')
         )).not.toBeNull();
       });
 
@@ -191,7 +191,7 @@ describe('List Paging Component', () => {
 
         it('should show selected page (1) with a special style', () => {
           expect(element.query(
-            By.css('.sky-list-paging-link[cmp-id="1"] a')
+            By.css('.sky-contrib-list-paging-link[cmp-id="1"] a')
           ).nativeElement.classList.contains('current')).toBe(true);
         });
       });
@@ -201,7 +201,7 @@ describe('List Paging Component', () => {
       dispatcher.next(new ListPagingSetPageNumberAction(12));
       fixture.detectChanges();
 
-      expect(element.queryAll(By.css('.sky-list-paging-link')).length).toBe(3);
+      expect(element.queryAll(By.css('.sky-contrib-list-paging-link')).length).toBe(3);
     });
   });
 
@@ -218,7 +218,7 @@ describe('List Paging Component', () => {
     }));
 
     it('should show 2 pages', async(() => {
-      expect(element.queryAll(By.css('.sky-list-paging-link')).length).toBe(2);
+      expect(element.queryAll(By.css('.sky-contrib-list-paging-link')).length).toBe(2);
     }));
   });
 });

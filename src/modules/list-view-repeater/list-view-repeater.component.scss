@@ -8,7 +8,7 @@
     font-size: 12px;
     padding: 10px;
 
-    .sky-list-view-repeater-title-area {
+    .sky-contrib-list-view-repeater-title-area {
       flex-grow: 1;
       flex-basis: 80%;
       text-overflow: ellipsis;
@@ -16,13 +16,13 @@
       white-space: nowrap;
     }
 
-    sky-list-view-repeater-renderer {
-      &.sky-list-view-repeater-left {
+    sky-contrib-list-view-repeater-renderer {
+      &.sky-contrib-list-view-repeater-left {
         flex-grow: 0;
         margin: 0 10px 0 0;
       }
 
-      &.sky-list-view-repeater-title {
+      &.sky-contrib-list-view-repeater-title {
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -32,12 +32,12 @@
         }
       }
 
-      &.sky-list-view-repeater-right {
+      &.sky-contrib-list-view-repeater-right {
         flex-grow: 0;
         margin: 0 0 0 10px;
       }
 
-      &.sky-list-view-repeater-content {
+      &.sky-contrib-list-view-repeater-content {
         display: block;
         flex-basis: 100%;
 
@@ -46,7 +46,7 @@
         margin: 10px;
       }
 
-      &.sky-list-view-repeater-editor {
+      &.sky-contrib-list-view-repeater-editor {
         display: block;
         flex-basis: 100%;
       }

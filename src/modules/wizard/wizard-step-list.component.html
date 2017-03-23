@@ -1,0 +1,5 @@
+<ol>
+  <li *ngFor="let step of steps; let i = index" (click)="wizard.goToStep(step)" [class.active]="step == currentStep" [class.visited]="wizard?.visitedSteps?.indexOf(step) != -1" [class.valid]="step.validator(wizard.model)" [class.disabled]="!isStepEnabled(step)">
+    {{i+1}}.  {{step.title}}
+  </li>
+</ol>

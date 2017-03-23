@@ -212,7 +212,7 @@ describe('List Action Bar Component', () => {
 
     describe('Action bar items', () => {
       it('Action bar items should not display', () => {
-        let el = element.query(By.css('sky-list-action-bar')).nativeElement as HTMLElement;
+        let el = element.query(By.css('sky-contrib-list-action-bar')).nativeElement as HTMLElement;
         expect(el.children.length).toBe(0);
       });
     });

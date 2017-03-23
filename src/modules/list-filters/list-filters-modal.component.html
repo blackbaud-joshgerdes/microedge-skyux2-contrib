@@ -1,9 +1,9 @@
 <sky-modal>
   <sky-modal-header>{{title}}</sky-modal-header>
   <sky-modal-content>
-    <div class="sky-list-filters-modal-bar">
+    <div class="sky-contrib-list-filters-modal-bar">
       <div *ngFor="let filter of modalFilters">
-        <sky-list-filter-renderer [template]="filter.template" [filter]="filter.filterModel"></sky-list-filter-renderer>
+        <sky-contrib-list-filter-renderer [template]="filter.template" [filter]="filter.filterModel"></sky-contrib-list-filter-renderer>
       </div>
     </div>
   </sky-modal-content>
