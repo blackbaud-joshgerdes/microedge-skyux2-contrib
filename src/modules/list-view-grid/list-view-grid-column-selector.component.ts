@@ -5,8 +5,8 @@ import { SkyListComponent } from '../list';
 
 @Component({
   selector: 'sky-contrib-list-view-grid-column-selector',
-  template: require('./list-view-grid-column-selector.component.html'),
-  styles: [require('./list-view-grid-column-selector.component.scss')]
+  templateUrl: './list-view-grid-column-selector.component.html',
+  styleUrls: ['./list-view-grid-column-selector.component.scss']
 })
 export class SkyListViewGridColumnSelectorComponent {
   @Output() public columnsChanged: EventEmitter<string[]> = new EventEmitter<string[]>();

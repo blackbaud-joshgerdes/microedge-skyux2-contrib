@@ -13,8 +13,8 @@ import { getValue } from 'microedge-rxstate/dist/helpers';
 
 @Component({
   selector: 'sky-contrib-list-filters',
-  template: require('./list-filters.component.html'),
-  styles: [require('./list-filters.component.scss')]
+  templateUrl: './list-filters.component.html',
+  styleUrls: ['./list-filters.component.scss']
 })
 export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit {
   @Input() public modalTitle: string = 'Filters';

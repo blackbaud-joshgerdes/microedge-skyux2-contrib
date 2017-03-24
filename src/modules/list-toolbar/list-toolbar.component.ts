@@ -18,8 +18,8 @@ import { getValue } from 'microedge-rxstate/dist/helpers';
 
 @Component({
   selector: 'sky-contrib-list-toolbar',
-  template: require('./list-toolbar.component.html'),
-  styles: [require('./list-toolbar.component.scss')],
+  templateUrl: './list-toolbar.component.html',
+  styleUrls: ['./list-toolbar.component.scss'],
   providers: [
     ListToolbarState,
     ListToolbarStateDispatcher,

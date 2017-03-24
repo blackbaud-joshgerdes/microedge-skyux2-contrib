@@ -31,7 +31,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'sky-contrib-list',
   template: '<ng-content></ng-content>',
-  styles: [require('./list.component.scss')],
+  styleUrls: ['./list.component.scss'],
   providers: [ListState, ListStateDispatcher],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
