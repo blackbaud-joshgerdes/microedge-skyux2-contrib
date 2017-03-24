@@ -4,7 +4,7 @@ import { ListItemModel } from '../../list/state/items/item.model';
 
 @Component({
   selector: 'sky-test-cmp',
-  template: require('./list-view-grid-display.component.fixture.html')
+  templateUrl: './list-view-grid-display.component.fixture.html'
 })
 export class ListViewGridDisplayTestComponent {
   public displayedColumns: Array<string> = ['column3', 'column4'];

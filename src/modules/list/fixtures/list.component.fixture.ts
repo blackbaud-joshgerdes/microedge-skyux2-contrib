@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'sky-test-cmp',
-  template: require('./list.component.fixture.html')
+  templateUrl: './list.component.fixture.html'
 })
 export class ListTestComponent {
   @ViewChild(SkyListComponent) public list: SkyListComponent;

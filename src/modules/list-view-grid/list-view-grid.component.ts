@@ -24,8 +24,8 @@ import { getData } from '../list/helpers';
 
 @Component({
   selector: 'sky-contrib-list-view-grid',
-  template: require('./list-view-grid.component.html'),
-  styles: [require('./list-view-grid.component.scss')],
+  templateUrl: './list-view-grid.component.html',
+  styleUrls: ['./list-view-grid.component.scss'],
   providers: [
     /* tslint:disable */
     { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewGridComponent)},

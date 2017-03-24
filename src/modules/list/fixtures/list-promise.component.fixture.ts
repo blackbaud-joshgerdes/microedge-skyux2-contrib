@@ -4,7 +4,7 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'sky-test-cmp',
-  template: require('./list-promise.component.fixture.html')
+  templateUrl: './list-promise.component.fixture.html'
 })
 export class ListPromiseTestComponent {
   @ViewChild(SkyListComponent) public list: SkyListComponent;

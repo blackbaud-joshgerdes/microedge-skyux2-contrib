@@ -6,7 +6,7 @@ import { ListViewChecklistItemModel } from './state/items/item.model';
 @Component({
   selector: 'sky-contrib-list-view-checklist-item',
   template: '<ng-content></ng-content>',
-  styles: [require('./list-view-checklist-item.component.scss')],
+  styleUrls: ['./list-view-checklist-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListViewChecklistItemComponent {

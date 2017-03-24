@@ -19,8 +19,8 @@ import {
 
 @Component({
   selector: 'sky-contrib-list-view-checklist',
-  template: require('./list-view-checklist.component.html'),
-  styles: [require('./list-view-checklist.component.scss')],
+  templateUrl: './list-view-checklist.component.html',
+  styleUrls: ['./list-view-checklist.component.scss'],
   providers: [
     /* tslint:disable */
     { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewChecklistComponent)},

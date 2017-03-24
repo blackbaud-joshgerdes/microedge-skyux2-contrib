@@ -4,10 +4,8 @@ let scriptLoader = require('little-loader');
 
 @Component({
   selector: 'sky-contrib-omnibar',
-  template: require('./omnibar.component.html'),
-  styles: [
-    require('./omnibar.component.scss')
-  ]
+  templateUrl: './omnibar.component.html',
+  styleUrls: ['./omnibar.component.scss']
 })
 export class SkyOmnibarComponent {
   @Input() config: SkyOmnibarConfigModel;

@@ -6,8 +6,8 @@ import { ListFilterDataModel } from '../list/state/filters/filter-data.model';
 
 @Component({
   selector: 'sky-contrib-list-filters-modal',
-  template: require('./list-filters-modal.component.html'),
-  styles: [require('./list-filters-modal.component.scss')]
+  templateUrl: './list-filters-modal.component.html',
+  styleUrls: ['./list-filters-modal.component.scss']
 })
 export class SkyListFiltersModalComponent {
   private filters: Array<any> = [];
