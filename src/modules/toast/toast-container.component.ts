@@ -55,7 +55,7 @@ export class SkyToastContainer {
   }
 
   dismiss(toast: SkyToast) {
-    if (!this.autoDismiss) {
+    if (!toast.autoDismiss) {
       this.removeToast(toast.id);
     }
   }
