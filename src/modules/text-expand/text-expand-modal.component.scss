@@ -12,7 +12,7 @@
 
   .sky-modal-footer {
     button {
-      @include sky-button-link;
+      @include sky-button-primary;
     }
   }
 }

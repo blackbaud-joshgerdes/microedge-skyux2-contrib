@@ -1,9 +1,8 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { MicroedgeSkyContribModule } from '../../../src/core';
-import { ListItemModel } from '../../../src/modules/list/state/items/item.model';
 
 import { Bootstrapper } from '../../bootstrapper';
 

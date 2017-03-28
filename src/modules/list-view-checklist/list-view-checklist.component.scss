@@ -1,4 +1,10 @@
 :host {
+
+  .loading {
+    height: 200px;
+    position: relative;
+  }
+
   /deep/ .sky-checkbox-wrapper {
     display: flex;
     align-items: center;
