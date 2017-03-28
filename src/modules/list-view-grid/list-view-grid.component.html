@@ -20,7 +20,9 @@
       </tr>
     </tbody>
   </table>
-  <sky-contrib-spinner *ngIf="loading | async"></sky-contrib-spinner>
+  <div class="loading" *ngIf="loading | async">
+    <sky-contrib-spinner></sky-contrib-spinner>
+  </div>
 </div>
 
 <template #defaultCellTemplate let-row="row" let-value="value">{{value}}</template>

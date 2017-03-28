@@ -4,6 +4,11 @@
   position: relative;
   display: block;
 
+  .loading {
+    height: 200px;
+    position: relative;
+  }
+
   > div {
     overflow: scroll;
 

@@ -9,7 +9,9 @@
       </sky-checkbox>
     </sky-contrib-list-view-checklist-item>
   </div>
-  <sky-contrib-spinner *ngIf="loading | async"></sky-contrib-spinner>
+  <div class="loading" *ngIf="loading | async">
+    <sky-contrib-spinner></sky-contrib-spinner>
+  </div>
 </div>
 
 <template #selectAllTemplate><a href (click)="selectAll(); false">Select all</a></template>
