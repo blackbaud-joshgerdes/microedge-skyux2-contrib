@@ -60,7 +60,7 @@ export class SkyListRepeaterPagingComponent {
           }
         }
 
-        let pageItems = [];
+        let pageItems: any[] = [];
         for (let i = lowerBound; i <= upperBound; i++) {
           pageItems.push({ pageNumber: i + 1, label: i + 1, isLastPage: i === itemCount });
         }

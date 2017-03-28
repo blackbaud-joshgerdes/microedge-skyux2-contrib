@@ -16,7 +16,7 @@ export class SkyToastContainer {
   autoDismiss = true;
   isAdding: boolean;
 
-  constructor(@Optional() @Inject(SkyToastOptions) options) {
+  constructor(@Optional() @Inject(SkyToastOptions) options: SkyToastOptions) {
     if (options) {
       Object.assign(this, options);
     }

@@ -18,14 +18,14 @@ export class SkyDraggableRepeaterComponent {
 
   constructor(private dragulaService: DragulaService) {
     dragulaService.setOptions(this.bagName, {
-      moves: (el, source, handle, sibling) =>
+      moves: (el: any, source: any, handle: any, sibling: any) =>
         !this.dragOnHandle ||
         handle.classList.contains('sky-contrib-draggable-repeater-item-drag-handle') ||
         handle.classList.contains('sky-contrib-draggable-repeater-item-drag-handle-icon')
     });
 
-    this.subscriptions.push(dragulaService.drop.subscribe(([e, element, container]) => {
-      let itemIds = [];
+    this.subscriptions.push(dragulaService.drop.subscribe(([e, element, container]: any[]) => {
+      let itemIds: any[] = [];
       let nodes = container.getElementsByTagName('sky-contrib-draggable-repeater-item');
       for (let i = 0; i < nodes.length; i++) {
         let el = nodes[i];

@@ -64,7 +64,7 @@ export class SkyChecklistComponent {
     this.onSelectedItemsChanged.emit({ selectedItems: this.selectedItems });
   }
 
-  itemChanged(item, checked) {
+  itemChanged(item: any, checked: any) {
     item.checked = checked;
     this.selectedItems = this.viewData.map(x => x.checked ? x.item : null)
       .filter(x => x != null);

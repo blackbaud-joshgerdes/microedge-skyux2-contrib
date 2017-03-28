@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SkyModalService } from '../modal';
+import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SkyTextExpandModalComponent } from './text-expand-modal.component';
 
 @Component({
@@ -25,10 +25,12 @@ export class SkyTextExpandComponent {
 
   public toggle() {
     if (this.modalMode) {
-      this.modalService.open(SkyTextExpandModalComponent, [
+      let providers = [
         { provide: 'content', useValue: this.content },
         { provide: 'modalHeading', useValue: this.modalHeading }
-      ]);
+      ];
+
+      this.modalService.open(SkyTextExpandModalComponent, providers);
     } else {
       this.isExpanded = !this.isExpanded;
     }

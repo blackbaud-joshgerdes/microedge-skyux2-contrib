@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'filter' })
 export class SkyChecklistDataFilterPipe implements PipeTransform {
-  transform(data, searchText) {
+  transform(data: any, searchText: any) {
     if (data === null || data === undefined) {
       return null;
     }
@@ -12,10 +12,10 @@ export class SkyChecklistDataFilterPipe implements PipeTransform {
     }
 
     searchText = searchText.toLowerCase();
-    return data.filter(item => this.search(item, searchText, 'label') || this.search(item, searchText, 'description'));
+    return data.filter((item: any) => this.search(item, searchText, 'label') || this.search(item, searchText, 'description'));
   }
 
-  search(item, searchText, searchField) {
+  search(item: any, searchText: any, searchField: any) {
     if (item[searchField]) {
       return item[searchField].toLowerCase().indexOf(searchText) !== -1;
     }

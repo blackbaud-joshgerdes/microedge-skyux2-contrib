@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ListState, ListStateDispatcher } from '../list/state';
-import { SkyModalComponent } from '../modal';
+import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
 import { ListFilterModel } from '../list/state/filters/filter.model';
 import { ListFilterDataModel } from '../list/state/filters/filter-data.model';
 
