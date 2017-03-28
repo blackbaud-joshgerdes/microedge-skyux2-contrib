@@ -20,10 +20,6 @@ export class SkyToastProvider {
     }
   }
 
-  setDismiss(enabled: boolean) {
-    this.options.autoDismiss = enabled;
-  }
-
   show(toast: SkyToast) {
     if (!this.container) {
       let factory = this.resolver.resolveComponentFactory(SkyToastContainer);
@@ -47,7 +43,7 @@ export class SkyToastProvider {
   setupToast(toast: SkyToast) {
     toast.id = ++this.index;
     this.container.instance.addToast(toast);
-    if (this.options.autoDismiss) {
+    if (toast.autoDismiss) {
       this.createTimeout(toast.id);
     }
   }
@@ -67,23 +63,23 @@ export class SkyToastProvider {
     this.container = null;
   }
 
-  error(message: string, title?: string) {
-    let toast = new SkyToast('error', message, title);
+  error(message: string, title?: string, autoDismiss?: boolean) {
+    let toast = new SkyToast('error', message, title, autoDismiss);
     this.show(toast);
   }
 
-  info(message: string, title?: string) {
-    let toast = new SkyToast('info', message, title);
+  info(message: string, title?: string, autoDismiss?: boolean) {
+    let toast = new SkyToast('info', message, title, autoDismiss);
     this.show(toast);
   }
 
-  success(message: string, title?: string) {
-    let toast = new SkyToast('success', message, title);
+  success(message: string, title?: string, autoDismiss?: boolean) {
+    let toast = new SkyToast('success', message, title, autoDismiss);
     this.show(toast);
   }
 
-  warning(message: string, title?: string) {
-    let toast = new SkyToast('warning', message, title);
+  warning(message: string, title?: string, autoDismiss?: boolean) {
+    let toast = new SkyToast('warning', message, title, autoDismiss);
     this.show(toast);
   }
 }
