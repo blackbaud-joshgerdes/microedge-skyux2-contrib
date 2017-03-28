@@ -14,7 +14,7 @@ export class SkyToastProvider {
   };
   private index = 0;
 
-  constructor(private resolver: ComponentFactoryResolver, private appRef: ApplicationRef, private compiler: Compiler, @Optional() @Inject(SkyToastOptions) options) {
+  constructor(private resolver: ComponentFactoryResolver, private appRef: ApplicationRef, private compiler: Compiler, @Optional() @Inject(SkyToastOptions) options: SkyToastOptions) {
     if (options) {
       Object.assign(this.options, options);
     }

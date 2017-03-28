@@ -1,6 +1,6 @@
 import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
 import { GridState, GridStateDispatcher } from './state';
-import { SkyModalComponent } from '../modal';
+import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
 import { SkyListComponent } from '../list';
 
 @Component({

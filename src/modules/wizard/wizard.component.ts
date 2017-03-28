@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ContentChildren, QueryList } from '@angular/core';
 import { SkyWizardStepComponent } from './wizard-step.component';
 import { SkyWizardStepListComponent } from './wizard-step-list.component';
-import { SkyModalComponent, SkyModalService } from '../modal';
+import { SkyModalComponent, SkyModalService } from '@blackbaud/skyux/dist/core';
 
 @Component({
   selector: 'sky-contrib-wizard',

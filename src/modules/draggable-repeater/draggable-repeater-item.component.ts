@@ -21,7 +21,7 @@ export class SkyDraggableRepeaterItemComponent {
     }
   }
 
-  toggle(event) {
+  toggle(event: any) {
     this.isExpanded = !this.isExpanded;
   }
 }

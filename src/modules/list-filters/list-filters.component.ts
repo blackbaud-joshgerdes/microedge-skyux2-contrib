@@ -2,7 +2,7 @@ import {
     Component, Input, ContentChildren, QueryList, ViewChild, TemplateRef,
     AfterContentInit, AfterViewInit
 } from '@angular/core';
-import { SkyModalService } from '../modal';
+import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SkyListFilterComponent } from './list-filter.component';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
