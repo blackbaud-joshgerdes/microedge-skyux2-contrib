@@ -13,12 +13,12 @@ import { getData } from '../list/helpers';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListViewGridCellComponent implements OnInit {
-  @Input() public item: ListItemModel;
-  @Input() public columnId: string;
-  @Input() public isSelected: boolean;
-  @Input() private template: TemplateRef<any>;
-  @Input() private fieldSelector: string;
-  @ViewChild('cell', { read: ViewContainerRef }) private container: ViewContainerRef;
+  @Input() item: ListItemModel;
+  @Input() columnId: string;
+  @Input() isSelected: boolean;
+  @Input() template: TemplateRef<any>;
+  @Input() fieldSelector: string;
+  @ViewChild('cell', { read: ViewContainerRef }) container: ViewContainerRef;
 
   constructor(private state: ListState) {
   }

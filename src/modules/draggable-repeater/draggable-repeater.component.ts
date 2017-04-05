@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ContentChildren, QueryList } from '@angular/core';
-import { Observable } from 'rxjs';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { SkyDraggableRepeaterItemComponent } from './draggable-repeater-item.component';
 
@@ -11,10 +10,10 @@ import { SkyDraggableRepeaterItemComponent } from './draggable-repeater-item.com
 export class SkyDraggableRepeaterComponent {
   @Input() dragOnHandle: boolean = false;
   @Output() onItemsReordered = new EventEmitter<any>();
-  private bagName: string = this.generateGuid();
+  @ContentChildren(SkyDraggableRepeaterItemComponent)
+    items: QueryList<SkyDraggableRepeaterItemComponent>;
+  bagName: string = this.generateGuid();
   private subscriptions: any[] = [];
-
-  @ContentChildren(SkyDraggableRepeaterItemComponent) private items: QueryList<SkyDraggableRepeaterItemComponent>;
 
   constructor(private dragulaService: DragulaService) {
     dragulaService.setOptions(this.bagName, {

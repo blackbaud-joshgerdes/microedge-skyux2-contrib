@@ -1,4 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SkyContribUtilsModule } from './utils';
 import { SkyContribChecklistModule } from './checklist';
 import { SkyContribNavbarModule } from './navbar';
 import { SkyContribPageModule } from './page';
@@ -22,6 +23,7 @@ import { SkyWizardModule } from './wizard';
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
+    SkyContribUtilsModule,
     SkyContribChecklistModule,
     SkyContribNavbarModule,
     SkyContribPageModule,
@@ -43,6 +45,7 @@ import { SkyWizardModule } from './wizard';
     SkyWizardModule
   ],
   exports: [
+    SkyContribUtilsModule,
     SkyContribChecklistModule,
     SkyContribNavbarModule,
     SkyContribPageModule,
@@ -87,3 +90,4 @@ export * from './tabbar';
 export * from './text-expand';
 export * from './toast';
 export * from './wizard';
+export * from './utils';

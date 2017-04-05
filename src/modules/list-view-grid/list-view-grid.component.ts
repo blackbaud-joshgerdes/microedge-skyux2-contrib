@@ -16,9 +16,9 @@ import {
 } from '../list/state/selected/actions';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
 import { ListSortLabelModel } from '../list/state/sort/label.model';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import { SkyModalService } from '@blackbaud/skyux/dist/core';
+import { SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 import { getData } from '../list/helpers';
 
@@ -40,20 +40,20 @@ import { getData } from '../list/helpers';
 export class SkyListViewGridComponent
   extends ListViewComponent implements AfterContentInit, AfterViewInit {
   @Input() set name(value: string) { this.viewName = value; }
-  @Input() public hiddenColumns: Array<string> | Observable<Array<string>>;
-  @Input() public displayedColumns: Array<string> | Observable<Array<string>>;
-  @Input() public fit: string = 'width';
-  @Input() public width: number | Observable<number>;
-  @Input() public height: number | Observable<number>;
-  @Input() public selectionEnabled: boolean | Observable<boolean>;
+  @Input() hiddenColumns: Array<string> | Observable<Array<string>>;
+  @Input() displayedColumns: Array<string> | Observable<Array<string>>;
+  @Input() fit: string = 'width';
+  @Input() width: number | Observable<number>;
+  @Input() height: number | Observable<number>;
+  @Input() selectionEnabled: boolean | Observable<boolean>;
 
   /* tslint:disable */
-  @Input('search') private searchFunction: (data: any, searchText: string) => boolean;
-  @ViewChild('chooseColumnsTemplate') private chooseColumnsTemplate: TemplateRef<any>;
+  @Input('search') searchFunction: (data: any, searchText: string) => boolean;
+  @ViewChild('chooseColumnsTemplate') chooseColumnsTemplate: TemplateRef<any>;
   /* tslint:enable */
 
   @ContentChildren(SkyListViewGridColumnComponent)
-  private columnComponents: QueryList<SkyListViewGridColumnComponent>;
+  columnComponents: QueryList<SkyListViewGridColumnComponent>;
 
   constructor(
     state: ListState,

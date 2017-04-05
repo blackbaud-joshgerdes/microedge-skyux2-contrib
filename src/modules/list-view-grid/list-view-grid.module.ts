@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyModalModule } from '@blackbaud/skyux/dist/core';
+import { SkyModalModule } from '@blackbaud/skyux/dist/modules/modal';
 import { SkySpinnerModule } from '../spinner';
 import { SkyCheckboxModule } from '../checkbox';
 import { SkyListModule } from '../list';

@@ -2,7 +2,7 @@ import {
     Component, Input, ContentChildren, QueryList, ViewChild, TemplateRef,
     AfterContentInit, AfterViewInit
 } from '@angular/core';
-import { SkyModalService } from '@blackbaud/skyux/dist/core';
+import { SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
 import { SkyListFilterComponent } from './list-filter.component';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
@@ -17,10 +17,10 @@ import { getValue } from 'microedge-rxstate/dist/helpers';
   styleUrls: ['./list-filters.component.scss']
 })
 export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit {
-  @Input() public modalTitle: string = 'Filters';
-  @ContentChildren(SkyListFilterComponent) private filters: QueryList<SkyListFilterComponent>;
-  @ViewChild('filterButton') private filterButtonTemplate: TemplateRef<any>;
-  private inlineBarExpanded: boolean = false;
+  @Input() modalTitle: string = 'Filters';
+  @ContentChildren(SkyListFilterComponent) filters: QueryList<SkyListFilterComponent>;
+  @ViewChild('filterButton') filterButtonTemplate: TemplateRef<any>;
+  inlineBarExpanded: boolean = false;
 
   constructor(
     private state: ListState,
@@ -43,8 +43,7 @@ export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit 
         if (value) {
           f.filterModel.value = value;
 
-          if (f.type === 'inline')
-          {
+          if (f.type === 'inline') {
             this.inlineBarExpanded = true;
           }
         }
@@ -70,7 +69,7 @@ export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit 
     let providers = [
       { provide: ListState, useValue: this.state },
       { provide: ListStateDispatcher, useValue: this.dispatcher },
-      { provide: String, useValue: this.modalTitle }
+      { provide: 'title', useValue: this.modalTitle }
     ];
 
     this.modalService.open(SkyListFiltersModalComponent, providers);

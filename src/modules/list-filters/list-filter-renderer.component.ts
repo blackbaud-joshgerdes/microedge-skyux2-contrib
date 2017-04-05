@@ -5,9 +5,9 @@ import { Component, ViewContainerRef, ViewChild, Input, TemplateRef, OnInit } fr
   template: '<template #container></template>'
 })
 export class SkyListFilterRendererComponent implements OnInit {
-  @Input() public template: TemplateRef<any>;
-  @Input() public filter: any;
-  @ViewChild('container', { read: ViewContainerRef }) private container: ViewContainerRef;
+  @Input() template: TemplateRef<any>;
+  @Input() filter: any;
+  @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
 
   public ngOnInit() {
     if (this.template !== undefined) {

@@ -6,10 +6,10 @@ import { Component, ViewContainerRef, ViewChild, Input, TemplateRef, OnInit} fro
   styleUrls: ['./list-toolbar-item-renderer.component.scss']
 })
 export class SkyListToolbarItemRendererComponent implements OnInit {
-  @Input() public template: TemplateRef<any>;
-  @ViewChild('container', { read: ViewContainerRef }) private container: ViewContainerRef;
+  @Input() template: TemplateRef<any>;
+  @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
 
-  public ngOnInit() {
+  ngOnInit() {
     if (this.template !== undefined) {
       this.container.createEmbeddedView(this.template, this);
     }

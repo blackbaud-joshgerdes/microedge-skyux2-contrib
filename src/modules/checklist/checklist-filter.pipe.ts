@@ -12,7 +12,8 @@ export class SkyChecklistDataFilterPipe implements PipeTransform {
     }
 
     searchText = searchText.toLowerCase();
-    return data.filter((item: any) => this.search(item, searchText, 'label') || this.search(item, searchText, 'description'));
+    return data.filter((item: any) => this.search(item, searchText, 'label')
+      || this.search(item, searchText, 'description'));
   }
 
   search(item: any, searchText: any, searchField: any) {

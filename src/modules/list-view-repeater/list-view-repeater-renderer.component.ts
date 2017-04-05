@@ -9,11 +9,11 @@ import { ListItemModel } from '../list/state/items/item.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListViewRepeaterRendererComponent implements OnInit {
-  @Input() public item: ListItemModel;
-  @Input() private template: TemplateRef<any>;
-  @ViewChild('container', { read: ViewContainerRef }) private container: ViewContainerRef;
+  @Input() item: ListItemModel;
+  @Input() template: TemplateRef<any>;
+  @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
 
-  public ngOnInit() {
+  ngOnInit() {
     if (this.template !== undefined) {
       this.container.createEmbeddedView(this.template, this);
     }

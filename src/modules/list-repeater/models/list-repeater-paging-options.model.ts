@@ -8,7 +8,8 @@ export class SkyListRepeaterPagingOptionsModel {
     this.pageSize = options.pageSize || 5;
     this.pageNumber = options.pageNumber || 1;
     this.maxPages = options.maxPages || 5;
-    this.enabled = (options.enabled == undefined || options.enabled == null) ? true : options.enabled;
+    this.enabled = (options.enabled === undefined ||
+      options.enabled === null) ? true : options.enabled;
   }
 
   getPage(items: Array<any>) {

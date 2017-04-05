@@ -6,11 +6,12 @@ import * as moment from 'moment';
   template: '<ng-content></ng-content>'
 })
 export class SkyListToolbarItemComponent {
-  @Input() public id: string = moment().toDate().getTime().toString();
-  @Input() public index: number = -1;
-  @Input() public location: string = 'left';
-  @ContentChildren(TemplateRef) private templates: QueryList<TemplateRef<any>>;
-  public get template(): TemplateRef<any> {
+  @Input() id: string = moment().toDate().getTime().toString();
+  @Input() index: number = -1;
+  @Input() location: string = 'left';
+  @ContentChildren(TemplateRef) templates: QueryList<TemplateRef<any>>;
+
+  get template(): TemplateRef<any> {
     return this.templates.length > 0 ? this.templates.first : undefined;
   }
 }

@@ -8,22 +8,22 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListViewGridColumnComponent {
-  @Input() public id: string;
-  @Input() public heading: string;
-  @Input() public description: string;
-  @Input() public width: number;
-  @Input() public hidden: boolean;
-  @Input() public locked: boolean;
-  @Input() public field: string;
-  @Input() public type: string = 'string';
+  @Input() id: string;
+  @Input() heading: string;
+  @Input() description: string;
+  @Input() width: number;
+  @Input() hidden: boolean;
+  @Input() locked: boolean;
+  @Input() field: string;
+  @Input() type: string = 'string';
 
   /* tslint:disable */
-  @Input('search')
-  private searchFunction: (value: any, searchText: string) => boolean = this.search;
-  @Input('template') private templateInput: TemplateRef<any>;
+  @Input('search') searchFunction: (value: any, searchText: string) => boolean = this.search;
+  @Input('template') templateInput: TemplateRef<any>;
   /* tslint:enable */
 
-  @ContentChildren(TemplateRef) private templates: QueryList<TemplateRef<any>>;
+  @ContentChildren(TemplateRef) templates: QueryList<TemplateRef<any>>;
+
   public get template(): TemplateRef<any> {
     return (this.templates.length > 0 ? this.templates.first : undefined) || this.templateInput;
   };

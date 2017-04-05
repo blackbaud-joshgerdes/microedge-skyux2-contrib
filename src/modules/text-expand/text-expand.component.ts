@@ -1,26 +1,24 @@
 import { Component, Input } from '@angular/core';
-import { SkyModalService } from '@blackbaud/skyux/dist/core';
+import { SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
 import { SkyTextExpandModalComponent } from './text-expand-modal.component';
 
 @Component({
   selector: 'sky-contrib-text-expand',
   templateUrl: './text-expand.component.html',
-  styleUrls: [
-    './text-expand.component.scss'
-  ]
+  styleUrls: ['./text-expand.component.scss']
 })
 export class SkyTextExpandComponent {
   displayToggle: boolean = true;
   isExpanded: boolean = false;
-  @Input() private modalMode: boolean = false;
-  @Input() private maxLength: number;
-  @Input() private content: string;
-  @Input() private modalHeading: string;
+  @Input() modalMode: boolean = false;
+  @Input() maxLength: number;
+  @Input() content: string;
+  @Input() modalHeading: string;
 
   constructor(private modalService: SkyModalService) { }
 
   ngAfterContentInit() {
-    this.content = this.content.trim();
+    this.content = (this.content) ? this.content.trim() : '';
   }
 
   public toggle() {

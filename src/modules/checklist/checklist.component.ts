@@ -19,6 +19,7 @@ export class SkyChecklistComponent {
   @Output() onItemChanged: EventEmitter<any> = new EventEmitter();
   @Output() onSelectedItemsChanged: EventEmitter<any> = new EventEmitter();
   viewData: Array<any>;
+  searchText: string;
 
   constructor() {
   }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { SkyListRepeaterStateDispatcher } from './list-repeater.rxstate';
 import { StateNode } from 'microedge-rxstate/dist';
 import { SkyListRepeaterStateModel } from './state.model';

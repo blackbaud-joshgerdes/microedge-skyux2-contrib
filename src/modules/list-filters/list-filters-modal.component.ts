@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Inject } from '@angular/core';
 import { ListState, ListStateDispatcher } from '../list/state';
-import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
+import { SkyModalComponent } from '@blackbaud/skyux/dist/modules/modal';
 import { ListFilterModel } from '../list/state/filters/filter.model';
 import { ListFilterDataModel } from '../list/state/filters/filter-data.model';
 
@@ -10,14 +10,16 @@ import { ListFilterDataModel } from '../list/state/filters/filter-data.model';
   styleUrls: ['./list-filters-modal.component.scss']
 })
 export class SkyListFiltersModalComponent {
+  @ViewChild(SkyModalComponent) modal: SkyModalComponent;
+  title: string;
   private filters: Array<any> = [];
-  @ViewChild(SkyModalComponent) private modal: SkyModalComponent;
 
   constructor(
+    @Inject('title') title: string,
     private state: ListState,
-    private dispatcher: ListStateDispatcher,
-    private title: string
+    private dispatcher: ListStateDispatcher
   ) {
+    this.title = (title) ? title.trim() : '';
     this.state.map(s => s.filters)
       .take(1)
       .subscribe(filters => this.filters = filters.map(f => {

@@ -1,7 +1,7 @@
 import { Component, ViewChild, Inject } from '@angular/core';
 import { SkyListComponent } from '../list.component';
 import { ListFilterDataModel } from '../state/filters/filter-data.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'sky-test-cmp',

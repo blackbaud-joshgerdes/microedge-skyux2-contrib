@@ -77,7 +77,7 @@ describe('List Action Bar Component', () => {
           new ListItemModel('id2'),
           new ListItemModel('id3'),
           new ListItemModel('id4'),
-          new ListItemModel('id5'),
+          new ListItemModel('id5')
         );
           dispatcher.next(new ListItemsLoadAction(items, true));
           fixture.detectChanges();
@@ -161,7 +161,7 @@ describe('List Action Bar Component', () => {
           new ListItemModel('id2'),
           new ListItemModel('id3'),
           new ListItemModel('id4'),
-          new ListItemModel('id5'),
+          new ListItemModel('id5')
         );
           dispatcher.next(new ListItemsLoadAction(items, true));
           fixture.detectChanges();

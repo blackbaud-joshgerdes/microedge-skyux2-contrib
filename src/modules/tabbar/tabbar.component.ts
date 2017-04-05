@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sky-contrib-tabbar',

@@ -4,4 +4,5 @@ import { PagingOptionsSetPageSizeAction } from './paging-options/set-page-size.a
 import { PagingOptionsSetPagingEnabledAction } from './paging-options/set-paging-enabled.action';
 
 export type PagingOptionsAction =
-  PagingOptionsSetMaxPagesAction | PagingOptionsSetPageNumberAction | PagingOptionsSetPageSizeAction | PagingOptionsSetPagingEnabledAction;
+  PagingOptionsSetMaxPagesAction | PagingOptionsSetPageNumberAction |
+  PagingOptionsSetPageSizeAction | PagingOptionsSetPagingEnabledAction;

@@ -9,8 +9,9 @@ import {
 })
 export class SkyListViewRepeaterLeftComponent {
   /* tslint:disable */
-  @Input('template') private inputTemplate: TemplateRef<any>;
+  @Input('template') inputTemplate: TemplateRef<any>;
   /* tslint:enable */
-  @ContentChildren(TemplateRef) private templates: QueryList<TemplateRef<any>>;
+  @ContentChildren(TemplateRef) templates: QueryList<TemplateRef<any>>;
+
   get template() { return this.templates.length > 0 ? this.templates.first : this.inputTemplate; }
 }

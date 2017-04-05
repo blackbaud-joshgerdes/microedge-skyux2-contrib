@@ -6,7 +6,7 @@ import {
   ListToolbarConfigSetFilterEnabledAction, ListToolbarConfigSetSearchEnabledAction,
   ListToolbarConfigSetSortSelectorEnabledAction, ListToolbarConfigSetViewSelectorEnabledAction
 } from './state/config/actions';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { ListToolbarState, ListToolbarStateDispatcher, ListToolbarStateModel } from './state';
 import { ListToolbarModel } from '../list/state/toolbar/toolbar.model';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
@@ -28,23 +28,23 @@ import { getValue } from 'microedge-rxstate/dist/helpers';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListToolbarComponent implements OnInit, AfterContentInit {
-  @Input() public type: string = 'standard';
-  @Input() public placeholder: string = 'Find in this list';
-  @Input() public searchEnabled: boolean | Observable<boolean>;
-  @Input() public filterEnabled: boolean | Observable<boolean>;
-  @Input() public viewSelectorEnabled: boolean | Observable<boolean>;
-  @Input() public sortSelectorEnabled: boolean | Observable<boolean>;
+  @Input() type: string = 'standard';
+  @Input() placeholder: string = 'Find in this list';
+  @Input() searchEnabled: boolean | Observable<boolean>;
+  @Input() filterEnabled: boolean | Observable<boolean>;
+  @Input() viewSelectorEnabled: boolean | Observable<boolean>;
+  @Input() sortSelectorEnabled: boolean | Observable<boolean>;
   /* tslint:disable */
-  @Input('searchText') private searchTextInput: string | Observable<string>;
+  @Input('searchText') searchTextInput: string | Observable<string>;
   /* tslint:enable */
 
   @ContentChildren(SkyListToolbarItemComponent)
-  private toolbarItems: QueryList<SkyListToolbarItemComponent>;
+    toolbarItems: QueryList<SkyListToolbarItemComponent>;
   @ContentChildren(SkyListToolbarSortComponent)
-  private toolbarSorts: QueryList<SkyListToolbarSortComponent>;
-  @ViewChild('search') private searchTemplate: TemplateRef<any>;
-  @ViewChild('viewSelector') private viewSelectorTemplate: TemplateRef<any>;
-  @ViewChild('sortSelector') private sortSelectorTemplate: TemplateRef<any>;
+    toolbarSorts: QueryList<SkyListToolbarSortComponent>;
+  @ViewChild('search') searchTemplate: TemplateRef<any>;
+  @ViewChild('viewSelector') viewSelectorTemplate: TemplateRef<any>;
+  @ViewChild('sortSelector') sortSelectorTemplate: TemplateRef<any>;
 
   constructor(
     private state: ListState,
@@ -54,7 +54,7 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
   ) {
   }
 
-  public ngOnInit() {
+  ngOnInit() {
     this.dispatcher.toolbarExists(true);
     getValue(this.searchTextInput, (searchText: string) => this.updateSearchText(searchText));
     getValue(this.searchEnabled, (searchEnabled: any) =>
@@ -107,7 +107,7 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
     ].filter(s => s !== undefined));
   }
 
-  public ngAfterContentInit() {
+  ngAfterContentInit() {
     this.toolbarItems.forEach(toolbarItem =>
       this.dispatcher.toolbarAddItems(
         [new ListToolbarItemModel(toolbarItem)],

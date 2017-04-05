@@ -6,7 +6,7 @@ import {
   ListState,
   ListStateDispatcher
 } from '../../../../src/modules/list/state';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { Bootstrapper } from '../../../../visual/bootstrapper';
 

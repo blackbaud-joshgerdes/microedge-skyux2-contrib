@@ -1,9 +1,10 @@
 import { Component, Input, ContentChildren, QueryList } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { SkyListRepeaterItemComponent } from './list-repeater-item.component';
 import { SkyListRepeaterOptionsModel } from './models';
-import { SkyListRepeaterStateDispatcher, SkyListRepeaterStateModel, SkyListRepeaterState, PagingOptionsSetPageSizeAction, PagingOptionsSetMaxPagesAction, PagingOptionsSetPageNumberAction, PagingOptionsSetPagingEnabledAction } from './state';
-import { SkyListRepeaterPagingComponent } from './list-repeater-paging.component';
+import { SkyListRepeaterStateDispatcher, SkyListRepeaterStateModel, SkyListRepeaterState,
+  PagingOptionsSetPageSizeAction, PagingOptionsSetMaxPagesAction,
+  PagingOptionsSetPageNumberAction, PagingOptionsSetPagingEnabledAction } from './state';
 
 @Component({
     selector: 'sky-contrib-list-repeater',
@@ -13,7 +14,7 @@ import { SkyListRepeaterPagingComponent } from './list-repeater-paging.component
 export class SkyListRepeaterComponent {
   @Input() options: SkyListRepeaterOptionsModel;
   @Input() itemCount: Observable<number>;
-  @ContentChildren(SkyListRepeaterItemComponent) private items: QueryList<SkyListRepeaterItemComponent>;
+  @ContentChildren(SkyListRepeaterItemComponent) items: QueryList<SkyListRepeaterItemComponent>;
   private subscriptions: Array<any> = [];
 
   constructor(
@@ -22,7 +23,7 @@ export class SkyListRepeaterComponent {
   ) {
   }
 
-  private ngOnInit() {
+  ngOnInit() {
     if (!this.options) {
       this.options = new SkyListRepeaterOptionsModel();
     }
@@ -31,15 +32,18 @@ export class SkyListRepeaterComponent {
       this.dispatcher.next(new PagingOptionsSetPagingEnabledAction(false));
     } else {
       if (this.options.pageSize) {
-        this.subscribeOrGet(this.options.pageSize, (pageSize: number) => this.dispatcher.next(new PagingOptionsSetPageSizeAction(pageSize)));
+        this.subscribeOrGet(this.options.pageSize, (pageSize: number) =>
+          this.dispatcher.next(new PagingOptionsSetPageSizeAction(pageSize)));
       }
 
       if (this.options.maxPages) {
-        this.subscribeOrGet(this.options.maxPages, (maxPages: number) => this.dispatcher.next(new PagingOptionsSetMaxPagesAction(maxPages)));
+        this.subscribeOrGet(this.options.maxPages, (maxPages: number) =>
+          this.dispatcher.next(new PagingOptionsSetMaxPagesAction(maxPages)));
       }
 
       if (this.options.pageNumber) {
-        this.subscribeOrGet(this.options.pageNumber, (pageNumber: number) => this.dispatcher.next(new PagingOptionsSetPageNumberAction(pageNumber)));
+        this.subscribeOrGet(this.options.pageNumber, (pageNumber: number) =>
+          this.dispatcher.next(new PagingOptionsSetPageNumberAction(pageNumber)));
       }
 
       this.subscribeOrGet(this.itemCount, (itemCount: number) => {
@@ -72,7 +76,7 @@ export class SkyListRepeaterComponent {
       });
   }
 
-  private ngOnDestroy() {
+  ngOnDestroy() {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 

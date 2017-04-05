@@ -1,5 +1,6 @@
-import { Component, Input, Output, Inject, ElementRef, ViewChild, ContentChild, EventEmitter } from '@angular/core';
+import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { SkyOmnibarConfigModel } from './omnibar-config.model';
+import { WindowRef } from '../utils/windowref';
 let scriptLoader = require('little-loader');
 
 @Component({
@@ -13,13 +14,15 @@ export class SkyOmnibarComponent {
   @Output() searchBoxKeyUp = new EventEmitter();
   searchText: string;
 
-  @ViewChild('menu') private menu: any;
-  @ViewChild('omnibar') private omnibar: any;
-  private showMobile: boolean;
+  @ViewChild('menu') menu: any;
+  @ViewChild('omnibar') omnibar: any;
+  showMobile: boolean;
+  window: any;
   private searchContainerRef: any;
   private searchBoxRef: any;
 
-  constructor(@Inject('window') private window: any) {
+  constructor(windowRef: WindowRef) {
+    this.window = windowRef.nativeWindow;
   }
 
   ngAfterViewInit() {
@@ -86,10 +89,10 @@ export class SkyOmnibarComponent {
   private userLoaded(userData: any) {
     if (userData.id !== this.config.authenticationUserId && this.config.signOutUrl) {
       if (userData.id === null) {
-        if (window.localStorage) {
+        if (this.window.localStorage) {
           // cast to any to avoid having to add TypeScript typings for localStorage
           // values we don't control from our applications
-          let storage = window.localStorage as any;
+          let storage = this.window.localStorage as any;
           let omnibarIndicatesNullUserTime = storage.omnibarIndicatesNullUserTime;
           let nullUserTime = Date.parse(omnibarIndicatesNullUserTime);
           let currentTime = new Date().getTime();
@@ -108,7 +111,7 @@ export class SkyOmnibarComponent {
         }
       }
 
-      window.location.href = this.config.signOutUrl;
+      this.window.location.href = this.config.signOutUrl;
     }
 
     if (this.config.userLoaded != null) {
