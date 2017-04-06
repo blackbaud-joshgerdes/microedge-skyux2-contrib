@@ -1,5 +1,5 @@
-import { EventEmitter, Type, Injectable } from '@angular/core';
-import { SkyModalService } from '@blackbaud/skyux/dist/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
 import { SaveAndCloseComponent, SaveAndCloseEvent } from './save-and-close.interface';
 
 @Injectable()
@@ -19,7 +19,8 @@ export class SkyWizardService {
 
           if (modalInstance.componentInstance.modal) {
             modalInstance.componentInstance.modal.closeButtonClick();
-          } else if (modalInstance.componentInstance.wizard && modalInstance.componentInstance.wizard.modal) {
+          } else if (modalInstance.componentInstance.wizard
+            && modalInstance.componentInstance.wizard.modal) {
             modalInstance.componentInstance.wizard.modal.closeButtonClick();
           }
         }

@@ -1,7 +1,7 @@
 import { Component, Input, AfterContentInit } from '@angular/core';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ListSelectedSetItemsSelectedAction } from '../list/state/selected/actions';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'sky-contrib-list-action-bar',
@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list-action-bar.component.scss']
 })
 export class SkyListActionBarComponent implements AfterContentInit {
-  @Input() public alwaysOn: boolean | Observable<boolean> = false;
+  @Input() alwaysOn: boolean | Observable<boolean> = Observable.of(false);
+  isAlwaysOn: Observable<boolean>;
 
   constructor(
     private state: ListState,
@@ -17,19 +18,18 @@ export class SkyListActionBarComponent implements AfterContentInit {
   ) {
   }
 
-  public ngAfterContentInit() {
-    if (this.alwaysOn && !(this.alwaysOn instanceof Observable)) {
-      this.alwaysOn = Observable.of(this.alwaysOn);
-    }
+  ngAfterContentInit() {
+    this.isAlwaysOn = (this.alwaysOn instanceof Observable) ?
+      this.alwaysOn as Observable<boolean> : Observable.of(this.alwaysOn as boolean);
   }
 
-  public get selectedItemCount(): Observable<number> {
+  get selectedItemCount(): Observable<number> {
     return this.state.map(s => {
       return Object.keys(s.selected.item).filter(id => s.selected.item[id] === true).length;
     }).distinctUntilChanged();
   }
 
-  public selectAll(): void {
+  selectAll(): void {
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe(items => {
@@ -37,7 +37,7 @@ export class SkyListActionBarComponent implements AfterContentInit {
       });
   }
 
-  public clearAll(): void {
+  clearAll(): void {
     this.state.map(s => s.selected.item)
       .take(1)
       .subscribe(selected => {

@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ContentChildren, QueryList } from '@angular/core';
+import { Component, Input, Output, EventEmitter,
+  ViewChild, ContentChildren, QueryList } from '@angular/core';
 import { SkyWizardStepComponent } from './wizard-step.component';
 import { SkyWizardStepListComponent } from './wizard-step-list.component';
-import { SkyModalComponent, SkyModalService } from '@blackbaud/skyux/dist/core';
+import { SkyModalComponent, SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
 
 @Component({
   selector: 'sky-contrib-wizard',
@@ -11,14 +12,14 @@ import { SkyModalComponent, SkyModalService } from '@blackbaud/skyux/dist/core';
   ]
 })
 export class SkyWizardComponent {
-  @Input() public model: any = {};
-  @Output() public onSaveAndClose: EventEmitter<any> = new EventEmitter();
-  @ViewChild(SkyModalComponent) private modal: SkyModalComponent;
-  @ViewChild(SkyWizardStepListComponent) private stepList: SkyWizardStepListComponent;
-  @ContentChildren(SkyWizardStepComponent) private steps: QueryList<SkyWizardStepComponent> = null;
+  @Input() model: any = {};
+  @Output() onSaveAndClose: EventEmitter<any> = new EventEmitter();
+  @ViewChild(SkyModalComponent) modal: SkyModalComponent;
+  @ViewChild(SkyWizardStepListComponent) stepList: SkyWizardStepListComponent;
+  @ContentChildren(SkyWizardStepComponent) steps: QueryList<SkyWizardStepComponent> = null;
 
-  private self: SkyWizardComponent;
-  private visitedSteps: Array<SkyWizardStepComponent> = [];
+  self: SkyWizardComponent;
+  visitedSteps: Array<SkyWizardStepComponent> = [];
 
   private step: SkyWizardStepComponent = null;
   set currentStep(step) {

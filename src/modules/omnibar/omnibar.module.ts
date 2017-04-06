@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { WindowRef } from '../utils/windowref';
 import { SkyOmnibarComponent } from './omnibar.component';
 
 @NgModule({
@@ -14,7 +15,7 @@ import { SkyOmnibarComponent } from './omnibar.component';
     SkyOmnibarComponent
   ],
   providers: [
-    { provide: 'window', useValue: window},
+    WindowRef
   ]
 })
 export class SkyOmnibarModule {}

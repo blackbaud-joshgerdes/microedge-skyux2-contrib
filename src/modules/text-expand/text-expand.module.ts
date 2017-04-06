@@ -1,8 +1,8 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkyTextExpandComponent } from './text-expand.component';
 import { SkyTextExpandModalComponent } from './text-expand-modal.component';
-import { SkyModalModule } from '@blackbaud/skyux/dist/core';
+import { SkyModalModule } from '@blackbaud/skyux/dist/modules/modal';
 
 @NgModule({
   imports: [

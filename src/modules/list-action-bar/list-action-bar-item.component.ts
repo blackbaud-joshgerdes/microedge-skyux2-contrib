@@ -9,10 +9,10 @@ import {
 })
 export class SkyListActionBarItemComponent implements AfterContentInit {
   /* tslint:disable */
-  @Input('template') public templateInput: TemplateRef<any>;
-  @ContentChildren(TemplateRef) private templates: QueryList<TemplateRef<any>>;
+  @Input('template') templateInput: TemplateRef<any>;
+  @ContentChildren(TemplateRef) templates: QueryList<TemplateRef<any>>;
   /* tslint:enable */
-  @ViewChild('actionBarItem', { read: ViewContainerRef }) private container: ViewContainerRef;
+  @ViewChild('actionBarItem', { read: ViewContainerRef }) container: ViewContainerRef;
 
   public ngAfterContentInit() {
     if (this.template) {

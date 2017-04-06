@@ -34,21 +34,21 @@ export class SkyListViewRepeaterComponent extends ListViewComponent {
   @Input('search') searchFunction: (data: any, searchText: string) => boolean;
   /* tslint:enable */
   @ContentChild(SkyListViewRepeaterLeftComponent)
-  private leftComponent: SkyListViewRepeaterLeftComponent;
+    leftComponent: SkyListViewRepeaterLeftComponent;
   @ContentChild(SkyListViewRepeaterRightComponent)
-  private rightComponent: SkyListViewRepeaterRightComponent;
+    rightComponent: SkyListViewRepeaterRightComponent;
   @ContentChild(SkyListViewRepeaterTitleComponent)
-  private titleComponent: SkyListViewRepeaterTitleComponent;
+    titleComponent: SkyListViewRepeaterTitleComponent;
   @ContentChild(SkyListViewRepeaterDescriptionComponent)
-  private descriptionComponent: SkyListViewRepeaterDescriptionComponent;
+    descriptionComponent: SkyListViewRepeaterDescriptionComponent;
   @ContentChild(SkyListViewRepeaterContentComponent)
-  private contentComponent: SkyListViewRepeaterContentComponent;
+    contentComponent: SkyListViewRepeaterContentComponent;
 
   constructor(
     state: ListState,
     private dispatcher: ListStateDispatcher,
     private repeaterState: RepeaterState,
-    private repeaterDispatcher: RepeaterStateDispatcher,
+    private repeaterDispatcher: RepeaterStateDispatcher
   ) {
     super(state, 'Repeater View');
   }

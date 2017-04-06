@@ -15,7 +15,8 @@ import { SkyListInMemoryDataProvider } from '../list-data-provider-in-memory';
 import { ListSelectedModel } from './state/selected/selected.model';
 import { AsyncItem } from 'microedge-rxstate/dist';
 import { ListState, ListStateDispatcher } from './state';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import { ListViewComponent } from './list-view.component';
 import { ListSortModel } from './state/sort/sort.model';
 import { ListSearchModel } from './state/search/search.model';
@@ -36,21 +37,19 @@ import * as moment from 'moment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListComponent implements AfterContentInit {
-  public id: string = moment().toDate().getTime().toString();
-  @Input() public data?: Array<any> | Observable<Array<any>> = [];
-  @Input() public dataProvider?: ListDataProvider;
-  @Input() public defaultView?: ListViewComponent;
-  @Input() public initialTotal?: number;
-  @Input() public selectedIds: Array<string> | Observable<Array<string>>;
-  @Input()
-  public sortFields?: string | Array<string> | Observable<Array<string>> | Observable<string>;
+  id: string = moment().toDate().getTime().toString();
+  @Input() data?: Array<any> | Observable<Array<any>> = [];
+  @Input() dataProvider?: ListDataProvider;
+  @Input() defaultView?: ListViewComponent;
+  @Input() initialTotal?: number;
+  @Input() selectedIds: Array<string> | Observable<Array<string>>;
+  @Input() sortFields?: string | Array<string> | Observable<Array<string>> | Observable<string>;
   /* tslint:disable-next-line */
-  @Input('search') private searchFunction: (data: any, searchText: string) => boolean;
+  @Input('search') searchFunction: (data: any, searchText: string) => boolean;
+  @ContentChildren(ListViewComponent) listViews: QueryList<ListViewComponent>;
+  @ContentChildren(ListPagingComponent) pagingComponents: QueryList<ListPagingComponent>;
   private dataFirstLoad: boolean = false;
   private refresh: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  @ContentChildren(ListViewComponent) private listViews: QueryList<ListViewComponent>;
-  @ContentChildren(ListPagingComponent) private pagingComponents: QueryList<ListPagingComponent>;
 
   constructor(
     private state: ListState,

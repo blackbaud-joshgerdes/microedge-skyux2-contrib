@@ -1,7 +1,7 @@
 import { ListState } from './state';
 import { OnDestroy } from '@angular/core';
 import { SkyListComponent } from '../list/list.component';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as moment from 'moment';
 
 export abstract class ListViewComponent implements OnDestroy {

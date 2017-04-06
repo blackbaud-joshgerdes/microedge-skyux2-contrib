@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { SkyListRepeaterState, SkyListRepeaterStateDispatcher, PagingOptionsSetPageNumberAction } from './state';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { SkyListRepeaterState, SkyListRepeaterStateDispatcher,
+  PagingOptionsSetPageNumberAction } from './state';
 
 @Component({
   selector: 'sky-contrib-list-repeater-paging',
@@ -15,7 +16,10 @@ export class SkyListRepeaterPagingComponent {
   lastRunPageItems: Array<any> = [];
   lastRunPageCount: number = 0;
 
-  constructor(private state: SkyListRepeaterState, private dispatcher: SkyListRepeaterStateDispatcher) {
+  constructor(
+    private state: SkyListRepeaterState,
+    private dispatcher: SkyListRepeaterStateDispatcher
+  ) {
   }
 
   get pageNumber() {

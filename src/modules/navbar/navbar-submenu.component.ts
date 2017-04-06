@@ -6,9 +6,9 @@ import { Component, Input, Output, HostBinding, EventEmitter } from '@angular/co
   styleUrls: ['./navbar-submenu.component.scss']
 })
 export class SkyContribNavbarSubmenuComponent {
-  @Input() public active: boolean = false;
-  @Input() public disabled: boolean = false;
-  @Input() public isExpanded: boolean = false;
+  @Input() active: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() isExpanded: boolean = false;
   @HostBinding('class.active') get classAction() { return this.active || this.isExpanded; };
   @HostBinding('class.disabled') get classDisabled() { return this.disabled; };
   @Output() onToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -17,7 +17,7 @@ export class SkyContribNavbarSubmenuComponent {
     $event.preventDefault();
     $event.stopPropagation();
 
-    if(!this.disabled) {
+    if (!this.disabled) {
       this.isExpanded = true;
     }
   }
@@ -26,13 +26,13 @@ export class SkyContribNavbarSubmenuComponent {
     $event.preventDefault();
     $event.stopPropagation();
 
-    if(!this.disabled) {
+    if (!this.disabled) {
       this.isExpanded = false;
     }
   }
 
   public toggle(open: boolean): void {
-    if(!this.disabled) {
+    if (!this.disabled) {
       this.isExpanded = !this.isExpanded;
       this.onToggle.emit(open);
     }

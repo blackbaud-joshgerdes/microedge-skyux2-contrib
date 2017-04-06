@@ -1,6 +1,7 @@
 import { Component, NgModule, ViewChild } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import { FormsModule } from '@angular/forms';
 
 import { MicroedgeSkyContribModule, SkyListComponent } from '../../../../src/core';

@@ -13,7 +13,9 @@ export class SkyPageComponent {
   }
 
   ngOnInit() {
-    this.isAuthorized = this.isAuthorized instanceof Observable ? this.isAuthorized : Observable.of(this.isAuthorized || true);
-    this.isLoading = this.isLoading instanceof Observable ? this.isLoading : Observable.of(this.isLoading || false);
+    this.isAuthorized = this.isAuthorized instanceof Observable ?
+      this.isAuthorized : Observable.of(this.isAuthorized || true);
+    this.isLoading = this.isLoading instanceof Observable ?
+      this.isLoading : Observable.of(this.isLoading || false);
   }
 }

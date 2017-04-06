@@ -10,7 +10,8 @@ import {
   ListStateDispatcher
 } from '../list/state';
 import * as moment from 'moment';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import { ListItemModel } from '../list/state/items/item.model';
 import {
   ListItemsLoadAction,

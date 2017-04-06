@@ -12,7 +12,7 @@ export class SkyListRepeaterItemComponent {
   @Input() isExpandable: boolean = false;
   @Input() showContent: boolean = false;
   @Input() id: string;
-  private isExpanded: boolean = true;
+  isExpanded: boolean = true;
 
   @HostBinding('attr.repeater-item-id') get (): string { return this.id; };
 

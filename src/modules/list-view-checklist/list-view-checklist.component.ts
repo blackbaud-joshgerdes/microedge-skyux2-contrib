@@ -10,7 +10,7 @@ import { ChecklistState, ChecklistStateDispatcher, ChecklistStateModel } from '.
 import { ListViewChecklistItemsLoadAction } from './state/items/actions';
 import { ListViewChecklistItemModel } from './state/items/item.model';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { getData } from '../list/helpers';
 import {
   ListSelectedSetItemSelectedAction,
@@ -35,13 +35,12 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
   @Input() set name(value: string) { this.viewName = value; }
 
   /* tslint:disable */
-  @Input('search')
-  private searchFunction: (data: any, searchText: string) => boolean = this.search();
-  @Input('category') private categoryFieldSelector: string = 'category';
-  @Input('label') private labelFieldSelector: string = 'label';
-  @Input('description') private descriptionFieldSelector: string = 'description';
-  @ViewChild('selectAllTemplate') private selectAllTemplate: TemplateRef<any>;
-  @ViewChild('clearSelectionsTemplate') private clearSelectionsTemplate: TemplateRef<any>;
+  @Input('search') searchFunction: (data: any, searchText: string) => boolean = this.search();
+  @Input('category') categoryFieldSelector: string = 'category';
+  @Input('label') labelFieldSelector: string = 'label';
+  @Input('description') descriptionFieldSelector: string = 'description';
+  @ViewChild('selectAllTemplate') selectAllTemplate: TemplateRef<any>;
+  @ViewChild('clearSelectionsTemplate') clearSelectionsTemplate: TemplateRef<any>;
   /* tslint:enable */
 
   constructor(

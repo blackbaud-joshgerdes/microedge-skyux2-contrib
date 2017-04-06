@@ -131,7 +131,9 @@ describe('List View Grid Component', () => {
         dispatcher.next(new ListToolbarItemsLoadAction([item]));
       });
       fixture.detectChanges();
-      let custom = element.query(By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="custom-item"]'));
+      let custom = element.query(
+        By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="custom-item"]')
+      );
 
       expect(custom).not.toBeNull();
     });
@@ -196,11 +198,13 @@ describe('List View Grid Component', () => {
         fixture.detectChanges();
 
         (columnSelector
-          .querySelector('sky-contrib-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement)
+          .querySelector(
+            'sky-contrib-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement)
           .click();
         expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(1);
 
-        let closeButton = (document.querySelector('[cmp-id="apply-changes"]') as HTMLButtonElement);
+        let closeButton = (document.querySelector(
+          '[cmp-id="apply-changes"]') as HTMLButtonElement);
         closeButton.click();
         fixture.detectChanges();
       });

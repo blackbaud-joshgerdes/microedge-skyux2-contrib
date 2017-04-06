@@ -11,7 +11,7 @@ export class SkyDraggableRepeaterItemComponent {
   @Input() isExpandable: boolean = false;
   @Input() showContent: boolean = false;
   @Input() id: string;
-  private isExpanded: boolean = true;
+  isExpanded: boolean = true;
 
   @HostBinding('attr.repeater-item-id') get repeaterItemId() { return this.id; };
 

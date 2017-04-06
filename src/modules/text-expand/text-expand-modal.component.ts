@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
+import { SkyModalComponent } from '@blackbaud/skyux/dist/modules/modal';
 
 @Component({
   selector: 'sky-contrib-text-expand-modal',
@@ -7,10 +7,15 @@ import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
   styleUrls: ['./text-expand-modal.component.scss']
 })
 export class SkyTextExpandModalComponent {
+  modalHeading: string;
+  content: string;
   @ViewChild(SkyModalComponent) modal: SkyModalComponent;
 
   constructor(
-    @Inject('modalHeading') private modalHeading: string,
-    @Inject('content') private content: string
-  ) {}
+    @Inject('content') content: string,
+    @Inject('modalHeading') modalHeading: string
+  ) {
+    this.content = (content) ? content.trim() : '';
+    this.modalHeading = (modalHeading) ? modalHeading.trim() : '';
+  }
 }

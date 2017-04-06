@@ -1,11 +1,4 @@
-@import "variables";
+// Import from @blackbaud/skyux (using copied file until scss part of npm package)
+@import "./skyux/forms";
 
-.sky-form-control {
-  width: 100%;
-  padding: 6px 12px;
-  border: 1px solid $sky-border-color;
-}
-
-.sky-form-group {
-  margin-bottom: $sky-margin-half;
-}
+// Custom contrib styles

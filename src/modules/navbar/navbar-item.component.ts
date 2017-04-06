@@ -6,10 +6,10 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
   styleUrls: ['./navbar-item.component.scss']
 })
 export class SkyContribNavbarItemComponent {
-  @Input() public active: boolean = false;
-  @Input() public divider: boolean = false;
-  @Input() public disabled: boolean = false;
-  @Input() public submenu: boolean = false;
+  @Input() active: boolean = false;
+  @Input() divider: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() submenu: boolean = false;
   @HostBinding('attr.role') get role() { return (this.divider) ? '' : 'menuitem'; };
   @HostBinding('class.active') get classAction() { return this.active; };
   @HostBinding('class.divider') get classDivider() { return this.divider; };

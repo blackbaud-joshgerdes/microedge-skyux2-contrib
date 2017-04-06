@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy, forwardRef, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 import { ListPagingComponent } from '../list/list-paging.component';
 import { ListState, ListStateDispatcher } from '../list/state';

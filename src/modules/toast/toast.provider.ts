@@ -1,9 +1,8 @@
-import { Injectable, ViewContainerRef, Compiler, NgModule, ComponentRef, Optional, Inject, ComponentFactoryResolver, ApplicationRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Injectable, Compiler, ComponentRef, Optional, Inject,
+  ComponentFactoryResolver, ApplicationRef } from '@angular/core';
 import { SkyToastOptions } from './toast.options';
 import { SkyToast } from './toast.model';
 import { SkyToastContainer } from './toast-container.component';
-import { SkyToastModule } from './toast.module';
 
 @Injectable()
 export class SkyToastProvider {
@@ -14,7 +13,12 @@ export class SkyToastProvider {
   };
   private index = 0;
 
-  constructor(private resolver: ComponentFactoryResolver, private appRef: ApplicationRef, private compiler: Compiler, @Optional() @Inject(SkyToastOptions) options: SkyToastOptions) {
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private appRef: ApplicationRef,
+    private compiler: Compiler,
+    @Optional() @Inject(SkyToastOptions) options: SkyToastOptions
+  ) {
     if (options) {
       Object.assign(this.options, options);
     }

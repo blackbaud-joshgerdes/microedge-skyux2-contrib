@@ -7,15 +7,15 @@ import { ListViewComponent } from '../list/list-view.component';
   template: '<ng-content></ng-content>'
 })
 export class SkyListFilterComponent implements OnInit {
-  @Input() public name: string;
-  @Input() public label: string;
-  @Input() public type: string;
-  @Input() public view: ListViewComponent;
-  @Input() public defaultValue: any;
+  @Input() name: string;
+  @Input() label: string;
+  @Input() type: string;
+  @Input() view: ListViewComponent;
+  @Input() defaultValue: any;
   /* tslint:disable */
-  @Input('filter') public filterFunction: (item: ListItemModel, filter: any) => boolean;
-  @Input('template') public templateInput: TemplateRef<any>;
-  @ContentChildren(TemplateRef) private templates: QueryList<TemplateRef<any>>;
+  @Input('filter') filterFunction: (item: ListItemModel, filter: any) => boolean;
+  @Input('template') templateInput: TemplateRef<any>;
+  @ContentChildren(TemplateRef) templates: QueryList<TemplateRef<any>>;
   /* tslint:enable */
 
   public ngOnInit() {

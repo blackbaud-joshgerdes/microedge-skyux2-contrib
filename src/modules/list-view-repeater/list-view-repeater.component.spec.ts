@@ -90,7 +90,9 @@ describe('List View Repeater Component', () => {
 
     it('should show title and description for rows', () => {
       expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-title')).length).toBe(7);
-      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-description')).length).toBe(7);
+      expect(element.queryAll(
+        By.css('.sky-contrib-list-view-repeater-description')
+      ).length).toBe(7);
       expect(element.query(
         By.css('.sky-contrib-list-view-repeater-title')).nativeElement.textContent.trim()
       ).toBe('Apple');
@@ -285,7 +287,9 @@ describe('List View Repeater Component', () => {
 
     it('should use custom templates', () => {
       expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-title')).length).toBe(7);
-      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-description')).length).toBe(7);
+      expect(element.queryAll(
+        By.css('.sky-contrib-list-view-repeater-description')
+      ).length).toBe(7);
       expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-left')).length).toBe(7);
       expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-right')).length).toBe(7);
       expect(element.query(
