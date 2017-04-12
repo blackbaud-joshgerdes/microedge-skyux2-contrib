@@ -19,6 +19,7 @@ import { SkySpinnerModule } from './spinner';
 import { SkyTextExpandModule } from './text-expand';
 import { SkyToastModule } from './toast';
 import { SkyWizardModule } from './wizard';
+import { SkyLocaleCurrencyMaskModule } from './locale-currency-mask';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -42,7 +43,8 @@ import { SkyWizardModule } from './wizard';
     SkySpinnerModule,
     SkyTextExpandModule,
     SkyToastModule,
-    SkyWizardModule
+    SkyWizardModule,
+    SkyLocaleCurrencyMaskModule
   ],
   exports: [
     SkyContribUtilsModule,
@@ -64,7 +66,8 @@ import { SkyWizardModule } from './wizard';
     SkySpinnerModule,
     SkyTextExpandModule,
     SkyToastModule,
-    SkyWizardModule
+    SkyWizardModule,
+    SkyLocaleCurrencyMaskModule
   ]
 })
 export class MicroedgeSkyContribModule {
@@ -91,3 +94,4 @@ export * from './text-expand';
 export * from './toast';
 export * from './wizard';
 export * from './utils';
+export * from './locale-currency-mask';
