@@ -4,6 +4,7 @@ import { SkyContribChecklistModule } from './checklist';
 import { SkyContribNavbarModule } from './navbar';
 import { SkyContribPageModule } from './page';
 import { SkyContribTabbarModule } from './tabbar';
+import { SkyContribVerticalTabbarModule } from './vertical-tabbar';
 import { SkyDraggableRepeaterModule } from './draggable-repeater';
 import { SkyListActionBarModule } from './list-action-bar';
 import { SkyListFiltersModule } from './list-filters';
@@ -29,6 +30,7 @@ import { SkyLocaleCurrencyMaskModule } from './locale-currency-mask';
     SkyContribNavbarModule,
     SkyContribPageModule,
     SkyContribTabbarModule,
+    SkyContribVerticalTabbarModule,
     SkyDraggableRepeaterModule,
     SkyListActionBarModule,
     SkyListFiltersModule,
@@ -52,6 +54,7 @@ import { SkyLocaleCurrencyMaskModule } from './locale-currency-mask';
     SkyContribNavbarModule,
     SkyContribPageModule,
     SkyContribTabbarModule,
+    SkyContribVerticalTabbarModule,
     SkyDraggableRepeaterModule,
     SkyListActionBarModule,
     SkyListFiltersModule,
@@ -92,6 +95,7 @@ export * from './spinner';
 export * from './tabbar';
 export * from './text-expand';
 export * from './toast';
+export * from './vertical-tabbar';
 export * from './wizard';
 export * from './utils';
 export * from './locale-currency-mask';

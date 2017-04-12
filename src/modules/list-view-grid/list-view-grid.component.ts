@@ -6,7 +6,9 @@ import { ListViewComponent } from '../list/list-view.component';
 import { ListState } from '../list/state';
 import { GridState, GridStateDispatcher, GridStateModel } from './state';
 import { SkyListViewGridColumnComponent } from './list-view-grid-column.component';
-import { SkyListViewGridColumnSelectorComponent } from './list-view-grid-column-selector.component';
+import {
+  SkyListViewGridColumnSelectorComponent
+} from './list-view-grid-column-selector.component';
 import { ListStateDispatcher } from '../list/state';
 import { ListViewGridColumnModel } from './state/columns/column.model';
 import { ListViewGridColumnsLoadAction } from './state/columns/actions';
