@@ -1,0 +1,10 @@
+<div class="sky-contrib-vertical-tabbar">
+    <ul class="sky-contrib-vertical-tabbar-menu">
+    <li *ngFor="let tab of tabs">
+      <a [class.active]="tab.active" [attr.disabled]="tab.disabled ? true : null" (click)="onClick(tab); false">{{ tab.title }}</a>
+    </li>
+  </ul>
+  <div class="sky-contrib-vertical-tabbar-content">
+    <ng-content></ng-content>
+  </div>
+</div>

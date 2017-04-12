@@ -1,0 +1,65 @@
+@import '../../scss/variables';
+
+:host /deep/ {
+  display: flex;
+  background: $sky-color-white;
+  flex-direction: row;
+
+  .sky-contrib-vertical-tabbar {
+    display: flex;
+    min-height: 300px;
+    width: 100%;
+  }
+
+  .sky-contrib-vertical-tabbar-menu {
+    border-right: 1px solid $sky-border-color;
+    flex-basis: 25%;
+    font-family: $sky-font-family-base;
+    list-style: none inside;
+    margin: 0;
+    min-width: 150px;
+    overflow: hidden;
+    padding: 0;
+
+    li {
+      margin: 5px 0 0 0;
+
+      a {
+        border-left: 4px solid rgba(0, 0, 0, 0);
+        color: $sky-color-gray-light;
+        cursor: pointer;
+        display: block;
+        font-size: $sky-font-me-size-md;
+        margin: 0;
+        overflow: hidden;
+        padding: 9px 15px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &:hover {
+          background-color: $sky-color-gray-lighter-er;
+          border-color: rgba(0, 0, 0, 0);
+        }
+
+        &.active {
+          background-color: $sky-color-gray-lighter-er;
+          border-left: 4px solid $sky-color-blue;
+          color: $sky-color-black;
+          cursor: default;
+        }
+
+        &[disabled="true"] {
+          background-color: $sky-color-gray-lighter-er;
+          border-left: 4px solid rgba(0, 0, 0, 0);
+          color: $sky-color-gray-light;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  .sky-contrib-vertical-tabbar-content {
+    flex-grow: 1;
+    padding: 10px 15px;
+  }
+}

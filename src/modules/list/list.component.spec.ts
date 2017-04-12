@@ -329,7 +329,7 @@ describe('List Component', () => {
 
       describe('selectedItemIds', () => {
         it('should return selected item ids', () => {
-          let id;
+          let id: any;
           items.take(1).subscribe(items => {
             dispatcher.next(new ListSelectedSetItemSelectedAction(items[0].id, true));
             id = items[0].id;
@@ -497,7 +497,7 @@ describe('List Component', () => {
       it('displayed items returns without error', async(() => {
         let list = fixture.componentInstance.list;
 
-        list.displayedItems.subscribe(d => {
+        list.displayedItems.subscribe((d: any) => {
           expect(d.count).toBe(2);
           expect(d.items.length).toBe(2);
         });
@@ -516,7 +516,7 @@ describe('List Component', () => {
         ]);
         fixture.detectChanges();
 
-        list.displayedItems.subscribe(d => {
+        list.displayedItems.subscribe((d: any) => {
           expect(d.count).toBe(2);
           expect(d.items.length).toBe(2);
           expect(d.items[0].id).not.toBe(1);
