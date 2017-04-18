@@ -268,7 +268,7 @@ describe('List Component', () => {
         });
       }));
 
-      it('should filter using modal then clear active filter', async(() => {
+      it('should filter using modal then clear active filter', () => {
         fixture.whenStable().then(() => {
           fixture.detectChanges();
           element.query(By.css('button[cmp-id="filter"]')).triggerEventHandler('click', undefined);
@@ -307,7 +307,7 @@ describe('List Component', () => {
             expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(7);
             expect(element.queryAll(By.css('.sky-contrib-list-filters-modal-active')).length).toBe(0);
         });
-      }));
+      });
 
       describe('refreshDisplayedItems', () => {
         it('should refresh items', async(() => {
