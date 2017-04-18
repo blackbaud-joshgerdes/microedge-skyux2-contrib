@@ -149,8 +149,10 @@ describe('List View Grid Component', () => {
 
     describe('column selector', () => {
       let columnSelector: any;
+      let timeout: any;
 
-      beforeAll(() => {
+      beforeEach(() => {
+        fixture.detectChanges();
         let columnSelectorButton = element.query(
           By.css('sky-contrib-list-toolbar-item-renderer[cmp-id="column-selector"]')
         );
@@ -160,53 +162,71 @@ describe('List View Grid Component', () => {
         columnSelector = document.querySelector('sky-contrib-list-view-grid-column-selector');
       });
 
-      afterAll(() => {
+      afterEach(() => {
         let closeButton = (document.querySelector('.sky-modal-btn-close') as HTMLButtonElement);
         if (closeButton) {
           closeButton.click();
         }
+
+        clearTimeout(timeout);
+        fixture.detectChanges();
       });
 
-      beforeEach(() => fixture.detectChanges());
-
       it('should have 4 checked columns, 3 unchecked', () => {
-        expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(4);
-        expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(3);
+        timeout = setTimeout(() => {
+          fixture.detectChanges();
+          expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(4);
+          expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)')
+            .length).toBe(3);
+        }, 0);
       });
 
       it('should let user clear all columns', () => {
-        let clearAllLink = columnSelector.querySelector('[cmp-id="clear-all"] a') as HTMLElement;
-        clearAllLink.click();
-        fixture.detectChanges();
+        timeout = setTimeout(() => {
+          fixture.detectChanges();
+          let clearAllLink = columnSelector.querySelector('[cmp-id="clear-all"] a') as HTMLElement;
 
-        expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(0);
-        expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(7);
+          clearAllLink.click();
+          fixture.detectChanges();
+
+          expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(0);
+          expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)')
+            .length).toBe(7);
+        }, 0);
       });
 
       it('should let user select all columns', () => {
-        let selectAllLink = columnSelector.querySelector('[cmp-id="select-all"] a') as HTMLElement;
-        selectAllLink.click();
-        fixture.detectChanges();
+        timeout = setTimeout(() => {
+          fixture.detectChanges();
+          let selectAllLink = columnSelector
+            .querySelector('[cmp-id="select-all"] a') as HTMLElement;
+          selectAllLink.click();
+          fixture.detectChanges();
 
-        expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(7);
-        expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)').length).toBe(0);
+          expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(7);
+          expect(columnSelector.querySelectorAll('sky-checkbox input:not(:checked)')
+            .length).toBe(0);
+        }, 0);
       });
 
       it('should let user select columns', () => {
-        let clearAllLink = columnSelector.querySelector('[cmp-id="clear-all"] a') as HTMLElement;
-        clearAllLink.click();
-        fixture.detectChanges();
+        timeout = setTimeout(() => {
+          fixture.detectChanges();
+          let clearAllLink = columnSelector.querySelector('[cmp-id="clear-all"] a') as HTMLElement;
+          clearAllLink.click();
+          fixture.detectChanges();
 
-        (columnSelector
-          .querySelector(
-            'sky-contrib-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement)
-          .click();
-        expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(1);
+          (columnSelector
+            .querySelector(
+              'sky-contrib-list-view-checklist-item[cmp-id="column1"] input') as HTMLElement)
+            .click();
+          expect(columnSelector.querySelectorAll('sky-checkbox input:checked').length).toBe(1);
 
-        let closeButton = (document.querySelector(
-          '[cmp-id="apply-changes"]') as HTMLButtonElement);
-        closeButton.click();
-        fixture.detectChanges();
+          let closeButton = (document.querySelector(
+            '[cmp-id="apply-changes"]') as HTMLButtonElement);
+          closeButton.click();
+          fixture.detectChanges();
+        }, 0);
       });
     });
 
