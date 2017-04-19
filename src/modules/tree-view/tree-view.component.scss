@@ -1,0 +1,36 @@
+@import '../../scss/mixins';
+
+:host /deep/ {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+
+    > li {
+      padding: 5px 0;
+    }
+
+    .fa-minus-square-o,
+    .fa-plus-square-o {
+      cursor: pointer;
+      padding-right: 5px;
+    }
+  }
+
+  a {
+    @include sky-link;
+  }
+
+  .tree-header-bar {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    border-top: 1px solid $sky-border-color;
+    border-bottom: 1px solid $sky-border-color;
+    align-items: center;
+
+    a {
+      padding-right: 15px;
+    }
+  }
+}
