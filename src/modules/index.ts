@@ -21,6 +21,8 @@ import { SkyTextExpandModule } from './text-expand';
 import { SkyToastModule } from './toast';
 import { SkyWizardModule } from './wizard';
 import { SkyLocaleCurrencyMaskModule } from './locale-currency-mask';
+import { SkyTreeViewModule } from './tree-view';
+import { SkyDropdownModule } from './dropdown';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -46,7 +48,9 @@ import { SkyLocaleCurrencyMaskModule } from './locale-currency-mask';
     SkyTextExpandModule,
     SkyToastModule,
     SkyWizardModule,
-    SkyLocaleCurrencyMaskModule
+    SkyLocaleCurrencyMaskModule,
+    SkyTreeViewModule,
+    SkyDropdownModule
   ],
   exports: [
     SkyContribUtilsModule,
@@ -70,12 +74,15 @@ import { SkyLocaleCurrencyMaskModule } from './locale-currency-mask';
     SkyTextExpandModule,
     SkyToastModule,
     SkyWizardModule,
-    SkyLocaleCurrencyMaskModule
+    SkyLocaleCurrencyMaskModule,
+    SkyTreeViewModule,
+    SkyDropdownModule
   ]
 })
 export class MicroedgeSkyContribModule {
 }
 
+export * from './dropdown';
 export * from './checklist';
 export * from './draggable-repeater';
 export * from './list';
@@ -99,3 +106,4 @@ export * from './vertical-tabbar';
 export * from './wizard';
 export * from './utils';
 export * from './locale-currency-mask';
+export * from './tree-view';
