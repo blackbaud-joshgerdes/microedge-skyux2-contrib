@@ -16,6 +16,7 @@ export const CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR: any = {
 
 @Directive({
   selector: 'input[localeCurrencyMask]',
+  exportAs: 'localeCurrencyMaskDirective',
   providers: [CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR]
 })
 export class SkyLocaleCurrencyMaskDirective implements AfterViewInit,
