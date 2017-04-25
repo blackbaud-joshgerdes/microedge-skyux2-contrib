@@ -49,7 +49,7 @@
     "@angular/platform-browser": "2.4.8",
     "@angular/platform-browser-dynamic": "2.4.8",
     "@angular/router": "3.4.8",
-    "@blackbaud/skyux": "2.0.0-beta.16",
+    "@blackbaud/skyux": "2.0.0-beta.20",
     "animate.css": "^3.5.1",
     "core-js": "2.4.1",
     "dragula": "3.7.2",
