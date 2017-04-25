@@ -1,4 +1,5 @@
-import { Component, Input, QueryList, ContentChildren, TemplateRef, forwardRef } from '@angular/core';
+import { Component, Input, QueryList,
+  ContentChildren, TemplateRef, forwardRef } from '@angular/core';
 import { TreeNodeModel } from './tree-node.model';
 import { SkyTreeViewContentComponent } from './tree-view-content.component';
 import { SkyTreeViewDropdownComponent } from './tree-view-dropdown.component';
@@ -16,8 +17,10 @@ export class SkyTreeViewComponent {
   @Input() selectable: boolean = false;
   @Input() contentTemplate: TemplateRef<any>;
   @Input() dropdownTemplate: TemplateRef<any>;
+  /* tslint:disable */
   @ContentChildren(forwardRef(() => SkyTreeViewContentComponent)) nodeContent: QueryList<SkyTreeViewContentComponent>;
   @ContentChildren(forwardRef(() => SkyTreeViewDropdownComponent)) nodeDropdown: QueryList<SkyTreeViewDropdownComponent>;
+  /* tslint:enable */
 
   ngAfterContentInit() {
     if (this.nodeContent.length > 0) {
@@ -32,11 +35,15 @@ export class SkyTreeViewComponent {
   public selectAll(nodes: TreeNodeModel[]) {
     nodes.forEach(node => {
       if (this.leafOnlySelection) {
-        if (node.isLeaf()) node.isSelected = true;
+        if (node.isLeaf()) {
+          node.isSelected = true;
+        }
       } else {
         node.isSelected = true;
       }
-      if (!node.isLeaf()) node.isExpanded = true;
+      if (!node.isLeaf()) {
+        node.isExpanded = true;
+      }
 
       this.selectAll(node.children);
     });
@@ -51,6 +58,10 @@ export class SkyTreeViewComponent {
   }
 
   public getTreeDepth(nodes: TreeNodeModel[]) {
+    if (nodes.length === 0) {
+      return 0;
+    }
+
     let depth = 0;
 
     nodes.forEach(node => {

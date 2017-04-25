@@ -27,14 +27,17 @@ export class SkyTreeViewNodeComponent {
   }
 
   public get isSelectable() {
-    if (!this.selectable) return false;
+    if (!this.selectable) {
+      return false;
+    }
 
     return !this.leafOnlySelection || (this.leafOnlySelection && this.node.isLeaf());
   }
 
   private hasSelectedChildren(node: TreeNodeModel): boolean {
-    if (node.isSelected && node !== this.node) {
-      this.selectable ? this.node.isSelected = true : '';
+    if (this.isSelectable && node.isSelected && node !== this.node) {
+      this.node.isSelected = true;
+
       return true;
     }
 
