@@ -82,7 +82,8 @@ describe('Locale currency mask directive', () => {
     });
 
     it('All nodes should be enabled', () => {
-      let nodes = element.queryAll(By.css('sky-contrib-tree-view-node')).map(n => n.componentInstance);
+      let nodes = element.queryAll(By.css('sky-contrib-tree-view-node'))
+        .map(n => n.componentInstance);
       expect(nodes.length).not.toBe(0);
 
       nodes.forEach(n => {

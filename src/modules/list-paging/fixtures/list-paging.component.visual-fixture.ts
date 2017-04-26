@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { SkyModule } from '../../../../src/core';
+import { MicroedgeSkyContribModule } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -32,7 +32,7 @@ export class AppComponent {
 @NgModule({
   imports: [
     BrowserModule,
-    SkyModule
+    MicroedgeSkyContribModule
   ],
   declarations: [
     AppComponent
