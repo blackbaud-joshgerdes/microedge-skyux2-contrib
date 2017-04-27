@@ -1,5 +1,7 @@
-<label>US locale by default</label><input localeCurrencyMask/><br>
-<label>US locale</label><input localeCurrencyMask locale='en-US' /><br>
-<label>Canadian locale</label><input localeCurrencyMask locale='en-CA' /><br>
-<label>Australian locale</label><input localeCurrencyMask locale='en-AU' /><br>
-<label>British locale</label><input localeCurrencyMask locale='en-GB' /><br>
+<form *ngIf="currencyForm" [formGroup]="currencyForm" novalidate autocomplete="off">
+  <label>US locale by default</label><input localeCurrencyMask formControlName="default" [(ngModel)]="amount"/><br>
+  <label>US locale</label><input localeCurrencyMask locale='en-US' formControlName="us" [(ngModel)]="amount"/><br>
+  <label>Canadian locale</label><input localeCurrencyMask locale='en-CA' currency="GBP" formControlName="canadian" [(ngModel)]="amount"/><br>
+  <label>Australian locale</label><input localeCurrencyMask locale='en-AU' formControlName="australian" [(ngModel)]="amount"/><br>
+  <label>British locale</label><input localeCurrencyMask locale='en-GB' formControlName="british" [(ngModel)]="amount"/><br>
+</form>
