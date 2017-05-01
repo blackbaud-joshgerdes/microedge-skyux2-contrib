@@ -75,11 +75,6 @@ export class InputService {
     let selectionEnd = this.inputSelection.selectionEnd;
     let selectionStart = this.inputSelection.selectionStart;
 
-    if (selectionStart > this.rawValue.length) {
-      selectionEnd = this.rawValue.length;
-      selectionStart = this.rawValue.length;
-    }
-
     selectionEnd = keyCode === 46 || keyCode === 63272 ? selectionEnd + 1 : selectionEnd;
     selectionStart = keyCode === 8 ? selectionStart - 1 : selectionStart;
     this.rawValue = this.rawValue.substring(0, selectionStart) +

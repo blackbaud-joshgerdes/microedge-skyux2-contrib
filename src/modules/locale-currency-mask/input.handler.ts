@@ -19,41 +19,46 @@ export class InputHandler {
   }
 
   handleInput(event: any): void {
-    let keyCode = this.inputService.rawValue.charCodeAt(this.inputService.rawValue.length - 1);
-    let rawValueLength = this.inputService.rawValue.length;
-    let rawValueSelectionStart = this.inputService.inputSelection.selectionStart;
-    let storedRawValueLength = this.inputService.storedRawValue.length;
-    this.inputService.rawValue = this.inputService.storedRawValue;
+    if (this.inputService.rawValue) {
+      let keyCode = this.inputService.rawValue.charCodeAt(this.inputService.rawValue.length - 1);
+      let rawValueLength = this.inputService.rawValue.length;
+      let rawValueSelectionStart = this.inputService.inputSelection.selectionStart;
+      let storedRawValueLength = this.inputService.storedRawValue ? this.inputService.storedRawValue.length : 0;
+      this.inputService.rawValue = this.inputService.storedRawValue;
 
-    if (rawValueLength !== rawValueSelectionStart ||
-      Math.abs(rawValueLength - storedRawValueLength) !== 1) {
-      this.setCursorPosition(event);
-      return;
-    }
-
-    if (rawValueLength < storedRawValueLength) {
-      this.inputService.removeNumber(8);
-    }
-
-    if (rawValueLength > storedRawValueLength) {
-      switch (keyCode) {
-        case 43:
-          this.inputService.changeToPositive();
-          break;
-        case 45:
-          this.inputService.changeToNegative();
-          break;
-        default:
-          if (!this.inputService.canInputMoreNumbers) {
-            return;
-          }
-
-          this.inputService.addNumber(keyCode);
+      // this fires every keystroke, if the cursor isn't at the end
+      // or if the event caused 0 or over 1 changes in length (pasting a value, etc)
+      // don't do anything but return the cursor to the end
+      if (rawValueLength !== rawValueSelectionStart ||
+        Math.abs(rawValueLength - storedRawValueLength) !== 1) {
+        this.setCursorPosition(event);
+        return;
       }
-    }
 
-    this.setCursorPosition(event);
-    this.onModelChange(this.inputService.value);
+      if (rawValueLength < storedRawValueLength) {
+        this.inputService.removeNumber(8);
+      }
+
+      if (rawValueLength > storedRawValueLength) {
+        switch (keyCode) {
+          case 43:
+            this.inputService.changeToPositive();
+            break;
+          case 45:
+            this.inputService.changeToNegative();
+            break;
+          default:
+            if (!this.inputService.canInputMoreNumbers) {
+              return;
+            }
+
+            this.inputService.addNumber(keyCode);
+        }
+      }
+
+      this.setCursorPosition(event);
+      this.onModelChange(this.inputService.value);
+    }
   }
 
   handleKeydown(event: any): void {
@@ -64,6 +69,7 @@ export class InputHandler {
       let selectionRangeLength = Math.abs(this.inputService.inputSelection.selectionEnd -
         this.inputService.inputSelection.selectionStart);
 
+      /* istanbul ignore else  */
       if (selectionRangeLength === 0) {
         this.inputService.removeNumber(keyCode);
         this.onModelChange(this.inputService.value);
@@ -92,8 +98,10 @@ export class InputHandler {
         let selectionRangeLength = Math.abs(this.inputService.inputSelection.selectionEnd -
           this.inputService.inputSelection.selectionStart);
 
+        /* istanbul ignore else  */
         if (this.inputService.canInputMoreNumbers && (selectionRangeLength === 0 ||
           selectionRangeLength === this.inputService.rawValue.length)) {
+          /* istanbul ignore else  */
           if (selectionRangeLength === this.inputService.rawValue.length) {
             this.setValue(0);
           }

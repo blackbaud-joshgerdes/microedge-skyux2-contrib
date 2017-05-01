@@ -13,3 +13,6 @@ src/*.js
 src/*.map
 src/*.d.ts
 webdriver-screenshotslocal*
+
+# IDEs and editors
+/.idea

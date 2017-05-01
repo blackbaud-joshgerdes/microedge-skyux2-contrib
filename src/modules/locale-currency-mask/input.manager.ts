@@ -5,16 +5,8 @@ export class InputManager {
   }
 
   setCursorAt(position: number): void {
-    if (this.htmlInputElement.setSelectionRange) {
-      this.htmlInputElement.focus();
-      this.htmlInputElement.setSelectionRange(position, position);
-    } else if (this.htmlInputElement.createTextRange) {
-      let textRange = this.htmlInputElement.createTextRange();
-      textRange.collapse(true);
-      textRange.moveEnd('character', position);
-      textRange.moveStart('character', position);
-      textRange.select();
-    }
+    this.htmlInputElement.focus();
+    this.htmlInputElement.setSelectionRange(position, position);
   }
 
   updateValueAndCursor(newRawValue: string, oldLength: number, selectionStart: number): void {
@@ -37,45 +29,9 @@ export class InputManager {
   }
 
   get inputSelection(): any {
-    let selectionStart = 0;
-    let selectionEnd = 0;
-
-    if (typeof this.htmlInputElement.selectionStart === 'number' &&
-      typeof this.htmlInputElement.selectionEnd === 'number') {
-        selectionStart = this.htmlInputElement.selectionStart;
-        selectionEnd = this.htmlInputElement.selectionEnd;
-    } else {
-      let range = (<any>document).selection.createRange();
-
-      if (range && range.parentElement() === this.htmlInputElement) {
-        let length = this.htmlInputElement.value.length;
-        let normalizedValue = this.htmlInputElement.value.replace(/\r\n/g, '\n');
-        let startRange = this.htmlInputElement.createTextRange();
-        startRange.moveToBookmark(range.getBookmark());
-        let endRange = this.htmlInputElement.createTextRange();
-        endRange.collapse(false);
-
-        if (startRange.compareEndPoints('StartToEnd', endRange) > -1) {
-          selectionStart = selectionEnd = length;
-        } else {
-          selectionStart = -startRange.moveStart('character', - length);
-          selectionStart += normalizedValue.slice(0, selectionStart)
-            .split('\n').length - 1;
-
-          if (startRange.compareEndPoints('EndToEnd', endRange) > -1) {
-            selectionEnd = length;
-          } else {
-            selectionEnd = -startRange.moveEnd('character', - length);
-            selectionEnd += normalizedValue.slice(0, selectionEnd)
-              .split('\n').length - 1;
-          }
-        }
-      }
-    }
-
     return {
-      selectionStart: selectionStart,
-      selectionEnd: selectionEnd
+      selectionStart: this.htmlInputElement.selectionStart,
+      selectionEnd: this.htmlInputElement.selectionEnd
     };
   }
 
@@ -86,6 +42,7 @@ export class InputManager {
   set rawValue(value: string) {
     this._storedRawValue = value;
 
+    /* istanbul ignore else  */
     if (this.htmlInputElement) {
       this.htmlInputElement.value = value;
     }
