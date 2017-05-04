@@ -1,0 +1,15 @@
+<sky-contrib-list [data]="items" [defaultView]="grid">
+  <sky-contrib-list-toolbar></sky-contrib-list-toolbar>
+
+  <sky-contrib-list-view-repeater>
+    <sky-contrib-list-view-repeater-title>
+      <template let-row="row">{{row.column1}}</template>
+    </sky-contrib-list-view-repeater-title>
+    <sky-contrib-list-view-repeater-description>
+      <template let-row="row">{{row.column2}}</template>
+    </sky-contrib-list-view-repeater-description>
+    <sky-contrib-list-view-repeater-content>
+      <template let-row="row">{{row.column3}}</template>
+    </sky-contrib-list-view-repeater-content>
+  </sky-contrib-list-view-repeater>
+</sky-contrib-list>

@@ -1,21 +1,19 @@
-# Node generated files
-node_modules
-npm-debug.log
-
-# OS generated files
-Thumbs.db
-.DS_Store
-
-# Ignored files
-/coverage
-!*.d.ts
-.vscode
-/config
-/demo
-/visual
-/webdriver-*
-.editorconfig
-.gitignore
-.npmignore
+# NPM ignore #
+.*
+skyuxconfig.json
 tsconfig.json
 tslint.json
+/.vscode/
+/config/
+/coverage/
+/demo/
+/node_modules/
+/scripts/
+/src/
+/visual/
+/webdriver-*
+/dist/app/
+/dist/locales/
+/dist/modules/**/*.spec.ts
+/dist/modules/**/*.visual-spec.js
+/dist/modules/**/fixtures/
