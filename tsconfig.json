@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -8,7 +7,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "noEmitHelpers": false,
+    "noEmitHelpers": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "lib": [
@@ -20,18 +19,11 @@
       "node"
     ]
   },
-  "files": [
-    "src/core.ts"
-  ],
   "exclude": [
     "node_modules",
     "dist"
   ],
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false },
-  "angularCompilerOptions": {
-    "genDir": "dist",
-    "debug": true
-  }
+  "atom": { "rewriteTsconfig": false }
 }

@@ -1,0 +1,19 @@
+<sky-contrib-list [data]="items" [defaultView]="default">
+  <sky-contrib-list-toolbar></sky-contrib-list-toolbar>
+
+  <sky-contrib-list-filters>
+    <sky-contrib-list-filter [filter]="filterOnColumn2" [view]="default" [name]="'filterOnColumn2'">
+      <template let-filter="filter">
+        <select [(ngModel)]="filter.value" (ngModelChange)="filter.changed($event)">
+          <option value="">Column2</option>
+          <option *ngFor="let option of optionsColumn2 | async" [value]="option">{{ option.toUpperCase() }}</option>
+        </select>
+      </template>
+    </sky-contrib-list-filter>
+  </sky-contrib-list-filters>
+
+  <sky-contrib-list-view-grid fit="scroll" #default>
+    <sky-contrib-list-view-grid-column field="column1" heading="Column1"></sky-contrib-list-view-grid-column>
+    <sky-contrib-list-view-grid-column field="column2" heading="Column2"></sky-contrib-list-view-grid-column>
+  </sky-contrib-list-view-grid>
+</sky-contrib-list>
