@@ -1,4 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { SkyContribChecklistModule } from './modules/checklist';
 import { SkyContribNavbarModule } from './modules/navbar';
 import { SkyContribPageModule } from './modules/page';
@@ -23,6 +24,8 @@ import { SkyTextExpandModule } from './modules/text-expand';
 import { SkyToastModule } from './modules/toast';
 import { SkyTreeViewModule } from './modules/tree-view';
 import { SkyWizardModule } from './modules/wizard';
+import { SkyContribLocaleModule } from './modules/locale';
+import { SkyContribTranslateModule } from './modules/translation';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -50,7 +53,10 @@ import { SkyWizardModule } from './modules/wizard';
     SkyTextExpandModule,
     SkyToastModule,
     SkyTreeViewModule,
-    SkyWizardModule
+    SkyWizardModule,
+    SkyContribLocaleModule,
+    SkyContribTranslateModule,
+    HttpModule
   ],
   exports: [
     SkyContribChecklistModule,
@@ -76,7 +82,9 @@ import { SkyWizardModule } from './modules/wizard';
     SkyTextExpandModule,
     SkyToastModule,
     SkyTreeViewModule,
-    SkyWizardModule
+    SkyWizardModule,
+    SkyContribLocaleModule,
+    SkyContribTranslateModule
   ]
 })
 export class MicroedgeSkyContribModule {
@@ -107,3 +115,5 @@ export * from './modules/tree-view';
 export * from './modules/utils';
 export * from './modules/vertical-tabbar';
 export * from './modules/wizard';
+export * from './modules/locale';
+export * from './modules/translation';
