@@ -221,7 +221,7 @@ export class SkyListViewGridComponent
       .subscribe(field => {
         let selectors = [`${column.field}:DESC`];
         if (field) {
-          selectors = [`${field.fieldSelector}:${field.descending ? 'DESC' : 'ASC'}`];
+          selectors = [`${field.fieldSelector}:${field.descending ? 'ASC' : 'DESC'}`];
         }
 
         this.dispatcher.sortSetFieldSelectors(selectors);
