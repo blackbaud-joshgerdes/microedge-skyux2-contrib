@@ -1,0 +1,95 @@
+@import '../../scss/variables';
+@import '../../scss/buttons';
+
+:host {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 710px;
+
+  .link-records-item-info {
+    font-family: $sky-font-family-base;
+    font-size: $sky-font-size-lg;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .link-records-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 40px;
+  }
+
+  .link-records-item-original,
+  .link-records-item-match {
+    background-color: $sky-color-white;
+    border: 1px solid $sky-border-color;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    width: 350px;
+
+    .link-records-item-content {
+      flex-grow: 1;
+      font-size: $sky-font-me-size-md;
+      padding: 10px 20px 10px 25px;
+    }
+
+    .link-records-item-header,
+    .link-records-item-footer {
+      display: flex;
+      flex-direction: row;
+      min-height: 44px;
+
+    }
+
+    .link-records-item-header {
+      border-bottom: 1px solid $sky-border-color;
+      font-family: $sky-font-family-narrow-light;
+      font-size: $sky-alternate-font-size-base;
+      font-weight: 200;
+      padding: 10px 20px 10px 25px;
+    }
+
+    .link-records-item-footer {
+      border-top: 1px solid $sky-border-color;
+      padding: 5px 20px 5px 25px;
+    }
+  }
+
+  .link-records-item-status {
+    align-items: center;
+    background-color: $sky-color-white;
+    border-radius: 22px;
+    border: 1px solid $sky-border-color;
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    justify-content: center;
+    margin: -18px;
+    text-align: center;
+    width: 45px;
+    z-index: 1;
+
+    i {
+      color: $sky-color-green;
+      font-size: 29px;
+      margin: 0 0 0 1px;
+
+      &.fa-question-circle {
+        color: $sky-color-black;
+      }
+    }
+  }
+
+  @media(max-width: $sky-screen-sm-min) {
+    width: 350px;
+
+    .link-records-item {
+      flex-direction: column;
+    }
+  }
+}

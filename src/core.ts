@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { SkyContribAnalyticsModule } from './modules/analytics';
 import { SkyContribChecklistModule } from './modules/checklist';
+import { SkyContribLinkRecordsModule } from './modules/link-records';
 import { SkyContribLocaleModule } from './modules/locale';
 import { SkyContribNavbarModule } from './modules/navbar';
 import { SkyContribPageModule } from './modules/page';
@@ -34,6 +35,7 @@ import { SkyWizardModule } from './modules/wizard';
     HttpModule,
     SkyContribAnalyticsModule,
     SkyContribChecklistModule,
+    SkyContribLinkRecordsModule,
     SkyContribLocaleModule,
     SkyContribNavbarModule,
     SkyContribPageModule,
@@ -63,6 +65,7 @@ import { SkyWizardModule } from './modules/wizard';
   exports: [
     SkyContribAnalyticsModule,
     SkyContribChecklistModule,
+    SkyContribLinkRecordsModule,
     SkyContribLocaleModule,
     SkyContribNavbarModule,
     SkyContribPageModule,
@@ -97,6 +100,7 @@ export * from './modules/analytics';
 export * from './modules/checklist';
 export * from './modules/draggable-repeater';
 export * from './modules/dropdown';
+export * from './modules/link-records';
 export * from './modules/list';
 export * from './modules/list-action-bar';
 export * from './modules/list-data-provider-in-memory';

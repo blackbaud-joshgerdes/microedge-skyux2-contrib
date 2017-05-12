@@ -1,0 +1,41 @@
+<div *ngIf="record.status == Statuses.Suggested" class="link-records-item-info">A possible match has been identified for this record. Would you like to link it?</div>
+<div *ngIf="record.status == Statuses.Linked" class="link-records-item-info">You have successfully linked this record!</div>
+<div *ngIf="record.status == Statuses.NoMatch" class="link-records-item-info">We are not able to identify a possible match for this record.</div>
+<div *ngIf="record.status == Statuses.Created" class="link-records-item-info">You have successfully created and linked this record!</div>
+<div *ngIf="record.status == Statuses.Edit" class="link-records-item-info">Do you want to update this record with this new information?</div>
+<div class="link-records-item">
+  <div class="link-records-item-original">
+    <div class="link-records-item-header">
+      <sky-contrib-link-records-renderer [item]="record.item" [match]="record.match" [template]="itemTitleTemplate || defaultItemTitleTemplate"></sky-contrib-link-records-renderer>
+    </div>
+    <sky-contrib-link-records-renderer class="link-records-item-content" [item]="record.item" [match]="record.match" [template]="itemTemplate || defaultItemTemplate"></sky-contrib-link-records-renderer>
+    <div class="link-records-item-footer"></div>
+  </div>
+  <div class="link-records-item-status"><i class="fa"
+    [class.fa-check]="record.status == Statuses.Linked"
+    [class.fa-pencil]="record.status == Statuses.Edit"
+    [class.fa-plus-circle]="record.status == Statuses.Created"
+    [class.fa-question-circle]="record.status == Statuses.Suggested || record.status == Statuses.NoMatch"
+  ></i></div>
+  <div class="link-records-item-match">
+    <div class="link-records-item-header">
+      <div *ngIf="record.status == Statuses.Created">Record created</div>
+      <div *ngIf="record.status == Statuses.NoMatch">No match Found</div>
+      <div *ngIf="record.status == Statuses.Suggested || record.status == Statuses.Linked || record.status == Statuses.Edit">Match Found</div>
+    </div>
+    <sky-contrib-link-records-renderer class="link-records-item-content" [item]="record.item" [match]="record.match" [template]="matchTemplate || defaultMatchTemplateContent"></sky-contrib-link-records-renderer>
+    <div class="link-records-item-footer">
+      <button *ngIf="record.status == Statuses.Suggested" (click)="edit()" class="sky-btn sky-btn-primary">Link this Record</button>
+      <button *ngIf="record.status == Statuses.Suggested" (click)="unlink()" class="sky-btn sky-btn-link">Add or search for a record</button>
+      <button *ngIf="record.status == Statuses.Linked || record.status == Statuses.Created" (click)="unlink()" class="sky-btn sky-btn-link">Remove this link</button>
+      <button *ngIf="record.status == Statuses.NoMatch" (click)="create()" class="sky-btn-link">Create a new record</button>
+      <button *ngIf="record.status == Statuses.Edit" (click)="link()" class="sky-btn sky-btn-primary">Apply Updates</button>
+      <button *ngIf="record.status == Statuses.Edit && status" (click)="link()" class="sky-btn sky-btn-primary">Link without updating</button>
+      <button *ngIf="record.status == Statuses.Edit" (click)="cancelEdit()" class="sky-btn sky-btn-link">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<template #defaultItemTitleTemplate let-item="item">Item</template>
+<template #defaultItemTemplate let-item="item">{{ item?.id }}</template>
+<template #defaultMatchTemplateContent let-match="match">{{ match?.item?.id }}</template>
