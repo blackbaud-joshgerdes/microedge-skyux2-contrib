@@ -7,6 +7,27 @@ export class SkyDemoComponentsService {
   public getComponents(filter?: string): SkyDemoComponent[] {
     return [
       {
+        name: 'Link Records',
+        icon: 'link',
+        // tslint:disable-next-line
+        summary: `The link records component is used to match data between two sources.`,
+        url: '/components/link-records',
+        getCodeFiles: function () {
+          return [
+            {
+              name: 'link-records-demo.component.html',
+              fileContents: require('!!raw-loader!./link-records/link-records-demo.component.html')
+            },
+            {
+              name: 'link-records-demo.component.ts',
+              fileContents: require('!!raw-loader!./link-records/link-records-demo.component.ts'),
+              componentName: 'SkyLinkRecordsDemoComponent',
+              bootstrapSelector: 'sky-contrib-link-records-demo'
+            }
+          ];
+        }
+      },
+      {
         name: 'List',
         icon: 'list',
         // tslint:disable-next-line
