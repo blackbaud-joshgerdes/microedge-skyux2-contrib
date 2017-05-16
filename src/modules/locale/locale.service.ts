@@ -4,6 +4,8 @@ import { translationDict } from '../i18n';
 
 @Injectable()
 export class SkyContribLocaleService {
+  public languageCode: string;
+
   constructor(
     public locale: LocaleService,
     public localization: LocalizationService
@@ -34,14 +36,14 @@ export class SkyContribLocaleService {
     }
   }
 
-  public changeActiveLocale(localeCode: string) {
-    if (localeCode && this.localization.languageCode !== localeCode) {
-      localeCode = localeCode.toLowerCase();
+  public changeActiveLocale(langCode: string) {
+    if (langCode && this.languageCode !== langCode) {
+      langCode = langCode.replace('_', '-').toLowerCase();
       // If the chosen locale matches the browser language, we clear the language value
       // from local storage so that the user can use browser settings
-      this.currentLanguage = localeCode ===
-        navigator.language.toLowerCase() ? null : localeCode;
-      this.setCurrentLocale(localeCode);
+      this.currentLanguage = langCode ===
+        navigator.language.toLowerCase() ? null : langCode;
+      this.setCurrentLocale(langCode);
     }
   }
 
@@ -51,14 +53,10 @@ export class SkyContribLocaleService {
       userLang = 'en-us';
     }
 
-    this.localization.languageCode = userLang;
+    this.languageCode = userLang;
     let currentLanguageSplit = userLang.split('-');
     this.locale.setCurrentLocale(currentLanguageSplit[0], currentLanguageSplit[1]);
     this.localization.updateTranslation(userLang);
-  }
-
-  public get languageCode(): string {
-    return this.localization.languageCode;
   }
 
   public getDefaultLocale(): string {
