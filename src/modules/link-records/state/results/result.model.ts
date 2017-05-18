@@ -1,4 +1,4 @@
-export class LinkRecordsMatchItemModel {
+export class LinkRecordsResultModel {
   public key: string;
   public status: string;
   public item: any;

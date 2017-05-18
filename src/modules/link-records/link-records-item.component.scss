@@ -1,5 +1,6 @@
 @import '../../scss/variables';
 @import '../../scss/buttons';
+@import '../../scss/mixins';
 
 :host {
   align-items: center;
@@ -9,9 +10,8 @@
   width: 710px;
 
   .link-records-item-info {
-    font-family: $sky-font-family-base;
+    font-family: $sky-font-family-base-semibold;
     font-size: $sky-font-size-lg;
-    font-weight: 600;
     text-align: center;
   }
 
@@ -29,8 +29,9 @@
     border: 1px solid $sky-border-color;
     display: flex;
     flex-direction: column;
-    height: 200px;
+    min-height: 200px;
     width: 350px;
+    @include sky-shadow();
 
     .link-records-item-content {
       flex-grow: 1;
@@ -49,7 +50,7 @@
     .link-records-item-header {
       border-bottom: 1px solid $sky-border-color;
       font-family: $sky-font-family-narrow-light;
-      font-size: $sky-alternate-font-size-base;
+      font-size: 22px;
       font-weight: 200;
       padding: 10px 20px 10px 25px;
     }

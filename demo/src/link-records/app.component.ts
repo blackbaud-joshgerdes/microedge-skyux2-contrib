@@ -1,20 +1,39 @@
-import { Component, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, NgModule, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MicroedgeSkyContribModule } from '../../../src/core';
 import { Bootstrapper } from '../../bootstrapper';
 import { Observable } from 'rxjs/Rx';
+import { WindowRef } from '../../../src/modules/utils/windowref';
 import {
-  LinkRecordsMatchItemModel
-} from '../../../src/modules/link-records/link-records-match-item.model';
-import {
-  Statuses
-} from '../../../src/modules/link-records/link-records-statuses';
+  Statuses,
+  SkyContribLinkRecordsComponent,
+  LinkRecordsMatchModel
+} from '../../../src/modules/link-records';
 
 @Component({
   selector: 'sky-demo-app',
   templateUrl: './app.component.html'
 })
 class AppComponent {
+  @ViewChild(SkyContribLinkRecordsComponent) item: SkyContribLinkRecordsComponent;
+  window: any;
+
+  constructor(windowRef: WindowRef) {
+    this.window = windowRef.nativeWindow;
+  }
+
+  showResults() {
+    this.results.take(1).subscribe(r => this.window.alert(JSON.stringify(r)));
+  }
+
+  get results() {
+    return this.item.results;
+  }
+
+  public matchFields: Array<string> = ['description', 'name'];
+
+  public newItem: any = { id: '69', address: 6969, name: 'Kiwi', description: 'Kathy eats kiwis.' };
+
   public items: Observable<any> = Observable.of([
     { id: '1', address: 101, name: 'Apple', description: 'Anne eats apples' },
     { id: '2', address: 202, name: 'Banana', description: 'Ben eats bananas' },
@@ -25,33 +44,33 @@ class AppComponent {
     { id: '7', address: 707, name: 'Strawberry', description: 'Sally eats strawberries' }
   ]);
 
-  public matches: Observable<Array<LinkRecordsMatchItemModel>> = Observable.of([
-    new LinkRecordsMatchItemModel({
+  public matches: Observable<Array<LinkRecordsMatchModel>> = Observable.of([
+    new LinkRecordsMatchModel({
       key: '1',
       status: null,
       item: null
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '2',
       status: Statuses.Edit,
       item: { id: '22', address: 111, name: 'Big Apple', description: 'George and his apples' }
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '3',
       status: Statuses.Suggested,
       item: { id: '11', address: 333, name: 'Perfect Pear', description: 'Peach loves pears' }
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '4',
       status: Statuses.Created,
       item: { id: '44', address: 777, name: 'Grape Ape', description: 'Jane loves bananas' }
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '5',
       status: Statuses.NoMatch,
       item: null
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '7',
       status: Statuses.Linked,
       item: { id: '77', address: 999, name: 'Strawberry Shortcake', description: 'Steve loves strawberries' }

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
-  LinkRecordsMatchItemModel
-} from '../../../../src/modules/link-records/link-records-match-item.model';
-import {
-  Statuses
-} from '../../../../src/modules/link-records/link-records-statuses';
+  Statuses,
+  LinkRecordsMatchModel
+} from '../../../../src/modules/link-records';
 
 @Component({
   selector: 'sky-contrib-link-records-demo',
@@ -19,33 +17,33 @@ export class SkyLinkRecordsDemoComponent {
     { id: '4', address: 404, name: 'Durian', description: 'George eats a durian' }
   ]);
 
-  public matches: Observable<Array<LinkRecordsMatchItemModel>> = Observable.of([
-    new LinkRecordsMatchItemModel({
+  public matches: Observable<Array<LinkRecordsMatchModel>> = Observable.of([
+    new LinkRecordsMatchModel({
       key: '1',
       status: null,
       item: null
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '2',
       status: Statuses.Edit,
       item: { id: '22', address: 111, name: 'Big Apple', description: 'George and his apples' }
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '3',
       status: Statuses.Suggested,
       item: { id: '11', address: 333, name: 'Perfect Pear', description: 'Peach loves pears' }
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '4',
       status: Statuses.Created,
       item: { id: '44', address: 777, name: 'Grape Ape', description: 'Jane loves bananas' }
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '1',
       status: Statuses.NoMatch,
       item: null
     }),
-    new LinkRecordsMatchItemModel({
+    new LinkRecordsMatchModel({
       key: '2',
       status: Statuses.Linked,
       item: { id: '77', address: 999, name: 'Strawberry Shortcake', description: 'Steve loves strawberries' }

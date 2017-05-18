@@ -1,8 +1,8 @@
 import {
   Component, Input, TemplateRef, ViewChild, ViewContainerRef, ChangeDetectionStrategy, OnInit
 } from '@angular/core';
-import { LinkRecordsItemModel } from './link-records-item.model';
-import { LinkRecordsMatchItemModel } from './link-records-match-item.model';
+import { LinkRecordsMatchModel } from './state/matches/match.model';
+import { LinkRecordsApi } from './link-records-api';
 
 @Component({
   selector: 'sky-contrib-link-records-renderer',
@@ -11,9 +11,12 @@ import { LinkRecordsMatchItemModel } from './link-records-match-item.model';
 })
 export class SkyContribLinkRecordsRendererComponent implements OnInit {
   @Input() item: any;
-  @Input() match: LinkRecordsMatchItemModel;
+  @Input() match: LinkRecordsMatchModel;
+  @Input() fields: Array<string>;
   @Input() template: TemplateRef<any>;
   @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
+
+  constructor(public api: LinkRecordsApi) {}
 
   ngOnInit() {
     if (this.template !== undefined) {
