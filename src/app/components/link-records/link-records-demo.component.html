@@ -1,25 +1,56 @@
 <h3>Link records child templates</h3>
-<sky-contrib-link-records [items]="items" [matches]="matches">
+<sky-contrib-link-records [items]="items" [matches]="matches" [matchFields]="matchFields">
   <sky-contrib-link-records-item-title>
     <template let-item="item">Applicant</template>
   </sky-contrib-link-records-item-title>
   <sky-contrib-link-records-item-content>
     <template let-item="item" >
       <div>Original Item</div>
-      <div>{{ item?.id }} {{ item?.name }}</div>
+      <div>{{ item?.id }}</div>
+      <div>{{ item?.name }}</div>
+      <div>{{ item?.description }}</div>
     </template>
   </sky-contrib-link-records-item-content>
   <sky-contrib-link-records-match-content>
     <template let-match="match">
       <div>Match Item</div>
-      <div>{{ match?.item?.id }} {{ match?.item?.name }}</div>
+      <div>{{ match?.item?.id }}</div>
+      <div>{{ match?.item?.name }}</div>
+      <div>{{ match?.item?.description }}</div>
     </template>
   </sky-contrib-link-records-match-content>
+  <sky-contrib-link-records-nomatch-content>
+    <template let-item="item" let-match="match" let-api="api">
+      <div *ngIf="match?.item">
+        <div>Match Item</div>
+        <div>{{ match?.item?.id }}</div>
+        <div>{{ match?.item?.name }}</div>
+        <div>{{ match?.item?.description }}</div>
+      </div>
+      <div *ngIf="!match?.item">
+        <div>Match Search</div>
+        <button class="sky-btn sky-btn-default" (click)="api.addSelectedItem(item?.id, newItem)">
+          Test Select
+        </button>
+      </div>
+    </template>
+  </sky-contrib-link-records-nomatch-content>
 </sky-contrib-link-records>
 
+<button class="sky-btn sky-btn-primary" (click)="showResults()">Show Results</button>
+
 <h3>Default link with templates</h3>
-<sky-contrib-link-records [items]="items" [matches]="matches" [itemTemplate]="item" [matchTemplate]="match"></sky-contrib-link-records>
+<sky-contrib-link-records [items]="items" [matches]="matches" [itemTemplate]="item" [matchTemplate]="match" [matchFields]="matchFields"></sky-contrib-link-records>
 
 <template #itemTitle let-item="item">Custom Title</template>
-<template #item let-item="item">{{ item?.name }}</template>
-<template #match let-match="match">Custom Label: {{ match?.item?.name }}</template>
+<template #item let-item="item">
+  <div>{{ item?.name }}</div>
+  <div>{{ item?.description }}</div>
+</template>
+<template #match let-match="match">
+  <div>Custom Label:</div>
+  <div>{{ match?.item?.name }}</div>
+  <div>{{ match?.item?.description }}</div>
+</template>
+
+<button class="sky-btn sky-btn-primary" (click)="showResults()">Show Results</button>

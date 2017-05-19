@@ -1,4 +1,3 @@
-<h1>Default link records</h1>
 <sky-contrib-link-records [items]="items" [matches]="matches" [matchFields]="matchFields">
   <sky-contrib-link-records-item-title>
     <template let-item="item">Applicant</template>
@@ -28,5 +27,3 @@
 </sky-contrib-link-records>
 
 <button class="sky-btn sky-btn-primary" (click)="showResults()">Show Results</button>
-
-<pre>{{ results | async | json }}</pre>
