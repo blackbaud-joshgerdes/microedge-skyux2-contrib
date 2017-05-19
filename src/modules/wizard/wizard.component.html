@@ -1,18 +1,15 @@
 <sky-modal>
   <sky-modal-header>
-    <sky-contrib-wizard-renderer [template]="headerTemplate || defaultHeaderTemplate"></sky-contrib-wizard-renderer>
+    <ng-content select="sky-contrib-wizard-header"></ng-content>
   </sky-modal-header>
   <sky-modal-content>
     <sky-contrib-wizard-step-list [steps]="steps" [currentStep]="currentStep" [wizard]="self"></sky-contrib-wizard-step-list>
-    <sky-contrib-wizard-renderer [template]="stepsTemplate || defaultStepsTemplate"></sky-contrib-wizard-renderer>
+    <ng-content select="sky-contrib-wizard-steps"></ng-content>
   </sky-modal-content>
   <sky-modal-footer>
     <button type="button" class="btn btn-default footer-btn" [hidden]="currentStep == steps.first" (click)="goToPrevious()">Previous</button>
-    <button type="button" class="btn btn-primary footer-btn" [disabled]="currentStep && !currentStep.validator(model)" (click)="goToNext()" [hidden]="currentStep == steps.last">Next</button>
+    <button type="button" class="btn btn-primary footer-btn" [disabled]="!currentStep.validator(model)" (click)="goToNext()" [hidden]="currentStep == steps.last">Next</button>
     <button type="button" class="btn btn-primary footer-btn" [disabled]="!isValid()" [hidden]="visitedSteps.length != steps.length" (click)="saveAndClose()">Save and Close</button>
     <button type="button" class="btn btn-link footer-btn" (click)="modal.closeButtonClick()">Cancel</button>
   </sky-modal-footer>
 </sky-modal>
-
-<template #defaultHeaderTemplate></template>
-<template #defaultStepsTemplate></template>
