@@ -1,21 +1,16 @@
-<sky-contrib-draggable-repeater-renderer [template]="itemLeftTemplate || defaultItemLeftTemplate"></sky-contrib-draggable-repeater-renderer>
+<ng-content select="sky-contrib-draggable-repeater-item-left"></ng-content>
 <div class="sky-contrib-draggable-repeater-item-content vertical-center">
   <div class="sky-contrib-draggable-repeater-item-title">
-    <sky-contrib-draggable-repeater-renderer [template]="itemTitleTemplate || defaultItemTitleTemplate"></sky-contrib-draggable-repeater-renderer>
+    <ng-content select="sky-contrib-draggable-repeater-item-title"></ng-content>
     <sky-chevron [direction]="isExpanded ? 'up' : 'down'" (directionChange)="toggle($event)" *ngIf="isExpandable && !showContent"></sky-chevron>
   </div>
-  <sky-contrib-draggable-repeater-renderer *ngIf="!isExpanded || showContent" [template]="itemContentTemplate || defaultItemContentTemplate"></sky-contrib-draggable-repeater-renderer>
+  <ng-content select="sky-contrib-draggable-repeater-item-content" *ngIf="!isExpanded || showContent"></ng-content>
 </div>
 <div class="sky-contrib-draggable-repeater-item-right">
   <div class="sky-contrib-draggable-repeater-item-right-content vertical-center">
-    <sky-contrib-draggable-repeater-renderer [template]="itemRightTemplate || defaultItemRightTemplate"></sky-contrib-draggable-repeater-renderer>
+    <ng-content select="sky-contrib-draggable-repeater-item-right"></ng-content>
   </div>
   <div class="sky-contrib-draggable-repeater-item-drag-handle vertical-center">
     <i class="fa fa-sort sky-contrib-draggable-repeater-item-drag-handle-icon" aria-hidden="true"></i>
   </div>
 </div>
-
-<template #defaultItemTitleTemplate></template>
-<template #defaultItemLeftTemplate></template>
-<template #defaultItemRightTemplate></template>
-<template #defaultItemContentTemplate></template>

@@ -10,7 +10,8 @@ export class SkyContribTranslateService {
   }
 
   public translate(key: string): string {
-    return this.localeService.localization.translate(key, null, this.localeService.languageCode);
+    return this.localeService.localization
+      .translate(key, null, this.localeService.languageCode.toLowerCase());
   }
 
   public addTranslation(language: string, translation: any) {

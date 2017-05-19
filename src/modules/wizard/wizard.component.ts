@@ -1,11 +1,8 @@
 import { Component, Input, Output, EventEmitter,
-  ViewChild, ContentChildren, QueryList, TemplateRef, forwardRef,
-  AfterContentInit } from '@angular/core';
+  ViewChild, ContentChildren, QueryList } from '@angular/core';
 import { SkyWizardStepComponent } from './wizard-step.component';
 import { SkyWizardStepListComponent } from './wizard-step-list.component';
 import { SkyModalComponent, SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
-import { SkyContribWizardHeaderComponent } from './wizard-header.component';
-import { SkyContribWizardStepsComponent } from './wizard-steps.component';
 
 @Component({
   selector: 'sky-contrib-wizard',
@@ -14,18 +11,12 @@ import { SkyContribWizardStepsComponent } from './wizard-steps.component';
     './wizard.component.scss'
   ]
 })
-export class SkyWizardComponent implements AfterContentInit {
-  @Input() public model: any = {};
-  @Output() public onSaveAndClose: EventEmitter<any> = new EventEmitter();
-  @ViewChild(SkyModalComponent) public modal: SkyModalComponent;
-  @ViewChild(SkyWizardStepListComponent) public stepList: SkyWizardStepListComponent;
-  @ContentChildren(SkyWizardStepComponent, {descendants: true}) public steps: QueryList<SkyWizardStepComponent> = null;
-  @Input() public headerTemplate: TemplateRef<any>;
-  @Input() public stepsTemplate: TemplateRef<any>;
-  @ContentChildren(forwardRef(() => SkyContribWizardHeaderComponent)) public headerNode:
-    QueryList<SkyContribWizardHeaderComponent>;
-  @ContentChildren(forwardRef(() => SkyContribWizardStepsComponent)) public stepsNode:
-    QueryList<SkyContribWizardStepsComponent>;
+export class SkyWizardComponent {
+  @Input() model: any = {};
+  @Output() onSaveAndClose: EventEmitter<any> = new EventEmitter();
+  @ViewChild(SkyModalComponent) modal: SkyModalComponent;
+  @ViewChild(SkyWizardStepListComponent) stepList: SkyWizardStepListComponent;
+  @ContentChildren(SkyWizardStepComponent) steps: QueryList<SkyWizardStepComponent> = null;
 
   self: SkyWizardComponent;
   visitedSteps: Array<SkyWizardStepComponent> = [];
@@ -40,7 +31,7 @@ export class SkyWizardComponent implements AfterContentInit {
   }
 
   get currentStep() {
-    if (this.step == null && this.steps != null && this.steps.length > 0) {
+    if (this.step === null && this.steps !== null) {
       this.step = this.steps.first;
       this.visitedSteps.push(this.step);
     }
@@ -50,16 +41,6 @@ export class SkyWizardComponent implements AfterContentInit {
 
   constructor(private modalService: SkyModalService) {
     this.self = this;
-  }
-
-  public ngAfterContentInit() {
-    if (this.headerNode.length > 0) {
-      this.headerTemplate = this.headerNode.first.template;
-    }
-
-    if (this.stepsNode.length > 0) {
-      this.stepsTemplate = this.stepsNode.first.template;
-    }
   }
 
   public goToPrevious(): void {
