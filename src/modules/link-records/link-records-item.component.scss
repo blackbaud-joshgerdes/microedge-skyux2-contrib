@@ -18,7 +18,7 @@
   .link-records-item {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     margin: 10px 0 40px;
   }
@@ -63,25 +63,28 @@
 
   .link-records-item-status {
     align-items: center;
-    background-color: $sky-color-white;
-    border-radius: 22px;
-    border: 1px solid $sky-border-color;
+    justify-content: center;
     display: flex;
     flex-direction: row;
-    height: 45px;
-    justify-content: center;
-    margin: -18px;
-    text-align: center;
-    width: 45px;
-    z-index: 1;
 
-    i {
-      color: $sky-color-green;
-      font-size: 29px;
-      margin: 0 0 0 1px;
+    &-content {
+      background-color: $sky-color-white;
+      border-radius: 22px;
+      border: 1px solid $sky-border-color;
+      height: 45px;
+      margin: -18px;
+      text-align: center;
+      width: 45px;
+      z-index: 1;
 
-      &.fa-question-circle {
-        color: $sky-color-black;
+      i {
+        color: $sky-color-green;
+        font-size: 29px;
+        margin: 7px 0 0;
+
+        &.fa-question-circle {
+          color: $sky-color-black;
+        }
       }
     }
   }

@@ -40,10 +40,16 @@
   }
 
   /deep/ sky-checkbox {
-    display: block;
-    position: relative;
-    width: 100%;
-    padding: 0;
-    cursor: pointer;
+    label {
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    .sky-checkbox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+    }
   }
 }
