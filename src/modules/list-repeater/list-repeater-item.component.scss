@@ -11,7 +11,7 @@
     margin: 0;
   }
 
-  sky-contrib-list-repeater-item-left {
+  .sky-contrib-list-repeater-item-left {
     flex-grow: 0;
     margin: 0 10px 0 0;
   }
@@ -21,23 +21,23 @@
     flex-basis: 80%;
   }
 
-  sky-contrib-list-repeater-item-title {
+  .sky-contrib-list-repeater-item-title {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
 
-  sky-contrib-list-repeater-item-right {
+  .sky-contrib-list-repeater-item-right {
     flex-grow: 0;
     margin: 0 0 0 10px;
   }
 
-  sky-contrib-list-repeater-item-content {
+  .sky-contrib-list-repeater-item-content {
     display: block;
     flex-basis: 100%;
   }
 
-  sky-contrib-list-repeater-item-editor {
+  .sky-contrib-list-repeater-item-editor {
     display: block;
     flex-basis: 100%;
   }
