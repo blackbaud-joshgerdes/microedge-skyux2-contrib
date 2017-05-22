@@ -8,6 +8,7 @@ export class LinkRecordsItemModel {
   public matchFields: Array<string> = [];
 
   constructor(data: any = null) {
+    /* istanbul ignore else */
     if (data != null) {
       this.key = data.key;
       this.status = data.status;

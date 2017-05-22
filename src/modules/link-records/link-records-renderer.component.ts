@@ -19,6 +19,7 @@ export class SkyContribLinkRecordsRendererComponent implements OnInit {
   constructor(public api: LinkRecordsApi) {}
 
   ngOnInit() {
+    /* istanbul ignore else */
     if (this.template !== undefined) {
       this.container.createEmbeddedView(this.template, this);
     }

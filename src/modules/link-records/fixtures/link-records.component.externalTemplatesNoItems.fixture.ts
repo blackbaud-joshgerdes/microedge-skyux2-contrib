@@ -7,10 +7,10 @@ import { Statuses } from '../link-records-statuses';
 import { LinkRecordsMatchModel } from '../state/matches/match.model';
 
 @Component({
-  selector: 'sky-demo-app',
-  templateUrl: './link-records.component.visual-fixture.html'
+  selector: 'sky-test-cmp',
+  templateUrl: './link-records.component.externalTemplatesNoItems.fixture.html'
 })
-class AppComponent {
+export class SkyLinkRecordsExternalTemplatesTestComponent {
   public matchFields: Array<string> = ['description', 'name'];
 
   public items: Observable<any> = Observable.of([
@@ -58,25 +58,7 @@ class AppComponent {
     new LinkRecordsMatchModel({
       key: '8',
       status: Statuses.Linked,
-      item: { id: '88', address: 888,
-        name: 'Strawberry Shortcake', description: 'Steve loves strawberries' }
+      item: { id: '88', address: 888, name: 'Strawberry Shortcake', description: 'Steve loves strawberries' }
     })
   ]);
 }
-
-@NgModule({
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [
-    BrowserModule,
-    MicroedgeSkyContribModule
-  ],
-  declarations: [
-    AppComponent
-  ],
-  bootstrap: [
-    AppComponent
-  ]
-})
-class AppModule { }
-
-Bootstrapper.bootstrapModule(AppModule);
