@@ -3,7 +3,10 @@ import { AsyncItem } from 'microedge-rxstate/dist';
 import * as moment from 'moment';
 
 import { LinkRecordsFieldModel } from './field.model';
-import { LinkRecordsFieldsSetFieldsAction } from './actions';
+import {
+  LinkRecordsFieldsSetFieldsAction,
+  LinkRecordsFieldsClearFieldsAction
+} from './actions';
 
 export class LinkRecordsFieldsOrchestrator
   extends LinkRecordsStateOrchestrator<AsyncItem<{[key: string]:
@@ -12,7 +15,8 @@ export class LinkRecordsFieldsOrchestrator
     super();
 
     this
-      .register(LinkRecordsFieldsSetFieldsAction, this.setFields);
+      .register(LinkRecordsFieldsSetFieldsAction, this.setFields)
+      .register(LinkRecordsFieldsClearFieldsAction, this.clearFields);
   }
 
   private setFields(
@@ -23,6 +27,17 @@ export class LinkRecordsFieldsOrchestrator
       let fields = (newStateItem[action.key]) ? newStateItem[action.key] : [];
       let newFields = Object.assign(fields, action.fields).filter(f => f);
       newStateItem[action.key] = newFields;
+
+      return new AsyncItem<{[key: string]: Array<LinkRecordsFieldModel>}>(
+        newStateItem, moment(), state.loading);
+  }
+
+  private clearFields(
+    state: AsyncItem<{[key: string]: Array<LinkRecordsFieldModel>}>,
+    action: LinkRecordsFieldsSetFieldsAction):
+      AsyncItem<{[key: string]: Array<LinkRecordsFieldModel>}> {
+      let newStateItem = Object.assign({}, state.item);
+      newStateItem[action.key] = null;
 
       return new AsyncItem<{[key: string]: Array<LinkRecordsFieldModel>}>(
         newStateItem, moment(), state.loading);

@@ -6,7 +6,8 @@ import {
   LinkRecordsMatchesSetStatusAction,
   LinkRecordsMatchesSetItemAction
 } from './state/matches/actions';
-import { LinkRecordsFieldsSetFieldsAction } from './state/fields/actions';
+import { LinkRecordsFieldsClearFieldsAction } from './state/fields/actions';
+import { LinkRecordsSelectedClearSelectedAction } from './state/selected/actions';
 import { Statuses } from './link-records-statuses';
 import { LinkRecordsItemModel } from './link-records-item.model';
 import { SkyContribLinkRecordsItemDiffComponent } from './link-records-item-diff.component';
@@ -51,9 +52,10 @@ export class SkyContribLinkRecordsItemComponent implements AfterContentInit {
   }
 
   unlink() {
-    this.dispatcher.next(new LinkRecordsFieldsSetFieldsAction(this.record.key, []));
     this.dispatcher.next(new LinkRecordsMatchesSetStatusAction(this.record.key, Statuses.NoMatch));
     this.dispatcher.next(new LinkRecordsMatchesSetItemAction(this.record.key, null));
+    this.dispatcher.next(new LinkRecordsSelectedClearSelectedAction(this.record.key));
+    this.dispatcher.next(new LinkRecordsFieldsClearFieldsAction(this.record.key));
   }
 
   create() {

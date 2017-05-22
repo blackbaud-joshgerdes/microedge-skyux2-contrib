@@ -62,7 +62,7 @@ export class LinkRecordsMatchesOrchestrator
         .map(m => {
           let match = new LinkRecordsMatchModel(m);
           if (match.key === action.key) {
-            match.item = action.item;
+            match.item = (action.item) ? Object.assign({}, action.item) : null;
           }
 
           return match;
