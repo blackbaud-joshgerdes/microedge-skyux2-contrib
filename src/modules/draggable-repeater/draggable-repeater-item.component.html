@@ -1,16 +1,21 @@
-<ng-content select="sky-contrib-draggable-repeater-item-left"></ng-content>
+<sky-contrib-draggable-repeater-renderer class="sky-contrib-draggable-repeater-item-left" [item]="item" [template]="itemLeftTemplate || defaultItemLeftTemplate"></sky-contrib-draggable-repeater-renderer>
 <div class="sky-contrib-draggable-repeater-item-content vertical-center">
   <div class="sky-contrib-draggable-repeater-item-title">
-    <ng-content select="sky-contrib-draggable-repeater-item-title"></ng-content>
+    <sky-contrib-draggable-repeater-renderer class="sky-contrib-draggable-repeater-item-title" [item]="item" [template]="itemTitleTemplate || defaultItemTitleTemplate"></sky-contrib-draggable-repeater-renderer>
     <sky-chevron [direction]="isExpanded ? 'up' : 'down'" (directionChange)="toggle($event)" *ngIf="isExpandable && !showContent"></sky-chevron>
   </div>
-  <ng-content select="sky-contrib-draggable-repeater-item-content" *ngIf="!isExpanded || showContent"></ng-content>
+  <sky-contrib-draggable-repeater-renderer [item]="item" *ngIf="!isExpanded || showContent" [template]="itemContentTemplate || defaultItemContentTemplate"></sky-contrib-draggable-repeater-renderer>
 </div>
 <div class="sky-contrib-draggable-repeater-item-right">
   <div class="sky-contrib-draggable-repeater-item-right-content vertical-center">
-    <ng-content select="sky-contrib-draggable-repeater-item-right"></ng-content>
+    <sky-contrib-draggable-repeater-renderer class="sky-contrib-draggable-repeater-item-right" [item]="item" [template]="itemRightTemplate || defaultItemRightTemplate"></sky-contrib-draggable-repeater-renderer>
   </div>
   <div class="sky-contrib-draggable-repeater-item-drag-handle vertical-center">
     <i class="fa fa-sort sky-contrib-draggable-repeater-item-drag-handle-icon" aria-hidden="true"></i>
   </div>
 </div>
+
+<template #defaultItemTitleTemplate></template>
+<template #defaultItemLeftTemplate></template>
+<template #defaultItemRightTemplate></template>
+<template #defaultItemContentTemplate></template>
