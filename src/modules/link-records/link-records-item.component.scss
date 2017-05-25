@@ -10,8 +10,9 @@
   width: 710px;
 
   .link-records-item-info {
-    font-family: $sky-font-family-base-semibold;
+    font-family: $sky-font-family-base;
     font-size: $sky-font-size-lg;
+    font-weight: 600;
     text-align: center;
   }
 
@@ -43,21 +44,21 @@
     .link-records-item-footer {
       display: flex;
       flex-direction: row;
-      min-height: 44px;
-
+      min-height: 48px;
     }
 
     .link-records-item-header {
       border-bottom: 1px solid $sky-border-color;
-      font-family: $sky-font-family-narrow-light;
+      font-family: $sky-font-family-narrow;
       font-size: 22px;
-      font-weight: 200;
+      font-weight: 300;
+      font-style: normal;
       padding: 10px 20px 10px 25px;
     }
 
     .link-records-item-footer {
       border-top: 1px solid $sky-border-color;
-      padding: 5px 20px 5px 25px;
+      padding: 7px 20px 7px 25px;
     }
   }
 
