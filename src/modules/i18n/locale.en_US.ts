@@ -43,6 +43,12 @@ export let EN_US = {
   TILE_TASKS_NO_ITEMS_FOUND: 'No tasks found',
   TASK_COMPLETE_TOAST: 'Task completed',
   TASK_ERROR_TOAST: 'Task could not be completed. please try again.',
+  // Applications Tile //
+  TILE_APPLICATION_INBOX: 'Application inbox',
+  TILE_APPLICATION_INBOX_APPLICATIONS: 'Applications',
+  TILE_APPLICATION_INBOX_LAST_RECEIVED: 'Last received',
+  TILE_APPLICATION_INBOX_BUTTON: 'Go to application inbox',
+  TILE_APPLICATION_INBOX_NO_LAST_RECEIVED: 'Not applicable',
   // Grant Summary Tile //
   TILE_GRANT_SUMMARY: 'Grant summary',
   TILE_GRANT_SUMMARY_GO_REQUEST_ID: 'GIFTS Online request ID',
@@ -567,5 +573,18 @@ export let EN_US = {
   INLINE_EDITOR_EDIT: 'Edit',
   INLINE_EDITOR_CANCEL: 'Cancel',
   // app level toast messages //
-  APP_TOAST_EDIT_SUCCESS: 'Your changes have been saved.'
+  APP_TOAST_EDIT_SUCCESS: 'Your changes have been saved.',
+  // Application Inbox
+  APPLICATION_INBOX_TITLE : 'Application Inbox',
+  APPLICATION_INBOX_DATE_SUBMITTED : 'Date Submitted',
+  APPLICATION_INBOX_ORGANIZATION : 'Organization',
+  APPLICATION_INBOX_CONTACT : 'Contact',
+  APPLICATION_INBOX_FORM_TITLE : 'Form title',
+  APPLICATION_INBOX_PRIMARY_PROG_AREA : 'Primary program area',
+  APPLICATION_INBOX_REQUEST_AMT : 'Request amount',
+  APPLICATION_INBOX_TYPE : 'Type',
+  APPLICATION_INBOX_PRIMARY_GEO_AREA : 'Primary geographic area',
+  APPLICATION_INBOX_PROJECT_TITLE : 'Project title',
+  APPLICATION_INBOX_SITE_ID : 'Site ID',
+  APPLICATION_INBOX_BRANCH : 'Branch'
 };

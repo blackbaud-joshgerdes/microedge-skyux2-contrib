@@ -21,13 +21,13 @@
 <template #search>
   <div *ngIf="isSearchEnabled | async" class="toolbar-item-container">
     <input #searchBox (keyup.enter)="updateSearchText(searchBox.value)" type="text" value="{{searchText | async}}" placeholder="{{placeholder}}" />
-    <button cmp-id="search" type="button">
+    <button cmp-id="search" type="button" title="Search">
       <i class="fa fa-lg fa-search" (click)="updateSearchText(searchBox.value)"></i>
     </button>
   </div>
 </template>
 <template #sortSelector>
-  <sky-dropdown *ngIf="(isSortSelectorEnabled | async) && (sortSelectors | async).length > 0">
+  <sky-dropdown *ngIf="(isSortSelectorEnabled | async) && (sortSelectors | async).length > 0" title="Sort">
     <sky-dropdown-button buttonType="select">
       <i class="fa fa-lg fa-sort"></i>
     </sky-dropdown-button>
