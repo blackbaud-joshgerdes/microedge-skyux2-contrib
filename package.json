@@ -48,6 +48,7 @@
     "little-loader": "^0.1.1",
     "madlib-shim-easyxdm": "^2.4.20-7",
     "microedge-rxstate": "^1.0.0",
+    "mixpanel-browser": "^2.11.1",
     "moment": "^2.18.1",
     "ng2-dragula": "1.2.2-0",
     "ng2-toastr": "0.3.1",
