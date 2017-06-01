@@ -20,6 +20,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
   @Input() item: any;
   @Input() match: LinkRecordsMatchModel;
   @Input() fields: Array<string>;
+  @Input() selectedByDefault: boolean;
 
   constructor(
     private state: LinkRecordsState,
@@ -45,6 +46,28 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
       });
 
     this.dispatcher.next(new LinkRecordsFieldsSetFieldsAction(this.key, matchFields));
+
+    this.state.map(s => s.selected.item || {})
+      .filter(s => this.selectedByDefault !== undefined)
+      .take(1)
+      .subscribe(selected => {
+        let selectedKey = selected[this.key] || {};
+        matchFields.forEach(matchField => {
+          if (selected[this.key] && selected[this.key].hasOwnProperty(matchField.key)) {
+            return;
+          }
+
+          if (typeof this.selectedByDefault === 'string') {
+            this.selectedByDefault = <any>this.selectedByDefault == 'true';
+          }
+
+          this.dispatcher.next(new LinkRecordsSelectedSetSelectedAction(
+            this.key,
+            matchField.key,
+            this.selectedByDefault
+          ));
+        })
+      });
   }
 
   setFieldSelected(fieldKey: string, ev: any) {

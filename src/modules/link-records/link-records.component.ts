@@ -39,6 +39,7 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
   @Input() noMatchTemplate: TemplateRef<any>;
   @Input() itemTitleTemplate: TemplateRef<any>;
   @Input() keyIdSelector: string = 'id';
+  @Input() selectedByDefault: boolean = true;
   @ContentChildren(forwardRef(() => SkyContribLinkRecordsItemTitleComponent))
     nodeItemTitle: QueryList<SkyContribLinkRecordsItemTitleComponent>;
   @ContentChildren(forwardRef(() => SkyContribLinkRecordsItemContentComponent))

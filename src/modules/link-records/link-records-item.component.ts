@@ -25,6 +25,7 @@ export class SkyContribLinkRecordsItemComponent implements AfterContentInit {
   @Input() matchTemplate: TemplateRef<any>;
   @Input() noMatchTemplate: TemplateRef<any>;
   @Input() itemTitleTemplate: TemplateRef<any>;
+  @Input() selectedByDefault: boolean;
   @ViewChildren(SkyContribLinkRecordsItemDiffComponent)
     viewItems: QueryList<SkyContribLinkRecordsItemDiffComponent>;
 
@@ -73,5 +74,7 @@ export class SkyContribLinkRecordsItemComponent implements AfterContentInit {
   cancelEdit() {
     this.dispatcher.next(
       new LinkRecordsMatchesSetStatusAction(this.record.key, Statuses.Suggested));
+    this.dispatcher.next(new LinkRecordsSelectedClearSelectedAction(this.record.key));
+    this.dispatcher.next(new LinkRecordsFieldsClearFieldsAction(this.record.key));
   }
 }
