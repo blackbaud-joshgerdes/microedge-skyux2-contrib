@@ -164,6 +164,10 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
     this.dispatcher.next(new ListSelectedSetItemSelectedAction(item.id, ev.checked));
   }
 
+  public setItemsSelection(items: ListItemModel[], checked: boolean = true) {
+    this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), checked));
+  }
+
   public clearSelections() {
     this.state.map(s => s.items.items)
       .take(1)

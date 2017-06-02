@@ -21,4 +21,14 @@
       color: #1c84c6;
     }
   }
+
+  button[disabled] {
+    color: #cacaca;
+    pointer-events: none;
+    opacity: 0.65;
+  }
+
+  .filter {
+    padding-bottom: 20px;
+  }
 }

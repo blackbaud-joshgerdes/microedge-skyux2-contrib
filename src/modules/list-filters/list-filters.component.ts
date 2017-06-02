@@ -118,8 +118,7 @@ export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit 
     return this.modalFilters.map(s =>
         /* tslint:disable-next-line */
         s.filter(f => f.filterModel.value != '' && f.filterModel.value != null)
-    )
-      .map(f => f.map(x => x.filterModel));
+    );
   }
 
   get filtered() {

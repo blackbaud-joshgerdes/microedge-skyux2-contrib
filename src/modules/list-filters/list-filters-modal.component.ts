@@ -41,4 +41,17 @@ export class SkyListFiltersModalComponent {
   public clearFilters() {
     this.filters.forEach(f => f.type !== 'inline' ? f.filterModel.value = '' : undefined);
   }
+
+  public isValid() {
+    let valid = true;
+
+    for (let filter of this.modalFilters) {
+      if (!filter.validator()) {
+        valid = false;
+        break;
+      }
+    }
+
+    return valid;
+  }
 }

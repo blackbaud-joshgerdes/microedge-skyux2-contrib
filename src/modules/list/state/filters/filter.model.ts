@@ -11,6 +11,7 @@ export class ListFilterModel {
   public filterFunction: (item: ListItemModel, filter: any) => boolean;
   public filterModel: ListFilterDataModel = new ListFilterDataModel();
   public template: TemplateRef<any>;
+  public validator: (() => boolean);
 
   constructor(data?: any, view?: string) {
     this.view = view;
@@ -23,6 +24,7 @@ export class ListFilterModel {
       this.filterFunction = data.filterFunction;
       this.filterModel = data.filterModel || new ListFilterDataModel();
       this.template = data.template;
+      this.validator = data.validator;
     }
   }
 }
