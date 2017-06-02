@@ -1,9 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { SkyContribAnalyticsModule } from './modules/analytics';
 import { SkyContribChecklistModule } from './modules/checklist';
+import { SkyContribLocaleModule } from './modules/locale';
 import { SkyContribNavbarModule } from './modules/navbar';
 import { SkyContribPageModule } from './modules/page';
 import { SkyContribTabbarModule } from './modules/tabbar';
+import { SkyContribTranslateModule } from './modules/translation';
 import { SkyContribUtilsModule } from './modules/utils';
 import { SkyContribVerticalTabbarModule } from './modules/vertical-tabbar';
 import { SkyDraggableRepeaterModule } from './modules/draggable-repeater';
@@ -24,16 +27,18 @@ import { SkyTextExpandModule } from './modules/text-expand';
 import { SkyToastModule } from './modules/toast';
 import { SkyTreeViewModule } from './modules/tree-view';
 import { SkyWizardModule } from './modules/wizard';
-import { SkyContribLocaleModule } from './modules/locale';
-import { SkyContribTranslateModule } from './modules/translation';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
+    HttpModule,
+    SkyContribAnalyticsModule,
     SkyContribChecklistModule,
+    SkyContribLocaleModule,
     SkyContribNavbarModule,
     SkyContribPageModule,
     SkyContribTabbarModule,
+    SkyContribTranslateModule,
     SkyContribUtilsModule,
     SkyContribVerticalTabbarModule,
     SkyDraggableRepeaterModule,
@@ -53,16 +58,16 @@ import { SkyContribTranslateModule } from './modules/translation';
     SkyTextExpandModule,
     SkyToastModule,
     SkyTreeViewModule,
-    SkyWizardModule,
-    SkyContribLocaleModule,
-    SkyContribTranslateModule,
-    HttpModule
+    SkyWizardModule
   ],
   exports: [
+    SkyContribAnalyticsModule,
     SkyContribChecklistModule,
+    SkyContribLocaleModule,
     SkyContribNavbarModule,
     SkyContribPageModule,
     SkyContribTabbarModule,
+    SkyContribTranslateModule,
     SkyContribUtilsModule,
     SkyContribVerticalTabbarModule,
     SkyDraggableRepeaterModule,
@@ -82,14 +87,13 @@ import { SkyContribTranslateModule } from './modules/translation';
     SkyTextExpandModule,
     SkyToastModule,
     SkyTreeViewModule,
-    SkyWizardModule,
-    SkyContribLocaleModule,
-    SkyContribTranslateModule
+    SkyWizardModule
   ]
 })
 export class MicroedgeSkyContribModule {
 }
 
+export * from './modules/analytics';
 export * from './modules/checklist';
 export * from './modules/draggable-repeater';
 export * from './modules/dropdown';
@@ -103,6 +107,7 @@ export * from './modules/list-toolbar';
 export * from './modules/list-view-checklist';
 export * from './modules/list-view-grid';
 export * from './modules/list-view-repeater';
+export * from './modules/locale';
 export * from './modules/locale-currency-mask';
 export * from './modules/navbar';
 export * from './modules/omnibar';
@@ -111,9 +116,8 @@ export * from './modules/spinner';
 export * from './modules/tabbar';
 export * from './modules/text-expand';
 export * from './modules/toast';
+export * from './modules/translation';
 export * from './modules/tree-view';
 export * from './modules/utils';
 export * from './modules/vertical-tabbar';
 export * from './modules/wizard';
-export * from './modules/locale';
-export * from './modules/translation';
