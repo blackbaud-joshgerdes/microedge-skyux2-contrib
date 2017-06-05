@@ -20,7 +20,7 @@ export class SkyListViewGridColumnSelectorComponent {
   }
 
   get columns() {
-    return this.gridState.map(s => s.columns.items);
+    return this.gridState.map(s => s.columns.items.filter(x => x.field != null));
   }
 
   get displayedColumnIds() {
