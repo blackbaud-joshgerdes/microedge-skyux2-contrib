@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 
 export class ListFilterDataModel {
-  public id: string = moment().toDate().getTime().toString();
+  public id: string = (moment().toDate().getTime() + Math.random()).toString().replace('.', '');
   public value: any = ''; // we use an empty string instead of null to simplify ngModel bindings
   public displayValue: string = '';
   public onChange: EventEmitter<any> = new EventEmitter<any>();

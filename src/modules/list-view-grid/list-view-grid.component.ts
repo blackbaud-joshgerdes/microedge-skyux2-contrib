@@ -186,7 +186,7 @@ export class SkyListViewGridComponent
 
         this.dispatcher.searchSetFieldSelectors(displayedColumns.map(d => d.field));
         this.dispatcher.searchSetFunctions(setFunctions);
-        this.dispatcher.sortSetAvailable(displayedColumns.map(cmp =>
+        this.dispatcher.sortSetAvailable(displayedColumns.filter(c => c.field != null).map(cmp =>
           new ListSortLabelModel({ text: cmp.heading, fieldSelector: cmp.field })
         ));
       });
@@ -239,10 +239,16 @@ export class SkyListViewGridComponent
       this.gridState.map(s => s.columns.items)
         .take(1)
         .subscribe(columns => {
-          this.gridDispatcher.next(new ListViewDisplayedGridColumnsLoadAction(
-            columnIds.map(id => columns.filter(c => c.id === id)[0]),
-            true
-          ));
+          let displayed: Array<ListViewGridColumnModel> = [];
+          columns.forEach(column => {
+            if ( column.field == null) {
+              displayed.push(column);
+            } else if (columnIds.find(id => id === column.id)) {
+              displayed.push(column);
+            }
+          });
+
+          this.gridDispatcher.next(new ListViewDisplayedGridColumnsLoadAction(displayed, true));
         });
     });
   }
