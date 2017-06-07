@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { SkyLocaleCurrencyMaskModule } from '../';
 
-import {LocaleCurrencyMaskDefaultTestComponent} from './locale-currency-mask-default-options.component.fixture';
+import {
+  LocaleCurrencyMaskDefaultTestComponent
+} from './locale-currency-mask-default-options.component.fixture';
 
 @NgModule({
   declarations: [

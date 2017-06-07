@@ -15,14 +15,6 @@ export class SkyLinkRecordsDemoComponent {
   @ViewChild(SkyContribLinkRecordsComponent) item: SkyContribLinkRecordsComponent;
   window: any;
 
-  constructor(windowRef: WindowRef) {
-    this.window = windowRef.nativeWindow;
-  }
-
-  showResults() {
-    this.item.results.take(1).subscribe(r => this.window.alert(JSON.stringify(r)));
-  }
-
   public matchFields: Array<string> = ['description', 'name'];
 
   public newItem: any = { id: '99', address: 999, name: 'Lime', description: 'Laura eats limes.' };
@@ -72,7 +64,20 @@ export class SkyLinkRecordsDemoComponent {
     new LinkRecordsMatchModel({
       key: '8',
       status: Statuses.Linked,
-      item: { id: '88', address: 888, name: 'Strawberry Shortcake', description: 'Steve loves strawberries' }
+      item: {
+        id: '88',
+        address: 888,
+        name: 'Strawberry Shortcake',
+        description: 'Steve loves strawberries'
+      }
     })
   ]);
+
+  constructor(windowRef: WindowRef) {
+    this.window = windowRef.nativeWindow;
+  }
+
+  showResults() {
+    this.item.results.take(1).subscribe(r => this.window.alert(JSON.stringify(r)));
+  }
 }

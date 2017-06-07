@@ -1,4 +1,4 @@
-import { Component, Input, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Component, Input, Output, ViewChild, EventEmitter, AfterViewInit } from '@angular/core';
 import { SkyOmnibarConfigModel } from './omnibar-config.model';
 import { WindowRef } from '../utils/windowref';
 let scriptLoader = require('little-loader');
@@ -8,7 +8,7 @@ let scriptLoader = require('little-loader');
   templateUrl: './omnibar.component.html',
   styleUrls: ['./omnibar.component.scss']
 })
-export class SkyOmnibarComponent {
+export class SkyOmnibarComponent implements AfterViewInit {
   @Input() config: SkyOmnibarConfigModel;
   @Output() searchTextChanged = new EventEmitter();
   @Output() searchBoxKeyUp = new EventEmitter();

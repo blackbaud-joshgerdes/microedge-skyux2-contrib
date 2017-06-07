@@ -1,4 +1,4 @@
-import { Component, NgModule, ViewChild } from '@angular/core';
+import { Component, NgModule, ViewChild, AfterViewInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MicroedgeSkyContribModule } from '../../../../src/core';
 import { Bootstrapper } from '../../../../visual/bootstrapper';
@@ -7,7 +7,7 @@ import { Bootstrapper } from '../../../../visual/bootstrapper';
   selector: 'sky-demo-app',
   templateUrl: './locale-currency-mask.component.visual-fixture.html'
 })
-class AppComponent {
+class AppComponent implements AfterViewInit {
   @ViewChild('currencyInput') input: any;
 
   ngAfterViewInit() {

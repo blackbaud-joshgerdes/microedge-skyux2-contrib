@@ -12,4 +12,3 @@ export * from './link-records.module';
 export * from './state/fields/field.model';
 export * from './state/matches/match.model';
 export * from './state/results/result.model';
-

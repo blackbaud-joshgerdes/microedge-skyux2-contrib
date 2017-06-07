@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
       './checklist.component.scss'
     ]
 })
-export class SkyChecklistComponent {
+export class SkyChecklistComponent implements OnInit {
   @Input() items: Array<any> = [];
   @Input() itemsObservable: Observable<any>;
   @Input() selectedItems: Array<any> = [];

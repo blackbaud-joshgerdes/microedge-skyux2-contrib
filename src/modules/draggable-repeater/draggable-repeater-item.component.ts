@@ -26,8 +26,8 @@ export class SkyDraggableRepeaterItemComponent implements OnInit, AfterContentIn
   @Input() itemLeftTemplate: TemplateRef<any>;
   @Input() itemRightTemplate: TemplateRef<any>;
   @Input() itemContentTemplate: TemplateRef<any>;
-  @ContentChildren(forwardRef(() => SkyContribDraggableRepeaterItemContentComponent)) itemContentNode:
-    QueryList<SkyContribDraggableRepeaterItemContentComponent>;
+  @ContentChildren(forwardRef(() => SkyContribDraggableRepeaterItemContentComponent))
+  itemContentNode: QueryList<SkyContribDraggableRepeaterItemContentComponent>;
   @ContentChildren(forwardRef(() => SkyContribDraggableRepeaterItemTitleComponent)) itemTitleNode:
     QueryList<SkyContribDraggableRepeaterItemTitleComponent>;
   @ContentChildren(forwardRef(() => SkyContribDraggableRepeaterItemLeftComponent)) itemLeftNode:
@@ -35,7 +35,7 @@ export class SkyDraggableRepeaterItemComponent implements OnInit, AfterContentIn
   @ContentChildren(forwardRef(() => SkyContribDraggableRepeaterItemRightComponent)) itemRightNode:
     QueryList<SkyContribDraggableRepeaterItemRightComponent>;
 
-  @HostBinding('attr.repeater-item-id') get repeaterItemId() { return this.id; };
+  @HostBinding('attr.repeater-item-id') get repeaterItemId() { return this.id; }
 
   ngOnInit() {
     if (this.id == null) {

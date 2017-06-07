@@ -1,4 +1,4 @@
-import { Component, Input, ContentChildren, QueryList } from '@angular/core';
+import { Component, Input, ContentChildren, QueryList, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SkyListRepeaterItemComponent } from './list-repeater-item.component';
 import { SkyListRepeaterOptionsModel } from './models';
@@ -11,7 +11,7 @@ import { SkyListRepeaterStateDispatcher, SkyListRepeaterStateModel, SkyListRepea
     templateUrl: './list-repeater.component.html',
     providers: [SkyListRepeaterStateDispatcher, SkyListRepeaterState, SkyListRepeaterStateModel]
 })
-export class SkyListRepeaterComponent {
+export class SkyListRepeaterComponent implements OnInit, OnDestroy {
   @Input() options: SkyListRepeaterOptionsModel;
   @Input() itemCount: Observable<number>;
   @ContentChildren(SkyListRepeaterItemComponent) items: QueryList<SkyListRepeaterItemComponent>;

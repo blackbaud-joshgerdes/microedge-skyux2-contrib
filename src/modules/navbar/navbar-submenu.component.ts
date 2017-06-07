@@ -9,8 +9,8 @@ export class SkyContribNavbarSubmenuComponent {
   @Input() active: boolean = false;
   @Input() disabled: boolean = false;
   @Input() isExpanded: boolean = false;
-  @HostBinding('class.active') get classAction() { return this.active || this.isExpanded; };
-  @HostBinding('class.disabled') get classDisabled() { return this.disabled; };
+  @HostBinding('class.active') get classAction() { return this.active || this.isExpanded; }
+  @HostBinding('class.disabled') get classDisabled() { return this.disabled; }
   @Output() onToggle: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public open($event: MouseEvent): void {

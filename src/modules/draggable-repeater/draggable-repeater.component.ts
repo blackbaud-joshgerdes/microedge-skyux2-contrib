@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter, ContentChildren, QueryList } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter, ContentChildren, QueryList, OnDestroy
+} from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { SkyDraggableRepeaterItemComponent } from './draggable-repeater-item.component';
 
@@ -7,7 +9,7 @@ import { SkyDraggableRepeaterItemComponent } from './draggable-repeater-item.com
     templateUrl: './draggable-repeater.component.html',
     styleUrls: ['./draggable-repeater.component.scss']
 })
-export class SkyDraggableRepeaterComponent {
+export class SkyDraggableRepeaterComponent implements OnDestroy {
   @Input() dragOnHandle: boolean = false;
   @Output() onItemsReordered = new EventEmitter<any>();
   @ContentChildren(SkyDraggableRepeaterItemComponent)

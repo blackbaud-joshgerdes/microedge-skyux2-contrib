@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'sky-contrib-page',
   templateUrl: './page.component.html'
 })
-export class SkyPageComponent {
+export class SkyPageComponent implements OnInit {
   @Input() isAuthorized: any;
   @Input() isLoading: any;
 

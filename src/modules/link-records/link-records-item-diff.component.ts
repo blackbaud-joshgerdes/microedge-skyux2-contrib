@@ -66,7 +66,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
             matchField.key,
             this.selectedByDefault
           ));
-        })
+        });
       });
   }
 

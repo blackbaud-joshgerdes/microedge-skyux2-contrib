@@ -8,8 +8,8 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
 export class SkyContribTabBarTabComponent {
   @Input() public active: boolean = false;
   @Input() public disabled: boolean = false;
-  @HostBinding('class.active') get classAction() { return this.active; };
-  @HostBinding('class.disabled') get classDisabled() { return this.disabled; };
+  @HostBinding('class.active') get classAction() { return this.active; }
+  @HostBinding('class.disabled') get classDisabled() { return this.disabled; }
   @Output('action') itemClicked = new EventEmitter();
 
   onClick() {

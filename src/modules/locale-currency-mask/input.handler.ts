@@ -23,7 +23,8 @@ export class InputHandler {
       let keyCode = this.inputService.rawValue.charCodeAt(this.inputService.rawValue.length - 1);
       let rawValueLength = this.inputService.rawValue.length;
       let rawValueSelectionStart = this.inputService.inputSelection.selectionStart;
-      let storedRawValueLength = this.inputService.storedRawValue ? this.inputService.storedRawValue.length : 0;
+      let storedRawValueLength =
+        this.inputService.storedRawValue ? this.inputService.storedRawValue.length : 0;
       this.inputService.rawValue = this.inputService.storedRawValue;
 
       // this fires every keystroke, if the cursor isn't at the end

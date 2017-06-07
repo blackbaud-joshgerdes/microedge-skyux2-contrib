@@ -58,7 +58,12 @@ export class SkyLinkRecordsExternalTemplatesTestComponent {
     new LinkRecordsMatchModel({
       key: '8',
       status: Statuses.Linked,
-      item: { id: '88', address: 888, name: 'Strawberry Shortcake', description: 'Steve loves strawberries' }
+      item: {
+        id: '88',
+        address: 888,
+        name: 'Strawberry Shortcake',
+        description: 'Steve loves strawberries'
+      }
     })
   ]);
 }

@@ -19,7 +19,8 @@ export class SkyWizardComponent implements AfterContentInit {
   @Output() public onSaveAndClose: EventEmitter<any> = new EventEmitter();
   @ViewChild(SkyModalComponent) public modal: SkyModalComponent;
   @ViewChild(SkyWizardStepListComponent) public stepList: SkyWizardStepListComponent;
-  @ContentChildren(SkyWizardStepComponent, {descendants: true}) public steps: QueryList<SkyWizardStepComponent> = null;
+  @ContentChildren(SkyWizardStepComponent, {descendants: true})
+  public steps: QueryList<SkyWizardStepComponent> = null;
   @Input() public headerTemplate: TemplateRef<any>;
   @Input() public stepsTemplate: TemplateRef<any>;
   @ContentChildren(forwardRef(() => SkyContribWizardHeaderComponent)) public headerNode:

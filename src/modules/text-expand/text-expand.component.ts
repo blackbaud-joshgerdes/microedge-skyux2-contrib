@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterContentInit } from '@angular/core';
 import { SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
 import { SkyTextExpandModalComponent } from './text-expand-modal.component';
 
@@ -7,7 +7,7 @@ import { SkyTextExpandModalComponent } from './text-expand-modal.component';
   templateUrl: './text-expand.component.html',
   styleUrls: ['./text-expand.component.scss']
 })
-export class SkyTextExpandComponent {
+export class SkyTextExpandComponent implements AfterContentInit {
   displayToggle: boolean = true;
   isExpanded: boolean = false;
   @Input() modalMode: boolean = false;

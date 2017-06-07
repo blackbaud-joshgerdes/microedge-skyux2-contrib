@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding, ContentChild } from '@angular/core';
+import { Component, Input, HostBinding, ContentChild, OnInit } from '@angular/core';
 import { SkyListRepeaterItemTitleComponent } from './list-repeater-item-title.component';
 import { SkyListRepeaterItemEditorComponent } from './list-repeater-item-editor.component';
 import { SkyListRepeaterItemLeftComponent } from './list-repeater-item-left.component';
@@ -14,7 +14,7 @@ import { SkyListRepeaterItemDescriptionComponent }
       './list-repeater-item.component.scss'
     ]
 })
-export class SkyListRepeaterItemComponent {
+export class SkyListRepeaterItemComponent implements OnInit {
   isExpanded: boolean = true;
   @Input() isEditing: boolean;
   @Input() isExpandable: boolean = false;
@@ -34,7 +34,7 @@ export class SkyListRepeaterItemComponent {
   @ContentChild(SkyListRepeaterItemEditorComponent)
     editorComponent: SkyListRepeaterItemEditorComponent;
 
-  @HostBinding('attr.repeater-item-id') get (): string { return this.id; };
+  @HostBinding('attr.repeater-item-id') get (): string { return this.id; }
 
   ngOnInit() {
     if (this.id == null) {

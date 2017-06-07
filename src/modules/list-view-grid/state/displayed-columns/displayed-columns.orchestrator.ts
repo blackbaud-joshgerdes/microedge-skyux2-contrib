@@ -17,7 +17,8 @@ export class ListViewDisplayedGridColumnsOrchestrator
   private load(
     state: AsyncList<ListViewGridColumnModel>,
     action: ListViewDisplayedGridColumnsLoadAction): AsyncList<ListViewGridColumnModel> {
-    const newColumns = action.columns.filter(c => c).map(g => new ListViewGridColumnModel(g.template, g));
+    const newColumns = action.columns.filter(c => c)
+      .map(g => new ListViewGridColumnModel(g.template, g));
 
     if (action.refresh) {
       return new AsyncList<ListViewGridColumnModel>([...newColumns], moment());

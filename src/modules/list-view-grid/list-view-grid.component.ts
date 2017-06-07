@@ -153,7 +153,8 @@ export class SkyListViewGridComponent
     /* istanbul ignore next */
     this.dragulaService.setOptions('heading', {
       moves: (el: any) => !el.classList.contains('locked'),
-      accepts: ([,,, sibling]: any) => sibling === undefined || !sibling.classList.contains('locked')
+      accepts: ([,,, sibling]: any) => sibling === undefined
+        || !sibling.classList.contains('locked')
     });
     /* tslint:enable */
   }

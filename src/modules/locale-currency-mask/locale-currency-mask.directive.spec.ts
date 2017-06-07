@@ -64,7 +64,8 @@ describe('Locale currency mask directive', () => {
         if (eventsToTest[i].runChromeAndroid) {
           expect(directiveInstance.inputHandler[eventsToTest[i].inputFunctionStr]).not.toHaveBeenCalled();
         } else {
-          expect(directiveInstance.inputHandler[eventsToTest[i].inputFunctionStr]).toHaveBeenCalled();
+          expect(directiveInstance.inputHandler[eventsToTest[i].inputFunctionStr])
+            .toHaveBeenCalled();
         }
       }
     });
@@ -85,14 +86,16 @@ describe('Locale currency mask directive', () => {
         expect(directiveInstance[eventsToTest[i].inputFunctionStr]).toHaveBeenCalled();
 
         if (eventsToTest[i].runChromeAndroid) {
-          expect(directiveInstance.inputHandler[eventsToTest[i].inputFunctionStr]).toHaveBeenCalled();
+          expect(directiveInstance.inputHandler[eventsToTest[i].inputFunctionStr])
+            .toHaveBeenCalled();
         } else {
           expect(directiveInstance.inputHandler[eventsToTest[i].inputFunctionStr]).not.toHaveBeenCalled();
         }
       }
     });
 
-    it('should return true for isChromeAndroid if the useragent contains both chrome and android', () => {
+    it('should return true for isChromeAndroid if the useragent contains both chrome and android',
+      () => {
       (<any>navigator)['__defineGetter__']('userAgent', function(){
         return 'chromeandroid';
       });
@@ -100,7 +103,8 @@ describe('Locale currency mask directive', () => {
       expect(directiveInstance.isChromeAndroid()).toBeTruthy();
     });
 
-    it('should return false for isChromeAndroid if the useragent doesnt contain chrome', () => {
+    it('should return false for isChromeAndroid if the useragent doesnt contain chrome',
+      () => {
       (<any>navigator)['__defineGetter__']('userAgent', function(){
         return 'somebodyoncetoldmetheworldwasgonnarollme';
       });
@@ -113,7 +117,8 @@ describe('Locale currency mask directive', () => {
 
       const callbackFunction = () => {};
       directiveInstance.registerOnTouched(callbackFunction);
-      expect(directiveInstance.inputHandler.setOnModelTouched).toHaveBeenCalledWith(callbackFunction);
+      expect(directiveInstance.inputHandler.setOnModelTouched)
+        .toHaveBeenCalledWith(callbackFunction);
     });
 
     it('should set elements disabled to what you pass to setDisabledState', () => {
@@ -246,7 +251,7 @@ describe('Locale currency mask directive', () => {
 
       fakeEvent.preventDefault.calls.reset();
 
-      //delete a value with a special character
+      // delete a value with a special character
       spyOn(directiveInstance.inputHandler.inputService, 'removeNumber').and.callThrough();
       fakeEvent.keyCode = 46;
       directiveInstance.inputHandler.handleKeydown(fakeEvent);
@@ -296,8 +301,8 @@ describe('Locale currency mask directive', () => {
 
       directiveInstance.inputHandler.inputService.addNumber.calls.reset();
 
-      //all digits
-      fakeEvent.keyCode = 49; //digit
+      // all digits
+      fakeEvent.keyCode = 49; // digit
 
       directiveInstance.inputHandler.inputService.rawValue = '123456';
       inputElement.value = '1234567';
@@ -311,7 +316,8 @@ describe('Locale currency mask directive', () => {
 
     it('should passthrough updateOptions from the handler to the service', () => {
       spyOn(directiveInstance.inputHandler.inputService, 'updateOptions');
-      directiveInstance.inputHandler.updateOptions('tlh-KX', 'T', false); // negative currency is not honorable
+      directiveInstance.inputHandler
+        .updateOptions('tlh-KX', 'T', false); // negative currency is not honorable
       expect(directiveInstance.inputHandler.inputService.updateOptions).toHaveBeenCalled();
     });
 
@@ -330,7 +336,8 @@ describe('Locale currency mask directive', () => {
     it('should apply the mask to 0 if there is no rawValue', () => {
       spyOn(directiveInstance.inputHandler.inputService, 'applyMask').and.callThrough();
       directiveInstance.inputHandler.inputService.addNumber('1'.charCodeAt(0));
-      expect(directiveInstance.inputHandler.inputService.applyMask).toHaveBeenCalledWith(false, '0');
+      expect(directiveInstance.inputHandler.inputService.applyMask)
+        .toHaveBeenCalledWith(false, '0');
     });
 
     it('should append a - after change to negative', () => {

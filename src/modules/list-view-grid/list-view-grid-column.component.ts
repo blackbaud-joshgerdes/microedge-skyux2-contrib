@@ -26,7 +26,7 @@ export class SkyListViewGridColumnComponent {
 
   public get template(): TemplateRef<any> {
     return (this.templates.length > 0 ? this.templates.first : undefined) || this.templateInput;
-  };
+  }
 
   private search(value: any, searchText: string): boolean {
     /* tslint:disable */

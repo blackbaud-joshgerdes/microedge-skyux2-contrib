@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList } from '@angular/core';
+import { Component, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
 import { SkyContribVerticalTabbarItemComponent } from './vertical-tabbar-item.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { SkyContribVerticalTabbarItemComponent } from './vertical-tabbar-item.co
     templateUrl: './vertical-tabbar.component.html',
     styleUrls: ['./vertical-tabbar.component.scss']
 })
-export class SkyContribVerticalTabbarComponent {
+export class SkyContribVerticalTabbarComponent implements AfterContentInit {
   @ContentChildren(SkyContribVerticalTabbarItemComponent)
     tabs: QueryList<SkyContribVerticalTabbarItemComponent>;
 
