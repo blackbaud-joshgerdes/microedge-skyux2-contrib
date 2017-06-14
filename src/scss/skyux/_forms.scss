@@ -1,3 +1,4 @@
+@import "mixins";
 @import "variables";
 
 .sky-form-control {
@@ -10,4 +11,14 @@
 
 .sky-form-group {
   margin-bottom: $sky-margin-half;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.submitted {
+  @include sky-field-invalid;
+}
+
+.sky-error-label {
+  color: $sky-danger-text-color;
+  margin-bottom: 2px;
 }

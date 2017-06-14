@@ -1,6 +1,6 @@
 {
   "name": "microedge-skyux2-contrib",
-  "version": "2.2.18",
+  "version": "2.2.19",
   "description": "Holding place for Microedge SkyUX 2 components that are yet contributed to the main SkyUX 2 repo.",
   "author": "Brandon Stirnaman <brandon.stirnaman@microedge.com>",
   "homepage": "https://github.com/blackbaud/microedge-skyux2-contrib#readme",
@@ -37,7 +37,7 @@
     "watch": "npm run test:unit -- --auto-watch --no-single-run"
   },
   "dependencies": {
-    "@blackbaud/skyux": "2.0.0-beta.30",
+    "@blackbaud/skyux": "2.0.0-beta.31",
     "animate.css": "^3.5.1",
     "angular2localization": "1.1.1",
     "dragula": "3.7.2",
