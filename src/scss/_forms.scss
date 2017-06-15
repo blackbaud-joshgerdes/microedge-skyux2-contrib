@@ -2,3 +2,10 @@
 @import "./skyux/forms";
 
 // Custom contrib styles
+@mixin sky-field-disabled {
+  border-right: 1px solid $sky-color-gray-lighter !important;
+  background-color: $sky-color-gray-lightest !important;
+  color: $sky-button-primary-color-disabled;
+  pointer-events: none;
+  opacity: 0.65;
+}
