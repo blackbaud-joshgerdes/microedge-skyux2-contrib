@@ -220,12 +220,13 @@ export class SkyListViewGridComponent
       .map(s => s.sort.fieldSelectors.filter(f => f.fieldSelector === column.field)[0])
       .take(1)
       .subscribe(field => {
-        let selectors = [`${column.field}:DESC`];
         if (field) {
-          selectors = [`${field.fieldSelector}:${field.descending ? 'ASC' : 'DESC'}`];
+          this.dispatcher.sortSetFieldSelectors(
+            [`${field.fieldSelector}:${field.descending ? 'ASC' : 'DESC'}`]
+          );
+        } else if (column.field) {
+          this.dispatcher.sortSetFieldSelectors([`${column.field}:DESC`]);
         }
-
-        this.dispatcher.sortSetFieldSelectors(selectors);
       });
   }
 
