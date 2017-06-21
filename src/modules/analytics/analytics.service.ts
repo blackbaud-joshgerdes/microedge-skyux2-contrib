@@ -20,24 +20,20 @@ export class SkyContribAnalyticsService {
     this.initialized = true;
   }
 
-  identity(id: string, userInfo?: any) {
+  identity(id: string, data?: any) {
     if (!this.initialized || !id || id.length === 0) {
       return;
     }
 
     mixpanel.identify(id);
 
-    let keys: Array<string> = Object.keys(userInfo || {});
-    if (userInfo &&
-        keys.indexOf('firstName') > -1 &&
-        keys.indexOf('lastName') > -1 &&
-        keys.indexOf('emailAddress') > -1
-    ) {
+    let keys: Array<string> = Object.keys(data || {});
+    if (data && keys.indexOf('emailAddress') > -1) {
       mixpanel.people.set({
-          '$first_name': userInfo.firstName,
-          '$last_name': userInfo.lastName,
-          '$email': userInfo.emailAddress,
-          '$last_login': moment.utc().format()
+        '$email': data.emailAddress,
+        '$last_login': moment.utc().format(),
+        'User Id': id,
+        'Email': data.emailAddress
       });
     }
   }
