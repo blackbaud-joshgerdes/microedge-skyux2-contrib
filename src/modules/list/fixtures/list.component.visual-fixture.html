@@ -4,21 +4,21 @@
 
     <sky-contrib-list-filters>
       <sky-contrib-list-filter type="inline" [filter]="filterOnStatus" [view]="default" [name]="'columnFilter'">
-        <template let-filter="filter">
+        <ng-template let-filter="filter">
           <select [(ngModel)]="filter.value" (ngModelChange)="filter.changed($event)">
             <option value="">Column2</option>
             <option *ngFor="let option of options | async" [value]="option">{{ option.toUpperCase() }}</option>
           </select>
-        </template>
+        </ng-template>
       </sky-contrib-list-filter>
 
       <sky-contrib-list-filter [filter]="filterOnStatus" [view]="default" [name]="'columnFilter2'">
-        <template let-filter="filter">
+        <ng-template let-filter="filter">
           <select [(ngModel)]="filter.value" (ngModelChange)="filter.changed($event)">
             <option value="">Column2</option>
             <option *ngFor="let option of options | async" [value]="option">{{ option.toUpperCase() }}</option>
           </select>
-        </template>
+        </ng-template>
       </sky-contrib-list-filter>
 
       <sky-contrib-list-filter [filter]="filterOnStatus" [view]="default" [name]="'columnFilter3'"></sky-contrib-list-filter>

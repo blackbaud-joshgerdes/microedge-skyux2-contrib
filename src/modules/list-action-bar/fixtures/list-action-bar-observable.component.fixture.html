@@ -1,9 +1,9 @@
 <sky-contrib-list-action-bar alwaysOn="on" #bar>
   <sky-contrib-list-action-bar-item id="item1-button">
-    <template><button id="btn" (click)="bar.selectAll()">Select all</button></template>
+    <ng-template><button id="btn" (click)="bar.selectAll()">Select all</button></ng-template>
   </sky-contrib-list-action-bar-item>
   <sky-contrib-list-action-bar-item id="item2-link">
-    <template><a id="link" href (click)="bar.clearAll(); false;">Clear all</a></template>
+    <ng-template><a id="link" href (click)="bar.clearAll(); false;">Clear all</a></ng-template>
   </sky-contrib-list-action-bar-item>
   <sky-contrib-list-action-bar-item id="item3-input-template" [template]="reusableTemplate">
   </sky-contrib-list-action-bar-item>
@@ -11,6 +11,6 @@
   </sky-contrib-list-action-bar-item>
 </sky-contrib-list-action-bar>
 
-<template #reusableTemplate>
+<ng-template #reusableTemplate>
   {{ bar.selectedItemCount | async }}
-</template>
+</ng-template>

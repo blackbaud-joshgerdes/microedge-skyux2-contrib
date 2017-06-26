@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { SkyModalComponent } from '@blackbaud/skyux/dist/modules/modal';
+import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
 
 @Component({
   selector: 'sky-contrib-text-expand-modal',

@@ -8,17 +8,17 @@
 
     <sky-contrib-list-action-bar #bar>
       <sky-contrib-list-action-bar-item id="item1-button">
-        <template><button id="btn">Button</button></template>
+        <ng-template><button id="btn">Button</button></ng-template>
       </sky-contrib-list-action-bar-item>
       <sky-contrib-list-action-bar-item id="item2-link">
-        <template><a href id="link">link</a></template>
+        <ng-template><a href id="link">link</a></ng-template>
       </sky-contrib-list-action-bar-item>
       <sky-contrib-list-action-bar-item id="item3-no-template" [template]="reusableTemplate">
       </sky-contrib-list-action-bar-item>
     </sky-contrib-list-action-bar>
   </sky-contrib-list>
 
-  <template #reusableTemplate>
+  <ng-template #reusableTemplate>
     Text
-  </template>
+  </ng-template>
 </div>

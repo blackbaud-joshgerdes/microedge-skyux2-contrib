@@ -3,7 +3,7 @@ import { Component, Input, TemplateRef, ViewChild, ViewContainerRef,
 
 @Component({
   selector: 'sky-contrib-draggable-repeater-renderer',
-  template: '<template #container></template>',
+  template: '<ng-template #container></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyContribDraggableRepeaterRendererComponent implements OnInit {

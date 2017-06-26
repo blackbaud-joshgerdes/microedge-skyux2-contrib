@@ -1,9 +1,11 @@
-import { Component, Input, Output, EventEmitter,
-  ViewChild, ContentChildren, QueryList, TemplateRef, forwardRef,
-  AfterContentInit } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter,
+  ViewChild, ContentChildren, QueryList,
+  TemplateRef, forwardRef, AfterContentInit
+} from '@angular/core';
 import { SkyWizardStepComponent } from './wizard-step.component';
 import { SkyWizardStepListComponent } from './wizard-step-list.component';
-import { SkyModalComponent, SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
+import { SkyModalComponent, SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SkyContribWizardHeaderComponent } from './wizard-header.component';
 import { SkyContribWizardStepsComponent } from './wizard-steps.component';
 

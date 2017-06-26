@@ -6,7 +6,7 @@ import { LinkRecordsApi } from './link-records-api';
 
 @Component({
   selector: 'sky-contrib-link-records-renderer',
-  template: '<template #container></template>',
+  template: '<ng-template #container></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyContribLinkRecordsRendererComponent implements OnInit {

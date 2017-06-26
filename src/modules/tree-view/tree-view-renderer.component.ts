@@ -5,7 +5,7 @@ import { TreeNodeModel } from './tree-node.model';
 
 @Component({
   selector: 'sky-contrib-tree-view-renderer',
-  template: '<template #container></template>',
+  template: '<ng-template #container></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyTreeViewRendererComponent implements OnInit {

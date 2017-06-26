@@ -1,6 +1,6 @@
 <sky-contrib-tree-view [data]="data" [disableParents]="disableParents" [leafOnlySelection]="leafOnlySelection" [selectable]="true">
   <sky-contrib-tree-view-dropdown>
-    <template let-item="item">
+    <ng-template let-item="item">
       <sky-dropdown buttonType="context-menu">
         <sky-dropdown-menu>
           <sky-dropdown-item>
@@ -11,9 +11,9 @@
           </sky-dropdown-item>
         </sky-dropdown-menu>
       </sky-dropdown>
-    </template>
+    </ng-template>
   </sky-contrib-tree-view-dropdown>
   <sky-contrib-tree-view-content>
-    <template let-item="item">{{item.name}} - template magic!</template>
+    <ng-template let-item="item">{{item.name}} - template magic!</ng-template>
   </sky-contrib-tree-view-content>
 </sky-contrib-tree-view>

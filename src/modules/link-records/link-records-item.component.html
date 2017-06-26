@@ -41,7 +41,7 @@
   </div>
 </div>
 
-<template #defaultItemTitleTemplate let-item="item">Item</template>
-<template #defaultItemTemplate let-item="item">{{ item?.id }}</template>
-<template #defaultMatchTemplateContent let-match="match">{{ match?.item?.id}}</template>
-<template #defaultNoMatchTemplateContent let-match="match">no match</template>
+<ng-template #defaultItemTitleTemplate let-item="item">Item</ng-template>
+<ng-template #defaultItemTemplate let-item="item">{{ item?.id }}</ng-template>
+<ng-template #defaultMatchTemplateContent let-match="match">{{ match?.item?.id}}</ng-template>
+<ng-template #defaultNoMatchTemplateContent let-match="match">no match</ng-template>

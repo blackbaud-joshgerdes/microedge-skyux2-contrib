@@ -2,7 +2,7 @@ import { Component, Input, TemplateRef, ViewChild, ViewContainerRef, OnInit } fr
 
 @Component({
   selector: 'sky-contrib-wizard-renderer',
-  template: '<template #container></template>'
+  template: '<ng-template #container></ng-template>'
 })
 export class SkyContribWizardRendererComponent implements OnInit {
   @Input() template: TemplateRef<any>;

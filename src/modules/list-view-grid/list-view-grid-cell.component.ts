@@ -8,7 +8,7 @@ import { getData } from '../list/helpers';
 
 @Component({
   selector: 'sky-contrib-list-view-grid-cell',
-  template: '<template #cell></template>',
+  template: '<ng-template #cell></ng-template>',
   styleUrls: ['./list-view-grid-cell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -1,5 +1,5 @@
 import { Component, Input, AfterContentInit } from '@angular/core';
-import { SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
+import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SkyTextExpandModalComponent } from './text-expand-modal.component';
 
 @Component({

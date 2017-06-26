@@ -2,7 +2,7 @@ import { Component, ViewContainerRef, ViewChild, Input, TemplateRef, OnInit } fr
 
 @Component({
   selector: 'sky-contrib-list-filter-renderer',
-  template: '<template #container></template>'
+  template: '<ng-template #container></ng-template>'
 })
 export class SkyListFilterRendererComponent implements OnInit {
   @Input() template: TemplateRef<any>;

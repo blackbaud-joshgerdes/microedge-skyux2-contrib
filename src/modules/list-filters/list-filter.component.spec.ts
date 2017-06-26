@@ -23,12 +23,10 @@ describe('List Filter Component', () => {
 
   describe('Empty Fixture', () => {
     it('should throw error if name not defined', () => {
-        try {
+        expect(() => {
           fixture = TestBed.createComponent(ListFilterEmptyTestComponent);
           fixture.detectChanges();
-        } catch (error) {
-          expect(error.originalError.message).toBe('Sky List Filter requires a name.');
-        }
+        }).toThrow(new Error('Sky List Filter requires a name.'));
     });
   });
 });

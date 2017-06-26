@@ -5,7 +5,7 @@ import { ListItemModel } from '../list/state/items/item.model';
 
 @Component({
   selector: 'sky-contrib-list-view-repeater-renderer',
-  template: '<template #container></template>',
+  template: '<ng-template #container></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListViewRepeaterRendererComponent implements OnInit {

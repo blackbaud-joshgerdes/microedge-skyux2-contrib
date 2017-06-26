@@ -6,8 +6,8 @@
   <sky-contrib-list-view-repeater-right [template]="right"></sky-contrib-list-view-repeater-right>
 </sky-contrib-list-view-repeater>
 
-<template let-row="row" #title>temp {{row.column2}}</template>
-<template let-row="row" #description>temp {{row.column3}}</template>
-<template #content>temp content</template>
-<template #left>temp left</template>
-<template #right>temp right</template>
+<ng-template let-row="row" #title>temp {{row.column2}}</ng-template>
+<ng-template let-row="row" #description>temp {{row.column3}}</ng-template>
+<ng-template #content>temp content</ng-template>
+<ng-template #left>temp left</ng-template>
+<ng-template #right>temp right</ng-template>

@@ -2,7 +2,7 @@ import {
     Component, Input, ContentChildren, QueryList, ViewChild, TemplateRef,
     AfterContentInit, AfterViewInit
 } from '@angular/core';
-import { SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
+import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SkyListFilterComponent } from './list-filter.component';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
@@ -39,7 +39,7 @@ export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit 
         f.filterModel.onChange.subscribe(() => this.applyFilters()) :
         undefined;
 
-      getValue(f.defaultValue, (value) => {
+      getValue(f.defaultValue, (value: any) => {
         if (value) {
           f.filterModel.value = value;
 

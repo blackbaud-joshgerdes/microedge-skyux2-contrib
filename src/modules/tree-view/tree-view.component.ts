@@ -1,5 +1,8 @@
-import { Component, Input, QueryList,
-  ContentChildren, TemplateRef, forwardRef } from '@angular/core';
+import {
+  Component, Input, QueryList,
+  ContentChildren, TemplateRef,
+  forwardRef, AfterContentInit
+} from '@angular/core';
 import { TreeNodeModel } from './tree-node.model';
 import { SkyTreeViewContentComponent } from './tree-view-content.component';
 import { SkyTreeViewDropdownComponent } from './tree-view-dropdown.component';
@@ -9,7 +12,7 @@ import { SkyTreeViewDropdownComponent } from './tree-view-dropdown.component';
   templateUrl: './tree-view.component.html',
   styleUrls: ['./tree-view.component.scss']
 })
-export class SkyTreeViewComponent {
+export class SkyTreeViewComponent implements AfterContentInit {
   @Input() data: TreeNodeModel[] = [];
   @Input() disableParents: boolean = false;
   @Input() leafOnlySelection: boolean = false;

@@ -1,13 +1,13 @@
 <sky-contrib-list [data]="items" [defaultView]="grid">
   <sky-contrib-list-toolbar>
     <sky-contrib-list-toolbar-item id="custom-item" location="left">
-      <template><button>Left</button></template>
+      <ng-template><button>Left</button></ng-template>
     </sky-contrib-list-toolbar-item>
     <sky-contrib-list-toolbar-item id="custom-item2" location="center" index="1">
-      <template><button>Center</button></template>
+      <ng-template><button>Center</button></ng-template>
     </sky-contrib-list-toolbar-item>
     <sky-contrib-list-toolbar-item id="custom-item3" location="right">
-      <template><button>Right</button></template>
+      <ng-template><button>Right</button></ng-template>
     </sky-contrib-list-toolbar-item>
   </sky-contrib-list-toolbar>
 
@@ -18,13 +18,13 @@
 
   <sky-contrib-list-view-repeater>
     <sky-contrib-list-view-repeater-title>
-      <template let-row="row">{{row.column1}}</template>
+      <ng-template let-row="row">{{row.column1}}</ng-template>
     </sky-contrib-list-view-repeater-title>
     <sky-contrib-list-view-repeater-description>
-      <template let-row="row">{{row.column2}}</template>
+      <ng-template let-row="row">{{row.column2}}</ng-template>
     </sky-contrib-list-view-repeater-description>
     <sky-contrib-list-view-repeater-content>
-      <template let-row="row">{{row.column3}}</template>
+      <ng-template let-row="row">{{row.column3}}</ng-template>
     </sky-contrib-list-view-repeater-content>
   </sky-contrib-list-view-repeater>
 </sky-contrib-list>

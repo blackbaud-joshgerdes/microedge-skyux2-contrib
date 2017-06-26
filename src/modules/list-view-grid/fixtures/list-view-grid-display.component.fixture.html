@@ -2,7 +2,7 @@
 <sky-contrib-list-view-grid fit="scroll" [name]="gridview" [displayedColumns]="displayedColumns" [search]="itemSearch">
   <sky-contrib-list-view-grid-column field="column1" heading="Column1" [locked]="true"></sky-contrib-list-view-grid-column>
   <sky-contrib-list-view-grid-column field="column2" heading="Column2" [width]="150">
-    <template let-row="row">{{row.column2}}</template>
+    <ng-template let-row="row">{{row.column2}}</ng-template>
   </sky-contrib-list-view-grid-column>
   <sky-contrib-list-view-grid-column id="column3" field="column3" type="number" heading="Column3" [template]="template1"></sky-contrib-list-view-grid-column>
   <sky-contrib-list-view-grid-column id="column4" type="date" heading="Column4" [hidden]="true"></sky-contrib-list-view-grid-column>
@@ -11,10 +11,10 @@
   <sky-contrib-list-view-grid-column id="hiddenCol2" field="column1" heading="Column7"></sky-contrib-list-view-grid-column>
 </sky-contrib-list-view-grid>
 
-<template let-value="value" #template1>
+<ng-template let-value="value" #template1>
   {{value}}
-</template>
+</ng-template>
 
-<template #template2>
+<ng-template #template2>
   Testing
-</template>
+</ng-template>

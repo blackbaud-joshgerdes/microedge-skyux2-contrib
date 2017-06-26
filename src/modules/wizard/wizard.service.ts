@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { SkyModalService } from '@blackbaud/skyux/dist/modules/modal';
+import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SaveAndCloseComponent, SaveAndCloseEvent } from './save-and-close.interface';
 
 @Injectable()

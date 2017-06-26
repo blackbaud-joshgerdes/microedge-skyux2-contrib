@@ -5,7 +5,7 @@ import {
 
 @Component({
   selector: 'sky-contrib-list-action-bar-item',
-  template: '<template #actionBarItem></template>'
+  template: '<ng-template #actionBarItem></ng-template>'
 })
 export class SkyListActionBarItemComponent implements AfterContentInit {
   /* tslint:disable */

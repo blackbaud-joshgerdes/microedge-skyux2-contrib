@@ -4,7 +4,7 @@ import {
 
 @Component({
   selector: 'sky-contrib-list-repeater-renderer',
-  template: '<template #container></template>',
+  template: '<ng-template #container></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyListRepeaterRendererComponent implements OnInit {
