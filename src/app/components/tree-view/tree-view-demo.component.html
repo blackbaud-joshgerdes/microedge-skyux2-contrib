@@ -3,7 +3,7 @@
 </sky-contrib-tree-view>
 
 <p>Tree view with templates</p>
-<sky-contrib-tree-view [data]="data2" [disableParents]="disableParents" [leafOnlySelection]="leafOnlySelection" [contentTemplate]="content"[selectable]="true">
+<sky-contrib-tree-view #tree [data]="data2" [disableParents]="disableParents" [leafOnlySelection]="leafOnlySelection" [contentTemplate]="content"[selectable]="true">
   <sky-contrib-tree-view-dropdown>
     <ng-template let-item="item">
       <sky-dropdown buttonType="context-menu">

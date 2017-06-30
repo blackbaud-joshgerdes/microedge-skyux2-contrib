@@ -1,12 +1,14 @@
 <div *ngIf="showControls" class="tree-header-bar">
-  <a href (click)="expandAll(data); false">Expand all</a>
-  <a href (click)="collapseAll(data); false">Collapse all</a>
-  <a *ngIf="selectable" href (click)="selectAll(data); false">Select all</a>
-  <a *ngIf="selectable" href (click)="clearAll(data); false">Clear all</a>
+  <a href (click)="clickExpandAll(); false">Expand all</a>
+  <a href (click)="clickCollapseAll(); false">Collapse all</a>
+  <a *ngIf="selectable" href (click)="clickSelectAll(); false">Select all</a>
+  <a *ngIf="selectable" href (click)="clickClearAll(); false">Clear all</a>
 </div>
 <ul>
-  <li *ngFor="let node of data">
-    <sky-contrib-tree-view-node [contentTemplate]="contentTemplate" [dropdownTemplate]="dropdownTemplate" [node]="node" [disableParents]="disableParents" [leafOnlySelection]="leafOnlySelection" [selectable]="selectable"></sky-contrib-tree-view-node>
+  <li *ngFor="let node of rootNodes | async">
+    <div>
+      <sky-contrib-tree-view-node [contentTemplate]="contentTemplate" [dropdownTemplate]="dropdownTemplate" [node]="node" [disableParents]="disableParents" [leafOnlySelection]="leafOnlySelection" [selectable]="selectable"></sky-contrib-tree-view-node>
+    </div>
   </li>
 </ul>
 <ng-content></ng-content>

@@ -1,6 +1,6 @@
 {
   "name": "microedge-skyux2-contrib",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Holding place for Microedge SkyUX 2 components that are yet contributed to the main SkyUX 2 repo.",
   "author": "Brandon Stirnaman <brandon.stirnaman@microedge.com>",
   "homepage": "https://github.com/blackbaud/microedge-skyux2-contrib#readme",
@@ -19,7 +19,7 @@
     "clean:full": "npm cache clean && rimraf -- node_modules doc coverage dist .srctemp webdriver-screenshotslocal webdriver-screenshotslocal-diffs skyux-spa-visual-tests/node_modules/ skyux-spa-visual-tests/dist/",
     "clean:releases": "rimraf -- releases",
     "clean:srctemp": "rimraf -- .srctemp",
-    "compile:sass": "./node_modules/node-sass/bin/node-sass src/scss/sky.scss dist/css/sky.css",
+    "compile:sass": "node-sass src/scss/sky.scss dist/css/sky.css",
     "lint": "tslint --type-check --project tsconfig.json 'src/**/*.ts'",
     "test": "npm run test:unit && npm run test:visual",
     "test:ci": "npm run test:unit:ci && npm run test:visual:ci",
