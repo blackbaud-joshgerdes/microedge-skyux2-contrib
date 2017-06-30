@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SkyListRepeaterStateDispatcher } from './list-repeater.rxstate';
-import { StateNode } from 'microedge-rxstate/dist';
+import { StateNode } from 'microedge-rxstate';
 import { SkyListRepeaterStateModel } from './state.model';
 
 // state helper functions

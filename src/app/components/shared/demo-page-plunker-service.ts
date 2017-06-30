@@ -76,7 +76,7 @@ export class SkyDemoPagePlunkerService {
 
     'moment': 'npm:moment/moment.js',
 
-    'microedge-rxstate/dist': 'npm:microedge-rxstate/dist/index.js',
+    'microedge-rxstate': 'npm:microedge-rxstate/index.js',
 
     //dragula packages
     'ng2-dragula/ng2-dragula': 'npm:ng2-dragula',

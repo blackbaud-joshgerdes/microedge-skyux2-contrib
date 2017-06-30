@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StateNode } from 'microedge-rxstate/dist';
+import { StateNode } from 'microedge-rxstate';
 import { GridStateModel } from './grid-state.model';
 import { GridStateDispatcher } from './grid-state.rxstate';
 import { ListViewGridColumnsOrchestrator } from './columns/columns.orchestrator';

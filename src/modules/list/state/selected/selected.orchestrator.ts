@@ -1,5 +1,5 @@
 import { ListStateOrchestrator } from '../list-state.rxstate';
-import { AsyncItem } from 'microedge-rxstate/dist';
+import { AsyncItem } from 'microedge-rxstate';
 import * as moment from 'moment';
 import { ListSelectedModel } from './selected.model';
 import {

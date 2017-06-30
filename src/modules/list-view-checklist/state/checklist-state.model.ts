@@ -1,4 +1,4 @@
-import { AsyncList } from 'microedge-rxstate/dist';
+import { AsyncList } from 'microedge-rxstate';
 import { ListViewChecklistItemModel } from './items/item.model';
 
 export class ChecklistStateModel {

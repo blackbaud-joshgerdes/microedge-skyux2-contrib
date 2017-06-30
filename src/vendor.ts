@@ -20,7 +20,7 @@ import 'ng2-dragula/ng2-dragula';
 import 'moment';
 
 // microedge rxstate
-import 'microedge-rxstate/dist';
+import 'microedge-rxstate';
 
 // if ('production' === ENV) {
   // Production

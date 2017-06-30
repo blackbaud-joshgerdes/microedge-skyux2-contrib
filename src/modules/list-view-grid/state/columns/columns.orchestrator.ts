@@ -1,5 +1,5 @@
 import { GridStateOrchestrator } from '../grid-state.rxstate';
-import { AsyncList } from 'microedge-rxstate/dist';
+import { AsyncList } from 'microedge-rxstate';
 import * as moment from 'moment';
 
 import { ListViewGridColumnModel } from './column.model';

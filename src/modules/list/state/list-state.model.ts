@@ -1,4 +1,4 @@
-import { AsyncList, AsyncItem } from 'microedge-rxstate/dist';
+import { AsyncList, AsyncItem } from 'microedge-rxstate';
 import { ListViewsModel } from './views/views.model';
 import { ListItemModel } from './items/item.model';
 import { ListSortModel } from './sort/sort.model';

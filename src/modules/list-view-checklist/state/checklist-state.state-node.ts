@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StateNode } from 'microedge-rxstate/dist';
+import { StateNode } from 'microedge-rxstate';
 
 import { ChecklistStateModel } from './checklist-state.model';
 import { ChecklistStateDispatcher } from './checklist-state.rxstate';

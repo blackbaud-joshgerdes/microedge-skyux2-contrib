@@ -13,7 +13,7 @@ import { ListDataResponseModel } from './list-data-response.model';
 import { ListDataProvider } from './list-data.provider';
 import { SkyListInMemoryDataProvider } from '../list-data-provider-in-memory';
 import { ListSelectedModel } from './state/selected/selected.model';
-import { AsyncItem } from 'microedge-rxstate/dist';
+import { AsyncItem } from 'microedge-rxstate';
 import { ListState, ListStateDispatcher } from './state';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';

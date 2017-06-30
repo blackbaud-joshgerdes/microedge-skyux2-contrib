@@ -1,5 +1,5 @@
 import { ChecklistStateOrchestrator } from '../checklist-state.rxstate';
-import { AsyncList } from 'microedge-rxstate/dist';
+import { AsyncList } from 'microedge-rxstate';
 import * as moment from 'moment';
 import { ListViewChecklistItemModel } from './item.model';
 import { ListViewChecklistItemsLoadAction } from './actions';

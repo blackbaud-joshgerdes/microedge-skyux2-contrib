@@ -1,5 +1,5 @@
 import { LinkRecordsStateOrchestrator } from '../link-records-state.rxstate';
-import { AsyncItem } from 'microedge-rxstate/dist';
+import { AsyncItem } from 'microedge-rxstate';
 import * as moment from 'moment';
 
 import {
