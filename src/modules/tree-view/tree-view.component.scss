@@ -8,12 +8,18 @@
 
     > li {
       padding: 5px 0;
+
+      div {
+        position: relative;
+      }
     }
 
     .fa-minus-square-o,
     .fa-plus-square-o {
       cursor: pointer;
-      padding-right: 5px;
+      position: absolute;
+      left: -18px;
+      top: 20%;
     }
   }
 

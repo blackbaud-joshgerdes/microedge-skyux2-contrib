@@ -1,14 +1,18 @@
-import { Component, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {
+  Component, NgModule, CUSTOM_ELEMENTS_SCHEMA,
+  ViewChild, AfterViewInit
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MicroedgeSkyContribModule } from '../../../src/core';
 import { Bootstrapper } from '../../bootstrapper';
-import  { TreeNodeModel } from '../../../src/core';
+import  { TreeNodeModel, SkyTreeViewComponent } from '../../../src/core';
 
 @Component({
   selector: 'sky-demo-app',
   templateUrl: './app.component.html'
 })
-class AppComponent {
+class AppComponent implements AfterViewInit {
+  @ViewChild('tree') tree: SkyTreeViewComponent;
   disableParents: boolean;
   leafOnlySelection: boolean;
   data: TreeNodeModel[] = [];
@@ -17,27 +21,32 @@ class AppComponent {
   constructor() {
     this.disableParents = true;
     this.leafOnlySelection = false;
-    let root1node = new TreeNodeModel({id: 1, name: 'root1'});
-    let child1node = new TreeNodeModel({ id: 2, name: 'child1', parent: root1node });
-    child1node.children = [new TreeNodeModel({id: 2.1, name: 'sub-child1', parent: child1node})];
-    let child2node = new TreeNodeModel({ id: 3, name: 'child2', parent: root1node });
-    child2node.children = [new TreeNodeModel({id: 3.1, name: 'sub-child2', parent: child2node})];
-    child2node.children[0].children =
-      [new TreeNodeModel({id: 3.11, name: 'sub-sub-child1', parent: child2node.children[0]})];
-    root1node.children =  [child1node, child2node];
+    let root1node = new TreeNodeModel({id: '1', name: 'root1'});
+    let child1node = new TreeNodeModel({ id: '2', name: 'child1', parent: root1node });
+    let child1nodeChildren =
+      [new TreeNodeModel({id: '2.1', name: 'sub-child1', parent: child1node})];
+    let child2node = new TreeNodeModel({ id: '3', name: 'child2', parent: root1node });
+    let child2nodeChildren =
+      [new TreeNodeModel({id: '3.1', name: 'sub-child2', parent: child2node})];
+    let child2nodeGrandChildren =
+      [new TreeNodeModel({id: '3.11', name: 'sub-sub-child1', parent: child2node.children[0]})];
 
-    this.data.push(root1node);
+    this.data.push(root1node, child1node);
 
-    root1node = new TreeNodeModel({id: 1, name: 'root1'});
-    child1node = new TreeNodeModel({ id: 2, name: 'child1', parent: root1node });
-    child1node.children = [new TreeNodeModel({id: 2.1, name: 'sub-child1', parent: child1node})];
-    child2node = new TreeNodeModel({ id: 3, name: 'child2', parent: root1node });
-    child2node.children = [new TreeNodeModel({id: 3.1, name: 'sub-child2', parent: child2node})];
-    child2node.children[0].children =
-      [new TreeNodeModel({id: 3.11, name: 'sub-sub-child1', parent: child2node.children[0]})];
-    root1node.children =  [child1node, child2node];
+    root1node = new TreeNodeModel({id: '1', name: 'root1'});
+    child1node = new TreeNodeModel({ id: '2', name: 'child1', parent: root1node });
+    child1nodeChildren = [new TreeNodeModel({id: '2.1', name: 'sub-child1', parent: child1node})];
+    child2node = new TreeNodeModel({ id: '3', name: 'child2', parent: root1node });
+    child2nodeChildren = [new TreeNodeModel({id: '3.1', name: 'sub-child2', parent: child2node})];
+    child2nodeGrandChildren =
+      [new TreeNodeModel({id: '3.11', name: 'sub-sub-child1', parent: child2nodeChildren[0]})];
 
-    this.data2.push(root1node);
+    this.data2.push(root1node, child1node, child2node,
+      ...child1nodeChildren, ...child2nodeChildren, ...child2nodeGrandChildren);
+  }
+
+  public ngAfterViewInit() {
+    this.tree.setNodesSelected(['3.11', '2']);
   }
 }
 

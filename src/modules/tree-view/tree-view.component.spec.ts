@@ -59,26 +59,22 @@ describe('Locale currency mask directive', () => {
       let nodes = document.querySelectorAll('.sub-item:not([hidden])');
       expect(nodes.length).toBe(0);
 
-      tree.expandAll(tree.data);
+      tree.clickExpandAll();
       fixture.detectChanges();
       nodes = document.querySelectorAll('.sub-item:not([hidden])');
       expect(nodes.length).toBe(4);
     });
 
     it('Collapse all should collapse all nodes', () => {
-      tree.expandAll(tree.data);
+      tree.clickExpandAll();
       fixture.detectChanges();
       let nodes = document.querySelectorAll('.sub-item:not([hidden])');
       expect(nodes.length).toBe(4);
 
-      tree.collapseAll(tree.data);
+      tree.clickCollapseAll();
       fixture.detectChanges();
       nodes = document.querySelectorAll('.sub-item:not([hidden])');
       expect(nodes.length).toBe(0);
-    });
-
-    it('Should get proper tree depth', () => {
-      expect(tree.getTreeDepth(tree.data)).toBe(4);
     });
 
     it('All nodes should be enabled', () => {
@@ -115,17 +111,15 @@ describe('Locale currency mask directive', () => {
     }));
 
     it('tree should have no data', () => {
-      expect(tree.data.length).toBe(0);
+      tree.data.take(1).subscribe(data => {
+        expect(data.length).toBe(0);
+      });
     });
 
     it('tree should not show controls', () => {
       expect(tree.showControls).toBe(false);
       let controls = document.querySelectorAll('tree-header-bar');
       expect(controls.length).toBe(0);
-    });
-
-    it('tree depth should be 0', () => {
-      expect(tree.getTreeDepth(tree.data)).toBe(0);
     });
 
     it('Set up an empty node', () => {
@@ -163,9 +157,9 @@ describe('Locale currency mask directive', () => {
 
     it('tree should apply external content template', () => {
       expect(tree.contentTemplate).not.toBe(undefined);
-      let content = document.querySelector('span');
+      let content: any = document.querySelector('span');
 
-      expect(content.textContent.search('template magic!') > -1).toBe(true);
+      expect(content[0].textContent.search('template magic!') > -1).toBe(true);
     });
 
     it('tree should apply dropdown template', () => {
@@ -191,9 +185,9 @@ describe('Locale currency mask directive', () => {
 
     it('selects a node when checkbox is clicked', () => {
       expect(tree.data[0].isSelected).toBe(false);
-      tree.expandAll(tree.data);
+      tree.clickExpandAll();
       fixture.detectChanges();
-      let checkbox = document.querySelector('input');
+      let checkbox: any = document.querySelector('input')[0];
       expect(checkbox).not.toBe(null);
 
       checkbox.click();
@@ -203,7 +197,7 @@ describe('Locale currency mask directive', () => {
     });
 
     it('Select all selects all checkboxes', () => {
-      tree.selectAll(tree.data);
+      tree.clickSelectAll();
       fixture.detectChanges();
 
       let checkboxes = element.queryAll(By.css('sky-checkbox')).map(c => c.componentInstance);
@@ -215,7 +209,7 @@ describe('Locale currency mask directive', () => {
     });
 
     it('Clear all clears all checkboxes', () => {
-      tree.selectAll(tree.data);
+      tree.clickSelectAll();
       fixture.detectChanges();
 
       let checkboxes = element.queryAll(By.css('sky-checkbox')).map(c => c.componentInstance);
@@ -223,7 +217,7 @@ describe('Locale currency mask directive', () => {
         expect(c.checked).toBe(true);
       });
 
-      tree.clearAll(tree.data);
+      tree.clickClearAll();
       fixture.detectChanges();
 
       checkboxes = element.queryAll(By.css('sky-checkbox')).map(c => c.componentInstance);
@@ -256,7 +250,7 @@ describe('Locale currency mask directive', () => {
     }));
 
     it('Select all selects all checkboxes', () => {
-      tree.selectAll(tree.data);
+      tree.clickSelectAll();
       fixture.detectChanges();
 
       let checkboxes = element.queryAll(By.css('sky-checkbox')).map(c => c.componentInstance);
@@ -268,7 +262,7 @@ describe('Locale currency mask directive', () => {
     });
 
     it('Parent node has selected children', () => {
-      tree.selectAll(tree.data);
+      tree.clickSelectAll();
       fixture.detectChanges();
 
       let node = element.query(By.css('sky-contrib-tree-view-node'));

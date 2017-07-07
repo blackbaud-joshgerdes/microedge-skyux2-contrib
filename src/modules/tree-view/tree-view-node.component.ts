@@ -1,5 +1,8 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { TreeNodeModel } from './tree-node.model';
+import { TreeViewStateDispatcher, TreeViewState } from './state/';
+import { TreeViewNodesSetNodeSelectedAction } from './state/nodes/actions';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'sky-contrib-tree-view-node',
@@ -14,12 +17,32 @@ export class SkyTreeViewNodeComponent {
   @Input() contentTemplate: TemplateRef<any>;
   @Input() dropdownTemplate: TemplateRef<any>;
 
+  constructor(
+    private dispatcher: TreeViewStateDispatcher,
+    private state: TreeViewState
+  ) { }
+
   public toggleExpanded(node: any) {
     node.isExpanded = !node.isExpanded;
   }
 
   public toggleSelected(event: any) {
-    this.node.isSelected = event.checked;
+    this.dispatcher.next(new TreeViewNodesSetNodeSelectedAction(this.node.id, event.checked));
+  }
+
+  hasChildren(nodeId: string): Observable<boolean> {
+    return this.treeNodes.take(1)
+      .map(nodes => nodes.filter(n => n.parent != null && nodeId === n.parent.id))
+      .map(b => b != null && b.length > 0);
+  }
+
+  getChildren(nodeId: string): Observable<Array<TreeNodeModel>> {
+    return this.treeNodes.take(1)
+      .map(nodes => nodes.filter(n => n.parent != null && nodeId === n.parent.id));
+  }
+
+  get treeNodes() {
+    return this.state.map(s => s.nodes.items).distinctUntilChanged();
   }
 
   public get enabled() {
