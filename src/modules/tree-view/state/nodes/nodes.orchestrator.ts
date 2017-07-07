@@ -39,12 +39,37 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
   private setItemSelected(
     state: AsyncList<TreeNodeModel>,
     action: TreeViewNodesSetNodeSelectedAction): AsyncList<TreeNodeModel> {
-    let selectedNodes = state.items.filter(i => i.id === action.id);
-    if (selectedNodes.length > 0) {
-      let newNode = new TreeNodeModel(selectedNodes[0]);
-      newNode.isSelected = action.selected;
+    if (action.id) {
+      let nodesToExpand = new Array<string>();
+      let newNodes = state.items.map(n => {
+        let newNode = new TreeNodeModel(n);
+        if (newNode.id === action.id) {
+          newNode.isSelected = action.selected;
+
+          if (newNode.isSelected) {
+            this.getAncestorIds(newNode, nodesToExpand);
+          }
+        }
+
+        return newNode;
+      });
+
+      if (nodesToExpand.length > 0) {
+        newNodes.forEach(node => {
+          let indx = nodesToExpand.indexOf(node.id);
+          if (indx > -1) {
+            node.isExpanded = true;
+            nodesToExpand.splice(indx, 1);
+
+            if (nodesToExpand.length === 0) {
+              return;
+            }
+          }
+        });
+      }
+
       return new AsyncList<TreeNodeModel>(
-        [...state.items.filter(i => i.id !== action.id), newNode],
+        newNodes,
         moment(),
         false
       );
@@ -56,33 +81,37 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
   private setItemsSelected(
     state: AsyncList<TreeNodeModel>,
     action: TreeViewNodesSetNodesSelectedAction): AsyncList<TreeNodeModel> {
-    let selectedNodes = state.items.filter(i => action.ids.indexOf(i.id) > -1);
-    let nodesToExpand: any[] = [];
-    if (selectedNodes.length > 0) {
-      let newNodes = selectedNodes.map(n => {
-        let node = new TreeNodeModel(n);
-        node.isSelected = action.selected;
-        if (node.isSelected && node.parent) {
-          this.getAncestorIds(node, nodesToExpand);
+    if (action.ids && action.ids.length > 0) {
+      let nodesToExpand = new Array<string>();
+      let newNodes = state.items.map(n => {
+        let newNode = new TreeNodeModel(n);
+        if (action.ids.indexOf(newNode.id) > -1) {
+          newNode.isSelected = action.selected;
+
+          if (newNode.isSelected) {
+            this.getAncestorIds(newNode, nodesToExpand);
+          }
         }
 
-        return node;
+        return newNode;
       });
 
-      let expandedNodes = state.items.filter(i => nodesToExpand.indexOf(i.id) > -1);
-      let newExpandedNodes: TreeNodeModel[] = [];
-      if (expandedNodes.length > 0) {
-        newExpandedNodes = expandedNodes.map(n => {
-          let node = new TreeNodeModel(n);
-          node.isExpanded = true;
+      if (nodesToExpand.length > 0) {
+        newNodes.forEach(node => {
+          let indx = nodesToExpand.indexOf(node.id);
+          if (indx > -1) {
+            node.isExpanded = true;
+            nodesToExpand.splice(indx, 1);
 
-          return node;
+            if (nodesToExpand.length === 0) {
+              return;
+            }
+          }
         });
       }
 
       return new AsyncList<TreeNodeModel>(
-        [...state.items.filter(i => action.ids.indexOf(i.id) === -1
-          && nodesToExpand.indexOf(i.id) === -1), ...newNodes, ...newExpandedNodes],
+        newNodes,
         moment(),
         false
       );
@@ -91,9 +120,12 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
     return new AsyncList<TreeNodeModel>(state.items, state.lastUpdate, false);
   }
 
-  private getAncestorIds(node: TreeNodeModel, nodesToExpand: any[]) {
+  private getAncestorIds(node: TreeNodeModel, nodesToExpand: Array<string>) {
     if (node.parent) {
-      nodesToExpand.push(node.parent.id);
+      if (nodesToExpand.indexOf(node.parent.id) === -1) {
+        nodesToExpand.push(node.parent.id);
+      }
+
       this.getAncestorIds(node.parent, nodesToExpand);
     }
   }

@@ -12,6 +12,8 @@ export class TreeNodeModel {
       this.id = data.id;
       this.name = data.name;
       this.parent = data.parent;
+      this.isSelected = data.isSelected ? data.isSelected : false;
+      this.isExpanded = data.isExpanded ? data.isExpanded : false;
       this.data = data.data;
 
       if (data.children && Array.isArray(data.children)) {

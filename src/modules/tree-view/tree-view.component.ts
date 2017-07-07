@@ -122,13 +122,13 @@ export class SkyTreeViewComponent implements OnInit, AfterContentInit {
 
   private isLeaf(nodeId: string, nodes: Array<TreeNodeModel>) {
     let isLeaf = true;
-    for (let i = 0; i < nodes.length; i++) {
-      let node = nodes[i];
-      if (node.parent != null && nodeId === node.parent.id) {
+    nodes.forEach(node => {
+      if (node.parent && node.parent.id === nodeId) {
         isLeaf = false;
-        break;
+        return;
       }
-    }
+    });
+
     return isLeaf;
   }
 
