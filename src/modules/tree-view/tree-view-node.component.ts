@@ -23,7 +23,7 @@ export class SkyTreeViewNodeComponent {
   ) { }
 
   public toggleExpanded(node: any) {
-    node.isExpanded = !node.isExpanded;
+    node.expanded = !node.expanded;
   }
 
   public toggleSelected(event: any) {
@@ -46,6 +46,10 @@ export class SkyTreeViewNodeComponent {
   }
 
   public get enabled() {
+    if (!this.node.enabled) {
+      return false;
+    }
+
     return this.disableParents ? !this.hasSelectedChildren(this.node) : true;
   }
 
@@ -58,8 +62,8 @@ export class SkyTreeViewNodeComponent {
   }
 
   private hasSelectedChildren(node: TreeNodeModel): boolean {
-    if (this.isSelectable && node.isSelected && node !== this.node) {
-      this.node.isSelected = true;
+    if (this.isSelectable && node.selected && node !== this.node) {
+      this.node.selected = true;
 
       return true;
     }

@@ -1,7 +1,7 @@
 <div>
-    <i *ngIf="hasChildren(node.id) | async " class="fa" [ngClass]="node.isExpanded ? 'fa-minus-square-o' : 'fa-plus-square-o'" (click)="toggleExpanded(node)" [ngClass]="enabled ? '' : 'disabled'"></i>
+    <i *ngIf="hasChildren(node.id) | async " class="fa" [ngClass]="node.expanded ? 'fa-minus-square-o' : 'fa-plus-square-o'" (click)="toggleExpanded(node)" [ngClass]="enabled ? '' : 'disabled'"></i>
   <sky-contrib-tree-view-renderer [item]="node" [template]="dropdownTemplate"></sky-contrib-tree-view-renderer>
-  <sky-checkbox *ngIf="isSelectable" [checked]="node.isSelected" [disabled]="!enabled" (change)="toggleSelected($event)">
+  <sky-checkbox *ngIf="isSelectable" [checked]="node.selected" [disabled]="!enabled" (change)="toggleSelected($event)">
     <sky-checkbox-label>
       <sky-contrib-tree-view-renderer [item]="node" [template]="contentTemplate || defaultContent"></sky-contrib-tree-view-renderer>
     </sky-checkbox-label>
@@ -10,7 +10,7 @@
     <sky-contrib-tree-view-renderer [item]="node" [template]="contentTemplate || defaultContent"></sky-contrib-tree-view-renderer>
   </span>
 </div>
-<ul *ngIf="hasChildren(node.id) | async " [hidden]="!node.isExpanded" class="sub-item">
+<ul *ngIf="hasChildren(node.id) | async " [hidden]="!node.expanded" class="sub-item">
   <li *ngFor="let nodeChildren of getChildren(node.id) | async">
     <sky-contrib-tree-view-node [contentTemplate]="contentTemplate" [dropdownTemplate]="dropdownTemplate" [node]="nodeChildren" [disableParents]="disableParents" [leafOnlySelection]="leafOnlySelection" [selectable]="selectable"></sky-contrib-tree-view-node>
   </li>

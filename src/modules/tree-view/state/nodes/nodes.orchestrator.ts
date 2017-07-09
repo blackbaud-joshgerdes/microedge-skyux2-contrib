@@ -44,9 +44,9 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
       let newNodes = state.items.map(n => {
         let newNode = new TreeNodeModel(n);
         if (newNode.id === action.id) {
-          newNode.isSelected = action.selected;
+          newNode.selected = action.selected;
 
-          if (newNode.isSelected) {
+          if (newNode.selected) {
             this.getAncestorIds(newNode, nodesToExpand);
           }
         }
@@ -55,17 +55,18 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
       });
 
       if (nodesToExpand.length > 0) {
-        newNodes.forEach(node => {
+        for (let i = 0; i < newNodes.length; i++) {
+          let node = newNodes[i];
           let indx = nodesToExpand.indexOf(node.id);
           if (indx > -1) {
-            node.isExpanded = true;
+            node.expanded = true;
             nodesToExpand.splice(indx, 1);
 
             if (nodesToExpand.length === 0) {
-              return;
+              break;
             }
           }
-        });
+        }
       }
 
       return new AsyncList<TreeNodeModel>(
@@ -86,9 +87,9 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
       let newNodes = state.items.map(n => {
         let newNode = new TreeNodeModel(n);
         if (action.ids.indexOf(newNode.id) > -1) {
-          newNode.isSelected = action.selected;
+          newNode.selected = action.selected;
 
-          if (newNode.isSelected) {
+          if (newNode.selected) {
             this.getAncestorIds(newNode, nodesToExpand);
           }
         }
@@ -97,17 +98,18 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
       });
 
       if (nodesToExpand.length > 0) {
-        newNodes.forEach(node => {
+        for (let i = 0; i < newNodes.length; i++) {
+          let node = newNodes[i];
           let indx = nodesToExpand.indexOf(node.id);
           if (indx > -1) {
-            node.isExpanded = true;
+            node.expanded = true;
             nodesToExpand.splice(indx, 1);
 
             if (nodesToExpand.length === 0) {
-              return;
+              break;
             }
           }
-        });
+        }
       }
 
       return new AsyncList<TreeNodeModel>(

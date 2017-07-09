@@ -3,8 +3,9 @@ export class TreeNodeModel {
   public name: string;
   public children: TreeNodeModel[] = [];
   public parent: TreeNodeModel;
-  public isSelected = false;
-  public isExpanded = false;
+  public selected = false;
+  public expanded = false;
+  public enabled = true;
   public data: any;
 
   constructor(data: any = null) {
@@ -12,9 +13,19 @@ export class TreeNodeModel {
       this.id = data.id;
       this.name = data.name;
       this.parent = data.parent;
-      this.isSelected = data.isSelected ? data.isSelected : false;
-      this.isExpanded = data.isExpanded ? data.isExpanded : false;
       this.data = data.data;
+
+      if (data.enabled != null) {
+        this.enabled = data.enabled;
+      }
+
+      if (data.expanded != null) {
+        this.expanded = data.expanded;
+      }
+
+      if (data.selected != null) {
+        this.selected = data.selected;
+      }
 
       if (data.children && Array.isArray(data.children)) {
         this.children = data.children.map((c: any) => new TreeNodeModel(c));

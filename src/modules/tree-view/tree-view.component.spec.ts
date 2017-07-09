@@ -173,18 +173,18 @@ describe('Locale currency mask directive', () => {
     });
 
     it('expands a node when expand icon is clicked', () => {
-      expect(tree.data[0].isExpanded).toBe(false);
+      expect(tree.data[0].expanded).toBe(false);
       let expand = element.query(By.css('.fa-plus-square-o'));
       expect(expand).not.toBe(null);
 
       expand.triggerEventHandler('click', undefined);
       fixture.detectChanges();
 
-      expect(tree.data[0].isExpanded).toBe(true);
+      expect(tree.data[0].expanded).toBe(true);
     });
 
     it('selects a node when checkbox is clicked', () => {
-      expect(tree.data[0].isSelected).toBe(false);
+      expect(tree.data[0].selected).toBe(false);
       tree.clickExpandAll();
       fixture.detectChanges();
       let checkbox: any = document.querySelector('input')[0];
@@ -193,7 +193,7 @@ describe('Locale currency mask directive', () => {
       checkbox.click();
       fixture.detectChanges();
 
-      expect(tree.data[0].children[0].children[0].isSelected).toBe(true);
+      expect(tree.data[0].children[0].children[0].selected).toBe(true);
     });
 
     it('Select all selects all checkboxes', () => {

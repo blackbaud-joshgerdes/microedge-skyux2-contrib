@@ -68,7 +68,7 @@ export class SkyTreeViewComponent implements OnInit, AfterContentInit {
   }
 
   get selectedNodes() {
-    return this.treeNodes.map(nodes => nodes.filter(node => node.isSelected));
+    return this.treeNodes.map(nodes => nodes.filter(node => node.selected));
   }
 
   public setNodesSelected(ids: string[], selected: boolean = true) {
@@ -86,7 +86,7 @@ export class SkyTreeViewComponent implements OnInit, AfterContentInit {
         }
 
         if (!this.isLeaf(node.id, nodes)) {
-          node.isExpanded = true;
+          node.expanded = true;
         }
       });
 
@@ -106,7 +106,7 @@ export class SkyTreeViewComponent implements OnInit, AfterContentInit {
     this.treeNodes.take(1).subscribe(nodes => {
       nodes.forEach(node => {
         if (!this.isLeaf(node.id, nodes)) {
-          node.isExpanded = true;
+          node.expanded = true;
         }
       });
     });
@@ -115,19 +115,20 @@ export class SkyTreeViewComponent implements OnInit, AfterContentInit {
   public clickCollapseAll() {
     this.treeNodes.take(1).subscribe(nodes => {
       nodes.forEach(node => {
-        node.isExpanded = false;
+        node.expanded = false;
       });
     });
   }
 
   private isLeaf(nodeId: string, nodes: Array<TreeNodeModel>) {
     let isLeaf = true;
-    nodes.forEach(node => {
-      if (node.parent && node.parent.id === nodeId) {
+    for (let i = 0; i < nodes.length; i++) {
+      let node = nodes[i];
+      if (node.parent != null && nodeId === node.parent.id) {
         isLeaf = false;
-        return;
+        break;
       }
-    });
+    }
 
     return isLeaf;
   }
