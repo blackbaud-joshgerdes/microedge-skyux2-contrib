@@ -8,6 +8,8 @@ export class SkyContribVerticalTabbarItemComponent {
   @Input() title: string;
   @Input() active: boolean = false;
   @Input() disabled: boolean = false;
+  @Input() invalid: boolean = false;
+  @Input() required: boolean = false;
   @Output('action') itemClicked = new EventEmitter();
 
   ngOnInit() {

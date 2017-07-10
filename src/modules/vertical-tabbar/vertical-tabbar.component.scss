@@ -48,6 +48,11 @@
           cursor: default;
         }
 
+        &.invalid,
+        > span.required {
+          color: $sky-form-error-color;
+        }
+
         &[disabled="true"] {
           background-color: $sky-color-gray-lighter-er;
           border-left: 4px solid rgba(0, 0, 0, 0);

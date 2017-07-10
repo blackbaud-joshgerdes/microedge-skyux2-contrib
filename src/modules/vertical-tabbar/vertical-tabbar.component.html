@@ -1,7 +1,7 @@
 <div class="sky-contrib-vertical-tabbar">
     <ul class="sky-contrib-vertical-tabbar-menu">
     <li *ngFor="let tab of tabs">
-      <a [class.active]="tab.active" [attr.disabled]="tab.disabled ? true : null" (click)="onClick(tab); false">{{ tab.title }}</a>
+      <a [class.active]="tab.active" [class.invalid]="tab.invalid" [attr.disabled]="tab.disabled ? true : null" (click)="onClick(tab); false"><span *ngIf="tab.required" class="required">*</span> {{ tab.title }}</a>
     </li>
   </ul>
   <div class="sky-contrib-vertical-tabbar-content">
