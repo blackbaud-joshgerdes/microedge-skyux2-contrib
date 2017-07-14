@@ -14,7 +14,8 @@ import { Observable } from 'rxjs/Observable';
 import { getData } from '../list/helpers';
 import {
   ListSelectedSetItemSelectedAction,
-  ListSelectedSetItemsSelectedAction
+  ListSelectedSetItemsSelectedAction,
+  ListSelectedLoadAction
 } from '../list/state/selected/actions';
 
 @Component({
@@ -157,22 +158,22 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
   }
 
   public itemSelected(id: string) {
-    return this.state.map(s => s.selected.item[id]);
+    return this.state.map(s => s.selected.item[id] != null);
   }
 
   public setItemSelection(item: ListItemModel, ev: any) {
-    this.dispatcher.next(new ListSelectedSetItemSelectedAction(item.id, ev.checked));
+    this.dispatcher.next(new ListSelectedSetItemSelectedAction(item, ev.checked));
   }
 
   public setItemsSelection(items: ListItemModel[], checked: boolean = true) {
-    this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), checked));
+    this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items, checked));
   }
 
   public clearSelections() {
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe(items => {
-        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), false));
+        this.dispatcher.next(new ListSelectedLoadAction([]));
       });
   }
 
@@ -180,7 +181,7 @@ export class SkyListViewChecklistComponent extends ListViewComponent implements 
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe(items => {
-        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), true));
+        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items));
       });
   }
 

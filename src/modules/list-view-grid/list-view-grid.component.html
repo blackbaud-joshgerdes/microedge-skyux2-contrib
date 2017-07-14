@@ -26,7 +26,7 @@
 </div>
 
 <ng-template #defaultCellTemplate let-row="row" let-value="value">{{value}}</ng-template>
-<ng-template #selectTemplate let-itemId="item.id" let-selected="isSelected"><sky-checkbox id="{{itemId}}" class="select-checkbox" [checked]="selected" (change)="toggleSelected($event, itemId)"></sky-checkbox></ng-template>
+<ng-template #selectTemplate let-item="item" let-selected="isSelected"><sky-checkbox id="{{item.id}}" class="select-checkbox" [checked]="selected" (change)="toggleSelected($event, item)"></sky-checkbox></ng-template>
 <ng-template #chooseColumnsTemplate>
   <button (click)="openColumnSelector()" title="Choose Columns">
     <span class="fa fa-lg fa-columns"></span>

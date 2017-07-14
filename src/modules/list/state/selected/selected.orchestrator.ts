@@ -30,10 +30,10 @@ export class ListSelectedOrchestrator extends ListStateOrchestrator<AsyncItem<Li
     state: AsyncItem<ListSelectedModel>,
     action: ListSelectedLoadAction): AsyncItem<ListSelectedModel> {
     const newSelected = new ListSelectedModel();
-    action.items.map(s => newSelected[s] = true);
+    action.items.map(s => newSelected[s.id] = s);
 
     return new AsyncItem<ListSelectedModel>(
-      Object.assign({}, state.item, newSelected),
+      newSelected,
       moment(),
       false
     );
@@ -43,7 +43,12 @@ export class ListSelectedOrchestrator extends ListStateOrchestrator<AsyncItem<Li
     state: AsyncItem<ListSelectedModel>,
     action: ListSelectedSetItemSelectedAction): AsyncItem<ListSelectedModel> {
     const newSelected = Object.assign({}, state.item);
-    newSelected[action.id] = action.selected;
+
+    if (action.selected) {
+      newSelected[action.item.id] = action.item;
+    } else {
+      delete newSelected[action.item.id];
+    }
 
     return new AsyncItem<ListSelectedModel>(newSelected, state.lastUpdate, state.loading);
   }
@@ -53,7 +58,13 @@ export class ListSelectedOrchestrator extends ListStateOrchestrator<AsyncItem<Li
     action: ListSelectedSetItemsSelectedAction): AsyncItem<ListSelectedModel> {
     const newSelected = action.refresh ? new ListSelectedModel() : Object.assign({}, state.item);
 
-    action.items.map(s => newSelected[s] = action.selected);
+    action.items.map(s => {
+      if (action.selected) {
+        newSelected[s.id] = s;
+      } else {
+        delete newSelected[s.id];
+      }
+    });
 
     return new AsyncItem<ListSelectedModel>(newSelected, state.lastUpdate, state.loading);
   }

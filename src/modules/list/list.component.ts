@@ -42,7 +42,7 @@ export class SkyListComponent implements AfterContentInit {
   @Input() dataProvider?: ListDataProvider;
   @Input() defaultView?: ListViewComponent;
   @Input() initialTotal?: number;
-  @Input() selectedIds: Array<string> | Observable<Array<string>>;
+  @Input() initialSelectedItems: Array<ListItemModel> | Observable<Array<ListItemModel>>;
   @Input() sortFields?: string | Array<string> | Observable<Array<string>> | Observable<string>;
   /* tslint:disable-next-line */
   @Input('search') searchFunction: (data: any, searchText: string) => boolean;
@@ -105,9 +105,10 @@ export class SkyListComponent implements AfterContentInit {
     }
 
     // deal with selected items
-    let selectedIds: any = this.selectedIds || Observable.of([]);
-    if (!(selectedIds instanceof Observable)) {
-      selectedIds = Observable.of(selectedIds);
+    let initialSelectedItems: Array<ListItemModel> | Observable<Array<ListItemModel>> =
+      this.initialSelectedItems || Observable.of([]);
+    if (!(initialSelectedItems instanceof Observable)) {
+      initialSelectedItems = Observable.of(initialSelectedItems);
     }
 
     let selectedChanged: boolean = false;
@@ -119,14 +120,14 @@ export class SkyListComponent implements AfterContentInit {
       this.state.map(s => s.sort).distinctUntilChanged(),
       this.state.map(s => s.paging.itemsPerPage).distinctUntilChanged(),
       this.state.map(s => s.paging.pageNumber).distinctUntilChanged(),
-      selectedIds.distinctUntilChanged().map((s: Array<string>) => {
+      initialSelectedItems.distinctUntilChanged().map((s: Array<ListItemModel>) => {
         selectedChanged = true;
         return s;
       }),
       data.distinctUntilChanged(),
       (refresh: boolean, filters: Array<ListFilterModel>, search: ListSearchModel,
        sort: ListSortModel, itemsPerPage: number, pageNumber: number,
-       selected: Array<string>, itemsData: Array<any>) => {
+       selected: Array<ListItemModel>, itemsData: Array<any>) => {
         this.dispatcher.next(new ListItemsSetLoadingAction());
 
         if (selectedChanged) {
@@ -162,12 +163,7 @@ export class SkyListComponent implements AfterContentInit {
   }
 
   public get selectedItems(): Observable<Array<ListItemModel>> {
-    return Observable.combineLatest(
-      this.state.map(s => s.items.items).distinctUntilChanged(),
-      this.state.map(s => s.selected).distinctUntilChanged(),
-      (items: Array<ListItemModel>, selected: AsyncItem<ListSelectedModel>) => {
-        return items.filter(i => selected.item[i.id]);
-      });
+    return this.state.map(s => Object.keys(s.selected.item).map(key => s.selected.item[key]));
   }
 
   public get selectedItemIds(): Observable<Array<string>> {
