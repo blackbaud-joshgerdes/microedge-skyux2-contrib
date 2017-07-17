@@ -23,6 +23,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 import { getData } from '../list/helpers';
+import { ListItemModel } from "../list/state/items/item.model";
 
 @Component({
   selector: 'sky-contrib-list-view-grid',
@@ -263,20 +264,20 @@ export class SkyListViewGridComponent
   public toggleSelectAllDisplayed(event: any) {
     this.items
       .take(1)
-      .subscribe(items => {
+      .subscribe((items: any) => {
         this.dispatcher.next(
-          new ListSelectedSetItemsSelectedAction(items.map((i: any) => i.id), event.checked, false)
+          new ListSelectedSetItemsSelectedAction(event.checked ? items : [])
         );
       });
   }
 
-  public toggleSelected(event: any, id: string) {
-    this.dispatcher.next(new ListSelectedSetItemSelectedAction(id, event.checked));
+  public toggleSelected(event: any, item: any) {
+    this.dispatcher.next(new ListSelectedSetItemSelectedAction(item, event.checked));
   }
 
   public isSelected(id: string): Observable<boolean> {
     return this.state.map(s => {
-      return s.selected.item[id] === true;
+      return s.selected.item[id] != null;
     }).distinctUntilChanged();
   }
 
@@ -284,7 +285,7 @@ export class SkyListViewGridComponent
     return Observable.combineLatest(
       this.items.distinctUntilChanged(),
       this.state.map(s => s.selected.item).distinctUntilChanged(),
-      (items, selected) => items.every((i: any) => selected[i.id] === true)
+      (items: any, selected: ListItemModel) => items.every((i: any) => selected[i.id] != null)
     ).distinctUntilChanged();
   }
 }

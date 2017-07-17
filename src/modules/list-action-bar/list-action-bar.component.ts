@@ -1,6 +1,6 @@
 import { Component, Input, AfterContentInit } from '@angular/core';
 import { ListState, ListStateDispatcher } from '../list/state';
-import { ListSelectedSetItemsSelectedAction } from '../list/state/selected/actions';
+import { ListSelectedSetItemsSelectedAction, ListSelectedLoadAction } from '../list/state/selected/actions';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -25,7 +25,7 @@ export class SkyListActionBarComponent implements AfterContentInit {
 
   get selectedItemCount(): Observable<number> {
     return this.state.map(s => {
-      return Object.keys(s.selected.item).filter(id => s.selected.item[id] === true).length;
+      return Object.keys(s.selected.item).length;
     }).distinctUntilChanged();
   }
 
@@ -33,7 +33,7 @@ export class SkyListActionBarComponent implements AfterContentInit {
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe(items => {
-        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), true));
+        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items));
       });
   }
 
@@ -41,7 +41,7 @@ export class SkyListActionBarComponent implements AfterContentInit {
     this.state.map(s => s.selected.item)
       .take(1)
       .subscribe(selected => {
-        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(Object.keys(selected), false));
+        this.dispatcher.next(new ListSelectedLoadAction([]));
       });
   }
 }

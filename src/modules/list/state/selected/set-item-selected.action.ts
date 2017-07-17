@@ -1,3 +1,5 @@
+import { ListItemModel } from "../items/item.model";
+
 export class ListSelectedSetItemSelectedAction {
-  constructor(public id: any, public selected: boolean) {}
+  constructor(public item: ListItemModel, public selected: boolean = true) {}
 }
