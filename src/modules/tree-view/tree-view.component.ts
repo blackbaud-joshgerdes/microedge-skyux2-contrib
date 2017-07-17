@@ -79,13 +79,13 @@ export class SkyTreeViewComponent implements OnInit, AfterContentInit {
     this.treeNodes.take(1).subscribe(nodes => {
       let selectedNodeIds = new Array<string>();
       nodes.forEach(node => {
-        if (this.leafOnlySelection && this.isLeaf(node.id, nodes)) {
-          selectedNodeIds.push(node.id);
-        } else {
+        let isLeaf = this.isLeaf(node.id, nodes);
+
+        if (node.enabled && (!this.leafOnlySelection || (this.leafOnlySelection && isLeaf))) {
           selectedNodeIds.push(node.id);
         }
 
-        if (!this.isLeaf(node.id, nodes)) {
+        if (!isLeaf) {
           node.expanded = true;
         }
       });
