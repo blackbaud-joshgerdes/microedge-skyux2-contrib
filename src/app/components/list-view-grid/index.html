@@ -5,7 +5,7 @@
     conjunction with the list component.
   </sky-demo-page-summary>
 
-  <sky-demo-page-properties>
+  <sky-demo-page-properties sectionHeading="List View Grid Properties">
     <sky-demo-page-property
         propertyName="name"
         defaultValue=""
@@ -69,6 +69,65 @@
     >
       Specify if the grid will have a static selector column with checkboxes.
       Acceptable value: <code>boolean or Observable boolean</code>.
+    </sky-demo-page-property>
+  </sky-demo-page-properties>
+
+  <sky-demo-page-properties sectionHeading="Column Properties">
+    <sky-demo-page-property
+        propertyName="id"
+        defaultValue=""
+    >
+      Specify a unique identifier for the column. Is required if <code>field</code> is not specified.
+    </sky-demo-page-property>
+    <sky-demo-page-property
+        propertyName="field"
+        defaultValue=""
+    >
+      Specify rows to render for a given column from <code>data</code> passed into parent component. The specified <code>field</code> must match the attribute of the <code>item</code> in the <code>data</code> array. For example, given a data array of items: <code>[{{ '{' }} id: 1, column1: apples {{ '}' }}, {{ '{' }} id:2, column1: bananas {{ '}' }}]</code>, specify column1 as the <code>field</code> to map all items as rows to the designated column. Fields also enable the column to be sortable, searchable, and selectable to be displayed or hidden. Is required if <code>id</code> is not specified.
+    </sky-demo-page-property>
+    <sky-demo-page-property
+        propertyName="heading"
+        defaultValue=""
+        isOptional="true"
+    >
+      Display text for the column header.
+    </sky-demo-page-property>
+    <sky-demo-page-property
+        propertyName="search"
+        defaultValue=""
+        isOptional="true"
+    >
+      Specify a search function for a given column. By default a string comparison search function is applied on the column data.
+    </sky-demo-page-property>
+    <sky-demo-page-property
+        propertyName="width"
+        defaultValue=""
+        isOptional="true"
+    >
+      Specify a column width.
+    </sky-demo-page-property>
+    <sky-demo-page-property
+        propertyName="locked"
+        defaultValue=""
+        isOptional="true"
+        defaultValue="false"
+    >
+      Boolean determines if the column is draggable.
+    </sky-demo-page-property>
+    <sky-demo-page-property
+        propertyName="hidden"
+        defaultValue=""
+        isOptional="true"
+        defaultValue="false"
+    >
+      Boolean determines if the column is hidden.
+    </sky-demo-page-property>
+        <sky-demo-page-property
+        propertyName="template"
+        defaultValue=""
+        isOptional="true"
+    >
+      Specify HTML template to render for each row for a given column.
     </sky-demo-page-property>
   </sky-demo-page-properties>
 
