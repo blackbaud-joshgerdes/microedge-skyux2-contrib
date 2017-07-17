@@ -84,7 +84,7 @@ describe('List Action Bar Component', () => {
       }));
 
       it('selected item count should be 1', () => {
-        dispatcher.next(new ListSelectedSetItemSelectedAction('id1', true));
+        dispatcher.next(new ListSelectedSetItemSelectedAction(items[0]));
         fixture.detectChanges();
 
         let el = element.query(By.css("[id='item3-input-template']")).nativeElement;
@@ -103,7 +103,7 @@ describe('List Action Bar Component', () => {
       });
 
       it('ClearAll changes all items to not selected', () => {
-        dispatcher.next(new ListSelectedSetItemsSelectedAction(items.map(i => i.id), true));
+        dispatcher.next(new ListSelectedSetItemsSelectedAction(items, true));
         fixture.detectChanges();
 
         let count = element.query(By.css("[id='item3-input-template']")).nativeElement;

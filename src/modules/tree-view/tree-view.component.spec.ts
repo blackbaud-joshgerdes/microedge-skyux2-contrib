@@ -16,7 +16,7 @@ import { TreeViewTemplatedTestComponent } from
 import { TreeViewCheckboxesTestComponent } from
   './fixtures/tree-view-checkboxes.component.fixture';
 
-describe('Locale currency mask directive', () => {
+describe('Tree view component', () => {
 
   describe('Populated Fixture', () => {
     let component: TreeViewDefaultTestComponent,
@@ -56,6 +56,8 @@ describe('Locale currency mask directive', () => {
     });
 
     it('Expand all should expand all nodes', () => {
+      fixture.detectChanges();
+
       let nodes = document.querySelectorAll('.sub-item:not([hidden])');
       expect(nodes.length).toBe(0);
 
@@ -157,9 +159,9 @@ describe('Locale currency mask directive', () => {
 
     it('tree should apply external content template', () => {
       expect(tree.contentTemplate).not.toBe(undefined);
-      let content: any = document.querySelector('span');
+      let content: any = document.querySelectorAll('span');
 
-      expect(content[0].textContent.search('template magic!') > -1).toBe(true);
+      expect(content[1].textContent.search('template magic!') > -1).toBe(true);
     });
 
     it('tree should apply dropdown template', () => {
@@ -173,27 +175,34 @@ describe('Locale currency mask directive', () => {
     });
 
     it('expands a node when expand icon is clicked', () => {
-      expect(tree.data[0].expanded).toBe(false);
-      let expand = element.query(By.css('.fa-plus-square-o'));
-      expect(expand).not.toBe(null);
+      tree.treeNodes.take(1).subscribe(nodes => {
+        expect(nodes[0].expanded).toBe(false);
+        let expand = element.query(By.css('.fa-plus-square-o'));
+        expect(expand).not.toBe(null);
 
-      expand.triggerEventHandler('click', undefined);
-      fixture.detectChanges();
+        expand.triggerEventHandler('click', undefined);
+        fixture.detectChanges();
 
-      expect(tree.data[0].expanded).toBe(true);
+        let node = element.query(By.css('sky-contrib-tree-view-node'));
+        expect(node.componentInstance.node.expanded).toBe(true);
+      });
     });
 
     it('selects a node when checkbox is clicked', () => {
-      expect(tree.data[0].selected).toBe(false);
-      tree.clickExpandAll();
-      fixture.detectChanges();
-      let checkbox: any = document.querySelector('input')[0];
-      expect(checkbox).not.toBe(null);
+      tree.treeNodes.take(1).subscribe(nodes => {
+        expect(nodes[0].selected).toBe(false);
+        tree.clickExpandAll();
+        fixture.detectChanges();
+        let checkbox: any = document.querySelector('input');
+        expect(checkbox).not.toBe(null);
 
-      checkbox.click();
-      fixture.detectChanges();
+        checkbox.click();
+        fixture.detectChanges();
 
-      expect(tree.data[0].children[0].children[0].selected).toBe(true);
+        tree.treeNodes.take(1).subscribe(treeNodes => {
+          expect(treeNodes[0].selected).toBe(true);
+        });
+      });
     });
 
     it('Select all selects all checkboxes', () => {
@@ -265,9 +274,9 @@ describe('Locale currency mask directive', () => {
       tree.clickSelectAll();
       fixture.detectChanges();
 
-      let node = element.query(By.css('sky-contrib-tree-view-node'));
+      let node = element.query(By.css('sky-checkbox'));
       expect(node).not.toBe(null);
-      expect(node.componentInstance.hasSelectedChildren(node.componentInstance.node)).toBe(true);
+      expect(node.componentInstance.checked).toBe(true);
     });
   });
 });
