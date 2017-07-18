@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyTextExpandComponent } from './text-expand.component';
-import { SkyTextExpandModalComponent } from './text-expand-modal.component';
+import { SkyContribTextExpandComponent } from './text-expand.component';
+import { SkyContribTextExpandModalComponent } from './text-expand-modal.component';
 import { SkyModalModule } from '@blackbaud/skyux/dist/core';
 
 @NgModule({
@@ -10,15 +10,15 @@ import { SkyModalModule } from '@blackbaud/skyux/dist/core';
     SkyModalModule
   ],
   declarations: [
-    SkyTextExpandComponent,
-    SkyTextExpandModalComponent
+    SkyContribTextExpandComponent,
+    SkyContribTextExpandModalComponent
   ],
   exports: [
-    SkyTextExpandComponent,
-    SkyTextExpandModalComponent
+    SkyContribTextExpandComponent,
+    SkyContribTextExpandModalComponent
   ],
   entryComponents: [
-    SkyTextExpandModalComponent
+    SkyContribTextExpandModalComponent
   ]
 })
-export class SkyTextExpandModule {}
+export class SkyContribTextExpandModule {}

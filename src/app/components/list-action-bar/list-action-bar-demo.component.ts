@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   templateUrl: './list-action-bar-demo.component.html',
   styleUrls: ['./list-action-bar-demo.component.scss']
 })
-export class SkyListActionBarDemoComponent {
+export class SkyContribListActionBarDemoComponent {
   public items: Observable<any> = Observable.of([
     { id: '1', column1: 101, column2: 'Apple', column3: 'Anne eats apples' },
     { id: '2', column1: 202, column2: 'Banana', column3: 'Ben eats bananas' },

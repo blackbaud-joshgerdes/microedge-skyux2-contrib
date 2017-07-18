@@ -10,9 +10,9 @@ import { Observable } from 'rxjs/Observable';
 import { ListToolbarState, ListToolbarStateDispatcher, ListToolbarStateModel } from './state';
 import { ListToolbarModel } from '../list/state/toolbar/toolbar.model';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
-import { SkyListToolbarItemComponent } from './list-toolbar-item.component';
+import { SkyContribListToolbarItemComponent } from './list-toolbar-item.component';
 import { ListState, ListStateDispatcher } from '../list/state';
-import { SkyListToolbarSortComponent } from './list-toolbar-sort.component';
+import { SkyContribListToolbarSortComponent } from './list-toolbar-sort.component';
 import { ListSortLabelModel } from '../list/state/sort/label.model';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 
@@ -27,7 +27,7 @@ import { getValue } from 'microedge-rxstate/dist/helpers';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListToolbarComponent implements OnInit, AfterContentInit {
+export class SkyContribListToolbarComponent implements OnInit, AfterContentInit {
   @Input() type: string = 'standard';
   @Input() placeholder: string = 'Find in this list';
   @Input() searchEnabled: boolean | Observable<boolean>;
@@ -38,10 +38,10 @@ export class SkyListToolbarComponent implements OnInit, AfterContentInit {
   @Input('searchText') searchTextInput: string | Observable<string>;
   /* tslint:enable */
 
-  @ContentChildren(SkyListToolbarItemComponent)
-    toolbarItems: QueryList<SkyListToolbarItemComponent>;
-  @ContentChildren(SkyListToolbarSortComponent)
-    toolbarSorts: QueryList<SkyListToolbarSortComponent>;
+  @ContentChildren(SkyContribListToolbarItemComponent)
+    toolbarItems: QueryList<SkyContribListToolbarItemComponent>;
+  @ContentChildren(SkyContribListToolbarSortComponent)
+    toolbarSorts: QueryList<SkyContribListToolbarSortComponent>;
   @ViewChild('search') searchTemplate: TemplateRef<any>;
   @ViewChild('viewSelector') viewSelectorTemplate: TemplateRef<any>;
   @ViewChild('sortSelector') sortSelectorTemplate: TemplateRef<any>;

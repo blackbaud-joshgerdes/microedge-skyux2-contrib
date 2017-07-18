@@ -7,7 +7,7 @@ import {
   template: '<ng-template #container></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListRepeaterRendererComponent implements OnInit {
+export class SkyContribListRepeaterRendererComponent implements OnInit {
   @Input() item: any;
   @Input() template: TemplateRef<any>;
   @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;

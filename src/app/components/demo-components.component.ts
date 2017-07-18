@@ -4,9 +4,9 @@ import {
   OnInit
 } from '@angular/core';
 
-import { SkyDemoComponent } from './demo-component';
-import { SkyDemoComponentsService } from './demo-components.service';
-import { SkyDemoTitleService } from '../shared/title.service';
+import { SkyContribDemoComponent } from './demo-component';
+import { SkyContribDemoComponentsService } from './demo-components.service';
+import { SkyContribDemoTitleService } from '../shared/title.service';
 
 @Component({
   selector: 'sky-demo-components',
@@ -14,14 +14,14 @@ import { SkyDemoTitleService } from '../shared/title.service';
   styleUrls: ['./demo-components.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyDemoComponentsComponent implements OnInit {
-  public get components(): SkyDemoComponent[] {
+export class SkyContribDemoComponentsComponent implements OnInit {
+  public get components(): SkyContribDemoComponent[] {
     return this.componentService.getComponents();
   }
 
   constructor(
-    private titleService: SkyDemoTitleService,
-    private componentService: SkyDemoComponentsService
+    private titleService: SkyContribDemoTitleService,
+    private componentService: SkyContribDemoComponentsService
   ) { }
 
   public ngOnInit() {

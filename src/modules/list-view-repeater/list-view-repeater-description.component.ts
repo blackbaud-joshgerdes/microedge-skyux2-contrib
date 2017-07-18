@@ -7,7 +7,7 @@ import {
   template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListViewRepeaterDescriptionComponent {
+export class SkyContribListViewRepeaterDescriptionComponent {
   /* tslint:disable */
   @Input('template') inputTemplate: TemplateRef<any>;
   /* tslint:enable */

@@ -1,6 +1,6 @@
 import { Component, Input, QueryList } from '@angular/core';
-import { SkyWizardComponent } from './wizard.component';
-import { SkyWizardStepComponent } from './wizard-step.component';
+import { SkyContribWizardComponent } from './wizard.component';
+import { SkyContribWizardStepComponent } from './wizard-step.component';
 
 @Component({
   selector: 'sky-contrib-wizard-step-list',
@@ -9,12 +9,12 @@ import { SkyWizardStepComponent } from './wizard-step.component';
     './wizard-step-list.component.scss'
   ]
 })
-export class SkyWizardStepListComponent {
-  @Input() steps: QueryList<SkyWizardStepComponent>;
-  @Input() currentStep: SkyWizardStepComponent;
-  @Input() wizard: SkyWizardComponent;
+export class SkyContribWizardStepListComponent {
+  @Input() steps: QueryList<SkyContribWizardStepComponent>;
+  @Input() currentStep: SkyContribWizardStepComponent;
+  @Input() wizard: SkyContribWizardComponent;
 
-  isStepEnabled(step: SkyWizardStepComponent) {
+  isStepEnabled(step: SkyContribWizardStepComponent) {
     let steps = this.steps.toArray();
     let index = steps.indexOf(step);
 

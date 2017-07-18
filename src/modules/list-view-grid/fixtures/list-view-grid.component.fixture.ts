@@ -1,7 +1,7 @@
 import {
   Component, ViewChild, TemplateRef, ContentChildren, QueryList, ViewChildren
 } from '@angular/core';
-import { SkyListViewGridComponent } from '../list-view-grid.component';
+import { SkyContribListViewGridComponent } from '../list-view-grid.component';
 
 @Component({
   selector: 'sky-test-cmp',
@@ -9,7 +9,7 @@ import { SkyListViewGridComponent } from '../list-view-grid.component';
 })
 export class ListViewGridTestComponent {
   public hiddenColumns: Array<string> = ['hiddenCol1', 'hiddenCol2'];
-  @ViewChild(SkyListViewGridComponent) public grid: SkyListViewGridComponent;
+  @ViewChild(SkyContribListViewGridComponent) public grid: SkyContribListViewGridComponent;
   @ContentChildren(TemplateRef) public templates: QueryList<TemplateRef<any>>;
   @ViewChildren(TemplateRef) public viewtemplates: QueryList<TemplateRef<any>>;
 }

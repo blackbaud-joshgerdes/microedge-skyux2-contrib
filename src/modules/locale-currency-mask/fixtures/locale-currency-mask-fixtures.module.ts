@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SkyLocaleCurrencyMaskModule } from '../';
+import { SkyContribLocaleCurrencyMaskModule } from '../';
 
 import {
   LocaleCurrencyMaskDefaultTestComponent
@@ -13,7 +13,7 @@ import {
   ],
   imports: [
     CommonModule,
-    SkyLocaleCurrencyMaskModule
+    SkyContribLocaleCurrencyMaskModule
   ],
   exports: [
     LocaleCurrencyMaskDefaultTestComponent

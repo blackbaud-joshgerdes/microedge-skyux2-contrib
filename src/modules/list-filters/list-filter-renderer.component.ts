@@ -4,7 +4,7 @@ import { Component, ViewContainerRef, ViewChild, Input, TemplateRef, OnInit } fr
   selector: 'sky-contrib-list-filter-renderer',
   template: '<ng-template #container></ng-template>'
 })
-export class SkyListFilterRendererComponent implements OnInit {
+export class SkyContribListFilterRendererComponent implements OnInit {
   @Input() template: TemplateRef<any>;
   @Input() filter: any;
   @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;

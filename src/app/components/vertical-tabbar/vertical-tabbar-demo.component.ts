@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'sky-vertical-tabbar-demo',
   templateUrl: './vertical-tabbar-demo.component.html'
 })
-export class SkyVerticalTabbarDemoComponent {
+export class SkyContribVerticalTabbarDemoComponent {
   itemClickedAction($e: any) {
     console.log($e.title, 'is now the active tab');
   }

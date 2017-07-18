@@ -10,7 +10,7 @@ import {
 } from '../list/state';
 import { ListItemModel } from '../list/state/items/item.model';
 import { ListItemsLoadAction } from '../list/state/items/actions';
-import { SkyListPagingModule } from './';
+import { SkyContribListPagingModule } from './';
 import {
   ListPagingTestComponent
 } from './fixtures/list-paging.component.fixture';
@@ -33,7 +33,7 @@ describe('List Paging Component', () => {
         ListPagingTestComponent
       ],
       imports: [
-        SkyListPagingModule
+        SkyContribListPagingModule
       ],
       providers: [
         { provide: ListState, useValue: state },

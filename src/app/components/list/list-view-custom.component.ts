@@ -8,11 +8,11 @@ import { ListState, ListStateDispatcher } from '../../../modules/list/state';
   providers: [
     {
       /* tslint:disable-next-line */
-      provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewCustomComponent)
+      provide: ListViewComponent, useExisting: forwardRef(() => SkyContribListViewCustomComponent)
     }
   ]
 })
-export class SkyListViewCustomComponent extends ListViewComponent {
+export class SkyContribListViewCustomComponent extends ListViewComponent {
   constructor(
     state: ListState,
     private dispatcher: ListStateDispatcher

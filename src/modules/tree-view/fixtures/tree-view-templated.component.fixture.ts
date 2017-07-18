@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SkyTreeViewComponent } from '../tree-view.component';
+import { SkyContribTreeViewComponent } from '../tree-view.component';
 import { TreeNodeModel } from '../tree-node.model';
 
 @Component({
@@ -10,7 +10,7 @@ export class TreeViewTemplatedTestComponent {
   disableParents: boolean;
   leafOnlySelection: boolean;
   public data: TreeNodeModel[] = [];
-  @ViewChild(SkyTreeViewComponent) public tree: SkyTreeViewComponent;
+  @ViewChild(SkyContribTreeViewComponent) public tree: SkyContribTreeViewComponent;
 
   constructor() {
     this.disableParents = true;

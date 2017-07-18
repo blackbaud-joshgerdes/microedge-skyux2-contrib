@@ -1,20 +1,20 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyLocaleCurrencyMaskDirective } from './locale-currency-mask.directive';
+import { SkyContribLocaleCurrencyMaskDirective } from './locale-currency-mask.directive';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
-    SkyLocaleCurrencyMaskDirective
+    SkyContribLocaleCurrencyMaskDirective
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    SkyLocaleCurrencyMaskDirective
+    SkyContribLocaleCurrencyMaskDirective
   ],
   providers: [
   ]
 })
-export class SkyLocaleCurrencyMaskModule {
+export class SkyContribLocaleCurrencyMaskModule {
 }

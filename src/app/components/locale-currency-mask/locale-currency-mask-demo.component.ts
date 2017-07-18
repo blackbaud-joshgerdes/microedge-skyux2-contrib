@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angul
   selector: 'sky-locale-currency-mask-demo',
   templateUrl: './locale-currency-mask-demo.component.html'
 })
-export class SkyLocaleCurrencyMaskDemoComponent {
+export class SkyContribLocaleCurrencyMaskDemoComponent {
   currencyForm: FormGroup;
   amount: string = '42';
 

@@ -1,4 +1,4 @@
-export class SkyToast {
+export class SkyContribToast {
   id: number;
 
   constructor(

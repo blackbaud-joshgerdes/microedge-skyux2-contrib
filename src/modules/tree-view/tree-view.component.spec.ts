@@ -4,7 +4,7 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { SkyTreeViewComponent } from './tree-view.component';
+import { SkyContribTreeViewComponent } from './tree-view.component';
 import { TreeNodeModel } from './tree-node.model';
 import { TreeViewFixturesModule } from './fixtures/tree-view-fixtures.module';
 import { TreeViewDefaultTestComponent } from
@@ -23,7 +23,7 @@ describe('Tree view component', () => {
         fixture: any,
         nativeElement: HTMLElement,
         element: DebugElement,
-        tree: SkyTreeViewComponent;
+        tree: SkyContribTreeViewComponent;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -95,7 +95,7 @@ describe('Tree view component', () => {
         fixture: any,
         nativeElement: HTMLElement,
         element: DebugElement,
-        tree: SkyTreeViewComponent;
+        tree: SkyContribTreeViewComponent;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -140,7 +140,7 @@ describe('Tree view component', () => {
         fixture: any,
         nativeElement: HTMLElement,
         element: DebugElement,
-        tree: SkyTreeViewComponent;
+        tree: SkyContribTreeViewComponent;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
@@ -241,7 +241,7 @@ describe('Tree view component', () => {
         fixture: any,
         nativeElement: HTMLElement,
         element: DebugElement,
-        tree: SkyTreeViewComponent;
+        tree: SkyContribTreeViewComponent;
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({

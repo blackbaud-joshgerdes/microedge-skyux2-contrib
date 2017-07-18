@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyPageComponent } from './page.component';
+import { SkyContribPageComponent } from './page.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -8,10 +8,10 @@ import { SkyPageComponent } from './page.component';
     CommonModule
   ],
   declarations: [
-    SkyPageComponent
+    SkyContribPageComponent
   ],
   exports: [
-    SkyPageComponent
+    SkyContribPageComponent
   ]
 })
-export class SkyContribPageModule {}
+export class SkyContribContribPageModule {}

@@ -11,7 +11,7 @@ import {
 import { ListDataRequestModel } from './list-data-request.model';
 import { ListDataResponseModel } from './list-data-response.model';
 import { ListDataProvider } from './list-data.provider';
-import { SkyListInMemoryDataProvider } from '../list-data-provider-in-memory';
+import { SkyContribListInMemoryDataProvider } from '../list-data-provider-in-memory';
 import { ListSelectedModel } from './state/selected/selected.model';
 import { AsyncItem } from 'microedge-rxstate';
 import { ListState, ListStateDispatcher } from './state';
@@ -36,7 +36,7 @@ import * as moment from 'moment';
   providers: [ListState, ListStateDispatcher],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListComponent implements AfterContentInit {
+export class SkyContribListComponent implements AfterContentInit {
   id: string = moment().toDate().getTime().toString();
   @Input() data?: Array<any> | Observable<Array<any>> = [];
   @Input() dataProvider?: ListDataProvider;
@@ -101,7 +101,7 @@ export class SkyListComponent implements AfterContentInit {
     }
 
     if (!this.dataProvider) {
-      this.dataProvider = new SkyListInMemoryDataProvider(data, this.searchFunction);
+      this.dataProvider = new SkyContribListInMemoryDataProvider(data, this.searchFunction);
     }
 
     // deal with selected items

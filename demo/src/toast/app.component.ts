@@ -1,6 +1,6 @@
 import { Component, NgModule, ViewChild } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { SkyToastComponent } from '../../../src/modules/toast';
+import { SkyContribToastComponent } from '../../../src/modules/toast';
 
 import { MicroedgeSkyContribModule } from '../../../src/core';
 
@@ -11,8 +11,8 @@ import { Bootstrapper } from '../../bootstrapper';
   templateUrl: './app.component.html'
 })
 class AppComponent {
-  @ViewChild('toastA') public toastA: SkyToastComponent;
-  @ViewChild('toastB') public toastB: SkyToastComponent;
+  @ViewChild('toastA') public toastA: SkyContribToastComponent;
+  @ViewChild('toastB') public toastB: SkyContribToastComponent;
 
   public openToastA() {
     this.toastA.showSuccess('toast A');

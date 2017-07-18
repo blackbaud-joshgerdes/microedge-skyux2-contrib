@@ -1,7 +1,7 @@
 import { Component, NgModule, ViewChild, AfterViewInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MicroedgeSkyContribModule, SkyListViewGridComponent } from '../../../../src/core';
+import { MicroedgeSkyContribModule, SkyContribListViewGridComponent } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -18,7 +18,7 @@ import { Bootstrapper } from '../../../../visual/bootstrapper';
   templateUrl: './list-view-grid.component.visual-fixture.html'
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild(SkyListViewGridComponent) public viewgrid: SkyListViewGridComponent;
+  @ViewChild(SkyContribListViewGridComponent) public viewgrid: SkyContribListViewGridComponent;
 
   constructor(private state: ListState, private dispatcher: ListStateDispatcher) {
   }

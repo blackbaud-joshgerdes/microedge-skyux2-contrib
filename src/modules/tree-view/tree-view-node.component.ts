@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './tree-view-node.component.html',
   styleUrls: ['./tree-view-node.component.scss']
 })
-export class SkyTreeViewNodeComponent {
+export class SkyContribTreeViewNodeComponent {
   @Input() node: TreeNodeModel;
   @Input() disableParents: boolean = false;
   @Input() leafOnlySelection: boolean = false;

@@ -7,7 +7,7 @@ import {
   selector: 'sky-contrib-list-action-bar-item',
   template: '<ng-template #actionBarItem></ng-template>'
 })
-export class SkyListActionBarItemComponent implements AfterContentInit {
+export class SkyContribListActionBarItemComponent implements AfterContentInit {
   /* tslint:disable */
   @Input('template') templateInput: TemplateRef<any>;
   @ContentChildren(TemplateRef) templates: QueryList<TemplateRef<any>>;

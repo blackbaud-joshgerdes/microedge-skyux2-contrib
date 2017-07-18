@@ -7,7 +7,7 @@ import { ListFilterDataModel } from '../../../modules/list/state/filters/filter-
   selector: 'sky-contrib-list-filters-demo-combo',
   templateUrl: './list-filters-demo-combo.component.html'
 })
-export class SkyListFiltersDemoComboComponent {
+export class SkyContribListFiltersDemoComboComponent {
   public items: Observable<any> = Observable.of([
     { id: '1', column1: 101, column2: 'Apple', column3: 'Anne eats apples' },
     { id: '2', column1: 202, column2: 'Banana', column3: 'Ben eats bananas' },

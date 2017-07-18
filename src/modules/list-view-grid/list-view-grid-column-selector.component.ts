@@ -1,17 +1,17 @@
 import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
 import { GridState, GridStateDispatcher } from './state';
 import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
-import { SkyListComponent } from '../list';
+import { SkyContribListComponent } from '../list';
 
 @Component({
   selector: 'sky-contrib-list-view-grid-column-selector',
   templateUrl: './list-view-grid-column-selector.component.html',
   styleUrls: ['./list-view-grid-column-selector.component.scss']
 })
-export class SkyListViewGridColumnSelectorComponent {
+export class SkyContribListViewGridColumnSelectorComponent {
   @Output() columnsChanged: EventEmitter<string[]> = new EventEmitter<string[]>();
   @ViewChild(SkyModalComponent) modal: SkyModalComponent;
-  @ViewChild('list') list: SkyListComponent;
+  @ViewChild('list') list: SkyContribListComponent;
 
   constructor(
     private gridState: GridState,

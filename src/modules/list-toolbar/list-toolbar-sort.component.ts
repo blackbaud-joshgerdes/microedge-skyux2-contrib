@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'sky-contrib-list-toolbar-sort',
   template: ''
 })
-export class SkyListToolbarSortComponent {
+export class SkyContribListToolbarSortComponent {
   @Input() public label: string;
   @Input('field') public field: string;
   @Input('type') public type: string;

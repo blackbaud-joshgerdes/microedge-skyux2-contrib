@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Injectable()
-export class SkyDemoTitleService {
+export class SkyContribDemoTitleService {
   constructor(private title: Title) { }
 
   public setTitle(...parts: string[]) {

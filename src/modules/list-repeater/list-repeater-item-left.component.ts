@@ -7,7 +7,7 @@ import {
   template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListRepeaterItemLeftComponent {
+export class SkyContribListRepeaterItemLeftComponent {
   @Input('template') inputTemplate: TemplateRef<any>;
   @ContentChildren(TemplateRef) templates: QueryList<TemplateRef<any>>;
 

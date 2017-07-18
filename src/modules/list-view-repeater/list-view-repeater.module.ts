@@ -1,44 +1,45 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkyChevronModule } from '../chevron';
-import { SkySpinnerModule } from '../spinner';
-import { SkyListViewRepeaterComponent } from './list-view-repeater.component';
-import { SkyListViewRepeaterRendererComponent } from './list-view-repeater-renderer.component';
-import { SkyListViewRepeaterLeftComponent } from './list-view-repeater-left.component';
-import { SkyListViewRepeaterRightComponent } from './list-view-repeater-right.component';
-import { SkyListViewRepeaterTitleComponent } from './list-view-repeater-title.component';
+import { SkyContribSpinnerModule } from '../spinner';
+import { SkyContribListViewRepeaterComponent } from './list-view-repeater.component';
+import { SkyContribListViewRepeaterRendererComponent }
+  from './list-view-repeater-renderer.component';
+import { SkyContribListViewRepeaterLeftComponent } from './list-view-repeater-left.component';
+import { SkyContribListViewRepeaterRightComponent } from './list-view-repeater-right.component';
+import { SkyContribListViewRepeaterTitleComponent } from './list-view-repeater-title.component';
 import {
-  SkyListViewRepeaterDescriptionComponent
+  SkyContribListViewRepeaterDescriptionComponent
 } from './list-view-repeater-description.component';
-import { SkyListViewRepeaterContentComponent } from './list-view-repeater-content.component';
+import { SkyContribListViewRepeaterContentComponent } from './list-view-repeater-content.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
-    SkyListViewRepeaterComponent,
-    SkyListViewRepeaterLeftComponent,
-    SkyListViewRepeaterRightComponent,
-    SkyListViewRepeaterTitleComponent,
-    SkyListViewRepeaterDescriptionComponent,
-    SkyListViewRepeaterContentComponent,
-    SkyListViewRepeaterRendererComponent
+    SkyContribListViewRepeaterComponent,
+    SkyContribListViewRepeaterLeftComponent,
+    SkyContribListViewRepeaterRightComponent,
+    SkyContribListViewRepeaterTitleComponent,
+    SkyContribListViewRepeaterDescriptionComponent,
+    SkyContribListViewRepeaterContentComponent,
+    SkyContribListViewRepeaterRendererComponent
   ],
   imports: [
     CommonModule,
     SkyChevronModule,
-    SkySpinnerModule
+    SkyContribSpinnerModule
   ],
   exports: [
-    SkyListViewRepeaterComponent,
-    SkyListViewRepeaterLeftComponent,
-    SkyListViewRepeaterRightComponent,
-    SkyListViewRepeaterTitleComponent,
-    SkyListViewRepeaterDescriptionComponent,
-    SkyListViewRepeaterContentComponent,
-    SkyListViewRepeaterRendererComponent
+    SkyContribListViewRepeaterComponent,
+    SkyContribListViewRepeaterLeftComponent,
+    SkyContribListViewRepeaterRightComponent,
+    SkyContribListViewRepeaterTitleComponent,
+    SkyContribListViewRepeaterDescriptionComponent,
+    SkyContribListViewRepeaterContentComponent,
+    SkyContribListViewRepeaterRendererComponent
   ],
   providers: [
   ]
 })
-export class SkyListViewRepeaterModule {
+export class SkyContribListViewRepeaterModule {
 }

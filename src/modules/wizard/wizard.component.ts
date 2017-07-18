@@ -3,8 +3,8 @@ import {
   ViewChild, ContentChildren, QueryList,
   TemplateRef, forwardRef, AfterContentInit
 } from '@angular/core';
-import { SkyWizardStepComponent } from './wizard-step.component';
-import { SkyWizardStepListComponent } from './wizard-step-list.component';
+import { SkyContribWizardStepComponent } from './wizard-step.component';
+import { SkyContribWizardStepListComponent } from './wizard-step-list.component';
 import { SkyModalComponent, SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SkyContribWizardHeaderComponent } from './wizard-header.component';
 import { SkyContribWizardStepsComponent } from './wizard-steps.component';
@@ -16,13 +16,13 @@ import { SkyContribWizardStepsComponent } from './wizard-steps.component';
     './wizard.component.scss'
   ]
 })
-export class SkyWizardComponent implements AfterContentInit {
+export class SkyContribWizardComponent implements AfterContentInit {
   @Input() public model: any = {};
   @Output() public onSaveAndClose: EventEmitter<any> = new EventEmitter();
   @ViewChild(SkyModalComponent) public modal: SkyModalComponent;
-  @ViewChild(SkyWizardStepListComponent) public stepList: SkyWizardStepListComponent;
-  @ContentChildren(SkyWizardStepComponent, {descendants: true})
-  public steps: QueryList<SkyWizardStepComponent> = null;
+  @ViewChild(SkyContribWizardStepListComponent) public stepList: SkyContribWizardStepListComponent;
+  @ContentChildren(SkyContribWizardStepComponent, {descendants: true})
+  public steps: QueryList<SkyContribWizardStepComponent> = null;
   @Input() public headerTemplate: TemplateRef<any>;
   @Input() public stepsTemplate: TemplateRef<any>;
   @ContentChildren(forwardRef(() => SkyContribWizardHeaderComponent)) public headerNode:
@@ -30,10 +30,10 @@ export class SkyWizardComponent implements AfterContentInit {
   @ContentChildren(forwardRef(() => SkyContribWizardStepsComponent)) public stepsNode:
     QueryList<SkyContribWizardStepsComponent>;
 
-  self: SkyWizardComponent;
-  visitedSteps: Array<SkyWizardStepComponent> = [];
+  self: SkyContribWizardComponent;
+  visitedSteps: Array<SkyContribWizardStepComponent> = [];
 
-  private step: SkyWizardStepComponent = null;
+  private step: SkyContribWizardStepComponent = null;
   set currentStep(step) {
     this.step = step;
 
@@ -79,7 +79,7 @@ export class SkyWizardComponent implements AfterContentInit {
     }
   }
 
-  public goToStep(step: SkyWizardStepComponent): void {
+  public goToStep(step: SkyContribWizardStepComponent): void {
     this.currentStep = step;
   }
 

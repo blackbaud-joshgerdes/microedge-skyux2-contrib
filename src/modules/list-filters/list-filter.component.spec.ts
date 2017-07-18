@@ -2,7 +2,7 @@ import {
   TestBed,
   async
 } from '@angular/core/testing';
-import { SkyListFiltersModule } from './';
+import { SkyContribListFiltersModule } from './';
 import {
   ListFilterEmptyTestComponent
 } from './fixtures/list-filter-empty.component.fixture';
@@ -16,7 +16,7 @@ describe('List Filter Component', () => {
         ListFilterEmptyTestComponent
       ],
       imports: [
-        SkyListFiltersModule
+        SkyContribListFiltersModule
       ]
     });
   }));

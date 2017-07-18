@@ -1,28 +1,28 @@
 import { Component, Optional, Inject } from '@angular/core';
-import { SkyToastOptions } from './toast.options';
-import { SkyToast } from './toast.model';
+import { SkyContribToastOptions } from './toast.options';
+import { SkyContribToast } from './toast.model';
 
 @Component({
   selector: 'toast-container',
   templateUrl: './toast-container.component.html'
 })
-export class SkyToastContainer {
+export class SkyContribToastContainerComponent {
   position = 'fixed';
   messageClass = 'toast-message';
   titleClass = 'toast-title';
   positionClass = 'toast-bottom-right';
-  toasts: SkyToast[] = [];
+  toasts: SkyContribToast[] = [];
   maxShown = 5;
   autoDismiss = true;
   isAdding: boolean;
 
-  constructor(@Optional() @Inject(SkyToastOptions) options: SkyToastOptions) {
+  constructor(@Optional() @Inject(SkyContribToastOptions) options: SkyContribToastOptions) {
     if (options) {
       Object.assign(this, options);
     }
   }
 
-  addToast(toast: SkyToast) {
+  addToast(toast: SkyContribToast) {
     this.isAdding = true;
 
     if (this.positionClass.indexOf('top') > 0) {
@@ -54,7 +54,7 @@ export class SkyToastContainer {
     }, 800);
   }
 
-  dismiss(toast: SkyToast) {
+  dismiss(toast: SkyContribToast) {
     if (!toast.autoDismiss) {
       this.removeToast(toast.id);
     }
@@ -64,7 +64,7 @@ export class SkyToastContainer {
     return this.toasts.length > 0;
   }
 
-  findToast(toastId: number): SkyToast {
+  findToast(toastId: number): SkyContribToast {
     for (let toast of this.toasts) {
       if (toast.id === toastId) {
         return toast;

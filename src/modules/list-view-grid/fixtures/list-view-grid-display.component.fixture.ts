@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SkyListViewGridComponent } from '../list-view-grid.component';
+import { SkyContribListViewGridComponent } from '../list-view-grid.component';
 import { ListItemModel } from '../../list/state/items/item.model';
 
 @Component({
@@ -8,7 +8,7 @@ import { ListItemModel } from '../../list/state/items/item.model';
 })
 export class ListViewGridDisplayTestComponent {
   public displayedColumns: Array<string> = ['column3', 'column4'];
-  @ViewChild(SkyListViewGridComponent) public grid: SkyListViewGridComponent;
+  @ViewChild(SkyContribListViewGridComponent) public grid: SkyContribListViewGridComponent;
 
   public itemSearch(item: ListItemModel, searchText: string) {
     return false;

@@ -5,14 +5,14 @@ import {
 import { BrowserModule } from '@angular/platform-browser';
 import { MicroedgeSkyContribModule } from '../../../src/core';
 import { Bootstrapper } from '../../bootstrapper';
-import  { TreeNodeModel, SkyTreeViewComponent } from '../../../src/core';
+import  { TreeNodeModel, SkyContribTreeViewComponent } from '../../../src/core';
 
 @Component({
   selector: 'sky-demo-app',
   templateUrl: './app.component.html'
 })
 class AppComponent implements AfterViewInit {
-  @ViewChild('tree') tree: SkyTreeViewComponent;
+  @ViewChild('tree') tree: SkyContribTreeViewComponent;
   disableParents: boolean;
   leafOnlySelection: boolean;
   data: TreeNodeModel[] = [];

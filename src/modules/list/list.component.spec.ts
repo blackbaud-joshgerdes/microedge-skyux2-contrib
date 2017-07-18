@@ -25,11 +25,11 @@ import { ListFixturesModule } from './fixtures/list-fixtures.module';
 import { ListTestComponent } from './fixtures/list.component.fixture';
 import { ListDualTestComponent } from './fixtures/list-dual.component.fixture';
 import { ListEmptyTestComponent } from './fixtures/list-empty.component.fixture';
-import { SkyListComponent, SkyListModule, ListDataRequestModel, ListDataResponseModel } from './';
-import { SkyListToolbarModule } from '../list-toolbar';
-import { SkyListViewGridModule, SkyListViewGridComponent } from '../list-view-grid';
-import { SkyListFiltersModule } from '../list-filters';
-import { SkyListFiltersComponent } from '../list-filters/list-filters.component';
+import { SkyContribListComponent, SkyContribListModule, ListDataRequestModel, ListDataResponseModel } from './';
+import { SkyContribListToolbarModule } from '../list-toolbar';
+import { SkyContribListViewGridModule, SkyContribListViewGridComponent } from '../list-view-grid';
+import { SkyContribListFiltersModule } from '../list-filters';
+import { SkyContribListFiltersComponent } from '../list-filters/list-filters.component';
 import { ListFilterModel } from './state/filters/filter.model';
 import { ListFiltersClearAction, ListFiltersLoadAction } from './state/filters/actions';
 import {
@@ -42,7 +42,7 @@ import { ListSortSetFieldSelectorsAction } from './state/sort/actions';
 import { ListToolbarItemModel } from './state/toolbar/toolbar-item.model';
 import { ListToolbarItemsLoadAction } from './state/toolbar/actions';
 import { ListFilterDataModel } from './state/filters/filter-data.model';
-import { SkyListInMemoryDataProvider } from '../list-data-provider-in-memory';
+import { SkyContribListInMemoryDataProvider } from '../list-data-provider-in-memory';
 import { ListSearchModel } from './state/search/search.model';
 import { ListSortModel } from './state/sort/sort.model';
 
@@ -86,17 +86,17 @@ describe('List Component', () => {
         TestBed.configureTestingModule({
           imports: [
             ListFixturesModule,
-            SkyListModule,
-            SkyListFiltersModule,
-            SkyListToolbarModule,
-            SkyListViewGridModule,
+            SkyContribListModule,
+            SkyContribListFiltersModule,
+            SkyContribListToolbarModule,
+            SkyContribListViewGridModule,
             FormsModule
           ],
           providers: [
             { provide: 'items', useValue: items }
           ]
         })
-        .overrideComponent(SkyListComponent, {
+        .overrideComponent(SkyContribListComponent, {
           set: {
             providers: [
               { provide: ListState, useValue: state },
@@ -392,17 +392,17 @@ describe('List Component', () => {
         TestBed.configureTestingModule({
           imports: [
             ListFixturesModule,
-            SkyListModule,
-            SkyListToolbarModule,
-            SkyListViewGridModule,
-            SkyListFiltersModule,
+            SkyContribListModule,
+            SkyContribListToolbarModule,
+            SkyContribListViewGridModule,
+            SkyContribListFiltersModule,
             FormsModule
           ],
           providers: [
             { provide: 'items', useValue: items }
           ]
         })
-        .overrideComponent(SkyListComponent, {
+        .overrideComponent(SkyContribListComponent, {
           set: {
             providers: [
               { provide: ListState, useValue: state },
@@ -435,7 +435,7 @@ describe('List Component', () => {
           dispatcher: ListStateDispatcher,
           component: ListTestComponent,
           fixture: any,
-          dataProvider: SkyListInMemoryDataProvider,
+          dataProvider: SkyContribListInMemoryDataProvider,
           nativeElement: HTMLElement,
           element: DebugElement,
           items: Observable<any>,
@@ -454,23 +454,23 @@ describe('List Component', () => {
 
         bs = new BehaviorSubject<Array<any>>(itemsArray);
         items = bs.asObservable();
-        dataProvider = new SkyListInMemoryDataProvider(items);
+        dataProvider = new SkyContribListInMemoryDataProvider(items);
 
         TestBed.configureTestingModule({
           imports: [
             ListFixturesModule,
-            SkyListModule,
-            SkyListToolbarModule,
-            SkyListViewGridModule,
-            SkyListFiltersModule,
+            SkyContribListModule,
+            SkyContribListToolbarModule,
+            SkyContribListViewGridModule,
+            SkyContribListFiltersModule,
             FormsModule
           ],
           providers: [
             { provide: 'items', useValue: items },
-            { provide: SkyListInMemoryDataProvider, useValue: dataProvider }
+            { provide: SkyContribListInMemoryDataProvider, useValue: dataProvider }
           ]
         })
-        .overrideComponent(SkyListComponent, {
+        .overrideComponent(SkyContribListComponent, {
           set: {
             providers: [
               { provide: ListState, useValue: state },
@@ -566,7 +566,7 @@ describe('List Component', () => {
           dispatcher: ListStateDispatcher,
           component: ListTestComponent,
           fixture: any,
-          dataProvider: SkyListInMemoryDataProvider,
+          dataProvider: SkyContribListInMemoryDataProvider,
           nativeElement: HTMLElement,
           element: DebugElement,
           bs: BehaviorSubject<any>;
@@ -574,23 +574,23 @@ describe('List Component', () => {
       beforeEach(async(() => {
         dispatcher = new ListStateDispatcher();
         state = new ListState(dispatcher);
-        dataProvider = new SkyListInMemoryDataProvider();
+        dataProvider = new SkyContribListInMemoryDataProvider();
 
         TestBed.configureTestingModule({
           imports: [
             ListFixturesModule,
-            SkyListModule,
-            SkyListToolbarModule,
-            SkyListViewGridModule,
-            SkyListFiltersModule,
+            SkyContribListModule,
+            SkyContribListToolbarModule,
+            SkyContribListViewGridModule,
+            SkyContribListFiltersModule,
             FormsModule
           ],
           providers: [
             { provide: 'items', useValue: null },
-            { provide: SkyListInMemoryDataProvider, useValue: dataProvider }
+            { provide: SkyContribListInMemoryDataProvider, useValue: dataProvider }
           ]
         })
-        .overrideComponent(SkyListComponent, {
+        .overrideComponent(SkyContribListComponent, {
           set: {
             providers: [
               { provide: ListState, useValue: state },
@@ -641,18 +641,18 @@ describe('List Component', () => {
         TestBed.configureTestingModule({
           imports: [
             ListFixturesModule,
-            SkyListModule,
-            SkyListToolbarModule,
-            SkyListViewGridModule,
-            SkyListFiltersModule,
+            SkyContribListModule,
+            SkyContribListToolbarModule,
+            SkyContribListViewGridModule,
+            SkyContribListFiltersModule,
             FormsModule
           ],
           providers: [
             { provide: 'items', useValue: null },
-            { provide: SkyListInMemoryDataProvider, useValue: null }
+            { provide: SkyContribListInMemoryDataProvider, useValue: null }
           ]
         })
-        .overrideComponent(SkyListComponent, {
+        .overrideComponent(SkyContribListComponent, {
           set: {
             providers: [
               { provide: ListState, useValue: state },
@@ -723,17 +723,17 @@ describe('List Component', () => {
         TestBed.configureTestingModule({
           imports: [
             ListFixturesModule,
-            SkyListModule,
-            SkyListFiltersModule,
-            SkyListToolbarModule,
-            SkyListViewGridModule,
+            SkyContribListModule,
+            SkyContribListFiltersModule,
+            SkyContribListToolbarModule,
+            SkyContribListViewGridModule,
             FormsModule
           ],
           providers: [
             { provide: 'items', useValue: items }
           ]
         })
-        .overrideComponent(SkyListComponent, {
+        .overrideComponent(SkyContribListComponent, {
           set: {
             providers: [
               { provide: ListState, useValue: state },
@@ -778,9 +778,9 @@ describe('List Component', () => {
 
       it('should return list of views', () => {
         expect(component.list.views.length).toBe(2);
-        expect(component.list.views[0] instanceof SkyListViewGridComponent).toBeTruthy();
+        expect(component.list.views[0] instanceof SkyContribListViewGridComponent).toBeTruthy();
         expect(component.list.views[0].label).toBe('First');
-        expect(component.list.views[1] instanceof SkyListViewGridComponent).toBeTruthy();
+        expect(component.list.views[1] instanceof SkyContribListViewGridComponent).toBeTruthy();
         expect(component.list.views[1].label).toBe('Second');
       });
     });
@@ -890,7 +890,7 @@ describe('List Component', () => {
       let state = new ListState(dispatcher);
       dispatcher.next(new ListFiltersLoadAction([new ListFilterModel()]));
 
-      let filter = new SkyListFiltersComponent(state, dispatcher, null);
+      let filter = new SkyContribListFiltersComponent(state, dispatcher, null);
       filter.clearFilter('test');
       expect(filter).not.toBeUndefined();
     });
@@ -900,10 +900,10 @@ describe('List Component', () => {
       let state = new ListState(dispatcher);
       TestBed.configureTestingModule({
         imports: [
-          SkyListFiltersModule
+          SkyContribListFiltersModule
         ]
       })
-      .overrideComponent(SkyListFiltersComponent, {
+      .overrideComponent(SkyContribListFiltersComponent, {
         set: {
           providers: [
             { provide: ListState, useValue: state },
@@ -912,7 +912,7 @@ describe('List Component', () => {
         }
       });
 
-      let fixture = TestBed.createComponent(SkyListFiltersComponent);
+      let fixture = TestBed.createComponent(SkyContribListFiltersComponent);
       dispatcher.next(new ListFiltersLoadAction([new ListFilterModel()]));
       fixture.detectChanges();
 

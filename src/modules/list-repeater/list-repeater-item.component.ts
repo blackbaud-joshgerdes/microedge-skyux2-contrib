@@ -1,10 +1,10 @@
 import { Component, Input, HostBinding, ContentChild, OnInit } from '@angular/core';
-import { SkyListRepeaterItemTitleComponent } from './list-repeater-item-title.component';
-import { SkyListRepeaterItemEditorComponent } from './list-repeater-item-editor.component';
-import { SkyListRepeaterItemLeftComponent } from './list-repeater-item-left.component';
-import { SkyListRepeaterItemRightComponent } from './list-repeater-item-right.component';
-import { SkyListRepeaterItemContentComponent } from './list-repeater-item-content.component';
-import { SkyListRepeaterItemDescriptionComponent }
+import { SkyContribListRepeaterItemTitleComponent } from './list-repeater-item-title.component';
+import { SkyContribListRepeaterItemEditorComponent } from './list-repeater-item-editor.component';
+import { SkyContribListRepeaterItemLeftComponent } from './list-repeater-item-left.component';
+import { SkyContribListRepeaterItemRightComponent } from './list-repeater-item-right.component';
+import { SkyContribListRepeaterItemContentComponent } from './list-repeater-item-content.component';
+import { SkyContribListRepeaterItemDescriptionComponent }
   from './list-repeater-item-description.component';
 
 @Component({
@@ -14,25 +14,25 @@ import { SkyListRepeaterItemDescriptionComponent }
       './list-repeater-item.component.scss'
     ]
 })
-export class SkyListRepeaterItemComponent implements OnInit {
+export class SkyContribListRepeaterItemComponent implements OnInit {
   isExpanded: boolean = true;
   @Input() isEditing: boolean;
   @Input() isExpandable: boolean = false;
   @Input() showContent: boolean = false;
   @Input() id: string;
   @Input() item: any;
-  @ContentChild(SkyListRepeaterItemLeftComponent)
-    leftComponent: SkyListRepeaterItemLeftComponent;
-  @ContentChild(SkyListRepeaterItemRightComponent)
-    rightComponent: SkyListRepeaterItemRightComponent;
-  @ContentChild(SkyListRepeaterItemTitleComponent)
-    titleComponent: SkyListRepeaterItemTitleComponent;
-  @ContentChild(SkyListRepeaterItemDescriptionComponent)
-    descriptionComponent: SkyListRepeaterItemDescriptionComponent;
-  @ContentChild(SkyListRepeaterItemContentComponent)
-    contentComponent: SkyListRepeaterItemContentComponent;
-  @ContentChild(SkyListRepeaterItemEditorComponent)
-    editorComponent: SkyListRepeaterItemEditorComponent;
+  @ContentChild(SkyContribListRepeaterItemLeftComponent)
+    leftComponent: SkyContribListRepeaterItemLeftComponent;
+  @ContentChild(SkyContribListRepeaterItemRightComponent)
+    rightComponent: SkyContribListRepeaterItemRightComponent;
+  @ContentChild(SkyContribListRepeaterItemTitleComponent)
+    titleComponent: SkyContribListRepeaterItemTitleComponent;
+  @ContentChild(SkyContribListRepeaterItemDescriptionComponent)
+    descriptionComponent: SkyContribListRepeaterItemDescriptionComponent;
+  @ContentChild(SkyContribListRepeaterItemContentComponent)
+    contentComponent: SkyContribListRepeaterItemContentComponent;
+  @ContentChild(SkyContribListRepeaterItemEditorComponent)
+    editorComponent: SkyContribListRepeaterItemEditorComponent;
 
   @HostBinding('attr.repeater-item-id') get (): string { return this.id; }
 

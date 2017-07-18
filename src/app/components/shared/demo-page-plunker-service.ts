@@ -2,11 +2,11 @@
 
 import { Injectable } from '@angular/core';
 
-import { SkyDemoPageCodeFile } from './demo-page-code-file';
+import { SkyContribDemoPageCodeFile } from './demo-page-code-file';
 
 @Injectable()
-export class SkyDemoPagePlunkerService {
-  public getFiles(codeFiles: SkyDemoPageCodeFile[]): any[] {
+export class SkyContribDemoPagePlunkerService {
+  public getFiles(codeFiles: SkyContribDemoPageCodeFile[]): any[] {
     let declarations: string[] = [];
     let bootstrapSelectors: string[] = [];
     let entryComponents: string[] = [];

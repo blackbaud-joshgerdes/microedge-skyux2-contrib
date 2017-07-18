@@ -1,20 +1,20 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { SkyListComponent } from '../list.component';
+import { SkyContribListComponent } from '../list.component';
 import { ListFilterDataModel } from '../state/filters/filter-data.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { SkyListInMemoryDataProvider } from '../../list-data-provider-in-memory';
+import { SkyContribListInMemoryDataProvider } from '../../list-data-provider-in-memory';
 
 @Component({
   selector: 'sky-test-cmp',
   templateUrl: './list-empty.component.fixture.html'
 })
 export class ListEmptyTestComponent {
-  @ViewChild(SkyListComponent) public list: SkyListComponent;
+  @ViewChild(SkyContribListComponent) public list: SkyContribListComponent;
   public itemsCount: number = 2;
 
   constructor(
     @Inject('items') public items: any,
-    public dataProvider: SkyListInMemoryDataProvider
+    public dataProvider: SkyContribListInMemoryDataProvider
   ) {
   }
 

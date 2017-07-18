@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SkyTreeViewModule } from '../';
+import { SkyContribTreeViewModule } from '../';
 import { SkyDropdownModule } from '../../dropdown';
 
 import { TreeViewDefaultTestComponent } from './tree-view-default.component.fixture';
@@ -18,7 +18,7 @@ import { TreeViewCheckboxesTestComponent } from './tree-view-checkboxes.componen
   ],
   imports: [
     CommonModule,
-    SkyTreeViewModule,
+    SkyContribTreeViewModule,
     SkyDropdownModule
   ],
   exports: [

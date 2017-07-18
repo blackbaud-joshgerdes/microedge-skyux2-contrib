@@ -24,7 +24,7 @@ import {
   styleUrls: ['./list-view-checklist.component.scss'],
   providers: [
     /* tslint:disable */
-    { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewChecklistComponent)},
+    { provide: ListViewComponent, useExisting: forwardRef(() => SkyContribListViewChecklistComponent)},
     /* tslint:enable */
     ChecklistState,
     ChecklistStateDispatcher,
@@ -32,7 +32,7 @@ import {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListViewChecklistComponent extends ListViewComponent implements AfterViewInit {
+export class SkyContribListViewChecklistComponent extends ListViewComponent implements AfterViewInit {
   @Input() set name(value: string) { this.viewName = value; }
 
   /* tslint:disable */

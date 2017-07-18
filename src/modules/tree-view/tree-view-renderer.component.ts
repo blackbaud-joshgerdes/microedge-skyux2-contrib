@@ -8,7 +8,7 @@ import { TreeNodeModel } from './tree-node.model';
   template: '<ng-template #container></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyTreeViewRendererComponent implements OnInit {
+export class SkyContribTreeViewRendererComponent implements OnInit {
   @Input() item: TreeNodeModel;
   @Input() template: TemplateRef<any>;
   @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;

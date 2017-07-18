@@ -1,13 +1,13 @@
 import { Component, Input, AfterContentInit } from '@angular/core';
 import { SkyModalService } from '@blackbaud/skyux/dist/core';
-import { SkyTextExpandModalComponent } from './text-expand-modal.component';
+import { SkyContribTextExpandModalComponent } from './text-expand-modal.component';
 
 @Component({
   selector: 'sky-contrib-text-expand',
   templateUrl: './text-expand.component.html',
   styleUrls: ['./text-expand.component.scss']
 })
-export class SkyTextExpandComponent implements AfterContentInit {
+export class SkyContribTextExpandComponent implements AfterContentInit {
   displayToggle: boolean = true;
   isExpanded: boolean = false;
   @Input() modalMode: boolean = false;
@@ -28,7 +28,7 @@ export class SkyTextExpandComponent implements AfterContentInit {
         { provide: 'modalHeading', useValue: this.modalHeading }
       ];
 
-      this.modalService.open(SkyTextExpandModalComponent, providers);
+      this.modalService.open(SkyContribTextExpandModalComponent, providers);
     } else {
       this.isExpanded = !this.isExpanded;
     }

@@ -4,8 +4,8 @@ import {
   OnInit, AfterContentInit
 } from '@angular/core';
 import { TreeNodeModel } from './tree-node.model';
-import { SkyTreeViewContentComponent } from './tree-view-content.component';
-import { SkyTreeViewDropdownComponent } from './tree-view-dropdown.component';
+import { SkyContribTreeViewContentComponent } from './tree-view-content.component';
+import { SkyContribTreeViewDropdownComponent } from './tree-view-dropdown.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { TreeViewStateDispatcher, TreeViewState } from './state/';
@@ -21,7 +21,7 @@ import {
   providers: [TreeViewStateDispatcher, TreeViewState],
   styleUrls: ['./tree-view.component.scss']
 })
-export class SkyTreeViewComponent implements OnInit, AfterContentInit {
+export class SkyContribTreeViewComponent implements OnInit, AfterContentInit {
   @Input() data: Observable<Array<TreeNodeModel>> = Observable.of([]);
   @Input() disableParents: boolean = false;
   @Input() leafOnlySelection: boolean = false;
@@ -30,8 +30,8 @@ export class SkyTreeViewComponent implements OnInit, AfterContentInit {
   @Input() contentTemplate: TemplateRef<any>;
   @Input() dropdownTemplate: TemplateRef<any>;
   /* tslint:disable */
-  @ContentChildren(forwardRef(() => SkyTreeViewContentComponent)) nodeContent: QueryList<SkyTreeViewContentComponent>;
-  @ContentChildren(forwardRef(() => SkyTreeViewDropdownComponent)) nodeDropdown: QueryList<SkyTreeViewDropdownComponent>;
+  @ContentChildren(forwardRef(() => SkyContribTreeViewContentComponent)) nodeContent: QueryList<SkyContribTreeViewContentComponent>;
+  @ContentChildren(forwardRef(() => SkyContribTreeViewDropdownComponent)) nodeDropdown: QueryList<SkyContribTreeViewDropdownComponent>;
   /* tslint:enable */
   constructor(
     private dispatcher: TreeViewStateDispatcher,

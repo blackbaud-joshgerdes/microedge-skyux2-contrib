@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { SkyListModule } from '../';
-import { SkyListToolbarModule } from '../../list-toolbar';
-import { SkyListViewGridModule } from '../../list-view-grid';
-import { SkyListFiltersModule } from '../../list-filters';
-import { SkyListPagingModule} from '../../list-paging';
+import { SkyContribListModule } from '../';
+import { SkyContribListToolbarModule } from '../../list-toolbar';
+import { SkyContribListViewGridModule } from '../../list-view-grid';
+import { SkyContribListFiltersModule } from '../../list-filters';
+import { SkyContribListPagingModule} from '../../list-paging';
 
 import { ListTestComponent } from './list.component.fixture';
 import { ListDualTestComponent } from './list-dual.component.fixture';
@@ -22,11 +22,11 @@ import { ListPromiseTestComponent } from './list-promise.component.fixture';
   ],
   imports: [
     CommonModule,
-    SkyListModule,
-    SkyListFiltersModule,
-    SkyListToolbarModule,
-    SkyListViewGridModule,
-    SkyListPagingModule,
+    SkyContribListModule,
+    SkyContribListFiltersModule,
+    SkyContribListToolbarModule,
+    SkyContribListViewGridModule,
+    SkyContribListPagingModule,
     FormsModule
   ],
   exports: [

@@ -24,8 +24,8 @@ import {
 import {
   ListViewGridEmptyTestComponent
 } from './fixtures/list-view-grid-empty.component.fixture';
-import { SkyListViewGridModule } from './';
-import { SkyListToolbarModule } from '../list-toolbar';
+import { SkyContribListViewGridModule } from './';
+import { SkyContribListToolbarModule } from '../list-toolbar';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
 import { ListViewGridColumnModel } from './state/columns/column.model';
 import { ListViewGridColumnsLoadAction } from './state/columns/actions';
@@ -48,8 +48,8 @@ describe('List View Grid Component', () => {
       TestBed.configureTestingModule({
         imports: [
           ListViewGridFixturesModule,
-          SkyListViewGridModule,
-          SkyListToolbarModule
+          SkyContribListViewGridModule,
+          SkyContribListToolbarModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -326,8 +326,8 @@ describe('List View Grid Component', () => {
       TestBed.configureTestingModule({
         imports: [
           ListViewGridFixturesModule,
-          SkyListViewGridModule,
-          SkyListToolbarModule
+          SkyContribListViewGridModule,
+          SkyContribListToolbarModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -397,8 +397,8 @@ describe('List View Grid Component', () => {
       TestBed.configureTestingModule({
         imports: [
           ListViewGridFixturesModule,
-          SkyListViewGridModule,
-          SkyListToolbarModule
+          SkyContribListViewGridModule,
+          SkyContribListToolbarModule
         ],
         providers: [
           { provide: ListState, useValue: state },

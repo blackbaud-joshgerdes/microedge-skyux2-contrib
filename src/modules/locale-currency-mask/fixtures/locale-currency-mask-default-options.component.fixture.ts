@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SkyLocaleCurrencyMaskDirective } from '../locale-currency-mask.directive';
+import { SkyContribLocaleCurrencyMaskDirective } from '../locale-currency-mask.directive';
 
 @Component({
   selector: 'sky-test-cmp',

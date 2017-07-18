@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { SkyToastProvider } from './toast.provider';
+import { SkyContribToastProvider } from './toast.provider';
 
 @Component({
   selector: 'sky-contrib-toast',
@@ -9,8 +9,8 @@ import { SkyToastProvider } from './toast.provider';
     './toast.component.scss'
   ]
 })
-export class SkyToastComponent {
-  constructor( public toastr: SkyToastProvider ) {
+export class SkyContribToastComponent {
+  constructor( public toastr: SkyContribToastProvider ) {
   }
 
   showSuccess(message: string, title?: string, autoDismiss: boolean = true) {

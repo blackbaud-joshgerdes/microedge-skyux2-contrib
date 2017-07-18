@@ -1,12 +1,12 @@
 import { Injectable, Compiler, ComponentRef, Optional, Inject,
   ComponentFactoryResolver, ApplicationRef } from '@angular/core';
-import { SkyToastOptions } from './toast.options';
-import { SkyToast } from './toast.model';
-import { SkyToastContainer } from './toast-container.component';
+import { SkyContribToastOptions } from './toast.options';
+import { SkyContribToast } from './toast.model';
+import { SkyContribToastContainerComponent } from './toast-container.component';
 
 @Injectable()
-export class SkyToastProvider {
-  private container: ComponentRef<SkyToastContainer> = null;
+export class SkyContribToastProvider {
+  private container: ComponentRef<SkyContribToastContainerComponent> = null;
   private options = {
     autoDismiss: true,
     toastLife: 3000
@@ -17,16 +17,16 @@ export class SkyToastProvider {
     private resolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
     private compiler: Compiler,
-    @Optional() @Inject(SkyToastOptions) options: SkyToastOptions
+    @Optional() @Inject(SkyContribToastOptions) options: SkyContribToastOptions
   ) {
     if (options) {
       Object.assign(this.options, options);
     }
   }
 
-  show(toast: SkyToast) {
+  show(toast: SkyContribToast) {
     if (!this.container) {
-      let factory = this.resolver.resolveComponentFactory(SkyToastContainer);
+      let factory = this.resolver.resolveComponentFactory(SkyContribToastContainerComponent);
 
       document.body.appendChild(document.createElement('toast-container'));
 
@@ -44,7 +44,7 @@ export class SkyToastProvider {
     }, this.options.toastLife);
   }
 
-  setupToast(toast: SkyToast) {
+  setupToast(toast: SkyContribToast) {
     toast.id = ++this.index;
     this.container.instance.addToast(toast);
     if (toast.autoDismiss) {
@@ -68,22 +68,22 @@ export class SkyToastProvider {
   }
 
   error(message: string, title?: string, autoDismiss?: boolean) {
-    let toast = new SkyToast('error', message, title, autoDismiss);
+    let toast = new SkyContribToast('error', message, title, autoDismiss);
     this.show(toast);
   }
 
   info(message: string, title?: string, autoDismiss?: boolean) {
-    let toast = new SkyToast('info', message, title, autoDismiss);
+    let toast = new SkyContribToast('info', message, title, autoDismiss);
     this.show(toast);
   }
 
   success(message: string, title?: string, autoDismiss?: boolean) {
-    let toast = new SkyToast('success', message, title, autoDismiss);
+    let toast = new SkyContribToast('success', message, title, autoDismiss);
     this.show(toast);
   }
 
   warning(message: string, title?: string, autoDismiss?: boolean) {
-    let toast = new SkyToast('warning', message, title, autoDismiss);
+    let toast = new SkyContribToast('warning', message, title, autoDismiss);
     this.show(toast);
   }
 }

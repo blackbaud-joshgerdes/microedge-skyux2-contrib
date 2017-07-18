@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyListPagingComponent } from './list-paging.component';
+import { SkyContribListPagingComponent } from './list-paging.component';
 
 @NgModule({
   declarations: [
-    SkyListPagingComponent
+    SkyContribListPagingComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    SkyListPagingComponent
+    SkyContribListPagingComponent
   ]
 })
-export class SkyListPagingModule {
+export class SkyContribListPagingModule {
 }

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
       './checklist.component.scss'
     ]
 })
-export class SkyChecklistComponent implements OnInit {
+export class SkyContribChecklistComponent implements OnInit {
   @Input() items: Array<any> = [];
   @Input() itemsObservable: Observable<any>;
   @Input() selectedItems: Array<any> = [];

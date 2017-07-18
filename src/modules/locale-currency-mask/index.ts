@@ -1,2 +1,2 @@
-export { SkyLocaleCurrencyMaskDirective } from './locale-currency-mask.directive';
-export { SkyLocaleCurrencyMaskModule } from './locale-currency-mask.module';
+export { SkyContribLocaleCurrencyMaskDirective } from './locale-currency-mask.directive';
+export { SkyContribLocaleCurrencyMaskModule } from './locale-currency-mask.module';

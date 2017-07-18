@@ -5,9 +5,9 @@ import {
 import { ListViewComponent } from '../list/list-view.component';
 import { ListState } from '../list/state';
 import { GridState, GridStateDispatcher, GridStateModel } from './state';
-import { SkyListViewGridColumnComponent } from './list-view-grid-column.component';
+import { SkyContribListViewGridColumnComponent } from './list-view-grid-column.component';
 import {
-  SkyListViewGridColumnSelectorComponent
+  SkyContribListViewGridColumnSelectorComponent
 } from './list-view-grid-column-selector.component';
 import { ListStateDispatcher } from '../list/state';
 import { ListViewGridColumnModel } from './state/columns/column.model';
@@ -31,7 +31,7 @@ import { ListItemModel } from "../list/state/items/item.model";
   styleUrls: ['./list-view-grid.component.scss'],
   providers: [
     /* tslint:disable */
-    { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewGridComponent)},
+    { provide: ListViewComponent, useExisting: forwardRef(() => SkyContribListViewGridComponent)},
     /* tslint:enable */
     GridState,
     GridStateDispatcher,
@@ -40,7 +40,7 @@ import { ListItemModel } from "../list/state/items/item.model";
   viewProviders: [ DragulaService ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListViewGridComponent
+export class SkyContribListViewGridComponent
   extends ListViewComponent implements AfterContentInit, AfterViewInit {
   @Input() set name(value: string) { this.viewName = value; }
   @Input() hiddenColumns: Array<string> | Observable<Array<string>>;
@@ -55,8 +55,8 @@ export class SkyListViewGridComponent
   @ViewChild('chooseColumnsTemplate') chooseColumnsTemplate: TemplateRef<any>;
   /* tslint:enable */
 
-  @ContentChildren(SkyListViewGridColumnComponent)
-  columnComponents: QueryList<SkyListViewGridColumnComponent>;
+  @ContentChildren(SkyContribListViewGridColumnComponent)
+  columnComponents: QueryList<SkyContribListViewGridColumnComponent>;
 
   constructor(
     state: ListState,
@@ -237,7 +237,7 @@ export class SkyListViewGridComponent
       { provide: GridStateDispatcher, useValue: this.gridDispatcher }
     ];
 
-    let modalInstance = this.modalService.open(SkyListViewGridColumnSelectorComponent, providers);
+    let modalInstance = this.modalService.open(SkyContribListViewGridColumnSelectorComponent, providers);
     modalInstance.componentInstance.columnsChanged.subscribe((columnIds: string[]) => {
       this.gridState.map(s => s.columns.items)
         .take(1)

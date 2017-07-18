@@ -12,7 +12,7 @@ import { getData } from '../list/helpers';
   styleUrls: ['./list-view-grid-cell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListViewGridCellComponent implements OnInit {
+export class SkyContribListViewGridCellComponent implements OnInit {
   @Input() item: ListItemModel;
   @Input() columnId: string;
   @Input() isSelected: boolean;

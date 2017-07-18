@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { FormsModule } from '@angular/forms';
 
-import { MicroedgeSkyContribModule, SkyListComponent } from '../../../../src/core';
+import { MicroedgeSkyContribModule, SkyContribListComponent } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -20,7 +20,7 @@ import { Bootstrapper } from '../../../../visual/bootstrapper';
 export class AppComponent {
   public bs: BehaviorSubject<any>;
   public items: Observable<any>;
-  @ViewChild(SkyListComponent) public list: SkyListComponent;
+  @ViewChild(SkyContribListComponent) public list: SkyContribListComponent;
 
   constructor(private state: ListState, private dispatcher: ListStateDispatcher) {
     /* tslint:disable */

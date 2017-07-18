@@ -1,4 +1,4 @@
-export interface SkyDemoComponent {
+export interface SkyContribDemoComponent {
   name: string;
   icon: string;
   summary: string;

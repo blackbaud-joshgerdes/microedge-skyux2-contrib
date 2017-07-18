@@ -16,7 +16,7 @@ import { SkyContribDraggableRepeaterItemContentComponent }
       './draggable-repeater-item.component.scss'
     ]
 })
-export class SkyDraggableRepeaterItemComponent implements OnInit, AfterContentInit {
+export class SkyContribDraggableRepeaterItemComponent implements OnInit, AfterContentInit {
   isExpanded: boolean = true;
   @Input() isExpandable: boolean = false;
   @Input() showContent: boolean = false;

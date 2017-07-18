@@ -6,13 +6,13 @@ import { ListState, ListStateDispatcher } from '../list/state';
 import { ListItemModel } from '../list/state/items/item.model';
 import { RepeaterState, RepeaterStateDispatcher, RepeaterStateModel } from './state';
 import { ListViewRepeaterSetExpandedAction } from './state/expanded/actions';
-import { SkyListViewRepeaterLeftComponent } from './list-view-repeater-left.component';
-import { SkyListViewRepeaterRightComponent } from './list-view-repeater-right.component';
-import { SkyListViewRepeaterTitleComponent } from './list-view-repeater-title.component';
+import { SkyContribListViewRepeaterLeftComponent } from './list-view-repeater-left.component';
+import { SkyContribListViewRepeaterRightComponent } from './list-view-repeater-right.component';
+import { SkyContribListViewRepeaterTitleComponent } from './list-view-repeater-title.component';
 import {
-  SkyListViewRepeaterDescriptionComponent
+  SkyContribListViewRepeaterDescriptionComponent
 } from './list-view-repeater-description.component';
-import { SkyListViewRepeaterContentComponent } from './list-view-repeater-content.component';
+import { SkyContribListViewRepeaterContentComponent } from './list-view-repeater-content.component';
 
 @Component({
   selector: 'sky-contrib-list-view-repeater',
@@ -20,7 +20,7 @@ import { SkyListViewRepeaterContentComponent } from './list-view-repeater-conten
   styleUrls: ['./list-view-repeater.component.scss'],
   providers: [
     /* tslint:disable */
-    { provide: ListViewComponent, useExisting: forwardRef(() => SkyListViewRepeaterComponent)},
+    { provide: ListViewComponent, useExisting: forwardRef(() => SkyContribListViewRepeaterComponent)},
     /* tslint:enable */
     RepeaterState,
     RepeaterStateDispatcher,
@@ -28,21 +28,21 @@ import { SkyListViewRepeaterContentComponent } from './list-view-repeater-conten
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListViewRepeaterComponent extends ListViewComponent {
+export class SkyContribListViewRepeaterComponent extends ListViewComponent {
   @Input() set name(value: string) { this.viewName = value; }
   /* tslint:disable */
   @Input('search') searchFunction: (data: any, searchText: string) => boolean;
   /* tslint:enable */
-  @ContentChild(SkyListViewRepeaterLeftComponent)
-    leftComponent: SkyListViewRepeaterLeftComponent;
-  @ContentChild(SkyListViewRepeaterRightComponent)
-    rightComponent: SkyListViewRepeaterRightComponent;
-  @ContentChild(SkyListViewRepeaterTitleComponent)
-    titleComponent: SkyListViewRepeaterTitleComponent;
-  @ContentChild(SkyListViewRepeaterDescriptionComponent)
-    descriptionComponent: SkyListViewRepeaterDescriptionComponent;
-  @ContentChild(SkyListViewRepeaterContentComponent)
-    contentComponent: SkyListViewRepeaterContentComponent;
+  @ContentChild(SkyContribListViewRepeaterLeftComponent)
+    leftComponent: SkyContribListViewRepeaterLeftComponent;
+  @ContentChild(SkyContribListViewRepeaterRightComponent)
+    rightComponent: SkyContribListViewRepeaterRightComponent;
+  @ContentChild(SkyContribListViewRepeaterTitleComponent)
+    titleComponent: SkyContribListViewRepeaterTitleComponent;
+  @ContentChild(SkyContribListViewRepeaterDescriptionComponent)
+    descriptionComponent: SkyContribListViewRepeaterDescriptionComponent;
+  @ContentChild(SkyContribListViewRepeaterContentComponent)
+    contentComponent: SkyContribListViewRepeaterContentComponent;
 
   constructor(
     state: ListState,

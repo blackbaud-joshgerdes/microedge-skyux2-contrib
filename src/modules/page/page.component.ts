@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
   selector: 'sky-contrib-page',
   templateUrl: './page.component.html'
 })
-export class SkyPageComponent implements OnInit {
+export class SkyContribPageComponent implements OnInit {
   @Input() isAuthorized: any;
   @Input() isLoading: any;
 

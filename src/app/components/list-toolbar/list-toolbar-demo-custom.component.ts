@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
   selector: 'sky-contrib-list-toolbar-demo-custom',
   templateUrl: './list-toolbar-demo-custom.component.html'
 })
-export class SkyListToolbarDemoCustomComponent {
+export class SkyContribListToolbarDemoCustomComponent {
   public items: Observable<any> = Observable.of([
     { id: '1', column1: 101, column2: 'Apple', column3: 'Anne eats apples' },
     { id: '2', column1: 202, column2: 'Banana', column3: 'Ben eats bananas' },

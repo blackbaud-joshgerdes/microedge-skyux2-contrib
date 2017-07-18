@@ -6,7 +6,7 @@ import { ListViewComponent } from '../list/list-view.component';
   selector: 'sky-contrib-list-filter',
   template: '<ng-content></ng-content>'
 })
-export class SkyListFilterComponent implements OnInit {
+export class SkyContribListFilterComponent implements OnInit {
   @Input() name: string;
   @Input() label: string;
   @Input() type: string;

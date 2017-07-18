@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './list-action-bar.component.html',
   styleUrls: ['./list-action-bar.component.scss']
 })
-export class SkyListActionBarComponent implements AfterContentInit {
+export class SkyContribListActionBarComponent implements AfterContentInit {
   @Input() alwaysOn: boolean | Observable<boolean> = Observable.of(false);
   isAlwaysOn: Observable<boolean>;
 
