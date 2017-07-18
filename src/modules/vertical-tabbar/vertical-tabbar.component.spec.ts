@@ -48,17 +48,17 @@ describe('Vertical Tabbar Component', () => {
     it('should set proper item labels', () => {
       expect(element.queryAll(
         By.css('.sky-contrib-vertical-tabbar-menu li a')
-      )[0].nativeElement.innerHTML).toEqual('Tab One');
+      )[0].nativeElement.innerHTML.includes('Tab One')).toEqual(true);
       expect(element.queryAll(
         By.css('.sky-contrib-vertical-tabbar-menu li a')
-      )[1].nativeElement.innerHTML).toEqual('Tab Two');
+      )[1].nativeElement.innerHTML.includes('Tab Two')).toEqual(true);
       expect(element.queryAll(
         By.css('.sky-contrib-vertical-tabbar-menu li a')
-      )[2].nativeElement.innerHTML).toEqual('Tab Three');
+      )[2].nativeElement.innerHTML.includes('Tab Three')).toEqual(true);
       expect(element.queryAll(
         By.css('.sky-contrib-vertical-tabbar-menu li a')
-      )[3].nativeElement.innerHTML)
-        .toEqual('Tab Four - A very long title that seems to go on forever');
+      )[3].nativeElement.innerHTML.includes
+      ('Tab Four - A very long title that seems to go on forever')).toEqual(true);
     });
 
     it('should set proper item active', () => {

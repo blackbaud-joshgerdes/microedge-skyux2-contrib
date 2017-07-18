@@ -133,6 +133,7 @@ describe('List Component', () => {
         let filterSelect = modal ?
           document.querySelector('.sky-contrib-list-filters-modal-bar select') :
           element.query(By.css('.sky-contrib-list-filters-inline-bar select')).nativeElement;
+
         filterSelect.value = text;
         var event = document.createEvent('Event');
         event.initEvent('change', true, true);
@@ -331,7 +332,7 @@ describe('List Component', () => {
         it('should return selected item ids', () => {
           let id: any;
           items.take(1).subscribe(items => {
-            dispatcher.next(new ListSelectedSetItemSelectedAction(items[0].id, true));
+            dispatcher.next(new ListSelectedSetItemSelectedAction(items[0], true));
             id = items[0].id;
           });
 
@@ -833,7 +834,7 @@ describe('List Component', () => {
     }));
 
     it('should construct ListSelectedSetItemsSelectedAction', () => {
-      let action = new ListSelectedSetItemsSelectedAction(['1']);
+      let action = new ListSelectedSetItemsSelectedAction([new ListItemModel('1')]);
       expect(action).not.toBeUndefined();
     });
 

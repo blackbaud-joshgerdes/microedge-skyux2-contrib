@@ -414,7 +414,9 @@ describe('List View Grid Component', () => {
 
     it('should throw columns require error', () => {
       expect(() => { fixture.detectChanges(); })
-        .toThrowError(/Grid view requires at least one sky-contrib-list-view-grid-column to render./);
+        .toThrowError(
+          /Grid view requires at least one sky-contrib-list-view-grid-column to render./
+        );
     });
   });
 
