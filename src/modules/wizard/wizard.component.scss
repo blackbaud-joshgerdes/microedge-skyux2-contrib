@@ -23,6 +23,15 @@
     font-weight: 600;
   }
 
+  .sky-modal-footer-container {
+    display: flex;
+    align-items: center;
+
+    > div:first-child {
+      padding-right: 15px;
+    }
+  }
+
   button[disabled] {
     color: #cacaca;
     pointer-events: none;
