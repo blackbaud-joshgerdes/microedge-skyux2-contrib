@@ -127,11 +127,6 @@ describe('Tree view component', () => {
     it('Set up an empty node', () => {
       let emptyNode: TreeNodeModel = new TreeNodeModel();
       expect(emptyNode).not.toBe(null);
-      emptyNode = new TreeNodeModel({children: 'notArray'});
-      expect(emptyNode.children.length).toBe(0);
-      emptyNode.children.push(new TreeNodeModel());
-      emptyNode = new TreeNodeModel(emptyNode);
-      expect(emptyNode.children.length).not.toBe(0);
     });
   });
 
