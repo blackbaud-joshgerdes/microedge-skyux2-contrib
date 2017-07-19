@@ -25,6 +25,7 @@ export class SkyContribWizardComponent implements AfterContentInit {
   public steps: QueryList<SkyContribWizardStepComponent> = null;
   @Input() public headerTemplate: TemplateRef<any>;
   @Input() public stepsTemplate: TemplateRef<any>;
+  @Input() public footerTemplate: TemplateRef<any>;
   @ContentChildren(forwardRef(() => SkyContribWizardHeaderComponent)) public headerNode:
     QueryList<SkyContribWizardHeaderComponent>;
   @ContentChildren(forwardRef(() => SkyContribWizardStepsComponent)) public stepsNode:
