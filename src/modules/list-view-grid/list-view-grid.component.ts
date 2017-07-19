@@ -23,7 +23,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 import { getData } from '../list/helpers';
-import { ListItemModel } from "../list/state/items/item.model";
+import { ListItemModel } from '../list/state/items/item.model';
 
 @Component({
   selector: 'sky-contrib-list-view-grid',
@@ -75,7 +75,8 @@ export class SkyContribListViewGridComponent
     }
 
     let columnModels = this.columnComponents.map(columnComponent => {
-      return new ListViewGridColumnModel(columnComponent.template, columnComponent);
+      return new ListViewGridColumnModel(
+        columnComponent.template, columnComponent.headingTemplate, columnComponent);
     });
 
     if (this.selectionEnabled && !(this.selectionEnabled instanceof Observable)) {

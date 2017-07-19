@@ -20,12 +20,17 @@ export class SkyContribListViewGridColumnComponent {
   /* tslint:disable */
   @Input('search') searchFunction: (value: any, searchText: string) => boolean = this.search;
   @Input('template') templateInput: TemplateRef<any>;
+  @Input('headingTemplate') headingTemplateInput: TemplateRef<any>;
   /* tslint:enable */
 
   @ContentChildren(TemplateRef) templates: QueryList<TemplateRef<any>>;
 
   public get template(): TemplateRef<any> {
     return (this.templates.length > 0 ? this.templates.first : undefined) || this.templateInput;
+  }
+
+  public get headingTemplate(): TemplateRef<any> {
+    return this.headingTemplateInput;
   }
 
   private search(value: any, searchText: string): boolean {

@@ -13,6 +13,7 @@ import { SkyContribListViewGridColumnSelectorComponent }
 import { SkyContribListPagingModule } from '../list-paging';
 import { SkyContribListToolbarModule } from '../list-toolbar';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
+import { SkyContribListViewGridRendererComponent } from './list-view-grid-renderer.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -20,7 +21,8 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
     SkyContribListViewGridComponent,
     SkyContribListViewGridColumnComponent,
     SkyContribListViewGridCellComponent,
-    SkyContribListViewGridColumnSelectorComponent
+    SkyContribListViewGridColumnSelectorComponent,
+    SkyContribListViewGridRendererComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { DragulaModule } from 'ng2-dragula/ng2-dragula';
   exports: [
     SkyContribListViewGridComponent,
     SkyContribListViewGridColumnComponent,
-    SkyContribListViewGridCellComponent
+    SkyContribListViewGridCellComponent,
+    SkyContribListViewGridRendererComponent
   ]
 })
 export class SkyContribListViewGridModule {

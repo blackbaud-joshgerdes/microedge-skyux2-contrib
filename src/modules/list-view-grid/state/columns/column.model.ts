@@ -7,13 +7,15 @@ export class ListViewGridColumnModel {
   public type: string;
   public searchFunction: (data: any, searchText: string) => boolean;
   public heading: string;
+  public headingTemplate: TemplateRef<any>;
   public description: string;
   public width: number;
   public hidden: boolean;
   public locked: boolean;
 
-  constructor(template: TemplateRef<any>, data?: any) {
+  constructor(template: TemplateRef<any>, headingTemplate: TemplateRef<any>, data?: any) {
     this.template = template;
+    this.headingTemplate = headingTemplate;
 
     if (data) {
       this.id = data.id || data.field;
