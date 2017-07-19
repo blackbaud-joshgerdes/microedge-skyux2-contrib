@@ -5,7 +5,7 @@ import {
   OnInit
 } from '@angular/core';
 
-import { SkyDemoTitleService } from '../../shared/title.service';
+import { SkyContribDemoTitleService } from '../../shared/title.service';
 
 @Component({
   selector: 'sky-demo-page',
@@ -13,7 +13,7 @@ import { SkyDemoTitleService } from '../../shared/title.service';
   styleUrls: ['./demo-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyDemoPageComponent implements OnInit {
+export class SkyContribDemoPageComponent implements OnInit {
   @Input()
   public set title(value: string) {
     this._title = value;
@@ -28,7 +28,7 @@ export class SkyDemoPageComponent implements OnInit {
 
   private _title: string;
 
-  constructor(private titleService: SkyDemoTitleService) { }
+  constructor(private titleService: SkyContribDemoTitleService) { }
 
   public ngOnInit() {
     this.updateTitle();

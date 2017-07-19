@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SkyListViewGridModule } from '../';
-import { SkyListToolbarModule } from '../../list-toolbar';
+import { SkyContribListViewGridModule } from '../';
+import { SkyContribListToolbarModule } from '../../list-toolbar';
 
 import { ListFixturesModule } from '../../list/fixtures/list-fixtures.module';
 import { ListViewGridTestComponent } from './list-view-grid.component.fixture';
@@ -17,8 +17,8 @@ import { ListViewGridEmptyTestComponent } from './list-view-grid-empty.component
   ],
   imports: [
     CommonModule,
-    SkyListViewGridModule,
-    SkyListToolbarModule,
+    SkyContribListViewGridModule,
+    SkyContribListToolbarModule,
     ListFixturesModule
   ],
   exports: [

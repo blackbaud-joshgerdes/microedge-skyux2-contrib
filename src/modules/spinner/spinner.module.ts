@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkySpinnerComponent } from './spinner.component';
+import { SkyContribSpinnerComponent } from './spinner.component';
 
 @NgModule({
   declarations: [
-    SkySpinnerComponent
+    SkyContribSpinnerComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    SkySpinnerComponent
+    SkyContribSpinnerComponent
   ],
   providers: [
   ]
 })
-export class SkySpinnerModule {
+export class SkyContribSpinnerModule {
 }

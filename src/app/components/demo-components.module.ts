@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 
-import { SkyDemoComponentsService } from './demo-components.service';
+import { SkyContribDemoComponentsService } from './demo-components.service';
 
 require('style-loader!prismjs/themes/prism.css');
 
 @NgModule({
   providers: [
-    SkyDemoComponentsService
+    SkyContribDemoComponentsService
   ]
 })
-export class SkyDemoComponentsModule { }
+export class SkyContribDemoComponentsModule { }

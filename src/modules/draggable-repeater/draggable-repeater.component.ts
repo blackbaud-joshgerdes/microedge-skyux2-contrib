@@ -2,18 +2,18 @@ import {
   Component, Input, Output, EventEmitter, ContentChildren, QueryList, OnDestroy
 } from '@angular/core';
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
-import { SkyDraggableRepeaterItemComponent } from './draggable-repeater-item.component';
+import { SkyContribDraggableRepeaterItemComponent } from './draggable-repeater-item.component';
 
 @Component({
     selector: 'sky-contrib-draggable-repeater',
     templateUrl: './draggable-repeater.component.html',
     styleUrls: ['./draggable-repeater.component.scss']
 })
-export class SkyDraggableRepeaterComponent implements OnDestroy {
+export class SkyContribDraggableRepeaterComponent implements OnDestroy {
   @Input() dragOnHandle: boolean = false;
   @Output() onItemsReordered = new EventEmitter<any>();
-  @ContentChildren(SkyDraggableRepeaterItemComponent)
-    items: QueryList<SkyDraggableRepeaterItemComponent>;
+  @ContentChildren(SkyContribDraggableRepeaterItemComponent)
+    items: QueryList<SkyContribDraggableRepeaterItemComponent>;
   bagName: string = this.generateGuid();
   private subscriptions: any[] = [];
 

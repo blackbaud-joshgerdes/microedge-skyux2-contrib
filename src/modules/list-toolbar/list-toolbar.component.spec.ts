@@ -11,7 +11,7 @@ import {
 import { ListViewsLoadAction } from '../list/state/views/actions';
 import { ListViewModel } from '../list/state/views/view.model';
 import { ListSortLabelModel } from '../list/state/sort/label.model';
-import { SkyListToolbarModule } from './';
+import { SkyContribListToolbarModule } from './';
 import {
   ListToolbarTestComponent
 } from './fixtures/list-toolbar.component.fixture';
@@ -33,7 +33,7 @@ describe('List Toolbar Component', () => {
           ListToolbarTestComponent
         ],
         imports: [
-          SkyListToolbarModule
+          SkyContribListToolbarModule
         ],
         providers: [
           { provide: ListState, useValue: state },

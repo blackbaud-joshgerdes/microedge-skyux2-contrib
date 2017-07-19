@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SkyTreeViewComponent } from '../tree-view.component';
+import { SkyContribTreeViewComponent } from '../tree-view.component';
 import { TreeNodeModel } from '../tree-node.model';
 
 @Component({
@@ -8,7 +8,7 @@ import { TreeNodeModel } from '../tree-node.model';
 })
 export class TreeViewDefaultTestComponent {
   public data: TreeNodeModel[] = [];
-  @ViewChild(SkyTreeViewComponent) public tree: SkyTreeViewComponent;
+  @ViewChild(SkyContribTreeViewComponent) public tree: SkyContribTreeViewComponent;
 
   constructor() {
     let root1node = new TreeNodeModel({id: '1', name: 'root1'});

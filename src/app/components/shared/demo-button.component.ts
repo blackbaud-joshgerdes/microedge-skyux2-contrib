@@ -8,7 +8,7 @@ import {
   templateUrl: './demo-button.component.html',
   styleUrls: ['./demo-button.component.scss']
 })
-export class SkyDemoButtonComponent {
+export class SkyContribDemoButtonComponent {
   @Input()
   public componentName: string;
 

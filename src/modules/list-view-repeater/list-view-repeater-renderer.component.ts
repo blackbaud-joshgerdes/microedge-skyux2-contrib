@@ -8,7 +8,7 @@ import { ListItemModel } from '../list/state/items/item.model';
   template: '<ng-template #container></ng-template>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListViewRepeaterRendererComponent implements OnInit {
+export class SkyContribListViewRepeaterRendererComponent implements OnInit {
   @Input() item: ListItemModel;
   @Input() template: TemplateRef<any>;
   @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;

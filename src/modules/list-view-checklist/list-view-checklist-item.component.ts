@@ -9,6 +9,6 @@ import { ListViewChecklistItemModel } from './state/items/item.model';
   styleUrls: ['./list-view-checklist-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListViewChecklistItemComponent {
+export class SkyContribListViewChecklistItemComponent {
   @Input() public item: ListViewChecklistItemModel;
 }

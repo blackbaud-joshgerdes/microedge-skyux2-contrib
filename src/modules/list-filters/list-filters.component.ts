@@ -3,12 +3,12 @@ import {
     AfterContentInit, AfterViewInit
 } from '@angular/core';
 import { SkyModalService } from '@blackbaud/skyux/dist/core';
-import { SkyListFilterComponent } from './list-filter.component';
+import { SkyContribListFilterComponent } from './list-filter.component';
 import { ListState, ListStateDispatcher } from '../list/state';
 import { ListToolbarItemModel } from '../list/state/toolbar/toolbar-item.model';
 import { ListFilterModel } from '../list/state/filters/filter.model';
 import { ListFilterDataModel } from '../list/state/filters/filter-data.model';
-import { SkyListFiltersModalComponent } from './list-filters-modal.component';
+import { SkyContribListFiltersModalComponent } from './list-filters-modal.component';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 
 @Component({
@@ -16,9 +16,9 @@ import { getValue } from 'microedge-rxstate/dist/helpers';
   templateUrl: './list-filters.component.html',
   styleUrls: ['./list-filters.component.scss']
 })
-export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit {
+export class SkyContribListFiltersComponent implements AfterContentInit, AfterViewInit {
   @Input() modalTitle: string = 'Filters';
-  @ContentChildren(SkyListFilterComponent) filters: QueryList<SkyListFilterComponent>;
+  @ContentChildren(SkyContribListFilterComponent) filters: QueryList<SkyContribListFilterComponent>;
   @ViewChild('filterButton') filterButtonTemplate: TemplateRef<any>;
   inlineBarExpanded: boolean = false;
 
@@ -72,7 +72,7 @@ export class SkyListFiltersComponent implements AfterContentInit, AfterViewInit 
       { provide: 'title', useValue: this.modalTitle }
     ];
 
-    this.modalService.open(SkyListFiltersModalComponent, providers);
+    this.modalService.open(SkyContribListFiltersModalComponent, providers);
   }
 
   public filterButtonClick() {

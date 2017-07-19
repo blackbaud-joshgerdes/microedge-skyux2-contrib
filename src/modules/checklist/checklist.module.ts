@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SkyChecklistComponent } from './checklist.component';
+import { SkyContribChecklistComponent } from './checklist.component';
 import { SkyChecklistDataFilterPipe } from './checklist-filter.pipe';
 
 @NgModule({
@@ -11,11 +11,11 @@ import { SkyChecklistDataFilterPipe } from './checklist-filter.pipe';
     FormsModule
   ],
   declarations: [
-    SkyChecklistComponent,
+    SkyContribChecklistComponent,
     SkyChecklistDataFilterPipe
   ],
   exports: [
-    SkyChecklistComponent,
+    SkyContribChecklistComponent,
     SkyChecklistDataFilterPipe
   ]
 })

@@ -1,7 +1,7 @@
 import { Component, NgModule, ViewChild, AfterViewInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MicroedgeSkyContribModule, SkyListViewRepeaterComponent } from '../../../../src/core';
+import { MicroedgeSkyContribModule, SkyContribListViewRepeaterComponent } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -18,7 +18,7 @@ import { Bootstrapper } from '../../../../visual/bootstrapper';
   templateUrl: './list-view-repeater.component.visual-fixture.html'
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild(SkyListViewRepeaterComponent) public viewrepeater: SkyListViewRepeaterComponent;
+  @ViewChild(SkyContribListViewRepeaterComponent) public viewrepeater: SkyContribListViewRepeaterComponent;
 
   constructor(private state: ListState, private dispatcher: ListStateDispatcher) {
   }

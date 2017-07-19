@@ -1,4 +1,4 @@
-export class SkyOmnibarConfigModel {
+export class SkyContribOmnibarConfigModel {
   url: string;
   appLookupUrl: string;
   productId: string;

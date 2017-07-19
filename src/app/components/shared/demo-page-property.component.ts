@@ -10,7 +10,7 @@ import {
   styleUrls: ['./demo-page-property.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyDemoPagePropertyComponent {
+export class SkyContribDemoPagePropertyComponent {
   @Input()
   public propertyName: string;
 

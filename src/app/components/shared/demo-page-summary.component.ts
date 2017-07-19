@@ -8,4 +8,4 @@ import {
   templateUrl: './demo-page-summary.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyDemoPageSummaryComponent { }
+export class SkyContribDemoPageSummaryComponent { }

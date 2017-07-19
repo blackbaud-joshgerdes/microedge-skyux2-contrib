@@ -8,20 +8,20 @@ declare let Prism: any;
 import 'prismjs/prism';
 import 'prismjs/components/prism-typescript';
 
-import { SkyDemoPageCodeFile } from './demo-page-code-file';
-import { SkyDemoPagePlunkerService } from './demo-page-plunker-service';
-import { SkyDemoComponentsService } from '../demo-components.service';
+import { SkyContribDemoPageCodeFile } from './demo-page-code-file';
+import { SkyContribDemoPagePlunkerService } from './demo-page-plunker-service';
+import { SkyContribDemoComponentsService } from '../demo-components.service';
 
 @Component({
   selector: 'sky-demo-page-code',
   templateUrl: './demo-page-code.component.html',
   styleUrls: ['./demo-page-code.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SkyDemoPagePlunkerService]
+  providers: [SkyContribDemoPagePlunkerService]
 })
-export class SkyDemoPageCodeComponent {
+export class SkyContribDemoPageCodeComponent {
   @Input()
-  public codeFilesForBinding: SkyDemoPageCodeFile[];
+  public codeFilesForBinding: SkyContribDemoPageCodeFile[];
 
   @Input()
   public set demoName(value: string) {
@@ -31,7 +31,7 @@ export class SkyDemoPageCodeComponent {
     });
 
     this.codeFilesForBinding = items.getCodeFiles().map((item) => {
-      return new SkyDemoPageCodeFile(
+      return new SkyContribDemoPageCodeFile(
         item.name,
         item.fileContents,
         item.componentName,
@@ -47,7 +47,7 @@ export class SkyDemoPageCodeComponent {
   }
 
   constructor(
-    private plunkerService: SkyDemoPagePlunkerService,
-    private componentsService: SkyDemoComponentsService
+    private plunkerService: SkyContribDemoPagePlunkerService,
+    private componentsService: SkyContribDemoComponentsService
   ) { }
 }

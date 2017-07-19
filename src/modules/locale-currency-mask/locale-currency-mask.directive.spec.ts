@@ -4,8 +4,8 @@ import {
 } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { SkyLocaleCurrencyMaskModule } from './';
-import { SkyLocaleCurrencyMaskDirective } from './';
+import { SkyContribLocaleCurrencyMaskModule } from './';
+import { SkyContribLocaleCurrencyMaskDirective } from './';
 
 import { LocaleCurrencyMaskFixturesModule } from
   './fixtures/locale-currency-mask-fixtures.module';
@@ -30,8 +30,8 @@ describe('Locale currency mask directive', () => {
       nativeElement = fixture.nativeElement as HTMLElement;
       element = fixture.debugElement as DebugElement;
       component = fixture.componentInstance;
-      const directiveEl = element.query(By.directive(SkyLocaleCurrencyMaskDirective));
-      directiveInstance = directiveEl.injector.get(SkyLocaleCurrencyMaskDirective);
+      const directiveEl = element.query(By.directive(SkyContribLocaleCurrencyMaskDirective));
+      directiveInstance = directiveEl.injector.get(SkyContribLocaleCurrencyMaskDirective);
 
       fixture.detectChanges();
 

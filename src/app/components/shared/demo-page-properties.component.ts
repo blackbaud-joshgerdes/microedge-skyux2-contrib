@@ -9,7 +9,7 @@ import {
   templateUrl: './demo-page-properties.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyDemoPagePropertiesComponent {
+export class SkyContribDemoPagePropertiesComponent {
   @Input()
   public sectionHeading = 'Properties';
 }

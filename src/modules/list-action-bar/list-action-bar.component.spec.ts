@@ -13,7 +13,7 @@ import { ListItemsLoadAction } from '../list/state/items/actions';
 import {
   ListSelectedSetItemsSelectedAction, ListSelectedSetItemSelectedAction
 } from '../list/state/selected/actions';
-import { SkyListActionBarModule } from './';
+import { SkyContribListActionBarModule } from './';
 import {
   ListActionBarTestComponent
 } from './fixtures/list-action-bar.component.fixture';
@@ -41,7 +41,7 @@ describe('List Action Bar Component', () => {
           ListActionBarTestComponent
         ],
         imports: [
-          SkyListActionBarModule
+          SkyContribListActionBarModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -134,7 +134,7 @@ describe('List Action Bar Component', () => {
           ListActionBarObservableTestComponent
         ],
         imports: [
-          SkyListActionBarModule
+          SkyContribListActionBarModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -192,7 +192,7 @@ describe('List Action Bar Component', () => {
           ListActionBarHiddenTestComponent
         ],
         imports: [
-          SkyListActionBarModule
+          SkyContribListActionBarModule
         ],
         providers: [
           { provide: ListState, useValue: state },

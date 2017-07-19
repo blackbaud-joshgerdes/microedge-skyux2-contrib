@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { SkyDemoComponent } from './demo-component';
+import { SkyContribDemoComponent } from './demo-component';
 
 @Injectable()
-export class SkyDemoComponentsService {
-  public getComponents(filter?: string): SkyDemoComponent[] {
+export class SkyContribDemoComponentsService {
+  public getComponents(filter?: string): SkyContribDemoComponent[] {
     return [
       {
         name: 'Link Records',

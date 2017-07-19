@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WindowRef } from '../utils/windowref';
-import { SkyOmnibarComponent } from './omnibar.component';
+import { SkyContribOmnibarComponent } from './omnibar.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -9,13 +9,13 @@ import { SkyOmnibarComponent } from './omnibar.component';
     CommonModule
   ],
   declarations: [
-    SkyOmnibarComponent
+    SkyContribOmnibarComponent
   ],
   exports: [
-    SkyOmnibarComponent
+    SkyContribOmnibarComponent
   ],
   providers: [
     WindowRef
   ]
 })
-export class SkyOmnibarModule {}
+export class SkyContribOmnibarModule {}

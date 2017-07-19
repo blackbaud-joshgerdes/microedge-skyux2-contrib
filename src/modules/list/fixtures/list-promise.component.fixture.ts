@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { SkyListComponent } from '../list.component';
+import { SkyContribListComponent } from '../list.component';
 import * as moment from 'moment';
 
 @Component({
@@ -7,7 +7,7 @@ import * as moment from 'moment';
   templateUrl: './list-promise.component.fixture.html'
 })
 export class ListPromiseTestComponent {
-  @ViewChild(SkyListComponent) public list: SkyListComponent;
+  @ViewChild(SkyContribListComponent) public list: SkyContribListComponent;
 
   constructor(@Inject('items') public items: any) {
   }

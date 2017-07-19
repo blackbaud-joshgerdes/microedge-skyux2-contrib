@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyListActionBarComponent } from './list-action-bar.component';
-import { SkyListActionBarItemComponent } from './list-action-bar-item.component';
+import { SkyContribListActionBarComponent } from './list-action-bar.component';
+import { SkyContribListActionBarItemComponent } from './list-action-bar-item.component';
 
 @NgModule({
   declarations: [
-    SkyListActionBarComponent,
-    SkyListActionBarItemComponent
+    SkyContribListActionBarComponent,
+    SkyContribListActionBarItemComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    SkyListActionBarComponent,
-    SkyListActionBarItemComponent
+    SkyContribListActionBarComponent,
+    SkyContribListActionBarItemComponent
   ]
 })
-export class SkyListActionBarModule {
+export class SkyContribListActionBarModule {
 }

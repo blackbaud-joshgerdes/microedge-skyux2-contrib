@@ -1,7 +1,7 @@
 import { Component, NgModule, ViewChild, AfterViewInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MicroedgeSkyContribModule, SkyListViewChecklistComponent } from '../../../../src/core';
+import { MicroedgeSkyContribModule, SkyContribListViewChecklistComponent } from '../../../../src/core';
 import {
   ListState,
   ListStateDispatcher
@@ -18,7 +18,7 @@ import { Bootstrapper } from '../../../../visual/bootstrapper';
   templateUrl: './list-view-checklist.component.visual-fixture.html'
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild(SkyListViewChecklistComponent) public viewchecklist: SkyListViewChecklistComponent;
+  @ViewChild(SkyContribListViewChecklistComponent) public viewchecklist: SkyContribListViewChecklistComponent;
 
   constructor(private state: ListState, private dispatcher: ListStateDispatcher) {
   }

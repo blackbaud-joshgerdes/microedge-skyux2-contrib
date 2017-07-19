@@ -19,7 +19,7 @@ import {
 import {
   ListViewChecklistEmptyTestComponent
 } from './fixtures/list-view-checklist-empty.component.fixture';
-import { SkyListViewChecklistModule } from './';
+import { SkyContribListViewChecklistModule } from './';
 import { ListViewChecklistItemsLoadAction } from './state/items/actions';
 import { ListViewChecklistItemModel } from './state/items/item.model';
 import { ChecklistState, ChecklistStateDispatcher, ChecklistStateModel } from './state';
@@ -43,7 +43,7 @@ describe('List View Checklist Component', () => {
           ListViewChecklistTestComponent
         ],
         imports: [
-          SkyListViewChecklistModule
+          SkyContribListViewChecklistModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -133,7 +133,7 @@ describe('List View Checklist Component', () => {
           ListViewChecklistEmptyTestComponent
         ],
         imports: [
-          SkyListViewChecklistModule
+          SkyContribListViewChecklistModule
         ],
         providers: [
           { provide: ListState, useValue: state },

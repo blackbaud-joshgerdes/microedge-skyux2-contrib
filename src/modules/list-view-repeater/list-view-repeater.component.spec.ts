@@ -21,7 +21,7 @@ import {
 import {
   ListViewRepeaterTestTemplateComponent
 } from './fixtures/list-view-repeater-template.component.fixture';
-import { SkyListViewRepeaterModule } from './';
+import { SkyContribListViewRepeaterModule } from './';
 import { RepeaterState, RepeaterStateDispatcher, RepeaterStateModel } from './state';
 import { ListViewRepeaterSetExpandedAction } from './state/expanded/actions';
 
@@ -44,7 +44,7 @@ describe('List View Repeater Component', () => {
           ListViewRepeaterTestComponent
         ],
         imports: [
-          SkyListViewRepeaterModule
+          SkyContribListViewRepeaterModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -156,7 +156,7 @@ describe('List View Repeater Component', () => {
           ListViewRepeaterTestEmptyComponent
         ],
         imports: [
-          SkyListViewRepeaterModule
+          SkyContribListViewRepeaterModule
         ],
         providers: [
           { provide: ListState, useValue: state },
@@ -241,7 +241,7 @@ describe('List View Repeater Component', () => {
           ListViewRepeaterTestTemplateComponent
         ],
         imports: [
-          SkyListViewRepeaterModule
+          SkyContribListViewRepeaterModule
         ],
         providers: [
           { provide: ListState, useValue: state },

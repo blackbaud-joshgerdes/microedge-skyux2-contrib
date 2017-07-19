@@ -7,7 +7,7 @@ import {
   template: '<ng-content></ng-content>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListViewGridColumnComponent {
+export class SkyContribListViewGridColumnComponent {
   @Input() id: string;
   @Input() heading: string;
   @Input() description: string;

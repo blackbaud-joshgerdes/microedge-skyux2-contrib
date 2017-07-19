@@ -1,5 +1,5 @@
 import { Component, ViewChild, Inject } from '@angular/core';
-import { SkyListComponent } from '../list.component';
+import { SkyContribListComponent } from '../list.component';
 import { ListFilterDataModel } from '../state/filters/filter-data.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
   templateUrl: './list.component.fixture.html'
 })
 export class ListTestComponent {
-  @ViewChild(SkyListComponent) public list: SkyListComponent;
+  @ViewChild(SkyContribListComponent) public list: SkyContribListComponent;
 
   constructor(@Inject('items') public items: any) {
   }

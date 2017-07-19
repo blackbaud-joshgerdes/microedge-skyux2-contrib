@@ -10,7 +10,7 @@ let getCanonicalLocales = require('intl').getCanonicalLocales;
 
 export const CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => SkyLocaleCurrencyMaskDirective),
+  useExisting: forwardRef(() => SkyContribLocaleCurrencyMaskDirective),
   multi: true
 };
 
@@ -19,7 +19,7 @@ export const CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR: any = {
   exportAs: 'localeCurrencyMaskDirective',
   providers: [CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR]
 })
-export class SkyLocaleCurrencyMaskDirective implements AfterViewInit,
+export class SkyContribLocaleCurrencyMaskDirective implements AfterViewInit,
   ControlValueAccessor, OnInit {
   @Input() locale: string = 'en-US';
   @Input() currency: string = 'USD';

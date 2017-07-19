@@ -3,7 +3,7 @@ import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SaveAndCloseComponent, SaveAndCloseEvent } from './save-and-close.interface';
 
 @Injectable()
-export class SkyWizardService {
+export class SkyContribWizardService {
   constructor(private modalService: SkyModalService) {
   }
 

@@ -5,29 +5,29 @@ import { SkyContribChecklistModule } from './modules/checklist';
 import { SkyContribLinkRecordsModule } from './modules/link-records';
 import { SkyContribLocaleModule } from './modules/locale';
 import { SkyContribNavbarModule } from './modules/navbar';
-import { SkyContribPageModule } from './modules/page';
+import { SkyContribContribPageModule } from './modules/page';
 import { SkyContribTabbarModule } from './modules/tabbar';
 import { SkyContribTranslateModule } from './modules/translation';
 import { SkyContribUtilsModule } from './modules/utils';
 import { SkyContribVerticalTabbarModule } from './modules/vertical-tabbar';
-import { SkyDraggableRepeaterModule } from './modules/draggable-repeater';
+import { SkyContribDraggableRepeaterModule } from './modules/draggable-repeater';
 import { SkyDropdownModule } from './modules/dropdown';
-import { SkyListActionBarModule } from './modules/list-action-bar';
-import { SkyListFiltersModule } from './modules/list-filters';
-import { SkyListModule } from './modules/list';
-import { SkyListPagingModule } from './modules/list-paging';
-import { SkyListRepeaterModule } from './modules/list-repeater';
-import { SkyListToolbarModule } from './modules/list-toolbar';
-import { SkyListViewChecklistModule } from './modules/list-view-checklist';
-import { SkyListViewGridModule } from './modules/list-view-grid';
-import { SkyListViewRepeaterModule } from './modules/list-view-repeater';
-import { SkyLocaleCurrencyMaskModule } from './modules/locale-currency-mask';
-import { SkyOmnibarModule } from './modules/omnibar';
-import { SkySpinnerModule } from './modules/spinner';
-import { SkyTextExpandModule } from './modules/text-expand';
-import { SkyToastModule } from './modules/toast';
-import { SkyTreeViewModule } from './modules/tree-view';
-import { SkyWizardModule } from './modules/wizard';
+import { SkyContribListActionBarModule } from './modules/list-action-bar';
+import { SkyContribListFiltersModule } from './modules/list-filters';
+import { SkyContribListModule } from './modules/list';
+import { SkyContribListPagingModule } from './modules/list-paging';
+import { SkyContribListRepeaterModule } from './modules/list-repeater';
+import { SkyContribListToolbarModule } from './modules/list-toolbar';
+import { SkyContribListViewChecklistModule } from './modules/list-view-checklist';
+import { SkyContribListViewGridModule } from './modules/list-view-grid';
+import { SkyContribListViewRepeaterModule } from './modules/list-view-repeater';
+import { SkyContribLocaleCurrencyMaskModule } from './modules/locale-currency-mask';
+import { SkyContribOmnibarModule } from './modules/omnibar';
+import { SkyContribSpinnerModule } from './modules/spinner';
+import { SkyContribTextExpandModule } from './modules/text-expand';
+import { SkyContribToastModule } from './modules/toast';
+import { SkyContribTreeViewModule } from './modules/tree-view';
+import { SkyContribWizardModule } from './modules/wizard';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -38,29 +38,29 @@ import { SkyWizardModule } from './modules/wizard';
     SkyContribLinkRecordsModule,
     SkyContribLocaleModule,
     SkyContribNavbarModule,
-    SkyContribPageModule,
+    SkyContribContribPageModule,
     SkyContribTabbarModule,
     SkyContribTranslateModule,
     SkyContribUtilsModule,
     SkyContribVerticalTabbarModule,
-    SkyDraggableRepeaterModule,
+    SkyContribDraggableRepeaterModule,
     SkyDropdownModule,
-    SkyListActionBarModule,
-    SkyListFiltersModule,
-    SkyListModule,
-    SkyListPagingModule,
-    SkyListRepeaterModule,
-    SkyListToolbarModule,
-    SkyListViewChecklistModule,
-    SkyListViewGridModule,
-    SkyListViewRepeaterModule,
-    SkyLocaleCurrencyMaskModule,
-    SkyOmnibarModule,
-    SkySpinnerModule,
-    SkyTextExpandModule,
-    SkyToastModule,
-    SkyTreeViewModule,
-    SkyWizardModule
+    SkyContribListActionBarModule,
+    SkyContribListFiltersModule,
+    SkyContribListModule,
+    SkyContribListPagingModule,
+    SkyContribListRepeaterModule,
+    SkyContribListToolbarModule,
+    SkyContribListViewChecklistModule,
+    SkyContribListViewGridModule,
+    SkyContribListViewRepeaterModule,
+    SkyContribLocaleCurrencyMaskModule,
+    SkyContribOmnibarModule,
+    SkyContribSpinnerModule,
+    SkyContribTextExpandModule,
+    SkyContribToastModule,
+    SkyContribTreeViewModule,
+    SkyContribWizardModule
   ],
   exports: [
     SkyContribAnalyticsModule,
@@ -68,29 +68,29 @@ import { SkyWizardModule } from './modules/wizard';
     SkyContribLinkRecordsModule,
     SkyContribLocaleModule,
     SkyContribNavbarModule,
-    SkyContribPageModule,
+    SkyContribContribPageModule,
     SkyContribTabbarModule,
     SkyContribTranslateModule,
     SkyContribUtilsModule,
     SkyContribVerticalTabbarModule,
-    SkyDraggableRepeaterModule,
+    SkyContribDraggableRepeaterModule,
     SkyDropdownModule,
-    SkyListActionBarModule,
-    SkyListFiltersModule,
-    SkyListModule,
-    SkyListPagingModule,
-    SkyListRepeaterModule,
-    SkyListToolbarModule,
-    SkyListViewChecklistModule,
-    SkyListViewGridModule,
-    SkyListViewRepeaterModule,
-    SkyLocaleCurrencyMaskModule,
-    SkyOmnibarModule,
-    SkySpinnerModule,
-    SkyTextExpandModule,
-    SkyToastModule,
-    SkyTreeViewModule,
-    SkyWizardModule
+    SkyContribListActionBarModule,
+    SkyContribListFiltersModule,
+    SkyContribListModule,
+    SkyContribListPagingModule,
+    SkyContribListRepeaterModule,
+    SkyContribListToolbarModule,
+    SkyContribListViewChecklistModule,
+    SkyContribListViewGridModule,
+    SkyContribListViewRepeaterModule,
+    SkyContribLocaleCurrencyMaskModule,
+    SkyContribOmnibarModule,
+    SkyContribSpinnerModule,
+    SkyContribTextExpandModule,
+    SkyContribToastModule,
+    SkyContribTreeViewModule,
+    SkyContribWizardModule
   ]
 })
 export class MicroedgeSkyContribModule {

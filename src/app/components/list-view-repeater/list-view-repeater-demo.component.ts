@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
   selector: 'sky-contrib-list-view-repeater-demo',
   templateUrl: './list-view-repeater-demo.component.html'
 })
-export class SkyListViewRepeaterDemoComponent {
+export class SkyContribListViewRepeaterDemoComponent {
   public items: Observable<any> = Observable.of([
     { id: '1', column1: 101, column2: 'Apple', column3: 'Anne eats apples' },
     { id: '2', column1: 202, column2: 'Banana', column3: 'Ben eats bananas' },

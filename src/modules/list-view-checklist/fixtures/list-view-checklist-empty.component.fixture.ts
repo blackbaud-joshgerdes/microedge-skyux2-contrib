@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { SkyListViewChecklistComponent } from '../list-view-checklist.component';
+import { SkyContribListViewChecklistComponent } from '../list-view-checklist.component';
 
 @Component({
   selector: 'sky-test-cmp',
@@ -7,5 +7,5 @@ import { SkyListViewChecklistComponent } from '../list-view-checklist.component'
 })
 export class ListViewChecklistEmptyTestComponent {
   public tempValue: string = undefined;
-  @ViewChild(SkyListViewChecklistComponent) public checklist: SkyListViewChecklistComponent;
+  @ViewChild(SkyContribListViewChecklistComponent) public checklist: SkyContribListViewChecklistComponent;
 }

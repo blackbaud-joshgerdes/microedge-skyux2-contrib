@@ -9,7 +9,7 @@ import { ListSearchModel } from '../list/state/search/search.model';
 import { ListFilterModel } from '../list/state/filters/filter.model';
 import { getData, compare } from '../list/helpers';
 
-export class SkyListInMemoryDataProvider extends ListDataProvider {
+export class SkyContribListInMemoryDataProvider extends ListDataProvider {
   private items: BehaviorSubject<Array<ListItemModel>> =
     new BehaviorSubject<Array<ListItemModel>>([]);
   private lastItems: ListItemModel[];

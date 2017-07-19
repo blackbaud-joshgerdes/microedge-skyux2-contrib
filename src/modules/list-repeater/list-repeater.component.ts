@@ -1,6 +1,6 @@
 import { Component, Input, ContentChildren, QueryList, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { SkyListRepeaterItemComponent } from './list-repeater-item.component';
+import { SkyContribListRepeaterItemComponent } from './list-repeater-item.component';
 import { SkyListRepeaterOptionsModel } from './models';
 import { SkyListRepeaterStateDispatcher, SkyListRepeaterStateModel, SkyListRepeaterState,
   PagingOptionsSetPageSizeAction, PagingOptionsSetMaxPagesAction,
@@ -11,10 +11,10 @@ import { SkyListRepeaterStateDispatcher, SkyListRepeaterStateModel, SkyListRepea
     templateUrl: './list-repeater.component.html',
     providers: [SkyListRepeaterStateDispatcher, SkyListRepeaterState, SkyListRepeaterStateModel]
 })
-export class SkyListRepeaterComponent implements OnInit, OnDestroy {
+export class SkyContribListRepeaterComponent implements OnInit, OnDestroy {
   @Input() options: SkyListRepeaterOptionsModel;
   @Input() itemCount: Observable<number>;
-  @ContentChildren(SkyListRepeaterItemComponent) items: QueryList<SkyListRepeaterItemComponent>;
+  @ContentChildren(SkyContribListRepeaterItemComponent) items: QueryList<SkyContribListRepeaterItemComponent>;
   private subscriptions: Array<any> = [];
 
   constructor(

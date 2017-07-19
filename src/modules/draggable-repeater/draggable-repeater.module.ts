@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyDraggableRepeaterComponent } from './draggable-repeater.component';
-import { SkyDraggableRepeaterItemComponent } from './draggable-repeater-item.component';
+import { SkyContribDraggableRepeaterComponent } from './draggable-repeater.component';
+import { SkyContribDraggableRepeaterItemComponent } from './draggable-repeater-item.component';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import { SkyContribDraggableRepeaterItemLeftComponent }
   from './draggable-repeater-item-left.component';
@@ -21,8 +21,8 @@ import { SkyContribDraggableRepeaterRendererComponent }
     DragulaModule
   ],
   declarations: [
-    SkyDraggableRepeaterComponent,
-    SkyDraggableRepeaterItemComponent,
+    SkyContribDraggableRepeaterComponent,
+    SkyContribDraggableRepeaterItemComponent,
     SkyContribDraggableRepeaterItemLeftComponent,
     SkyContribDraggableRepeaterItemTitleComponent,
     SkyContribDraggableRepeaterItemContentComponent,
@@ -30,8 +30,8 @@ import { SkyContribDraggableRepeaterRendererComponent }
     SkyContribDraggableRepeaterRendererComponent
   ],
   exports: [
-    SkyDraggableRepeaterComponent,
-    SkyDraggableRepeaterItemComponent,
+    SkyContribDraggableRepeaterComponent,
+    SkyContribDraggableRepeaterItemComponent,
     SkyContribDraggableRepeaterItemLeftComponent,
     SkyContribDraggableRepeaterItemTitleComponent,
     SkyContribDraggableRepeaterItemContentComponent,
@@ -39,4 +39,4 @@ import { SkyContribDraggableRepeaterRendererComponent }
     SkyContribDraggableRepeaterRendererComponent
   ]
 })
-export class SkyDraggableRepeaterModule {}
+export class SkyContribDraggableRepeaterModule {}

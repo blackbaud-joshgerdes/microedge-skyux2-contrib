@@ -1,10 +1,10 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkyModalModule } from '@blackbaud/skyux/dist/core';
-import { SkyWizardComponent } from './wizard.component';
-import { SkyWizardStepComponent } from './wizard-step.component';
-import { SkyWizardStepListComponent } from './wizard-step-list.component';
-import { SkyWizardService } from './wizard.service';
+import { SkyContribWizardComponent } from './wizard.component';
+import { SkyContribWizardStepComponent } from './wizard-step.component';
+import { SkyContribWizardStepListComponent } from './wizard-step-list.component';
+import { SkyContribWizardService } from './wizard.service';
 import { SkyContribWizardStepsComponent } from './wizard-steps.component';
 import { SkyContribWizardHeaderComponent } from './wizard-header.component';
 import { SkyContribWizardRendererComponent } from './wizard-renderer.component';
@@ -16,23 +16,23 @@ import { SkyContribWizardRendererComponent } from './wizard-renderer.component';
     SkyModalModule
   ],
   declarations: [
-    SkyWizardComponent,
-    SkyWizardStepComponent,
-    SkyWizardStepListComponent,
+    SkyContribWizardComponent,
+    SkyContribWizardStepComponent,
+    SkyContribWizardStepListComponent,
     SkyContribWizardRendererComponent,
     SkyContribWizardStepsComponent,
     SkyContribWizardHeaderComponent
   ],
   exports: [
-    SkyWizardComponent,
-    SkyWizardStepComponent,
-    SkyWizardStepListComponent,
+    SkyContribWizardComponent,
+    SkyContribWizardStepComponent,
+    SkyContribWizardStepListComponent,
     SkyContribWizardRendererComponent,
     SkyContribWizardStepsComponent,
     SkyContribWizardHeaderComponent
   ],
   providers: [
-    SkyWizardService
+    SkyContribWizardService
   ]
 })
-export class SkyWizardModule {}
+export class SkyContribWizardModule {}

@@ -11,7 +11,7 @@ import { SkyListRepeaterState, SkyListRepeaterStateDispatcher,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListRepeaterPagingComponent {
+export class SkyContribListRepeaterPagingComponent {
   @Input() itemCount: Observable<number>;
   lastRunPageItems: Array<any> = [];
   lastRunPageCount: number = 0;

@@ -6,7 +6,7 @@ import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
   templateUrl: './text-expand-modal.component.html',
   styleUrls: ['./text-expand-modal.component.scss']
 })
-export class SkyTextExpandModalComponent {
+export class SkyContribTextExpandModalComponent {
   modalHeading: string;
   content: string;
   @ViewChild(SkyModalComponent) modal: SkyModalComponent;

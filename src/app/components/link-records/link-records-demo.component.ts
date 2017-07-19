@@ -11,7 +11,7 @@ import {
   selector: 'sky-contrib-link-records-demo',
   templateUrl: './link-records-demo.component.html'
 })
-export class SkyLinkRecordsDemoComponent {
+export class SkyContribLinkRecordsDemoComponent {
   @ViewChild(SkyContribLinkRecordsComponent) item: SkyContribLinkRecordsComponent;
   window: any;
 

@@ -5,7 +5,7 @@ import * as moment from 'moment';
   selector: 'sky-contrib-list-toolbar-item',
   template: '<ng-content></ng-content>'
 })
-export class SkyListToolbarItemComponent {
+export class SkyContribListToolbarItemComponent {
   @Input() id: string = moment().toDate().getTime().toString();
   @Input() index: number = -1;
   @Input() location: string = 'left';

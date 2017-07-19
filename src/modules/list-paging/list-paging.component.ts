@@ -17,12 +17,12 @@ import {
   styleUrls: ['./list-paging.component.scss'],
   providers: [
     /* tslint:disable */
-    { provide: ListPagingComponent, useExisting: forwardRef(() => SkyListPagingComponent)}
+    { provide: ListPagingComponent, useExisting: forwardRef(() => SkyContribListPagingComponent)}
     /* tslint:enable */
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SkyListPagingComponent extends ListPagingComponent implements OnInit {
+export class SkyContribListPagingComponent extends ListPagingComponent implements OnInit {
   @Input() public pageSize: Observable<number> | number = 10;
   @Input() public maxPages: Observable<number> | number = 5;
   @Input() public pageNumber: Observable<number> | number = 1;

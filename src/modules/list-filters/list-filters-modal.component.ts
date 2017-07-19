@@ -9,7 +9,7 @@ import { ListFilterDataModel } from '../list/state/filters/filter-data.model';
   templateUrl: './list-filters-modal.component.html',
   styleUrls: ['./list-filters-modal.component.scss']
 })
-export class SkyListFiltersModalComponent {
+export class SkyContribListFiltersModalComponent {
   @ViewChild(SkyModalComponent) modal: SkyModalComponent;
   title: string;
   private filters: Array<any> = [];
