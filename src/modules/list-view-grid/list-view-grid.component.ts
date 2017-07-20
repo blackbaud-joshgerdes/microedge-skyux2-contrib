@@ -23,7 +23,8 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { getValue } from 'microedge-rxstate/dist/helpers';
 import { getData } from '../list/helpers';
-import { ListItemModel } from '../list/state/items/item.model';
+import { ListItemModel } from "../list/state/items/item.model";
+import { ListSelectedModel } from "../list/state/selected/selected.model";
 
 @Component({
   selector: 'sky-contrib-list-view-grid',
@@ -286,7 +287,8 @@ export class SkyContribListViewGridComponent
     return Observable.combineLatest(
       this.items.distinctUntilChanged(),
       this.state.map(s => s.selected.item).distinctUntilChanged(),
-      (items: any, selected: ListItemModel) => items.every((i: any) => selected[i.id] != null)
+      (items: Array<ListItemModel>, selected: ListSelectedModel) =>
+        items.every((i: ListItemModel) => selected[i.id] != null)
     ).distinctUntilChanged();
   }
 }

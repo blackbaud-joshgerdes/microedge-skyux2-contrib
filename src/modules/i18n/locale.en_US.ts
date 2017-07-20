@@ -1,4 +1,4 @@
-export let EN_US = {
+export let EN_US: any = {
   // tabs / general //
   LOADING_TEXT: 'Loading...',
   HELLO: 'hello world - en-US',
