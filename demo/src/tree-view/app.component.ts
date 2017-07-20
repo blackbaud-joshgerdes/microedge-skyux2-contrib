@@ -29,9 +29,10 @@ class AppComponent implements AfterViewInit {
     let child2nodeChildren =
       [new TreeNodeModel({id: '3.1', name: 'sub-child2', parent: child2node})];
     let child2nodeGrandChildren =
-      [new TreeNodeModel({id: '3.11', name: 'sub-sub-child1', parent: child2node.children[0]})];
+      [new TreeNodeModel({id: '3.11', name: 'sub-sub-child1', parent: child2nodeChildren[0]})];
 
-    this.data.push(root1node, child1node);
+    this.data = [root1node, child1node, child2node,
+      ...child1nodeChildren, ...child2nodeChildren, ...child2nodeGrandChildren];
 
     root1node = new TreeNodeModel({id: '1', name: 'root1'});
     child1node = new TreeNodeModel({ id: '2', name: 'child1', parent: root1node });

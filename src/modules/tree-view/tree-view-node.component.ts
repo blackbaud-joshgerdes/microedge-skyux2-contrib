@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef, OnInit } from '@angular/core';
 import { TreeNodeModel } from './tree-node.model';
 import { TreeViewStateDispatcher, TreeViewState } from './state/';
 import { TreeViewNodesSetNodeSelectedAction } from './state/nodes/actions';
@@ -9,18 +9,32 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './tree-view-node.component.html',
   styleUrls: ['./tree-view-node.component.scss']
 })
-export class SkyContribTreeViewNodeComponent {
+export class SkyContribTreeViewNodeComponent implements OnInit {
   @Input() node: TreeNodeModel;
   @Input() disableParents: boolean = false;
   @Input() leafOnlySelection: boolean = false;
   @Input() selectable: boolean = false;
   @Input() contentTemplate: TemplateRef<any>;
   @Input() dropdownTemplate: TemplateRef<any>;
+  private isLeaf: boolean;
 
   constructor(
     private dispatcher: TreeViewStateDispatcher,
     private state: TreeViewState
   ) { }
+
+  public ngOnInit() {
+    this.state.map(s => s.nodes.items).take(1).subscribe(nodes => {
+      this.isLeaf = true;
+      for (let i = 0; i < nodes.length; i++) {
+        let node = nodes[i];
+        if (node.parent != null && this.node.id === node.parent.id) {
+          this.isLeaf = false;
+          break;
+        }
+      }
+    });
+  }
 
   public toggleExpanded(node: any) {
     node.expanded = !node.expanded;
@@ -45,12 +59,14 @@ export class SkyContribTreeViewNodeComponent {
     return this.state.map(s => s.nodes.items).distinctUntilChanged();
   }
 
-  public get enabled() {
+  public get enabled(): Observable<boolean> {
     if (!this.node.enabled) {
-      return false;
+      return Observable.of(false).distinctUntilChanged();
     }
 
-    return this.disableParents ? !this.hasSelectedChildren(this.node) : true;
+    // need to reverse boolean in hasSelectedChildren, since if it returns true, node is disabled
+    return this.disableParents ?
+      this.hasSelectedChildren(this.node).map(s => !s) : Observable.of(true).distinctUntilChanged();
   }
 
   public get isSelectable() {
@@ -58,21 +74,31 @@ export class SkyContribTreeViewNodeComponent {
       return false;
     }
 
-    return !this.leafOnlySelection || (this.leafOnlySelection && this.node.isLeaf());
+    return !this.leafOnlySelection || (this.leafOnlySelection && this.isLeaf);
   }
 
-  private hasSelectedChildren(node: TreeNodeModel): boolean {
-    if (this.isSelectable && node.selected && node !== this.node) {
-      this.node.selected = true;
+  private hasSelectedChildren(node: TreeNodeModel): Observable<boolean> {
+    return this.state.map(s => {
+      let nodes = s.nodes.items;
 
-      return true;
+      return this.checkDescendants(node.id, nodes);
+    }).distinctUntilChanged();
+  }
+
+  private checkDescendants(nodeId: string, nodes: Array<TreeNodeModel>, selected = false): boolean {
+    for (let i = 0; i < nodes.length; i++) {
+      let node = nodes[i];
+
+      if (node.parent && node.parent.id === nodeId) {
+        if (node.selected) {
+          selected = node.selected;
+          break;
+        } else {
+           selected = this.checkDescendants(node.id, nodes);
+        }
+      }
     }
 
-    let enabled = false;
-    node.children.forEach(c => {
-      enabled = enabled || this.hasSelectedChildren(c);
-    });
-
-    return enabled;
+    return selected;
   }
 }

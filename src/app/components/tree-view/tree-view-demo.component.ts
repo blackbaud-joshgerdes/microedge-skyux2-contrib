@@ -23,7 +23,7 @@ export class SkyContribTreeViewDemoComponent implements AfterViewInit {
     let child2nodeChildren =
       [new TreeNodeModel({id: '3.1', name: 'sub-child2', parent: child2node})];
     let child2nodeGrandChildren =
-      [new TreeNodeModel({id: '3.11', name: 'sub-sub-child1', parent: child2node.children[0]})];
+      [new TreeNodeModel({id: '3.11', name: 'sub-sub-child1', parent: child2nodeChildren[0]})];
 
     this.data.push(root1node, child1node);
 
