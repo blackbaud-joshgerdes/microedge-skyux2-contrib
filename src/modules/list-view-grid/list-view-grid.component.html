@@ -6,7 +6,7 @@
           <sky-checkbox [checked]="isAllDisplayedSelected() | async" (change)="toggleSelectAllDisplayed($event)"></sky-checkbox>
         </th>
         <th class="heading" *ngFor="let column of columns | async; let last = last" (click)="sortByColumn(column)" [style.width.px]="last ? null : column.width" [attr.cmp-id]="column.id || column.field" [ngClass]="{ locked: column.locked }">
-          {{column.heading}}
+          <sky-contrib-list-view-grid-renderer [template]="column.headingTemplate || defaultHeadingTemplate" [item]="column"></sky-contrib-list-view-grid-renderer>
           <i class="fa" [hidden]="!(getSortDirection(column.field) | async)" [ngClass]="{ 'fa-caret-up': (getSortDirection(column.field) | async) === 'asc', 'fa-caret-down': (getSortDirection(column.field) | async) === 'desc' }"></i>
         </th>
       </tr>
@@ -31,4 +31,7 @@
   <button (click)="openColumnSelector()" title="Choose Columns">
     <span class="fa fa-lg fa-columns"></span>
   </button>
+</ng-template>
+<ng-template #defaultHeadingTemplate let-heading="item.heading">
+  {{ heading }}
 </ng-template>

@@ -236,8 +236,8 @@ describe('List View Grid Component', () => {
         let gridState = new GridState(new GridStateModel(), gridDispatcher);
 
         let columns = [
-          new ListViewGridColumnModel(component.viewtemplates.first),
-          new ListViewGridColumnModel(component.viewtemplates.first)
+          new ListViewGridColumnModel(component.viewtemplates.first, null),
+          new ListViewGridColumnModel(component.viewtemplates.first, null)
         ];
         gridDispatcher.next(new ListViewGridColumnsLoadAction(columns));
         gridState.take(1).subscribe(s => {
@@ -246,7 +246,7 @@ describe('List View Grid Component', () => {
       }));
 
       it('should construct ListViewGridColumnModel without data', () => {
-        let model = new ListViewGridColumnModel(component.viewtemplates.first);
+        let model = new ListViewGridColumnModel(component.viewtemplates.first, null);
         expect(model.template).not.toBeUndefined();
         expect(model.description).toBeUndefined();
         expect(model.field).toBeUndefined();
