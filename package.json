@@ -65,15 +65,16 @@
     "@angular/platform-browser": "4.2.5",
     "@angular/platform-browser-dynamic": "4.2.5",
     "@angular/router": "4.2.5",
-    "@blackbaud/skyux": "2.0.0-rc.7",
+    "@blackbaud/skyux": "2.0.0-rc.6",
     "core-js": "2.4.1",
     "rxjs": "5.4.0",
     "zone.js": "0.8.10"
   },
   "devDependencies": {
     "@angular/compiler-cli": "4.2.5",
-    "@blackbaud/skyux": "2.0.0-rc.7",
-    "@blackbaud/skyux-builder": "1.0.0-rc.9",
+    "@blackbaud/skyux": "2.0.0-rc.6",
+    "@blackbaud/skyux-builder": "1.0.0-rc.8",
+    "@blackbaud/stache": "2.0.0-beta.8",
     "@types/core-js": "0.9.41",
     "@types/jasmine": "2.5.53",
     "@types/node": "8.0.1",
@@ -140,7 +141,7 @@
     "url": "https://github.com/blackbaud/microedge-skyux2-contrib/issues"
   },
   "engines": {
-    "node": ">= 4.2.1",
+    "node": ">= 6.11.1",
     "npm": ">= 3"
   }
 }

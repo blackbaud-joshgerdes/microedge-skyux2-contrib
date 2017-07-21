@@ -41,7 +41,9 @@ export class SkyContribTreeViewNodeComponent implements OnInit {
   }
 
   public toggleSelected(event: any) {
-    this.dispatcher.next(new TreeViewNodesSetNodeSelectedAction(this.node.id, event.checked));
+    this.dispatcher.next(
+      new TreeViewNodesSetNodeSelectedAction(this.node.id, event.checked, this.disableParents)
+    );
   }
 
   hasChildren(nodeId: string): Observable<boolean> {
@@ -57,16 +59,6 @@ export class SkyContribTreeViewNodeComponent implements OnInit {
 
   get treeNodes() {
     return this.state.map(s => s.nodes.items).distinctUntilChanged();
-  }
-
-  public get enabled(): Observable<boolean> {
-    if (!this.node.enabled) {
-      return Observable.of(false).distinctUntilChanged();
-    }
-
-    // need to reverse boolean in hasSelectedChildren, since if it returns true, node is disabled
-    return this.disableParents ?
-      this.hasSelectedChildren(this.node).map(s => !s) : Observable.of(true).distinctUntilChanged();
   }
 
   public get isSelectable() {

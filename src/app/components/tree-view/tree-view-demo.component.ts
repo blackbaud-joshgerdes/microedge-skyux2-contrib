@@ -13,7 +13,7 @@ export class SkyContribTreeViewDemoComponent implements AfterViewInit {
   data2: Array<TreeNodeModel> = [];
 
   constructor() {
-    this.disableParents = false;
+    this.disableParents = true;
     this.leafOnlySelection = false;
     let root1node = new TreeNodeModel({id: '1', name: 'root1'});
     let child1node = new TreeNodeModel({ id: '2', name: 'child1', parent: root1node });

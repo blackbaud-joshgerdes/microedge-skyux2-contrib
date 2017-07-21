@@ -1,7 +1,7 @@
 import {
   Component, Input, QueryList,
   ContentChildren, TemplateRef, forwardRef,
-  OnInit, AfterContentInit, ChangeDetectorRef
+  OnInit, AfterContentInit
 } from '@angular/core';
 import { TreeNodeModel } from './tree-node.model';
 import { SkyContribTreeViewContentComponent } from './tree-view-content.component';
@@ -35,8 +35,7 @@ export class SkyContribTreeViewComponent implements OnInit, AfterContentInit {
   /* tslint:enable */
   constructor(
     private dispatcher: TreeViewStateDispatcher,
-    private state: TreeViewState,
-    private cdr: ChangeDetectorRef
+    private state: TreeViewState
   ) { }
 
   ngOnInit() {
@@ -73,8 +72,9 @@ export class SkyContribTreeViewComponent implements OnInit, AfterContentInit {
   }
 
   public setNodesSelected(ids: string[], selected: boolean = true) {
-    this.dispatcher.next(new TreeViewNodesSetNodesSelectedAction(ids, selected));
-    this.cdr.detectChanges();
+    this.dispatcher.next(
+      new TreeViewNodesSetNodesSelectedAction(ids, selected, this.disableParents)
+    );
   }
 
   public clickSelectAll() {
@@ -92,7 +92,9 @@ export class SkyContribTreeViewComponent implements OnInit, AfterContentInit {
         }
       });
 
-      this.dispatcher.next(new TreeViewNodesSetNodesSelectedAction(selectedNodeIds, true));
+      this.dispatcher.next(
+        new TreeViewNodesSetNodesSelectedAction(selectedNodeIds, true, this.disableParents)
+      );
     });
   }
 
@@ -100,7 +102,9 @@ export class SkyContribTreeViewComponent implements OnInit, AfterContentInit {
     this.treeNodes.take(1).subscribe(nodes => {
       let clearedNodeIds = nodes.map(node => node.id);
 
-      this.dispatcher.next(new TreeViewNodesSetNodesSelectedAction(clearedNodeIds, false));
+      this.dispatcher.next(
+        new TreeViewNodesSetNodesSelectedAction(clearedNodeIds, false, this.disableParents)
+      );
     });
   }
 

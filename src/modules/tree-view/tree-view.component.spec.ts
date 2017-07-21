@@ -85,7 +85,7 @@ describe('Tree view component', () => {
       expect(nodes.length).not.toBe(0);
 
       nodes.forEach(n => {
-        expect(n.enabled).toBe(true);
+        expect(n.node.enabled).toBe(true);
       });
     });
   });

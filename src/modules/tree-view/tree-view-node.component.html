@@ -1,7 +1,7 @@
 <div>
-    <i *ngIf="hasChildren(node.id) | async " class="fa" [ngClass]="node.expanded ? 'fa-minus-square-o' : 'fa-plus-square-o'" (click)="toggleExpanded(node)" [ngClass]="(enabled | async) ? '' : 'disabled'"></i>
+    <i *ngIf="hasChildren(node.id) | async " class="fa" [ngClass]="node.expanded ? 'fa-minus-square-o' : 'fa-plus-square-o'" (click)="toggleExpanded(node)" [class.disabled]="!enabled"></i>
   <sky-contrib-tree-view-renderer [item]="node" [template]="dropdownTemplate"></sky-contrib-tree-view-renderer>
-  <sky-checkbox *ngIf="isSelectable" [checked]="node.selected" [disabled]="!(enabled | async)" (change)="toggleSelected($event)">
+  <sky-checkbox *ngIf="isSelectable" [checked]="node.selected" [disabled]="!node.enabled" (change)="toggleSelected($event)">
     <sky-checkbox-label>
       <sky-contrib-tree-view-renderer [item]="node" [template]="contentTemplate || defaultContent"></sky-contrib-tree-view-renderer>
     </sky-checkbox-label>

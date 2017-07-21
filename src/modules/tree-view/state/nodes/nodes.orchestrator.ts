@@ -39,44 +39,14 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
   private setItemSelected(
     state: AsyncList<TreeNodeModel>,
     action: TreeViewNodesSetNodeSelectedAction): AsyncList<TreeNodeModel> {
-    if (action.id) {
-      let nodesToExpand = new Array<string>();
-      let newNodes = state.items.map(n => {
-        let newNode = new TreeNodeModel(n);
-        if (newNode.id === action.id) {
-          newNode.selected = action.selected;
+      let multiAction = {
+        ids: [action.id],
+        selected: action.selected,
+        disableParents: action.disableParents,
+        refresh: action.refresh
+      };
 
-          if (newNode.selected) {
-            this.getAncestorIds(newNode, nodesToExpand);
-          }
-        }
-
-        return newNode;
-      });
-
-      if (nodesToExpand.length > 0) {
-        for (let i = 0; i < newNodes.length; i++) {
-          let node = newNodes[i];
-          let indx = nodesToExpand.indexOf(node.id);
-          if (indx > -1) {
-            node.expanded = true;
-            nodesToExpand.splice(indx, 1);
-
-            if (nodesToExpand.length === 0) {
-              break;
-            }
-          }
-        }
-      }
-
-      return new AsyncList<TreeNodeModel>(
-        newNodes,
-        moment(),
-        false
-      );
-    }
-
-    return new AsyncList<TreeNodeModel>(state.items, state.lastUpdate, false);
+      return this.setItemsSelected(state, multiAction);
   }
 
   private setItemsSelected(
@@ -84,31 +54,46 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
     action: TreeViewNodesSetNodesSelectedAction): AsyncList<TreeNodeModel> {
     if (action.ids && action.ids.length > 0) {
       let nodesToExpand = new Array<string>();
+      let nodesToDisable = new Array<string>();
+      let nodesToEnable = new Array<string>();
+
       let newNodes = state.items.map(n => {
         let newNode = new TreeNodeModel(n);
         if (action.ids.indexOf(newNode.id) > -1) {
+          let ancestorIds = this.getAncestorIds(newNode.id, state.items);
           newNode.selected = action.selected;
 
           if (newNode.selected) {
-            this.getAncestorIds(newNode, nodesToExpand);
+            nodesToExpand = nodesToExpand.concat(ancestorIds);
+          }
+
+          if (action.disableParents) {
+            if (newNode.selected) {
+              nodesToDisable = nodesToDisable.concat(ancestorIds);
+            } else {
+              nodesToEnable = nodesToEnable.concat(ancestorIds);
+            }
           }
         }
 
         return newNode;
       });
 
-      if (nodesToExpand.length > 0) {
-        for (let i = 0; i < newNodes.length; i++) {
-          let node = newNodes[i];
-          let indx = nodesToExpand.indexOf(node.id);
-          if (indx > -1) {
-            node.expanded = true;
-            nodesToExpand.splice(indx, 1);
+      nodesToExpand = nodesToExpand.filter((val, i, self) => self.indexOf(val) === i);
+      nodesToDisable = nodesToDisable.filter((val, i, self) => self.indexOf(val) === i);
+      nodesToEnable = nodesToEnable.filter((val, i, self) => self.indexOf(val) === i);
 
-            if (nodesToExpand.length === 0) {
-              break;
-            }
-          }
+      for (let i = 0; i < newNodes.length; i++) {
+        if (nodesToExpand.indexOf(newNodes[i].id) > -1) {
+          newNodes[i].expanded = true;
+        }
+
+        if (nodesToDisable.indexOf(newNodes[i].id) > -1) {
+          newNodes[i].enabled = false;
+        }
+
+        if (nodesToEnable.indexOf(newNodes[i].id) > -1 && !this.isDescendantsSelected(newNodes[i].id, newNodes)) {
+          newNodes[i].enabled = true;
         }
       }
 
@@ -122,13 +107,36 @@ export class TreeViewNodesOrchestrator extends TreeViewStateOrchestrator<AsyncLi
     return new AsyncList<TreeNodeModel>(state.items, state.lastUpdate, false);
   }
 
-  private getAncestorIds(node: TreeNodeModel, nodesToExpand: Array<string>) {
-    if (node.parent) {
-      if (nodesToExpand.indexOf(node.parent.id) === -1) {
-        nodesToExpand.push(node.parent.id);
-      }
+  private getAncestorIds(nodeId: string, nodes: Array<TreeNodeModel>) {
+    let result = new Array<string>();
+    if (nodeId && nodeId.length > 0) {
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].id === nodeId) {
+          if (nodes[i].parent) {
+            result.push(nodes[i].parent.id);
+            result = result.concat(this.getAncestorIds(nodes[i].parent.id, nodes));
+          }
 
-      this.getAncestorIds(node.parent, nodesToExpand);
+          break;
+        }
+      }
     }
+
+    return result;
+  }
+
+  private isDescendantsSelected(nodeId: string, nodes: Array<TreeNodeModel>): boolean {
+    let result: boolean = false;
+    for (let i = 0; i < nodes.length; i++) {
+      let node = nodes[i];
+      if (node.parent && node.parent.id === nodeId) {
+        result = (node.selected) ? true : this.isDescendantsSelected(node.id, nodes);
+        if (result) {
+          break;
+        }
+      }
+    }
+
+    return result;
   }
 }
