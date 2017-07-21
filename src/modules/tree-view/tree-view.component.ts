@@ -1,7 +1,7 @@
 import {
   Component, Input, QueryList,
   ContentChildren, TemplateRef, forwardRef,
-  OnInit, AfterContentInit
+  OnInit, AfterContentInit, ChangeDetectorRef
 } from '@angular/core';
 import { TreeNodeModel } from './tree-node.model';
 import { SkyContribTreeViewContentComponent } from './tree-view-content.component';
@@ -35,7 +35,8 @@ export class SkyContribTreeViewComponent implements OnInit, AfterContentInit {
   /* tslint:enable */
   constructor(
     private dispatcher: TreeViewStateDispatcher,
-    private state: TreeViewState
+    private state: TreeViewState,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -73,6 +74,7 @@ export class SkyContribTreeViewComponent implements OnInit, AfterContentInit {
 
   public setNodesSelected(ids: string[], selected: boolean = true) {
     this.dispatcher.next(new TreeViewNodesSetNodesSelectedAction(ids, selected));
+    this.cdr.detectChanges();
   }
 
   public clickSelectAll() {
