@@ -23,8 +23,8 @@ export class SkyContribListViewGridColumnSelectorComponent {
     return this.gridState.map(s => s.columns.items.filter(x => x.field != null));
   }
 
-  get displayedColumnIds() {
-    return this.gridState.map(s => s.displayedColumns.items.map(c => c.id));
+  get displayedColumns() {
+    return this.gridState.map(s => s.displayedColumns.items);
   }
 
   public applyChanges() {
