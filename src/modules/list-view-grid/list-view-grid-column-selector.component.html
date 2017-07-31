@@ -3,7 +3,7 @@
     Choose columns to show in the list
   </sky-modal-header>
   <sky-modal-content>
-    <sky-contrib-list #list [data]="columns" [selectedIds]="displayedColumnIds | async">
+    <sky-contrib-list #list [data]="columns" [initialSelectedItems]="displayedColumns | async">
       <sky-contrib-list-toolbar [filterEnabled]="false" type="search" placeholder="Search for columns"></sky-contrib-list-toolbar>
 
       <sky-contrib-list-view-checklist label="heading">
