@@ -188,8 +188,11 @@ export class SkyContribListViewGridComponent
             )
             .filter(c => c !== undefined);
 
-        this.dispatcher.searchSetFieldSelectors(displayedColumns.map(d => d.field));
-        this.dispatcher.searchSetFunctions(setFunctions);
+        this.dispatcher.searchSetOptions(
+          undefined,
+          setFunctions,
+          displayedColumns.map(d => d.field)
+        );
         this.dispatcher.sortSetAvailable(displayedColumns.filter(c => c.field != null).map(cmp =>
           new ListSortLabelModel({ text: cmp.heading, fieldSelector: cmp.field })
         ));
