@@ -10,7 +10,8 @@ import { ListToolbarItemModel } from './toolbar/toolbar-item.model';
 import {
   ListSearchSetFunctionsAction,
   ListSearchSetSearchTextAction,
-  ListSearchSetFieldSelectorsAction
+  ListSearchSetFieldSelectorsAction,
+  ListSearchSetOptionsAction
 } from './search/actions';
 import { ListItemModel } from './items/item.model';
 import { ListViewsSetActiveAction } from './views/actions';
@@ -43,6 +44,18 @@ export class ListStateDispatcher extends StateDispatcher<ListStateAction> {
   public searchSetText(searchText: string) {
     this.next(new ListPagingSetPageNumberAction(1));
     this.next(new ListSearchSetSearchTextAction(searchText));
+  }
+
+  public searchSetOptions(
+    searchText: string,
+    sortFunctions: ((data: any, searchText: string) => boolean)[],
+    fieldSelectors: Array<string>
+  ) {
+    this.next(new ListSearchSetOptionsAction(
+      new ListSearchSetSearchTextAction(searchText),
+      new ListSearchSetFieldSelectorsAction(fieldSelectors),
+      new ListSearchSetFunctionsAction(sortFunctions)
+    ));
   }
 
   public sortSetAvailable(sortLabels: ListSortLabelModel[]): void {

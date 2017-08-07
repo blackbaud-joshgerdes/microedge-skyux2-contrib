@@ -28,6 +28,7 @@ import { ListItemModel } from './state/items/item.model';
 import { ListSortSetFieldSelectorsAction } from './state/sort/actions';
 import { ListPagingComponent } from './list-paging.component';
 import * as moment from 'moment';
+import { ListSortFieldSelectorModel } from './state/sort/field-selector.model';
 
 @Component({
   selector: 'sky-contrib-list',
@@ -117,7 +118,7 @@ export class SkyContribListComponent implements AfterContentInit {
       this.refresh.distinctUntilChanged(),
       this.state.map(s => s.filters).distinctUntilChanged(),
       this.state.map(s => s.search).distinctUntilChanged(),
-      this.state.map(s => s.sort).distinctUntilChanged(),
+      this.state.map(s => s.sort.fieldSelectors).distinctUntilChanged(),
       this.state.map(s => s.paging.itemsPerPage).distinctUntilChanged(),
       this.state.map(s => s.paging.pageNumber).distinctUntilChanged(),
       initialSelectedItems.distinctUntilChanged().map((s: Array<ListItemModel>) => {
@@ -126,7 +127,8 @@ export class SkyContribListComponent implements AfterContentInit {
       }),
       data.distinctUntilChanged(),
       (refresh: boolean, filters: Array<ListFilterModel>, search: ListSearchModel,
-       sort: ListSortModel, itemsPerPage: number, pageNumber: number,
+       sortFieldSelectors: Array<ListSortFieldSelectorModel>,
+       itemsPerPage: number, pageNumber: number,
        selected: Array<ListItemModel>, itemsData: Array<any>) => {
         this.dispatcher.next(new ListItemsSetLoadingAction());
 
@@ -153,7 +155,7 @@ export class SkyContribListComponent implements AfterContentInit {
             pageNumber: pageNumber,
             pagingEnabled: this.pagingComponents.length > 0,
             search: search,
-            sort: sort
+            sort: new ListSortModel({ fieldSelectors: sortFieldSelectors })
           }));
         }
 

@@ -5,7 +5,8 @@ import { ListViewsLoadAction, ListViewsSetActiveAction } from './views/actions';
 import {
   ListSearchSetSearchTextAction,
   ListSearchSetFunctionsAction,
-  ListSearchSetFieldSelectorsAction
+  ListSearchSetFieldSelectorsAction,
+  ListSearchSetOptionsAction
 } from './search/actions';
 import {
   ListSortSetFieldSelectorsAction, ListSortSetAvailableAction, ListSortSetGlobalAction
@@ -32,7 +33,7 @@ export type ListStateAction =
   ListItemsSetLoadingAction | ListItemsLoadAction |
   ListViewsLoadAction | ListViewsSetActiveAction |
   ListSearchSetSearchTextAction | ListSearchSetFunctionsAction |
-  ListSearchSetFieldSelectorsAction |
+  ListSearchSetFieldSelectorsAction | ListSearchSetOptionsAction |
   ListSortSetFieldSelectorsAction | ListSortSetAvailableAction | ListSortSetGlobalAction |
   ListFiltersLoadAction | ListFiltersUpdateAction |
   ListToolbarItemsLoadAction | ListToolbarSetExistsAction |
