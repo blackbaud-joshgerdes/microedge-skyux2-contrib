@@ -10,7 +10,7 @@ export class SkyContribTranslateService {
   }
 
   public translate(key: string): string {
-    return this.localeService.localization
+    return this.localeService.translation
       .translate(key, undefined, this.localeService.languageCode.toLowerCase());
   }
 
@@ -26,6 +26,10 @@ export class SkyContribTranslateService {
       translationDict[language] = translation;
     }
 
-    this.localeService.localization.addTranslation(language, translation);
+    this.localeService.translation.addConfiguration().addTranslation(language, translation);
+  }
+
+  public init(): Promise<void> {
+    return this.localeService.translation.init();
   }
 }

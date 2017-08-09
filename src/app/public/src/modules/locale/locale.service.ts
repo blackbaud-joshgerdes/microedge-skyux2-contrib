@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocaleService, LocalizationService } from 'angular2localization';
+import { LocaleService, TranslationService } from 'angular-l10n';
 import { translationDict } from '../i18n';
 
 @Injectable()
@@ -8,13 +8,9 @@ export class SkyContribLocaleService {
 
   constructor(
     public locale: LocaleService,
-    public localization: LocalizationService
+    public translation: TranslationService
   ) {
-    this.localization.addTranslation('en-us', translationDict['en-us']);
-    this.localization.addTranslation('en-ca', translationDict['en-ca']);
-    this.localization.addTranslation('en-au', translationDict['en-au']);
-    this.localization.addTranslation('en-gb', translationDict['en-gb']);
-    this.locale.definePreferredCurrency('USD');
+    this.locale.setCurrentCurrency('USD');
 
     let safeNavigator: any = navigator as any;
     let userLang = (this.currentLanguage) ? this.currentLanguage :
@@ -55,8 +51,7 @@ export class SkyContribLocaleService {
 
     this.languageCode = userLang;
     let currentLanguageSplit = userLang.split('-');
-    this.locale.setCurrentLocale(currentLanguageSplit[0], currentLanguageSplit[1]);
-    this.localization.updateTranslation(userLang);
+    this.locale.setDefaultLocale(currentLanguageSplit[0], currentLanguageSplit[1]);
   }
 
   public getDefaultLocale(): string {

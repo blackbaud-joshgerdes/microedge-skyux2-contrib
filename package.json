@@ -21,7 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "animate.css": "^3.5.2",
-    "angular2localization": "1.1.1",
+    "angular-l10n": "^3.4.1",
     "dragula": "3.7.2",
     "font-awesome": "4.7.0",
     "intl": "1.2.5",
