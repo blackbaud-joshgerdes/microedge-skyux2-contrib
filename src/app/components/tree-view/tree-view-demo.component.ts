@@ -1,16 +1,16 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { TreeNodeModel, SkyContribTreeViewComponent } from '../../../core';
+import { TreeNodeModel, SkyContribTreeViewComponent } from '../../public';
 
 @Component({
   selector: 'sky-tree-view-demo',
   templateUrl: './tree-view-demo.component.html'
 })
 export class SkyContribTreeViewDemoComponent implements AfterViewInit {
-  @ViewChild('tree') tree: SkyContribTreeViewComponent;
-  disableParents: boolean;
-  leafOnlySelection: boolean;
-  data: Array<TreeNodeModel> = [];
-  data2: Array<TreeNodeModel> = [];
+  @ViewChild('tree') public tree: SkyContribTreeViewComponent;
+  public disableParents: boolean;
+  public leafOnlySelection: boolean;
+  public data: Array<TreeNodeModel> = [];
+  public data2: Array<TreeNodeModel> = [];
 
   constructor() {
     this.disableParents = true;

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-
-import { Observable, BehaviorSubject } from 'rxjs';
-import { ListFilterDataModel } from '../../../modules/list/state/filters/filter-data.model';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ListFilterDataModel } from '../../public/src/modules/list/state/filters/filter-data.model';
 
 @Component({
   selector: 'sky-contrib-list-filters-demo',

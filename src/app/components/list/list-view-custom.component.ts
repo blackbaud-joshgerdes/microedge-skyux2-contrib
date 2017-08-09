@@ -1,6 +1,8 @@
 import { Component, forwardRef } from '@angular/core';
-import { ListViewComponent } from '../../../modules/list';
-import { ListState, ListStateDispatcher } from '../../../modules/list/state';
+import { Observable } from 'rxjs/Observable';
+import { ListViewComponent } from '../../public';
+import { ListState } from '../../public/src/modules/list/state';
+import { ListItemModel } from '../../public/src/modules/list/state/items/item.model';
 
 @Component({
   selector: 'sky-contrib-list-view-custom',
@@ -14,14 +16,12 @@ import { ListState, ListStateDispatcher } from '../../../modules/list/state';
 })
 export class SkyContribListViewCustomComponent extends ListViewComponent {
   constructor(
-    state: ListState,
-    private dispatcher: ListStateDispatcher
+    state: ListState
   ) {
     super(state, 'Custom View');
   }
 
-  get items() {
+  get items(): Observable<Array<ListItemModel>> {
     return this.state.map(s => s.items.items);
   }
 }
-/* tslint: enable */

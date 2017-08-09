@@ -1,19 +1,19 @@
 import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { WindowRef } from '../../../../src/modules/utils/windowref';
 import {
-  Statuses,
+  WindowRef,
+  STATUSES,
   SkyContribLinkRecordsComponent,
   LinkRecordsMatchModel
-} from '../../../../src/modules/link-records';
+} from '../../public';
 
 @Component({
   selector: 'sky-contrib-link-records-demo',
   templateUrl: './link-records-demo.component.html'
 })
 export class SkyContribLinkRecordsDemoComponent {
-  @ViewChild(SkyContribLinkRecordsComponent) item: SkyContribLinkRecordsComponent;
-  window: any;
+  @ViewChild(SkyContribLinkRecordsComponent) public item: SkyContribLinkRecordsComponent;
+  public window: any;
 
   public matchFields: Array<string> = ['description', 'name'];
 
@@ -33,37 +33,37 @@ export class SkyContribLinkRecordsDemoComponent {
   public matches: Observable<Array<LinkRecordsMatchModel>> = Observable.of([
     new LinkRecordsMatchModel({
       key: '1',
-      status: Statuses.Edit,
+      status: STATUSES.Edit,
       item: { id: '11', address: 111, name: 'Big Apple', description: 'George and his apples' }
     }),
     new LinkRecordsMatchModel({
       key: '2',
-      status: null,
-      item: null
+      status: undefined,
+      item: undefined
     }),
     new LinkRecordsMatchModel({
       key: '3',
-      status: Statuses.NoMatch,
-      item: null
+      status: STATUSES.NoMatch,
+      item: undefined
     }),
     new LinkRecordsMatchModel({
       key: '5',
-      status: Statuses.Suggested,
+      status: STATUSES.Suggested,
       item: { id: '55', address: 555, name: 'Huge Banana', description: 'Barry loves bananas.' }
     }),
     new LinkRecordsMatchModel({
       key: '6',
-      status: Statuses.Selected,
+      status: STATUSES.Selected,
       item: { id: '66', address: 666, name: 'Lovely Lemons', description: 'Lisa loves lemons.' }
     }),
     new LinkRecordsMatchModel({
       key: '7',
-      status: Statuses.Created,
-      item: null
+      status: STATUSES.Created,
+      item: undefined
     }),
     new LinkRecordsMatchModel({
       key: '8',
-      status: Statuses.Linked,
+      status: STATUSES.Linked,
       item: {
         id: '88',
         address: 888,
@@ -77,7 +77,7 @@ export class SkyContribLinkRecordsDemoComponent {
     this.window = windowRef.nativeWindow;
   }
 
-  showResults() {
+  public showResults() {
     this.item.results.take(1).subscribe(r => this.window.alert(JSON.stringify(r)));
   }
 }

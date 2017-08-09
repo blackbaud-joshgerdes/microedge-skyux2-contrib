@@ -13,10 +13,6 @@ export class SkyContribDemoNavComponent {
       exact: true
     },
     {
-     title: 'Learn',
-     url: '/learn'
-    },
-    {
       title: 'Components',
       url: '/components'
     }

@@ -20,9 +20,8 @@ import { SkyContribDemoComponentsService } from '../demo-components.service';
   providers: [SkyContribDemoPagePlunkerService]
 })
 export class SkyContribDemoPageCodeComponent {
-  @Input()
-  public codeFilesForBinding: SkyContribDemoPageCodeFile[];
-
+  public p: any = Prism;
+  @Input() public codeFilesForBinding: SkyContribDemoPageCodeFile[];
   @Input()
   public set demoName(value: string) {
 

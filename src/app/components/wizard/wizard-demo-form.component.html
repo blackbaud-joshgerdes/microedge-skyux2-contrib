@@ -1,0 +1,24 @@
+<sky-contrib-wizard (onSaveAndClose)="confirmApply()">
+  <sky-contrib-wizard-header>
+    <ng-template>
+      <h1>Wizard Demo</h1>
+    </ng-template>
+  </sky-contrib-wizard-header>
+  <sky-contrib-wizard-steps>
+     <ng-template>
+      <sky-contrib-wizard-step [title]="'Step One'" [validator]="stepOneValidator">
+        <label>
+          Enter text to continue:
+          <input type="text" [(ngModel)]="requiredValue1" />
+        </label>
+      </sky-contrib-wizard-step>
+      <sky-contrib-wizard-step [title]="'Step Two'" [validator]="stepTwoValidator">
+        <sky-checkbox [(ngModel)]="requiredValue2">
+          <sky-checkbox-label>
+            Select this checkbox to enable step 2.
+          </sky-checkbox-label>
+        </sky-checkbox>
+      </sky-contrib-wizard-step>
+    </ng-template>
+  </sky-contrib-wizard-steps>
+</sky-contrib-wizard>

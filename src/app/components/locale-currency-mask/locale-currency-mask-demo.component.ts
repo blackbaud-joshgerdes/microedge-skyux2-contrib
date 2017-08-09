@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'sky-locale-currency-mask-demo',
   templateUrl: './locale-currency-mask-demo.component.html'
 })
 export class SkyContribLocaleCurrencyMaskDemoComponent {
-  currencyForm: FormGroup;
-  amount: string = '42';
+  public currencyForm: FormGroup;
+  public amount: string = '42';
 
   constructor(formBuilder: FormBuilder) {
     this.currencyForm = formBuilder.group({

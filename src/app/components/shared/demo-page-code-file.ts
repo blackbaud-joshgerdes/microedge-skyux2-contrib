@@ -3,10 +3,9 @@ import 'prismjs/prism';
 import 'prismjs/components/prism-typescript';
 
 export class SkyContribDemoPageCodeFile {
+  public p: any = Prism;
   public readonly language: string;
-
   public codeFormatted: string;
-
   public codeImports: string;
 
   constructor(

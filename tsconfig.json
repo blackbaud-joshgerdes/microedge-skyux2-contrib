@@ -1,43 +1,9 @@
 {
+  "extends": "./node_modules/@blackbaud/skyux-builder/tsconfig",
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "noEmitHelpers": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "lib": [
-      "dom",
-      "es6"
-    ],
-    "types": [
-      "jasmine",
-      "node"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "sky-pages-spa/src/*": ["./src/*"],
-      "sky-pages-internal/*": ["./node_modules/@blackbaud/skyux-builder/*"],
-      "@angular/common": ["node_modules/@angular/common"],
-      "@angular/compiler": ["node_modules/@angular/compiler"],
-      "@angular/core": ["node_modules/@angular/core"],
-      "@angular/forms": ["node_modules/@angular/forms"],
-      "@angular/platform-browser": ["node_modules/@angular/platform-browser"],
-      "@angular/platform-browser-dynamic": ["node_modules/@angular/platform-browser-dynamic"],
-      "@angular/router": ["node_modules/@angular/router"],
-      "@angular/http": ["node_modules/@angular/http"]
-    }
+    "module": "commonjs"
   },
   "exclude": [
-    "node_modules",
-    "dist",
-    "skyux-spa-visual-tests"
-  ],
-  "compileOnSave": false,
-  "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+    "node_modules"
+  ]
 }

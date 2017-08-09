@@ -1,0 +1,16 @@
+<sky-contrib-draggable-repeater (onItemsReordered)="onItemsReordered($event)">
+  <sky-contrib-draggable-repeater-item *ngFor="let item of items; let i = index" [item]="item" [id]="item.id" [showContent]="true">
+    <sky-contrib-draggable-repeater-item-left>
+      <ng-template let-item="item">{{ item.id }}</ng-template>
+    </sky-contrib-draggable-repeater-item-left>
+    <sky-contrib-draggable-repeater-item-title>
+      <ng-template let-item="item">{{ item.column2 }}</ng-template>
+    </sky-contrib-draggable-repeater-item-title>
+    <sky-contrib-draggable-repeater-item-content>
+      <ng-template let-item="item">{{ item.column3 }}</ng-template>
+    </sky-contrib-draggable-repeater-item-content>
+    <sky-contrib-draggable-repeater-item-right>
+      <ng-template let-item="item"></ng-template>
+    </sky-contrib-draggable-repeater-item-right>
+  </sky-contrib-draggable-repeater-item>
+</sky-contrib-draggable-repeater>

@@ -1,5 +1,9 @@
 {
-  "name": "skyux2",
   "mode": "easy",
-  "compileMode": "aot"
+  "compileMode": "aot",
+  "appSettings": {
+    "myLibrary": {
+      "name": "Microedge SkyUX Contrib"
+    }
+  }
 }

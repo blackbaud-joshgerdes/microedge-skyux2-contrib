@@ -1,0 +1,20 @@
+<div class="sky-contrib-checklist-header">
+  <div class="sky-contrib-checklist-search" >
+    <input #searchBox (keyup.enter)="searchText=searchBox.value" type="text" value="{{searchText}}" placeholder="Search by name" />
+    <button type="button" class="btn-link btn btn-small"><i class="fa fa-search"></i></button>
+  </div>
+  <div class="sky-contrib-checklist-select">
+    <ul>
+      <li><button class="btn btn-link" type="button" (click)="selectAll()">Select all</button></li>
+      <li><button class="btn btn-link" type="button" (click)="clearAll()">Clear all</button></li>
+    </ul>
+  </div>
+</div>
+<div class="sky-contrib-checklist-body">
+  <ul>
+    <li *ngFor="let item of viewData | skyContribFilter: searchText" [hidden]="item.item?.locked">
+      <input type="checkbox" [ngModel]="item.checked" (ngModelChange)="itemChanged(item, $event)" [attr.name]="item.id">
+      <label>{{item.label}}</label>
+    </li>
+  </ul>
+</div>

@@ -7,6 +7,29 @@ export class SkyContribDemoComponentsService {
   public getComponents(filter?: string): SkyContribDemoComponent[] {
     return [
       {
+        name: 'Draggable Repeater',
+        icon: 'bars',
+        // tslint:disable-next-line
+        summary: `The draggable repeater component is used to display data in a draggable list.`,
+        url: '/components/draggable-repeater',
+        getCodeFiles: function () {
+          return [
+            {
+              name: 'draggable-repeater-demo.component.html',
+              fileContents:
+              require('!!raw-loader!./draggable-repeater/draggable-repeater-demo.component.html')
+            },
+            {
+              name: 'draggable-repeater-demo.component.ts',
+              fileContents:
+              require('!!raw-loader!./draggable-repeater/draggable-repeater-demo.component.ts'),
+              componentName: 'SkyDraggableRepeaterDemoComponent',
+              bootstrapSelector: 'sky-contrib-draggable-repeater-demo'
+            }
+          ];
+        }
+      },
+      {
         name: 'Link Records',
         icon: 'link',
         // tslint:disable-next-line
@@ -79,11 +102,13 @@ export class SkyContribDemoComponentsService {
           return [
             {
               name: 'list-action-bar-demo.component.html',
-              fileContents: require('!!raw-loader!./list-action-bar/list-action-bar-demo.component.html')
+              fileContents:
+                require('!!raw-loader!./list-action-bar/list-action-bar-demo.component.html')
             },
             {
               name: 'list-action-bar-demo.component.ts',
-              fileContents: require('!!raw-loader!./list-action-bar/list-action-bar-demo.component.ts'),
+              fileContents:
+                require('!!raw-loader!./list-action-bar/list-action-bar-demo.component.ts'),
               componentName: 'SkyListActionBarDemoComponent',
               bootstrapSelector: 'sky-contrib-list-action-bar-demo'
             }
@@ -111,21 +136,25 @@ export class SkyContribDemoComponentsService {
             },
             {
               name: 'list-filters-demo-modal.component.html',
-              fileContents: require('!!raw-loader!./list-filters/list-filters-demo-modal.component.html')
+              fileContents:
+                require('!!raw-loader!./list-filters/list-filters-demo-modal.component.html')
             },
             {
               name: 'list-filters-demo-modal.component.ts',
-              fileContents: require('!!raw-loader!./list-filters/list-filters-demo-modal.component.ts'),
+              fileContents:
+                require('!!raw-loader!./list-filters/list-filters-demo-modal.component.ts'),
               componentName: 'SkyListFiltersDemoModalComponent',
               bootstrapSelector: 'sky-contrib-list-filters-demo-modal'
             },
             {
               name: 'list-filters-demo-combo.component.html',
-              fileContents: require('!!raw-loader!./list-filters/list-filters-demo-combo.component.html')
+              fileContents:
+                require('!!raw-loader!./list-filters/list-filters-demo-combo.component.html')
             },
             {
               name: 'list-filters-demo-combo.component.ts',
-              fileContents: require('!!raw-loader!./list-filters/list-filters-demo-combo.component.ts'),
+              fileContents:
+                require('!!raw-loader!./list-filters/list-filters-demo-combo.component.ts'),
               componentName: 'SkyListFiltersDemoComboComponent',
               bootstrapSelector: 'sky-contrib-list-filters-demo-combo'
             }
@@ -175,11 +204,13 @@ export class SkyContribDemoComponentsService {
             },
             {
               name: 'list-toolbar-demo-custom.component.html',
-              fileContents: require('!!raw-loader!./list-toolbar/list-toolbar-demo-custom.component.html')
+              fileContents:
+                require('!!raw-loader!./list-toolbar/list-toolbar-demo-custom.component.html')
             },
             {
               name: 'list-toolbar-demo-custom.component.ts',
-              fileContents: require('!!raw-loader!./list-toolbar/list-toolbar-demo-custom.component.ts'),
+              fileContents:
+                require('!!raw-loader!./list-toolbar/list-toolbar-demo-custom.component.ts'),
               componentName: 'SkyListToolbarDemoCustomComponent',
               bootstrapSelector: 'sky-contrib-list-toolbar-demo-custom'
             }
@@ -219,11 +250,13 @@ export class SkyContribDemoComponentsService {
           return [
             {
               name: 'list-view-grid-demo.component.html',
-              fileContents: require('!!raw-loader!./list-view-grid/list-view-grid-demo.component.html')
+              fileContents:
+                require('!!raw-loader!./list-view-grid/list-view-grid-demo.component.html')
             },
             {
               name: 'list-view-grid-demo.component.ts',
-              fileContents: require('!!raw-loader!./list-view-grid/list-view-grid-demo.component.ts'),
+              fileContents:
+                require('!!raw-loader!./list-view-grid/list-view-grid-demo.component.ts'),
               componentName: 'SkyListViewGridDemoComponent',
               bootstrapSelector: 'sky-contrib-list-view-grid-demo'
             }
@@ -257,17 +290,20 @@ export class SkyContribDemoComponentsService {
         name: 'Locale-Currency-Mask',
         icon: 'usd',
         // tslint:disable-next-line
-        summary: `The tree view component displays data in an expandable/collapsable tree (parent/child) view.`,
+        summary: `The tree view component displays data in an expandable/collapsable tree
+        (parent/child) view.`,
         url: '/components/locale-currency-mask',
         getCodeFiles: function () {
           return [
             {
               name: 'locale-currency-mask-demo.component.html',
-              fileContents: require('!!raw-loader!./locale-currency-mask/locale-currency-mask-demo.component.html')
+              fileContents: require(
+                '!!raw-loader!./locale-currency-mask/locale-currency-mask-demo.component.html')
             },
             {
               name: 'locale-currency-mask-demo.component.ts',
-              fileContents: require('!!raw-loader!./locale-currency-mask/locale-currency-mask-demo.component.ts'),
+              fileContents: require(
+                '!!raw-loader!./locale-currency-mask/locale-currency-mask-demo.component.ts'),
               componentName: 'SkyVerticalTabbarDemoComponent',
               bootstrapSelector: 'sky-locale-currency-mask-demo'
             }
@@ -305,13 +341,49 @@ export class SkyContribDemoComponentsService {
           return [
             {
               name: 'vertical-tabbar-demo.component.html',
-              fileContents: require('!!raw-loader!./vertical-tabbar/vertical-tabbar-demo.component.html')
+              fileContents:
+                require('!!raw-loader!./vertical-tabbar/vertical-tabbar-demo.component.html')
             },
             {
               name: 'vertical-tabbar-demo.component.ts',
-              fileContents: require('!!raw-loader!./vertical-tabbar/vertical-tabbar-demo.component.ts'),
+              fileContents:
+                require('!!raw-loader!./vertical-tabbar/vertical-tabbar-demo.component.ts'),
               componentName: 'SkyVerticalTabbarDemoComponent',
               bootstrapSelector: 'sky-vertical-tabbar-demo'
+            }
+          ];
+        }
+      },
+      {
+        name: 'Wizard',
+        icon: 'magic',
+        summary: `The wizard component displays multiple step content sections.`,
+        url: '/components/wizard',
+        getCodeFiles: function () {
+          return [
+            {
+              name: 'wizard-demo.component.html',
+              fileContents:
+                require('!!raw-loader!./wizard/wizard-demo.component.html')
+            },
+            {
+              name: 'wizard-demo.component.ts',
+              fileContents:
+                require('!!raw-loader!./wizard/wizard-demo.component.ts'),
+              componentName: 'SkyWizardDemoComponent',
+              bootstrapSelector: 'sky-wizard-demo'
+            },
+            {
+              name: 'wizard-demo-form.component.html',
+              fileContents:
+                require('!!raw-loader!./wizard/wizard-demo-form.component.html')
+            },
+            {
+              name: 'wizard-demo-form.component.ts',
+              fileContents:
+                require('!!raw-loader!./wizard/wizard-demo-form.component.ts'),
+              componentName: 'SkyWizardDemoFormComponent',
+              bootstrapSelector: 'sky-wizard-demo-form'
             }
           ];
         }

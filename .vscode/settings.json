@@ -7,6 +7,5 @@
     "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 100,
 
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "vsicons.presets.angular": true
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
