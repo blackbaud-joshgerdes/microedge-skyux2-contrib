@@ -7,7 +7,8 @@ import {
   OnInit,
   QueryList,
   TemplateRef,
-  forwardRef
+  forwardRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -46,7 +47,8 @@ import { LinkRecordsApi } from './link-records-api';
       LinkRecordsStateDispatcher,
       LinkRecordsStateModel,
       LinkRecordsApi
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit, OnDestroy {
   @Input() public items: Observable<Array<any>> = Observable.of([]);

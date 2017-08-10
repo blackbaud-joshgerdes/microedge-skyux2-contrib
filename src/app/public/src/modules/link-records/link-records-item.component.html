@@ -34,8 +34,7 @@
       <button *ngIf="record.status == STATUSES.Suggested || record.status == STATUSES.Selected" (click)="unlink()" class="sky-btn sky-btn-link">Add or search for a record</button>
       <button *ngIf="record.status == STATUSES.Linked || record.status == STATUSES.Created" (click)="unlink()" class="sky-btn sky-btn-link">Remove this link</button>
       <button *ngIf="record.status == STATUSES.NoMatch" (click)="create()" class="sky-btn sky-btn-link">Create a new record</button>
-      <button *ngIf="record.status == STATUSES.Edit && (updatedFieldsTotal | async) > 0" (click)="link()" class="sky-btn sky-btn-primary">Apply Updates ({{ updatedFieldsTotal | async }})</button>
-      <button *ngIf="record.status == STATUSES.Edit && (updatedFieldsTotal | async) == 0" (click)="link()" class="sky-btn sky-btn-primary">Link without updating</button>
+      <button *ngIf="record.status == STATUSES.Edit" (click)="link()" class="sky-btn sky-btn-primary">{{ (updatedFieldsTotal | async) > 0 ? 'Apply Updates (' + (updatedFieldsTotal | async) + ')' : 'Link without updating' }}</button>
       <button *ngIf="record.status == STATUSES.Edit" (click)="cancelEdit()" class="sky-btn sky-btn-link">Cancel</button>
     </div>
   </div>
