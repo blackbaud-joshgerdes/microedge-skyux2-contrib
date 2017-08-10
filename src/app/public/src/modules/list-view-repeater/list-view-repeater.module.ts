@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyChevronModule } from '../chevron';
-import { SkyContribSpinnerModule } from '../spinner';
+import { SkyChevronModule } from '@blackbaud/skyux/dist/modules/chevron';
+import { SkyWaitModule } from '@blackbaud/skyux/dist/core';
 import { SkyContribListViewRepeaterComponent } from './list-view-repeater.component';
 import { SkyContribListViewRepeaterRendererComponent }
   from './list-view-repeater-renderer.component';
@@ -27,7 +27,7 @@ import { SkyContribListViewRepeaterContentComponent } from './list-view-repeater
   imports: [
     CommonModule,
     SkyChevronModule,
-    SkyContribSpinnerModule
+    SkyWaitModule
   ],
   exports: [
     SkyContribListViewRepeaterComponent,

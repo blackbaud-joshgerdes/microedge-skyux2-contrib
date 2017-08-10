@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyDropdownModule } from '../dropdown';
+import { SkyDropdownModule } from '@blackbaud/skyux/dist/modules/dropdown';
 import { SkyContribListToolbarComponent } from './list-toolbar.component';
 import { SkyContribListToolbarItemComponent } from './list-toolbar-item.component';
 import { SkyContribListToolbarItemRendererComponent } from './list-toolbar-item-renderer.component';

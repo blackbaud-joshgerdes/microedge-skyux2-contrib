@@ -1,8 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SkyCheckboxModule } from '../checkbox';
-import { SkyContribSpinnerModule } from '../spinner';
+import { SkyWaitModule, SkyCheckboxModule } from '@blackbaud/skyux/dist/core';
 import { SkyContribListViewChecklistComponent } from './list-view-checklist.component';
 import { SkyContribListViewChecklistItemComponent } from './list-view-checklist-item.component';
 
@@ -16,7 +15,7 @@ import { SkyContribListViewChecklistItemComponent } from './list-view-checklist-
     CommonModule,
     FormsModule,
     SkyCheckboxModule,
-    SkyContribSpinnerModule
+    SkyWaitModule
   ],
   exports: [
     SkyContribListViewChecklistComponent,

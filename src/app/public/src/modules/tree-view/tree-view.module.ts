@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkyContribTreeViewComponent } from './tree-view.component';
 import { SkyContribTreeViewNodeComponent } from './tree-view-node.component';
-import { SkyCheckboxModule } from '../checkbox';
+import { SkyCheckboxModule } from '@blackbaud/skyux/dist/modules/checkbox';
 import { SkyContribTreeViewContentComponent } from './tree-view-content.component';
 import { SkyContribTreeViewDropdownComponent } from './tree-view-dropdown.component';
 import { SkyContribTreeViewRendererComponent } from './tree-view-renderer.component';

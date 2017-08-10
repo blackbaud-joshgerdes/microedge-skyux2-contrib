@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SkyCheckboxModule } from '../checkbox';
+import { SkyCheckboxModule } from '@blackbaud/skyux/dist/core';
 import { SkyContribLinkRecordsComponent } from './link-records.component';
 import { SkyContribLinkRecordsItemComponent } from './link-records-item.component';
 import { SkyContribLinkRecordsItemContentComponent } from './link-records-item-content.component';

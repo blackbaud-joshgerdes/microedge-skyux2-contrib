@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="loading" *ngIf="loading | async">
-    <sky-contrib-spinner></sky-contrib-spinner>
+    <sky-wait [isWaiting]="true"></sky-wait>
   </div>
   <ng-content></ng-content>
 </div>
