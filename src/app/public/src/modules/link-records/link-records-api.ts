@@ -16,4 +16,9 @@ export class LinkRecordsApi {
     this.dispatcher.next(new LinkRecordsMatchesSetStatusAction(key, STATUSES.Selected));
     this.dispatcher.next(new LinkRecordsMatchesSetItemAction(key, item));
   }
+
+  public removeSelectedItem(key: string) {
+    this.dispatcher.next(new LinkRecordsMatchesSetStatusAction(key, STATUSES.NoMatch));
+    this.dispatcher.next(new LinkRecordsMatchesSetItemAction(key, undefined));
+  }
 }
