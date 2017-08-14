@@ -12,7 +12,7 @@
     "skyux": "skyux",
     "lint": "skyux lint",
     "test": "skyux test && skyux e2e",
-    "copy:scss": "cpx 'src/app/public/src/modules/**/*.scss' 'dist/src/modules/' && cpx 'src/app/public/src/scss/**' 'dist/src/scss/'",
+    "copy:scss": "cpx \"src/app/public/src/modules/**/*.scss\" \"dist/src/modules/\" && cpx \"src/app/public/src/scss/**\" \"dist/src/scss/\"",
     "build": "skyux build-public-library && npm run copy:scss",
     "start": "skyux serve"
   },
