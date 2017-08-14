@@ -1,14 +1,5 @@
 <sky-contrib-vertical-tabbar>
-  <sky-contrib-vertical-tabbar-item title="Tab One" (action)="itemClickedAction($event)">
-    TAB ONE CONTENT
-  </sky-contrib-vertical-tabbar-item>
-   <sky-contrib-vertical-tabbar-item title="Tab Two" (action)="itemClickedAction($event)" active="true">
-    TAB TWO CONTENT
-  </sky-contrib-vertical-tabbar-item>
-  <sky-contrib-vertical-tabbar-item title="Tab Three" (action)="itemClickedAction($event)">
-    TAB THREE CONTENT
-  </sky-contrib-vertical-tabbar-item>
-  <sky-contrib-vertical-tabbar-item title="Tab Four - A very long title that seems to go on forever" (action)="itemClickedAction($event)" disabled="true">
-    TAB FOUR CONTENT
+  <sky-contrib-vertical-tabbar-item *ngFor="let tab of tabs" [title]="tab.name" (action)="itemClickedAction($event)" [disabled]="tab.disabled" [active]="tab.active">
+    {{tab.content}}
   </sky-contrib-vertical-tabbar-item>
 </sky-contrib-vertical-tabbar>

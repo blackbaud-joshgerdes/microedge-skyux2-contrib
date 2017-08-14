@@ -28,12 +28,10 @@ import { SkyContribTreeViewModule } from './modules/tree-view';
 import { SkyContribUtilsModule } from './modules/utils';
 import { SkyContribVerticalTabbarModule } from './modules/vertical-tabbar';
 import { SkyContribWizardModule } from './modules/wizard';
-import { SkyDropdownModule } from './modules/dropdown';
 
 export * from './modules/analytics';
 export * from './modules/checklist';
 export * from './modules/draggable-repeater';
-export * from './modules/dropdown';
 export * from './modules/link-records';
 export * from './modules/list';
 export * from './modules/list-action-bar';
@@ -92,8 +90,7 @@ export * from './modules/wizard';
     SkyContribTreeViewModule,
     SkyContribUtilsModule,
     SkyContribVerticalTabbarModule,
-    SkyContribWizardModule,
-    SkyDropdownModule
+    SkyContribWizardModule
   ],
   exports: [
     SkyContribAnalyticsModule,
@@ -123,8 +120,7 @@ export * from './modules/wizard';
     SkyContribTreeViewModule,
     SkyContribUtilsModule,
     SkyContribVerticalTabbarModule,
-    SkyContribWizardModule,
-    SkyDropdownModule
+    SkyContribWizardModule
   ]
 })
 export class MicroedgeSkyContribModule { }

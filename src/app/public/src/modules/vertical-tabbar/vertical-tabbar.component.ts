@@ -1,8 +1,9 @@
 import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  QueryList,
-  AfterContentInit
+  QueryList
 } from '@angular/core';
 import {
   SkyContribVerticalTabbarItemComponent
@@ -11,7 +12,8 @@ import {
 @Component({
     selector: 'sky-contrib-vertical-tabbar',
     templateUrl: './vertical-tabbar.component.html',
-    styleUrls: ['./vertical-tabbar.component.scss']
+    styleUrls: ['./vertical-tabbar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkyContribVerticalTabbarComponent implements AfterContentInit {
   @ContentChildren(SkyContribVerticalTabbarItemComponent)

@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { SkyDropdownModule } from '@blackbaud/skyux/dist/modules/dropdown';
 import { SkyContribTreeViewModule } from '../';
-import { SkyDropdownModule } from '../../dropdown';
-
 import { TreeViewDefaultTestComponent } from './tree-view-default.component.fixture';
 import { TreeViewNoDataTestComponent } from './tree-view-no-data.component.fixture';
 import { TreeViewTemplatedTestComponent } from './tree-view-templated.component.fixture';
