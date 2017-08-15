@@ -17,7 +17,7 @@
       font-family: $sky-font-family-base;
       font-weight: normal;
       line-height: 22px;
-      padding: 10px 0;
+      padding: 10px 10px 10px 0;
       text-align: left;
 
       &.link-records-item-diff-update {
@@ -27,6 +27,13 @@
 
       &.link-records-item-diff-value {
         font-family: $sky-font-family-base;
+      }
+
+      &.item-deemphasized {
+        color: $sky-color-gray-light;
+      }
+
+      &.item-highlighted {
         font-weight: 600;
       }
     }
