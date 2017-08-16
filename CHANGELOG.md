@@ -5,7 +5,7 @@
 - Updated angular2localization to angular-l10n for translation service.
 - Fix for 'Sky Grid Calling Data Provider Multiple Times When Columns Change' ([683](https://github.com/blackbaud/skyux2/issues/683)).
 
-# 4.5.1 (2017-08-16)
+# 4.5.2 (2017-08-16)
 
 - Update components to use sky wait component.
 - Removed local directory references to sky components.
