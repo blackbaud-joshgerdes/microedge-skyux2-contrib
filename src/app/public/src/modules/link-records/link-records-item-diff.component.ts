@@ -49,7 +49,12 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
 
     this.dispatcher.next(new LinkRecordsFieldsSetFieldsAction(this.key, matchFields));
 
-    this.state.map(s => s.selected.item || {})
+    if (matchFields.length === 0) {
+      this.dispatcher.next(
+        new LinkRecordsMatchesSetStatusAction(this.key, STATUSES.Linked)
+      );
+    } else {
+      this.state.map(s => s.selected.item || {})
       .filter(s => this.selectedByDefault !== undefined)
       .take(1)
       .subscribe(selected => {
@@ -77,6 +82,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
           }
         });
       });
+    }
   }
 
   public setFieldSelected(fieldKey: string, ev: any) {
