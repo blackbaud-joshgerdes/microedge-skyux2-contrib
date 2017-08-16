@@ -1,10 +1,11 @@
-import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { LinkRecordsState, LinkRecordsStateDispatcher } from './state';
 import { LinkRecordsFieldsSetFieldsAction } from './state/fields/actions';
 import { LinkRecordsSelectedSetSelectedAction } from './state/selected/actions';
 import { LinkRecordsFieldModel } from './state/fields/field.model';
 import { LinkRecordsMatchModel } from './state/matches/match.model';
+import { LinkRecordsMatchesSetStatusAction } from './state/matches/actions';
 import { STATUSES } from './link-records-statuses';
 
 @Component({
@@ -36,6 +37,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
       .filter(id => this.item.hasOwnProperty(id)
         && this.match.item.hasOwnProperty(id)
         && this.fields.indexOf(id) > -1
+        && (this.item[id] && this.item[id].trim().length > 0)
         && (this.item[id] !== this.match.item[id]))
       .map(id => {
         return new LinkRecordsFieldModel({
@@ -65,6 +67,14 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
             matchField.key,
             this.selectedByDefault
           ));
+
+          if (matchFields.every(match =>
+            !match.currentValue && match.newValue && match.newValue.length > 0)
+          ) {
+            this.dispatcher.next(
+              new LinkRecordsMatchesSetStatusAction(this.key, STATUSES.Linked)
+            );
+          }
         });
       });
   }
@@ -74,6 +84,10 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
       new LinkRecordsSelectedSetSelectedAction(this.key, fieldKey, ev.checked));
   }
 
+  public trackByFieldKey(index: number, field: LinkRecordsFieldModel) {
+    return field.key;
+  }
+
   get fieldValues() {
     return Observable.combineLatest(
       this.state.map(s => s.fields.item[this.key] || []).distinctUntilChanged(),
@@ -81,7 +95,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
       (fields: LinkRecordsFieldModel[], selected: {[key: string]: boolean}) => {
         return fields.map(f => {
           return {
-            field: f,
+            field: f.currentValue && f.newValue && f.newValue.trim().length > 0 ? f : undefined,
             selected: selected[f.key] || false
           };
         });

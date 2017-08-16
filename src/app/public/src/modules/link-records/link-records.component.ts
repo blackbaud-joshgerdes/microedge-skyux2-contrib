@@ -2,13 +2,13 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
+  ChangeDetectionStrategy,
   Input,
   OnDestroy,
   OnInit,
   QueryList,
   TemplateRef,
-  forwardRef,
-  ChangeDetectionStrategy
+  forwardRef
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -107,9 +107,12 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
       selected: {[key: string]: {[key: string]: boolean}}) => {
         let newResultItems = matches.map(match => {
           let newItem = new LinkRecordsResultModel(match);
+
           if (newItem.status === STATUSES.Linked) {
-            let newFields = (fields[newItem.key]) ? fields[newItem.key] : [];
+            newItem.item = {id: match.item.id};
             let selection = selected[match.key] || {};
+            let newFields = (fields[newItem.key]) ?
+              fields[newItem.key].filter(f => selection[f.key]) : [];
             newFields.forEach(f => {
               if (selection[f.key]) {
                 newItem.item[f.key] = f.newValue;
@@ -175,5 +178,9 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
 
   get results() {
     return this.state.map(s => s.results.items).distinctUntilChanged();
+  }
+
+  get recordMatches() {
+    return this.state.map(s => s.matches.items).distinctUntilChanged();
   }
 }

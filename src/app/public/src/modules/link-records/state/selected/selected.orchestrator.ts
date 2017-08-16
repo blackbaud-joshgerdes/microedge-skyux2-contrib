@@ -22,7 +22,7 @@ export class LinkRecordsSelectedOrchestrator
     action: LinkRecordsSelectedSetSelectedAction):
       AsyncItem<{[key: string]: {[keyField: string]: boolean}}> {
       let newStateItem = Object.assign({}, state.item);
-      let fields = (newStateItem[action.key]) ? newStateItem[action.key] : {};
+      let fields = (newStateItem[action.key]) ? Object.assign({}, newStateItem[action.key]) : {};
       fields[action.fieldKey] = action.selected;
       newStateItem[action.key] = fields;
 
