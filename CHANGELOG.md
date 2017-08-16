@@ -12,3 +12,4 @@
 - Fixed issue when no initial active tab selected in vertical tabbar component.
 - Added removeSelectedItem to link record component api.
 - Updated field selection styles and logic on link record component.
+- updated link record component logic to move record directly to linked state if no match fields.
