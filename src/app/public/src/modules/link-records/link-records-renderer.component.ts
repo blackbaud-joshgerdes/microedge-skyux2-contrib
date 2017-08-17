@@ -18,7 +18,7 @@ import { LinkRecordsApi } from './link-records-api';
 export class SkyContribLinkRecordsRendererComponent implements OnInit {
   @Input() public item: any;
   @Input() public match: LinkRecordsMatchModel;
-  @Input() public fields: Array<string>;
+  @Input() public fields: Array<any>;
   @Input() public template: TemplateRef<any>;
   @ViewChild('container', { read: ViewContainerRef }) public container: ViewContainerRef;
 

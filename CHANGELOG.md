@@ -13,3 +13,7 @@
 - Added removeSelectedItem to link record component api.
 - Updated field selection styles and logic on link record component.
 - updated link record component logic to move record directly to linked state if no match fields.
+
+# 4.5.3 (2017-08-17)
+
+- Added ability to define field label for link component field matching.

@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let fieldValue of fieldValues | async; trackBy: trackByFieldKey" [attr.cmp-id]="fieldValue.field?.key">
-      <td *ngIf="readOnly && fieldValue.field">{{ fieldValue.field.key }}</td>
+      <td *ngIf="readOnly && fieldValue.field">{{ fieldValue.field.label }}</td>
       <td *ngIf="readOnly && fieldValue.field" class="link-records-item-diff-value" [class.item-deemphasized]="fieldValue.selected" [class.item-highlighted]="!fieldValue.selected">{{ fieldValue.field.currentValue }}</td>
       <td *ngIf="!readOnly && fieldValue.field" class="link-records-item-diff-value" [class.item-deemphasized]="!fieldValue.selected" [class.item-highlighted]="fieldValue.selected">{{ fieldValue.field.newValue }}</td>
       <td *ngIf="!readOnly && fieldValue.field" class="link-records-item-diff-update">
