@@ -20,7 +20,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
   @Input() public key: string;
   @Input() public item: any;
   @Input() public match: LinkRecordsMatchModel;
-  @Input() public fields: Array<string>;
+  @Input() public fields: Array<any>;
   @Input() public selectedByDefault: boolean;
 
   constructor(
@@ -36,12 +36,14 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
     let matchFields = Object.keys(this.match.item)
       .filter(id => this.item.hasOwnProperty(id)
         && this.match.item.hasOwnProperty(id)
-        && this.fields.indexOf(id) > -1
+        && this.fields.findIndex(f => f.key === id) > -1
         && (this.item[id] && this.item[id].trim().length > 0)
         && (this.item[id] !== this.match.item[id]))
       .map(id => {
+        let field = this.fields.find(f => f.key === id);
         return new LinkRecordsFieldModel({
           key: id,
+          label: field && field.label && field.label.trim().length > 0 ? field.label : id,
           currentValue: this.match.item[id],
           newValue: this.item[id]
         });

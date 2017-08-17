@@ -53,7 +53,7 @@ import { LinkRecordsApi } from './link-records-api';
 export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit, OnDestroy {
   @Input() public items: Observable<Array<any>> = Observable.of([]);
   @Input() public matches: Observable<Array<LinkRecordsMatchModel>> = Observable.of([]);
-  @Input() public matchFields: Observable<Array<string>> = Observable.of([]);
+  @Input() public matchFields: Observable<Array<any>> = Observable.of([]);
   @Input() public itemTemplate: TemplateRef<any>;
   @Input() public matchTemplate: TemplateRef<any>;
   @Input() public noMatchTemplate: TemplateRef<any>;
@@ -93,7 +93,7 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
     });
 
     this.matchFields.distinctUntilChanged().subscribe(fields => {
-      if (fields.indexOf(this.keyIdSelector) > -1) {
+      if (fields.findIndex(f => f.key === this.keyIdSelector) > -1) {
         throw new Error("'keyIdSelector' cannot be a match field.");
       }
     });

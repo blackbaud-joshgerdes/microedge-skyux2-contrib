@@ -5,7 +5,7 @@ export class LinkRecordsItemModel {
   public status: string;
   public item: any;
   public match: LinkRecordsMatchModel = new LinkRecordsMatchModel();
-  public matchFields: Array<string> = [];
+  public matchFields: Array<any> = [];
 
   constructor(data: any = undefined) {
     /* istanbul ignore else */

@@ -15,7 +15,7 @@ export class SkyContribLinkRecordsDemoComponent {
   @ViewChild(SkyContribLinkRecordsComponent) public item: SkyContribLinkRecordsComponent;
   public window: any;
 
-  public matchFields: Array<string> = ['description', 'name'];
+  public matchFields: Array<any> = [{key: 'description'}, {key: 'name'}];
 
   public newItem: any = { id: '99', address: 999, name: 'Lime', description: 'Laura eats limes.' };
 
