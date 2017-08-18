@@ -17,3 +17,4 @@
 # 4.5.3 (2017-08-17)
 
 - Added ability to define field label for link component field matching.
+- Fixed issue where filtered checklist was clearing all items or only selecting shown items when clicking 'Select all' or 'Clear all'
