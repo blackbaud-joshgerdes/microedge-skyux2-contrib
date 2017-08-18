@@ -14,8 +14,7 @@ import { Observable } from 'rxjs/Observable';
 import { getData } from '../list/helpers';
 import {
   ListSelectedSetItemSelectedAction,
-  ListSelectedSetItemsSelectedAction,
-  ListSelectedLoadAction
+  ListSelectedSetItemsSelectedAction
 } from '../list/state/selected/actions';
 
 @Component({
@@ -176,7 +175,7 @@ export class SkyContribListViewChecklistComponent
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe(items => {
-        this.dispatcher.next(new ListSelectedLoadAction([]));
+        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items, false, false));
       });
   }
 
@@ -184,7 +183,7 @@ export class SkyContribListViewChecklistComponent
     this.state.map(s => s.items.items)
       .take(1)
       .subscribe(items => {
-        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items));
+        this.dispatcher.next(new ListSelectedSetItemsSelectedAction(items, true, false));
       });
   }
 
