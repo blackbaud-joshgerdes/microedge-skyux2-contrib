@@ -14,7 +14,7 @@
 - Updated field selection styles and logic on link record component.
 - updated link record component logic to move record directly to linked state if no match fields.
 
-# 4.5.3 (2017-08-17)
+# 4.5.3 (2017-08-21)
 
 - Added ability to define field label for link component field matching.
 - Fixed issue where filtered checklist was clearing all items or only selecting shown items when clicking 'Select all' or 'Clear all'
