@@ -70,6 +70,7 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
     public nodeNoMatch: QueryList<SkyContribLinkRecordsNoMatchContentComponent>;
   private subscriptions: Array<any> = [];
 
+  /* istanbul ignore next */
   constructor(
     private state: LinkRecordsState,
     private dispatcher: LinkRecordsStateDispatcher
@@ -98,10 +99,10 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
       }
     });
 
-    Observable.combineLatest(
+    let sub = Observable.combineLatest(
       this.state.map(s => s.matches.items).distinctUntilChanged(),
       this.state.map(s => s.fields.item).distinctUntilChanged(),
-      this.state.map(s => s.selected.item || {}).distinctUntilChanged(),
+      this.state.map(s => s.selected.item).distinctUntilChanged(),
       (matches: Array<LinkRecordsMatchModel>,
       fields: {[key: string]: Array<LinkRecordsFieldModel>},
       selected: {[key: string]: {[key: string]: boolean}}) => {
@@ -114,6 +115,7 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
             let newFields = (fields[newItem.key]) ?
               fields[newItem.key].filter(f => selection[f.key]) : [];
             newFields.forEach(f => {
+              /* istanbul ignore else */
               if (selection[f.key]) {
                 newItem.item[f.key] = f.newValue;
               }
@@ -127,6 +129,8 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
 
         this.dispatcher.next(new LinkRecordsResultsLoadAction(newResultItems, true));
       }).subscribe();
+
+    this.subscriptions.push(sub);
   }
 
   public ngAfterContentInit() {
