@@ -23,6 +23,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
   @Input() public fields: Array<any>;
   @Input() public selectedByDefault: boolean;
 
+  /* istanbul ignore next */
   constructor(
     private state: LinkRecordsState,
     private dispatcher: LinkRecordsStateDispatcher
@@ -56,7 +57,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
         new LinkRecordsMatchesSetStatusAction(this.key, STATUSES.Linked)
       );
     } else {
-      this.state.map(s => s.selected.item || {})
+      this.state.map(s => s.selected.item)
       .filter(s => this.selectedByDefault !== undefined)
       .take(1)
       .subscribe(selected => {

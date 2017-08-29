@@ -38,6 +38,7 @@ export class SkyContribLinkRecordsItemComponent implements AfterContentInit {
   @ViewChildren(SkyContribLinkRecordsItemDiffComponent)
     public viewItems: QueryList<SkyContribLinkRecordsItemDiffComponent>;
 
+  /* istanbul ignore next */
   constructor(
     private state: LinkRecordsState,
     private dispatcher: LinkRecordsStateDispatcher

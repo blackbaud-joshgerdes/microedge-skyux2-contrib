@@ -3,158 +3,324 @@ import {
   TestBed,
   async
 } from '@angular/core/testing';
-import { ScalarObservable } from 'rxjs/observable/ScalarObservable';
-import { By } from '@angular/platform-browser';
-import { SkyContribLinkRecordsModule } from './';
 import {
-  SkyLinkRecordsDefaultTemplatesTestComponent
-} from './fixtures/link-records.component.defaultTemplates.fixture';
+  SkyContribLinkRecordsComponent,
+  SkyContribLinkRecordsItemComponent,
+  SkyContribLinkRecordsRendererComponent,
+  SkyContribLinkRecordsItemDiffComponent
+} from './';
+import { LinkRecordsItemModel } from './link-records-item.model';
+import { LinkRecordsMatchModel } from './state/matches/match.model';
+import { LinkRecordsFieldModel } from './state/fields/field.model';
+import { LinkRecordsResultModel } from './state/results/result.model';
+import { LinkRecordsResultsLoadAction } from './state/results/actions';
+import { LinkRecordsSelectedSetSelectedAction } from './state/selected/actions';
+import { LinkRecordsFieldsSetFieldsAction } from './state/fields/actions';
+import { LinkRecordsMatchesLoadAction } from './state/matches/actions';
 import {
-  SkyLinkRecordsChildTemplatesTestComponent
-} from './fixtures/link-records.component.childTemplates.fixture';
-import {
-  SkyLinkRecordsExternalTemplatesTestComponent
-} from './fixtures/link-records.component.externalTemplatesNoItems.fixture';
+  LinkRecordsState,
+  LinkRecordsStateDispatcher,
+  LinkRecordsStateModel
+} from './state/';
+import { Observable } from 'rxjs/Observable';
+import { SkyCheckboxModule } from '@blackbaud/skyux/dist/core';
+import { STATUSES } from './link-records-statuses';
 
-describe('Link Records Component ', () => {
+describe('Component: SkyContribLinkRecordsComponent', () => {
   let fixture: any,
-      element: DebugElement,
-      component: any,
-      items: ScalarObservable<any>;
+    element: DebugElement,
+    component: any,
+    dispatcher: LinkRecordsStateDispatcher,
+    state: LinkRecordsState;
 
-  describe('Default Templates Fixture', () => {
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          SkyLinkRecordsDefaultTemplatesTestComponent
-        ],
-        imports: [
-          SkyContribLinkRecordsModule
-        ]
-      });
+  beforeEach(async(() => {
+    dispatcher = new LinkRecordsStateDispatcher();
+    state = new LinkRecordsState(new LinkRecordsStateModel(), dispatcher);
 
-      fixture = TestBed.createComponent(SkyLinkRecordsDefaultTemplatesTestComponent);
-      element = fixture.debugElement as DebugElement;
-      component = fixture.componentInstance as SkyLinkRecordsDefaultTemplatesTestComponent;
-      items = component.items as any;
-      fixture.detectChanges();
-    }));
-
-    it('should have items in the template', () => {
-      const elementItems = element.children[0].children.filter(
-        (item) => { return item.name === 'sky-contrib-link-records-item'; });
-
-      expect(items.value.length).toEqual(elementItems.length);
-      // test the results setter returns all valid matches (all matches are valid at this point)
-      /* TODO expect(element.children[0].componentInstance.results.source.source.value.length)
-        .toBe(element.children[0].componentInstance.matches.value.length); */
+    TestBed.configureTestingModule({
+      declarations: [
+        SkyContribLinkRecordsComponent,
+        SkyContribLinkRecordsItemComponent,
+        SkyContribLinkRecordsRendererComponent,
+        SkyContribLinkRecordsItemDiffComponent
+      ],
+      imports: [
+        SkyCheckboxModule
+      ],
+      providers: [
+        { provide: LinkRecordsState, useValue: state },
+        { provide: LinkRecordsStateDispatcher, useValue: dispatcher }
+      ]
     });
 
-    it('should update status when creating/removing a new record', () => {
-      let noMatchAction = element.children[0].children[1].query(
-        By.css('.link-records-item-match > .link-records-item-footer > .sky-btn-link')
-      );
+    fixture = TestBed.createComponent(SkyContribLinkRecordsComponent);
+    component = fixture.componentInstance;
+    element = fixture.nativeElement;
+    state = component.state as LinkRecordsState;
+    dispatcher = component.dispatcher as LinkRecordsStateDispatcher;
+  }));
 
-      // we're building this test on a specific data set
-      expect(element.children[0].children[1].componentInstance.record.status)
-        .toEqual('no_match');
-      noMatchAction.triggerEventHandler('click', undefined);
-      fixture.detectChanges();
-      expect(element.children[0].children[1].componentInstance.record.status)
-        .toEqual('created');
+  it('items are converted to observable on ngOnInit', () => {
+    component.items = [{ id: '1' }];
 
-      noMatchAction = element.children[0].children[1].query(
-        By.css('.link-records-item-match > .link-records-item-footer > .sky-btn-link')
-      );
-      noMatchAction.triggerEventHandler('click', undefined);
-      fixture.detectChanges();
-      expect( element.children[0].children[1].componentInstance.record.status)
-        .toEqual('no_match');
-    });
-
-    it('should update status when cancelling/starting an edit', () => {
-      // cancel first
-      let actionButton = element.children[0].children[0].query(
-        By.css('.link-records-item-match > .link-records-item-footer > .sky-btn-link'));
-
-      // we're building this test on a specific data set
-      expect(element.children[0].children[0].componentInstance.record.status)
-        .toEqual('edit');
-      actionButton.triggerEventHandler('click', undefined);
-      fixture.detectChanges();
-      expect(element.children[0].children[0].componentInstance.record.status)
-        .toEqual('suggested');
-
-      actionButton = element.children[0].children[0].query(
-       By.css('.link-records-item-match > .link-records-item-footer > .sky-btn-primary'));
-       actionButton.triggerEventHandler('click', undefined);
-      fixture.detectChanges();
-      expect(element.children[0].children[0].componentInstance.record.status)
-        .toEqual('linked');
-    });
-
-    it('exposed function should let you add an item to change status', () => {
-      expect(element.children[0].children[1].componentInstance.record.status).toEqual('no_match');
-      element.children[0].children[1].children[1].children[2]
-        .children[1].componentInstance.api.addSelectedItem('2',
-        { id: '4', address: 444, name: 'Tomato', description: 'Tommy eats tomatoes.'});
-      fixture.detectChanges();
-      expect(element.children[0].children[1].componentInstance.record.status).toEqual('selected');
-    });
+    fixture.detectChanges();
+    expect(component.items instanceof Observable).toBe(true);
   });
 
-  describe('Child Templates Fixture', () => {
-    beforeEach(async(() => {
-      TestBed.resetTestingModule();
+  it('matches are converted to observable on ngOnInit', () => {
+    component.matches = [{ id: '1' }];
 
-      TestBed.configureTestingModule({
-        declarations: [
-          SkyLinkRecordsChildTemplatesTestComponent
-        ],
-        imports: [
-          SkyContribLinkRecordsModule
-        ]
-      });
-
-      fixture = TestBed.createComponent(SkyLinkRecordsChildTemplatesTestComponent);
-      element = fixture.debugElement as DebugElement;
-      component = fixture.componentInstance as SkyLinkRecordsChildTemplatesTestComponent;
-      items = component.items as ScalarObservable<any>;
-      fixture.detectChanges();
-    }));
-
-    it('should have the passed in template text for title', () => {
-      expect(element.children[0].children[0].children[1]
-        .children[0].children[0].children[0].nativeNode.innerText).toEqual('Applicant');
-    });
+    fixture.detectChanges();
+    expect(component.matches instanceof Observable).toBe(true);
   });
 
-  describe('External Templates Fixture', () => {
-    beforeEach(async(() => {
-      TestBed.resetTestingModule();
+  it('matchFields are converted to observable on ngOnInit', () => {
+    component.matchFields = [{ key: 'name' }];
 
-      TestBed.configureTestingModule({
-        declarations: [
-          SkyLinkRecordsExternalTemplatesTestComponent
-        ],
-        imports: [
-          SkyContribLinkRecordsModule
-        ]
-      });
-
-      fixture = TestBed.createComponent(SkyLinkRecordsExternalTemplatesTestComponent);
-      element = fixture.debugElement as DebugElement;
-      component = fixture.componentInstance as SkyLinkRecordsExternalTemplatesTestComponent;
-      items = component.items as ScalarObservable<any>;
-      fixture.detectChanges();
-    }));
-
-    it('should not have any items', () => {
-      const elementItems = element.children[0].children.filter(
-        (item) => { return item.name === 'sky-contrib-link-records-item-content'; });
-      expect(elementItems.length).toEqual(1);
-      expect(elementItems[0].children.length).toEqual(0);
-    });
+    fixture.detectChanges();
+    expect(component.matches instanceof Observable).toBe(true);
   });
 
+  it('unlinked matches loaded into state and result item is undefined on ngOnInit', async(() => {
+    let linkRecordMatch = new LinkRecordsMatchModel({
+      key: '1',
+      status: STATUSES.Created,
+      item: { id: '11' }
+    });
+    component.matches = Observable.of([linkRecordMatch]);
+
+    fixture.detectChanges();
+
+    state.map(s => s.matches.items).take(1)
+      .subscribe(m => {
+        let match = m[0];
+        expect(match.key).toEqual(linkRecordMatch.key);
+        expect(match.status).toEqual(linkRecordMatch.status);
+        expect(match.item).toEqual(linkRecordMatch.item);
+      });
+
+    state.map(s => s.results.items).take(1)
+      .subscribe(r => {
+        let result = r[0];
+        expect(result.key).toEqual(linkRecordMatch.key);
+        expect(result.status).toEqual(linkRecordMatch.status);
+        expect(result.item).toBeUndefined();
+      });
+  }));
+
+  it('error is thrown if fields key does equal keyIdSelector on ngOnInit', async(() => {
+    let fields = [{
+      key: 'testKey'
+    }];
+    component.keyIdSelector = 'testKey';
+    component.matchFields = Observable.of(fields);
+
+    try {
+      fixture.detectChanges();
+    } catch (error) {
+      expect(error.message).toEqual("'keyIdSelector' cannot be a match field.");
+    }
+  }));
+
+  it('Linked items are loaded in results state on ngOnInit', async(() => {
+    let item = {
+      id: '1',
+      address: '123',
+      name: 'Kevin'
+    };
+
+    let linkRecordMatch = new LinkRecordsMatchModel({
+      key: '1',
+      status: STATUSES.Linked,
+      item: item
+    });
+
+    component.matches = Observable.of([linkRecordMatch]);
+
+    fixture.detectChanges();
+
+    state.map(s => s.results.items).take(1)
+      .subscribe(r => {
+        let result = r[0];
+        expect(result.status).toEqual(STATUSES.Linked);
+      });
+  }));
+
+  it('linked items w\ new fields are loaded in results state on ngOnInit', async(() => {
+    let item = {
+      id: '1',
+      address: '123',
+      name: 'Kevin'
+    };
+
+    let field = new LinkRecordsFieldModel({
+      key: 'name',
+      label: 'name',
+      currentValue: 'Kevin',
+      newValue: 'Brian'
+    });
+
+    let linkRecordMatch = new LinkRecordsMatchModel({
+      key: '1',
+      status: STATUSES.Linked,
+      item: item
+    });
+
+    component.matches = Observable.of([linkRecordMatch]);
+
+    dispatcher.next(new LinkRecordsSelectedSetSelectedAction('1', 'name', true));
+    dispatcher.next(new LinkRecordsFieldsSetFieldsAction('1', [field]));
+
+    fixture.detectChanges();
+
+    state.map(s => s.results.items).take(1)
+      .subscribe(r => {
+        let result = r[0];
+        expect(result.status).toEqual(STATUSES.Linked);
+        expect(result.item.name).toEqual(field.newValue);
+      });
+  }));
+
+  it('linked item w\ new fields not in results if not in selection on ngOnInit', async(() => {
+    let item = {
+      id: '1',
+      address: '123',
+      name: 'Kevin'
+    };
+
+    let field = new LinkRecordsFieldModel({
+      key: 'name',
+      label: 'name',
+      currentValue: 'Kevin',
+      newValue: 'Brian'
+    });
+
+    let linkRecordMatch = new LinkRecordsMatchModel({
+      key: '1',
+      status: STATUSES.Linked,
+      item: item
+    });
+
+    component.matches = Observable.of([linkRecordMatch]);
+    dispatcher.next(new LinkRecordsFieldsSetFieldsAction('1', [field]));
+
+    fixture.detectChanges();
+
+    state.map(s => s.results.items).take(1)
+      .subscribe(r => {
+        let result = r[0];
+        expect(result.status).toEqual(STATUSES.Linked);
+        expect(result.item.name).not.toEqual(field.newValue);
+      });
+  }));
+
+  it('records returns item match if match key equals keyIdSelector', async(() => {
+    let item = {
+      id: '1',
+      address: '123',
+      name: 'Kevin'
+    };
+
+    let linkRecordMatch = new LinkRecordsMatchModel({
+      key: '1',
+      status: STATUSES.Created,
+      item: { id: '22' }
+    });
+
+    component.items = Observable.of([item]);
+    component.matches = Observable.of([linkRecordMatch]);
+
+    fixture.detectChanges();
+
+    component.records.take(1)
+      .subscribe((r: LinkRecordsItemModel[]) => {
+        let record = r[0];
+        expect(record.key).toEqual(linkRecordMatch.key);
+        expect(record.status).toEqual(linkRecordMatch.status);
+      });
+  }));
+
+  it('records returns undefined match if status is no match', async(() => {
+     let item = {
+      id: '1',
+      address: '123',
+      name: 'Kevin'
+    };
+
+    component.items = Observable.of([item]);
+
+    fixture.detectChanges();
+
+    component.records.take(1).subscribe((r: LinkRecordsItemModel[]) => {
+      let record = r[0];
+      expect(record.status).toEqual(STATUSES.NoMatch);
+    });
+  }));
+
+  it('records returns no match instance if matches is empty', async(() => {
+     let item = {
+      id: '1',
+      address: '123',
+      name: 'Kevin'
+    };
+
+    let linkRecordMatch = new LinkRecordsMatchModel({
+      key: '1',
+      status: STATUSES.NoMatch,
+      item: { id: '22' }
+    });
+
+    component.items = Observable.of([item]);
+    component.matches = Observable.of([linkRecordMatch]);
+
+    fixture.detectChanges();
+
+    component.records.take(1)
+      .subscribe((r: LinkRecordsItemModel[]) => {
+        let record = r[0];
+        expect(record.match).toBeUndefined();
+      });
+  }));
+
+  it('results are returned from state', async(() => {
+    let linkRecordResult = new LinkRecordsResultModel({
+      key: '1',
+      status: STATUSES.Created,
+      item: {}
+    });
+
+    dispatcher.next(new LinkRecordsResultsLoadAction([linkRecordResult]));
+
+    component.results.take(1)
+      .subscribe((r: LinkRecordsResultModel[]) => {
+        let result = r;
+        expect(result.length > 0).toBe(true);
+      });
+  }));
+
+  it('recordMatches are returned from state', async(() => {
+    let linkRecordMatch = new LinkRecordsMatchModel({
+      key: '1',
+      status: STATUSES.Created,
+      item: { id: '11' }
+    });
+
+    dispatcher.next(new LinkRecordsMatchesLoadAction([linkRecordMatch]));
+
+    component.recordMatches.take(1)
+      .subscribe((m: LinkRecordsMatchModel[]) => {
+        let matches = m;
+        expect(matches.length > 0).toBe(true);
+      });
+  }));
+
+  it('LinkRecordsItemModel undefined constructor data init defaults fields', () => {
+    let linkRecordItem = new LinkRecordsItemModel();
+
+    expect(linkRecordItem.key).toBeUndefined();
+    expect(linkRecordItem.status).toBeUndefined();
+    expect(linkRecordItem.item).toBeUndefined();
+    expect(linkRecordItem.match).toBeDefined();
+    expect(linkRecordItem.matchFields).toBeDefined();
+  });
 });
