@@ -28,6 +28,7 @@
       &.link-records-item-diff-value {
         font-family: $sky-font-family-base;
         word-break: break-all;
+        white-space: pre-line;
       }
 
       &.item-deemphasized {
