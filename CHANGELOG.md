@@ -18,3 +18,8 @@
 
 - Added ability to define field label for link component field matching.
 - Fixed issue where filtered checklist was clearing all items or only selecting shown items when clicking 'Select all' or 'Clear all'
+
+# 4.5.4 (2017-09-07)
+
+- Added unit tests for link records component
+- Added 'showNewFieldValues' property to link records component and updated docs and unit tests
