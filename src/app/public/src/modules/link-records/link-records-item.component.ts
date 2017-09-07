@@ -30,6 +30,7 @@ import {
 export class SkyContribLinkRecordsItemComponent implements AfterContentInit {
   public STATUSES = STATUSES;
   @Input() public record: LinkRecordsItemModel;
+  @Input() public showNewFieldValues: boolean;
   @Input() public itemTemplate: TemplateRef<any>;
   @Input() public matchTemplate: TemplateRef<any>;
   @Input() public noMatchTemplate: TemplateRef<any>;
