@@ -22,6 +22,7 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
   @Input() public match: LinkRecordsMatchModel;
   @Input() public fields: Array<any>;
   @Input() public selectedByDefault: boolean;
+  @Input() public showNewFieldValues: boolean;
 
   /* istanbul ignore next */
   constructor(
@@ -38,8 +39,8 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
       .filter(id => this.item.hasOwnProperty(id)
         && this.match.item.hasOwnProperty(id)
         && this.fields.findIndex(f => f.key === id) > -1
-        && (this.item[id] && this.item[id].trim().length > 0)
-        && (this.item[id] !== this.match.item[id]))
+        && (this.item[id] && this.item[id].toString().trim().length > 0)
+        && this.item[id] !== this.match.item[id])
       .map(id => {
         let field = this.fields.find(f => f.key === id);
         return new LinkRecordsFieldModel({
@@ -75,15 +76,15 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
             matchField.key,
             this.selectedByDefault
           ));
-
-          if (matchFields.every(match =>
-            !match.currentValue && match.newValue && match.newValue.length > 0)
-          ) {
-            this.dispatcher.next(
-              new LinkRecordsMatchesSetStatusAction(this.key, STATUSES.Linked)
-            );
-          }
         });
+
+        if (!this.showNewFieldValues && matchFields.every(match =>
+          !match.currentValue && match.newValue && match.newValue.length > 0)
+        ) {
+          this.dispatcher.next(
+            new LinkRecordsMatchesSetStatusAction(this.key, STATUSES.Linked)
+          );
+        }
       });
     }
   }
@@ -103,8 +104,11 @@ export class SkyContribLinkRecordsItemDiffComponent implements OnInit {
       this.state.map(s => s.selected.item[this.key] || {}).distinctUntilChanged(),
       (fields: LinkRecordsFieldModel[], selected: {[key: string]: boolean}) => {
         return fields.map(f => {
+          let checkCurrentValue: boolean = this.showNewFieldValues ? true : f.currentValue;
+
           return {
-            field: f.currentValue && f.newValue && f.newValue.trim().length > 0 ? f : undefined,
+            field: checkCurrentValue && f.newValue &&
+              f.newValue.toString().trim().length > 0 ? f : undefined,
             selected: selected[f.key] || false
           };
         });

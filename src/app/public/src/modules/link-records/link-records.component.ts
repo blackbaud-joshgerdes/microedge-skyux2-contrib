@@ -54,6 +54,7 @@ export class SkyContribLinkRecordsComponent implements OnInit, AfterContentInit,
   @Input() public items: Observable<Array<any>> = Observable.of([]);
   @Input() public matches: Observable<Array<LinkRecordsMatchModel>> = Observable.of([]);
   @Input() public matchFields: Observable<Array<any>> = Observable.of([]);
+  @Input() public showNewFieldValues = true;
   @Input() public itemTemplate: TemplateRef<any>;
   @Input() public matchTemplate: TemplateRef<any>;
   @Input() public noMatchTemplate: TemplateRef<any>;
