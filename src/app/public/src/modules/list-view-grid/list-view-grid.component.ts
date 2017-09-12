@@ -295,7 +295,7 @@ export class SkyContribListViewGridComponent
       this.items.distinctUntilChanged(),
       this.state.map(s => s.selected.item).distinctUntilChanged(),
       (items: Array<ListItemModel>, selected: ListSelectedModel) =>
-        items.every((i: ListItemModel) => selected[i.id] !== undefined)
+        items.length > 0 && items.every((i: ListItemModel) => selected[i.id] !== undefined)
     ).distinctUntilChanged();
   }
 }
