@@ -23,3 +23,9 @@
 
 - Added unit tests for link records component
 - Added 'showNewFieldValues' property to link records component and updated docs and unit tests
+
+# 4.5.5 (2017-09-11)
+
+- Fixed search issue with list view component when search criteria returns no items
+and selectionEnabled is true; selection column checked state is set.
+
