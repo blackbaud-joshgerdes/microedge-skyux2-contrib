@@ -1,14 +1,14 @@
 <div *ngIf="active | async">
   <div *ngIf="!(loading | async)">
-    <div class="sky-repeater-item" *ngFor="let item of items | async">
-      <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-left" [template]="leftTemplate" [item]="item"></sky-contrib-list-view-repeater-renderer>
+    <div class="sky-repeater-item" *ngFor="let item of (items | async); let i = index">
+      <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-left" [template]="leftTemplate" [item]="item" [index]="i"></sky-contrib-list-view-repeater-renderer>
       <div class="sky-contrib-list-view-repeater-title-area">
-        <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-title" [template]="titleTemplate" [item]="item"></sky-contrib-list-view-repeater-renderer>
-        <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-description" [template]="descriptionTemplate" [item]="item"></sky-contrib-list-view-repeater-renderer>
+        <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-title" [template]="titleTemplate" [item]="item" [index]="i"></sky-contrib-list-view-repeater-renderer>
+        <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-description" [template]="descriptionTemplate" [item]="item" [index]="i"></sky-contrib-list-view-repeater-renderer>
       </div>
       <sky-chevron *ngIf="displayContent" [direction]="'up'" (directionChange)="toggleContent(item)"></sky-chevron>
-      <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-right" [template]="rightTemplate" [item]="item"></sky-contrib-list-view-repeater-renderer>
-      <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-content" [template]="contentTemplate" [item]="item" *ngIf="showContent(item) | async"></sky-contrib-list-view-repeater-renderer>
+      <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-right" [template]="rightTemplate" [item]="item" [index]="i"></sky-contrib-list-view-repeater-renderer>
+      <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-content" [template]="contentTemplate" [item]="item" [index]="i" *ngIf="showContent(item) | async"></sky-contrib-list-view-repeater-renderer>
     </div>
   </div>
   <div class="loading" *ngIf="loading | async">

@@ -32,4 +32,5 @@ and selectionEnabled is true; selection column checked state is set.
 # 4.5.6 (2017-09-21)
 
 - added ability to hide content for list view repeater
+- exposed row index for use in repeater templates
 
