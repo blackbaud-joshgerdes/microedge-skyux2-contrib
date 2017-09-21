@@ -50,6 +50,7 @@ import {
 })
 export class SkyContribListViewRepeaterComponent extends ListViewComponent {
   @Input() set name(value: string) { this.viewName = value; }
+  @Input() public displayContent = true;
   /* tslint:disable */
   @Input('search') public searchFunction: (data: any, searchText: string) => boolean;
   /* tslint:enable */
