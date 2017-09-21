@@ -222,6 +222,12 @@ describe('List View Repeater Component', () => {
     it('should return proper label', () => {
       expect(component.repeater.label).toBe('TestRepeaterEmpty');
     });
+
+    it('should not display content chevron', () => {
+      let chevron = element.query(By.css('.sky-chevron'));
+
+      expect(!chevron).toBe(true);
+    });
   });
 
   describe('Template Fixture', () => {

@@ -29,3 +29,7 @@
 - Fixed search issue with list view component when search criteria returns no items
 and selectionEnabled is true; selection column checked state is set.
 
+# 4.5.6 (2017-09-21)
+
+- added ability to hide content for list view repeater
+
