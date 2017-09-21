@@ -10,6 +10,7 @@ import { ListItemModel } from '../list/state/items/item.model';
 })
 export class SkyContribListViewRepeaterRendererComponent implements OnInit {
   @Input() public item: ListItemModel;
+  @Input() public index: number;
   @Input() public template: TemplateRef<any>;
   @ViewChild('container', { read: ViewContainerRef }) public container: ViewContainerRef;
 
