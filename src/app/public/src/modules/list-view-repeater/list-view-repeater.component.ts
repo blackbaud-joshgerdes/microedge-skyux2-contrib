@@ -95,6 +95,10 @@ export class SkyContribListViewRepeaterComponent extends ListViewComponent {
     return this.repeaterState.map(s => s.expanded[item.id]);
   }
 
+  public trackByItemId(index: number, item: ListItemModel): string {
+    return item.id;
+  }
+
   get items(): Observable<Array<ListItemModel>> {
     return this.state.map(s => s.items.items);
   }
