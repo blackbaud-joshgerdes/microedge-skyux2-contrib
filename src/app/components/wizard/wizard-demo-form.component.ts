@@ -22,7 +22,7 @@ export class SkyWizardDemoFormComponent implements SaveAndCloseComponent {
   }
 
   public confirmApply(): void {
-    this.onSaveAndClose.emit(<SaveAndCloseEvent>{ saved: true });
-    this.wizard.close();
+    console.log('save hook');
+    this.wizard.modalInstance.save({ val1: this.requiredValue1, val2: this.requiredValue2 });
   }
 }

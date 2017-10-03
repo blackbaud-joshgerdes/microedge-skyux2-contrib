@@ -1,11 +1,19 @@
 import {
-  Component, Input, Output, EventEmitter,
-  ViewChild, ContentChildren, QueryList,
-  TemplateRef, forwardRef, AfterContentInit
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ContentChildren,
+  QueryList,
+  TemplateRef,
+  forwardRef,
+  AfterContentInit,
+  Inject
 } from '@angular/core';
 import { SkyContribWizardStepComponent } from './wizard-step.component';
 import { SkyContribWizardStepListComponent } from './wizard-step-list.component';
-import { SkyModalComponent } from '@blackbaud/skyux/dist/core';
+import { SkyModalInstance } from '@blackbaud/skyux/dist/modules/modal';
 import { SkyContribWizardHeaderComponent } from './wizard-header.component';
 import { SkyContribWizardStepsComponent } from './wizard-steps.component';
 
@@ -17,7 +25,6 @@ import { SkyContribWizardStepsComponent } from './wizard-steps.component';
 export class SkyContribWizardComponent implements AfterContentInit {
   @Input() public model: any = {};
   @Output() public onSaveAndClose: EventEmitter<any> = new EventEmitter();
-  @ViewChild(SkyModalComponent) public modal: SkyModalComponent;
   @ViewChild(SkyContribWizardStepListComponent) public stepList: SkyContribWizardStepListComponent;
   @ContentChildren(SkyContribWizardStepComponent, {descendants: true})
   public steps: QueryList<SkyContribWizardStepComponent> = undefined;
@@ -33,6 +40,7 @@ export class SkyContribWizardComponent implements AfterContentInit {
   public visitedSteps: Array<SkyContribWizardStepComponent> = [];
 
   private step: SkyContribWizardStepComponent = undefined;
+
   set currentStep(step) {
     this.step = step;
 
@@ -50,7 +58,7 @@ export class SkyContribWizardComponent implements AfterContentInit {
     return this.step;
   }
 
-  constructor() {
+  constructor(@Inject(SkyModalInstance) public modalInstance: SkyModalInstance) {
     this.self = this;
   }
 
@@ -100,10 +108,6 @@ export class SkyContribWizardComponent implements AfterContentInit {
     if (isValid) {
       this.onSaveAndClose.emit({ valid: isValid, model: this.model });
     }
-  }
-
-  public close(): void {
-    this.modal.closeButtonClick();
   }
 
   private getCurrentStepIndex(): number {

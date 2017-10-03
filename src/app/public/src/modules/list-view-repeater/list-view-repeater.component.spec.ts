@@ -210,13 +210,10 @@ describe('List View Repeater Component', () => {
       ).nativeElement.textContent.trim()).toBe('');
 
       let repeaterItem = element.query(By.css('.sky-repeater-item'));
-      repeaterItem.query(By.css('button.sky-chevron')).nativeElement.click();
-      fixture.detectChanges();
+      let chevron = repeaterItem.query(By.css('button.sky-chevron'));
+      expect(!chevron).toBe(true);
 
-      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-content')).length).toBe(1);
-      expect(element.query(
-        By.css('.sky-contrib-list-view-repeater-content')
-      ).nativeElement.textContent.trim()).toBe('');
+      expect(element.queryAll(By.css('.sky-contrib-list-view-repeater-content')).length).toBe(0);
     });
 
     it('should return proper label', () => {

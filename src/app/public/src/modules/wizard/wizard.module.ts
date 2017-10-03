@@ -4,13 +4,12 @@ import { SkyModalModule } from '@blackbaud/skyux/dist/core';
 import { SkyContribWizardComponent } from './wizard.component';
 import { SkyContribWizardStepComponent } from './wizard-step.component';
 import { SkyContribWizardStepListComponent } from './wizard-step-list.component';
-import { SkyContribWizardService } from './wizard.service';
 import { SkyContribWizardStepsComponent } from './wizard-steps.component';
 import { SkyContribWizardHeaderComponent } from './wizard-header.component';
 import { SkyContribWizardRendererComponent } from './wizard-renderer.component';
 
 @NgModule({
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     SkyModalModule
@@ -30,9 +29,6 @@ import { SkyContribWizardRendererComponent } from './wizard-renderer.component';
     SkyContribWizardRendererComponent,
     SkyContribWizardStepsComponent,
     SkyContribWizardHeaderComponent
-  ],
-  providers: [
-    SkyContribWizardService
   ]
 })
-export class SkyContribWizardModule {}
+export class SkyContribWizardModule { }
