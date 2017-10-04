@@ -34,3 +34,7 @@ and selectionEnabled is true; selection column checked state is set.
 - added ability to hide content for list view repeater
 - exposed row index for use in repeater templates
 
+# 4.5.7 (2017-10-3)
+
+- updated skyux dependency to version 2.1.0
+- refactored wizard to use Sky modal service directly

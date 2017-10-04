@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SkyContribWizardService } from '../../public';
+import { SkyModalService } from '@blackbaud/skyux/dist/core';
 import { SkyWizardDemoFormComponent } from './wizard-demo-form.component';
 
 @Component({
@@ -7,12 +7,12 @@ import { SkyWizardDemoFormComponent } from './wizard-demo-form.component';
   templateUrl: './wizard-demo.component.html'
 })
 export class SkyWizardDemoComponent {
-  constructor(private wizardService: SkyContribWizardService) {}
+  constructor(private wizardService: SkyModalService) {}
 
   public openWizard() {
     this.wizardService.open(SkyWizardDemoFormComponent, undefined)
-      .onSaved.subscribe((r: any) => {
-        console.log('wizard saved!');
+      .closed.subscribe((r: any) => {
+        console.log('wizard saved!', r);
       });
   }
 }
