@@ -38,3 +38,7 @@ and selectionEnabled is true; selection column checked state is set.
 
 - updated skyux dependency to version 2.1.0
 - refactored wizard to use Sky modal service directly
+
+# 4.5.8 (2017-10-5)
+
+- updated skyux dependency to version 2.2.0
