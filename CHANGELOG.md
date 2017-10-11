@@ -42,3 +42,8 @@ and selectionEnabled is true; selection column checked state is set.
 # 4.5.8 (2017-10-5)
 
 - updated skyux dependency to version 2.2.0
+
+# 4.5.9 (2017-10-11)
+
+- fixed list repeater chevron to properly reflect item's expanded state
+- only show scroll bars for list view grid when necessary
