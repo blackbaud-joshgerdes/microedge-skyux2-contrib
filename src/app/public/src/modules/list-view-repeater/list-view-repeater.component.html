@@ -6,7 +6,7 @@
         <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-title" [template]="titleTemplate" [item]="item" [index]="i"></sky-contrib-list-view-repeater-renderer>
         <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-description" [template]="descriptionTemplate" [item]="item" [index]="i"></sky-contrib-list-view-repeater-renderer>
       </div>
-      <sky-chevron *ngIf="displayContent" [direction]="'up'" (directionChange)="toggleContent(item)"></sky-chevron>
+      <sky-chevron *ngIf="displayContent" [direction]="(showContent(item) | async) ? 'up' : 'down'" (directionChange)="toggleContent(item)"></sky-chevron>
       <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-right" [template]="rightTemplate" [item]="item" [index]="i"></sky-contrib-list-view-repeater-renderer>
       <sky-contrib-list-view-repeater-renderer class="sky-contrib-list-view-repeater-content" [template]="contentTemplate" [item]="item" [index]="i" *ngIf="showContent(item) | async"></sky-contrib-list-view-repeater-renderer>
     </div>
