@@ -31,7 +31,7 @@
     "madlib-shim-easyxdm": "^2.4.20-7",
     "microedge-rxstate": "^2.0.1",
     "mixpanel-browser": "^2.11.1",
-    "moment": "^2.18.1",
+    "moment": "2.18.1",
     "ng2-dragula": "1.5.0",
     "ng2-toastr": "4.1.2",
     "normalize-scss": "^7.0.0"
