@@ -65,89 +65,89 @@
 }
 
 .toast-success {
-  background-color: $sky-color-green;
+  background-color: $sky-highlight-color-success;
 
   .toast-close {
-    background-color: $sky-color-green-lighter;
-    color: $sky-color-green;
-    border: 1px solid $sky-color-green;
+    background-color: $sky-background-color-success;
+    color: $sky-highlight-color-success;
+    border: 1px solid $sky-highlight-color-success;
 
     &:hover {
-      background-color: $sky-color-green-light;
+      background-color: $sky-color-green-30;
     }
   }
 
   a {
-    color: $sky-color-green-lighter;
+    color: $sky-highlight-color-success;
 
     &:hover {
-      color: $sky-color-green-light;
+      color: $sky-color-green-30;
     }
   }
 }
 
 .toast-info {
-  background-color: $sky-color-blue;
+  background-color: $sky-highlight-color-info;
 
   .toast-close {
-    background-color: $sky-color-blue-lighter;
-    color: $sky-color-blue;
-    border: 1px solid $sky-color-blue;
+    background-color: $sky-background-color-info;
+    color: $sky-highlight-color-info;
+    border: 1px solid $sky-highlight-color-info;
 
     &:hover {
-      background-color: $sky-color-blue-light;
+      background-color: $sky-background-color-info-light;
     }
   }
 
   a {
-    color: $sky-color-blue-lighter;
+    color: $sky-highlight-color-info;
 
     &:hover {
-      color: $sky-color-blue-light;
+      color: $sky-background-color-info-light;
     }
   }
 }
 
 .toast-warning {
-  background-color: $sky-color-yellow;
+  background-color: $sky-highlight-color-warning;
 
   .toast-close {
-    background-color: $sky-color-yellow-lighter;
-    color: $sky-color-yellow;
-    border: 1px solid $sky-color-yellow;
+    background-color: $sky-background-color-warning;
+    color: $sky-highlight-color-warning;
+    border: 1px solid $sky-highlight-color-warning;
 
     &:hover {
-      background-color: $sky-color-yellow-light;
+      background-color: $sky-color-yellow-30;
     }
   }
 
   a {
-    color: $sky-color-yellow-lighter;
+    color: $sky-highlight-color-warning;
 
     &:hover {
-      color: $sky-color-yellow-light;
+      color: $sky-color-yellow-30;
     }
   }
 }
 
 .toast-error {
-  background-color: $sky-color-red;
+  background-color: $sky-highlight-color-danger;
 
   .toast-close {
-    background-color: $sky-color-red-lighter;
-    color: $sky-color-red;
-    border: 1px solid $sky-color-red;
+    background-color: $sky-background-color-danger;
+    color: $sky-highlight-color-danger;
+    border: 1px solid $sky-highlight-color-danger;
 
     &:hover {
-      background-color: $sky-color-red-light;
+      background-color: $sky-color-red-30;
     }
   }
 
   a {
-    color: $sky-color-red-lighter;
+    color: $sky-highlight-color-danger;
 
     &:hover {
-      color: $sky-color-red-light;
+      color: $sky-color-red-30;
     }
   }
 }

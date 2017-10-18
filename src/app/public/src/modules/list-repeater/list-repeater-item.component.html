@@ -1,9 +1,0 @@
-<sky-contrib-list-repeater-renderer [item]="item" class="sky-contrib-list-repeater-item-left" *ngIf="!isEditing" [template]="leftTemplate"></sky-contrib-list-repeater-renderer>
-<div class="sky-contrib-list-repeater-item-title-area" *ngIf="!isEditing">
-  <sky-contrib-list-repeater-renderer [item]="item" class="sky-contrib-list-repeater-item-title" *ngIf="!isEditing" [template]="titleTemplate"></sky-contrib-list-repeater-renderer>
-  <sky-contrib-list-repeater-renderer [item]="item" class="sky-contrib-list-repeater-item-description" *ngIf="!isEditing" [template]="descriptionTemplate"></sky-contrib-list-repeater-renderer>
-</div>
-<sky-chevron [direction]="isExpanded ? 'up' : 'down'" (directionChange)="toggle($event)" *ngIf="!isEditing && isExpandable && !showContent"></sky-chevron>
-<sky-contrib-list-repeater-renderer [item]="item" class="sky-contrib-list-repeater-item-right" *ngIf="!isEditing" [template]="rightTemplate"></sky-contrib-list-repeater-renderer>
-<sky-contrib-list-repeater-renderer [item]="item" class="sky-contrib-list-repeater-item-content" *ngIf="!isEditing" [template]="contentTemplate"></sky-contrib-list-repeater-renderer>
-<sky-contrib-list-repeater-renderer [item]="item" class="sky-contrib-list-repeater-item-editor" *ngIf="isEditing" [template]="editorTemplate"></sky-contrib-list-repeater-renderer>

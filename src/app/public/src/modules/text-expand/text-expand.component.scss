@@ -2,10 +2,10 @@
 
 .btn-link {
   background-color: transparent;
-  color: $sky-color-blue;
+  color: $sky-color-blue-50;
   padding: 0;
   &:hover {
-    color: $sky-color-blue-darker;
+    color: $sky-color-blue-70;
     text-decoration: underline;
   }
 }

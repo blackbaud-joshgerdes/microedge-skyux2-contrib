@@ -3,8 +3,8 @@
 
 // Custom contrib styles
 @mixin sky-field-disabled {
-  border-right: 1px solid $sky-color-gray-lighter !important;
-  background-color: $sky-color-gray-lightest !important;
+  border-right: 1px solid $sky-color-gray-05 !important;
+  background-color: $sky-color-gray-01 !important;
   color: $sky-button-primary-color-disabled;
   pointer-events: none;
   opacity: 0.65;

@@ -17,8 +17,8 @@
 
   li {
     float: left;
-    color: $sky-color-gray;
-    background-color: $sky-color-gray-lighter;
+    color: $sky-color-gray-70;
+    background-color: $sky-border-color-neutral-light;
     border-radius: 3px;
     padding: 5px 10px;
 
@@ -31,23 +31,23 @@
     cursor: pointer;
 
     &.active, &.active.disabled, &.active.visited.valid {
-      background-color: $sky-color-green;
+      background-color: $sky-color-green-50;
       color: $sky-color-white;
     }
 
     &.visited.valid {
-      background-color: $sky-color-green-light;
+      background-color: $sky-color-blue-30;
       color: $sky-color-white;
     }
 
     &.active.valid + li.visited.disabled:not(.active) {
-      color: $sky-color-blue;
+      color: $sky-color-blue-50;
       pointer-events: auto;
       cursor: pointer;
     }
 
     &.disabled, &:not(.visited) {
-      color: $sky-color-gray;
+      color: $sky-color-gray-70;
       pointer-events: none;
       cursor: not-allowed;
     }

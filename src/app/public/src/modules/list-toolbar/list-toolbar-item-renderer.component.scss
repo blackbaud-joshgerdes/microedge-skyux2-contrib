@@ -23,13 +23,13 @@
       width: 150px;
       border-radius: 6px;
       line-height: 1.42857;
-      border: 1px solid $sky-color-gray-lighter-er;
+      border: 1px solid $sky-color-gray-05;
       outline: none;
       -webkit-appearance: none;
 
       &:focus {
         box-shadow: 3px 0 8px 0 $sky-search-bar-outline-color;
-        border: 1px solid $sky-color-blue;
+        border: 1px solid $sky-color-blue-50;
         border-right: none;
       }
 

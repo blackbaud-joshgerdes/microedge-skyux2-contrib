@@ -1,24 +1,53 @@
 @import "mixins";
-@import "variables";
 
 .sky-form-control {
   width: 100%;
   padding: 6px 12px;
-  border: 1px solid $sky-border-color;
+  @include sky-border(dark, top, bottom, left, right);
   line-height: $sky-line-height-base;
   font-size: $sky-font-size-base;
+  color: $sky-text-color-default;
+
+  &:focus {
+    @include sky-field-status(active);
+  }
 }
 
 .sky-form-group {
-  margin-bottom: $sky-margin-half;
+  margin-bottom: $sky-margin;
 }
 
 input.ng-invalid.ng-touched,
 select.ng-invalid.submitted {
-  @include sky-field-invalid;
+  @include sky-field-status(invalid);
 }
 
 .sky-error-label {
-  color: $sky-danger-text-color;
-  margin-bottom: 2px;
+  margin-top: $sky-margin-half;
+  color: $sky-text-color-default;
+}
+
+.sky-error-label::before {
+  content: "\f071";
+  font-family: FontAwesome;
+  margin-right: 5px;
+  color: $sky-highlight-color-danger;
+}
+
+.sky-control-label {
+  display: inline-block;
+  font-weight: normal;
+  margin-bottom: $sky-margin-half;
+  max-width: 100%;
+}
+
+.sky-control-label-required:after {
+  @include sky-required-field;
+}
+
+// turning off normalized CSS from normalize
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
