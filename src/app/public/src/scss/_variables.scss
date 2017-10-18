@@ -12,46 +12,39 @@ $sky-color-gray-lightest-est: #f9f8f8;
 $sky-color-background-gray: #f3f3f4;
 $sky-color-border-gray: #e7eaec;
 
-$sky-color-green-light: scale-color($sky-color-green, $lightness: 80%) !default;
-$sky-color-blue-light: scale-color($sky-color-blue, $lightness: 80%) !default;
-$sky-color-aqua-light: scale-color($sky-color-aqua, $lightness: 80%) !default;
-$sky-color-yellow-light: scale-color($sky-color-yellow, $lightness: 80%) !default;
-$sky-color-red-light: scale-color($sky-color-red, $lightness: 80%) !default;
-$sky-color-white-light: scale-color($sky-color-white, $lightness: 80%) !default;
-$sky-color-purple-light: scale-color($sky-color-purple, $lightness: 80%) !default;
+$sky-color-teal-light: scale-color($sky-color-teal-50, $lightness: 80%) !default;
+$sky-color-yellow-light: scale-color($sky-color-yellow-50, $lightness: 80%) !default;
+$sky-color-red-light: scale-color($sky-color-red-50, $lightness: 80%) !default;
+$sky-color-purple-light: scale-color($sky-color-purple-50, $lightness: 80%) !default;
 
-$sky-color-green-lighter: scale-color($sky-color-green, $lightness: 90%) !default;
-$sky-color-blue-lighter: scale-color($sky-color-blue, $lightness: 90%) !default;
-$sky-color-aqua-lighter: scale-color($sky-color-aqua, $lightness: 90%) !default;
-$sky-color-yellow-lighter: scale-color($sky-color-yellow, $lightness: 90%) !default;
-$sky-color-red-lighter: scale-color($sky-color-red, $lightness: 90%) !default;
-$sky-color-white-lighter: scale-color($sky-color-white, $lightness: 90%) !default;
-$sky-color-purple-lighter: scale-color($sky-color-purple, $lightness: 90%) !default;
+$sky-color-blue-lighter: scale-color($sky-color-blue-50, $lightness: 90%) !default;
+$sky-color-teal-lighter: scale-color($sky-color-teal-50, $lightness: 90%) !default;
+$sky-color-yellow-lighter: scale-color($sky-color-yellow-50, $lightness: 90%) !default;
+$sky-color-red-lighter: scale-color($sky-color-red-50, $lightness: 90%) !default;
+$sky-color-purple-lighter: scale-color($sky-color-purple-50, $lightness: 90%) !default;
 
-$sky-color-blue-dark: darken($sky-color-blue, 5%) !default;
-$sky-color-blue-darker: darken($sky-color-blue, 15%) !default;
+$sky-color-blue-dark: darken($sky-color-blue-50, 5%) !default;
+$sky-color-blue-darker: darken($sky-color-blue-50, 15%) !default;
 
-$sky-font-size-md: ceil(($sky-font-size-base * 0.92)) !default; // ~13px
-
-$sky-font-me-size-xxl: floor(($sky-font-size-base * 2.286)) !default; // ~32px
-$sky-font-me-size-xl: floor(($sky-font-size-base * 1.72)) !default; // ~24px
-$sky-font-me-size-lg: ceil(($sky-font-size-base * 1.357)) !default; // ~19px
-$sky-font-me-size-md: ceil(($sky-font-size-base * 0.92)) !default; // ~13px
-$sky-font-me-size-sm: ceil(($sky-font-size-base * 0.714)) !default; // ~10px
+$sky-font-size-xxl: floor(($sky-font-size-base * 2.286)) !default; // ~32px
+$sky-font-size-xl: floor(($sky-font-size-base * 1.72)) !default; // ~24px
+$sky-font-size-lg: floor(($sky-font-size-base * 1.357)) !default; // ~20px
+$sky-font-size-md: floor(($sky-font-size-base * 0.92)) !default; // ~13px
+$sky-font-size-sm: floor(($sky-font-size-base * 0.714)) !default; // ~10px
 
 $sky-button-primary-color-disabled: #cacaca;
 $sky-button-secondary-border: #e7eaec;
 $sky-button-secondary-border-active: #d2d2d2;
-$sky-button-link-color: $sky-color-blue;
+$sky-button-link-color: $sky-color-blue-50;
 $sky-button-link-color-active: #135783;
 
 $sky-search-bar-outline-color: rgba(28,132,198,0.6);
 
 $sky-form-color: #555;
 $sky-form-color-active: #66afe9;
-$sky-form-error-border-color: #ed5565;
-$sky-form-error-shadow-color: #a94442;
-$sky-form-error-color: #ca2a2a;
+$sky-form-error-border-color: lighten($sky-highlight-color-danger, 5%) !default;
+$sky-form-error-shadow-color: darken($sky-highlight-color-danger, 15%) !default;
+$sky-form-error-color: $sky-highlight-color-danger;
 
 $sky-navbar-color: #a7b1c2;
 $sky-navbar-bg-color: #2f4050;

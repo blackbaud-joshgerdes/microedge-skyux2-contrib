@@ -12,9 +12,9 @@
   }
 
   .sky-contrib-vertical-tabbar-menu {
-    border-right: 1px solid $sky-border-color;
+    border-right: 1px solid $sky-border-color-neutral-light;
     flex-basis: 25%;
-    font-family: $sky-font-family-base;
+    font-family: $sky-font-family;
     list-style: none inside;
     margin: 0;
     min-width: 150px;
@@ -29,7 +29,7 @@
         color: $sky-color-gray-light;
         cursor: pointer;
         display: block;
-        font-size: $sky-font-me-size-md;
+        font-size: $sky-font-size-md;
         margin: 0;
         overflow: hidden;
         padding: 9px 15px;
@@ -43,7 +43,7 @@
 
         &.active {
           background-color: $sky-color-gray-lighter-er;
-          border-left: 4px solid $sky-color-blue;
+          border-left: 4px solid $sky-color-blue-50;
           color: $sky-color-black;
           cursor: default;
         }

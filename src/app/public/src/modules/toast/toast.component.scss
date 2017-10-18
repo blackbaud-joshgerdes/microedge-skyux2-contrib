@@ -65,37 +65,37 @@
 }
 
 .toast-success {
-  background-color: $sky-color-green;
+  background-color: $sky-color-green-50;
 
   .toast-close {
-    background-color: $sky-color-green-lighter;
-    color: $sky-color-green;
-    border: 1px solid $sky-color-green;
+    background-color: $sky-color-green-30;
+    color: $sky-color-green-50;
+    border: 1px solid $sky-color-green-50;
 
     &:hover {
-      background-color: $sky-color-green-light;
+      background-color: $sky-color-blue-30;
     }
   }
 
   a {
-    color: $sky-color-green-lighter;
+    color: $sky-color-green-30;
 
     &:hover {
-      color: $sky-color-green-light;
+      color: $sky-color-blue-30;
     }
   }
 }
 
 .toast-info {
-  background-color: $sky-color-blue;
+  background-color: $sky-color-blue-50;
 
   .toast-close {
     background-color: $sky-color-blue-lighter;
-    color: $sky-color-blue;
-    border: 1px solid $sky-color-blue;
+    color: $sky-color-blue-50;
+    border: 1px solid $sky-color-blue-50;
 
     &:hover {
-      background-color: $sky-color-blue-light;
+      background-color: $sky-color-blue-30;
     }
   }
 
@@ -103,18 +103,18 @@
     color: $sky-color-blue-lighter;
 
     &:hover {
-      color: $sky-color-blue-light;
+      color: $sky-color-blue-30;
     }
   }
 }
 
 .toast-warning {
-  background-color: $sky-color-yellow;
+  background-color: $sky-color-yellow-50;
 
   .toast-close {
     background-color: $sky-color-yellow-lighter;
-    color: $sky-color-yellow;
-    border: 1px solid $sky-color-yellow;
+    color: $sky-color-yellow-50;
+    border: 1px solid $sky-color-yellow-50;
 
     &:hover {
       background-color: $sky-color-yellow-light;
@@ -131,12 +131,12 @@
 }
 
 .toast-error {
-  background-color: $sky-color-red;
+  background-color: $sky-color-red-50;
 
   .toast-close {
     background-color: $sky-color-red-lighter;
-    color: $sky-color-red;
-    border: 1px solid $sky-color-red;
+    color: $sky-color-red-50;
+    border: 1px solid $sky-color-red-50;
 
     &:hover {
       background-color: $sky-color-red-light;
