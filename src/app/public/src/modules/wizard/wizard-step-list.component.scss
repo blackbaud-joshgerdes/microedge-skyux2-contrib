@@ -17,7 +17,7 @@
 
   li {
     float: left;
-    color: $sky-color-gray;
+    color: $sky-color-gray-70;
     background-color: $sky-border-color-neutral-light;
     border-radius: 3px;
     padding: 5px 10px;
@@ -47,7 +47,7 @@
     }
 
     &.disabled, &:not(.visited) {
-      color: $sky-color-gray;
+      color: $sky-color-gray-70;
       pointer-events: none;
       cursor: not-allowed;
     }

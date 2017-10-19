@@ -26,7 +26,7 @@
 
       a {
         border-left: 4px solid rgba(0, 0, 0, 0);
-        color: $sky-color-gray-light;
+        color: $sky-color-gray-20;
         cursor: pointer;
         display: block;
         font-size: $sky-font-size-md;
@@ -37,12 +37,12 @@
         white-space: nowrap;
 
         &:hover {
-          background-color: $sky-color-gray-lighter-er;
+          background-color: $sky-color-gray-01;
           border-color: rgba(0, 0, 0, 0);
         }
 
         &.active {
-          background-color: $sky-color-gray-lighter-er;
+          background-color: $sky-color-gray-01;
           border-left: 4px solid $sky-color-blue-50;
           color: $sky-color-black;
           cursor: default;
@@ -54,9 +54,9 @@
         }
 
         &[disabled="true"] {
-          background-color: $sky-color-gray-lighter-er;
+          background-color: $sky-color-gray-01;
           border-left: 4px solid rgba(0, 0, 0, 0);
-          color: $sky-color-gray-light;
+          color: $sky-color-gray-20;
           cursor: default;
         }
       }

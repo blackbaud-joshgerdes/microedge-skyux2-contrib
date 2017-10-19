@@ -8,10 +8,10 @@
   }
 
   .sky-repeater-item {
-    border-bottom: 1px solid $sky-color-border-gray;
+    border-bottom: 1px solid $sky-color-gray-05;
     display: flex;
     flex-flow: row wrap;
-    font-size: 12px;
+    font-size: $sky-font-size-md;
     padding: 10px;
 
     .sky-contrib-list-view-repeater-title-area {

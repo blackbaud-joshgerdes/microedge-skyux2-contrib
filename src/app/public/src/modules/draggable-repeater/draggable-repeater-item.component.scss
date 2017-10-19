@@ -2,7 +2,7 @@
 
 :host {
   display: flex;
-  background: $sky-color-gray-lightest;
+  background: $sky-color-gray-01;
   border: 1px solid $sky-border-color-neutral-light;
   border-radius: 10px;
   margin: 0 0 8px;
@@ -25,7 +25,7 @@
 
   .sky-contrib-draggable-repeater-item-content {
     flex-grow: 1;
-    font-size: 13px;
+    font-size: $sky-font-size-md;
     padding: 0 10px;
     word-wrap: break-word;
     overflow: hidden;
@@ -37,7 +37,7 @@
 
   .sky-contrib-draggable-repeater-item-title {
     color: $sky-color-green-50;
-    font-size: 13px;
+    font-size: $sky-font-size-md;
     font-weight: bold;
     word-wrap: break-word;
     overflow: hidden;
