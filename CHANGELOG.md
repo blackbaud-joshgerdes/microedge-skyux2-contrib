@@ -48,6 +48,9 @@ and selectionEnabled is true; selection column checked state is set.
 - fixed list repeater chevron to properly reflect item's expanded state
 - only show scroll bars for list view grid when necessary
 
-# 4.5.6 (2017-10-19)
+# 4.6.0 (2017-10-23)
 
-- made list toolbar responsive
+- updated skyux dependency to 2.3.0, skyux-builder to 1.3.0
+- removed deprecated components (list-repeater, navbar, tabbar, spinner, omnibar, checklist)
+- updated scss files to use latest skyux styles
+- made list toolbar responsive.

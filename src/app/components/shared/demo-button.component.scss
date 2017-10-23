@@ -21,11 +21,11 @@
   color: #000;
   display: block;
   text-decoration: none;
-  border: solid 1px $sky-color-gray-lightest;
+  border: solid 1px $sky-color-gray-05;
 
   h3 {
-    background-color: scale-color($color: $sky-color-gray-lightest, $lightness: 50%);
-    border-bottom: solid 1px $sky-color-gray-lightest;
+    background-color: $sky-color-gray-01;
+    border-bottom: solid 1px $sky-color-gray-05;
     font-size: $sky-font-size-lg;
     margin: 0;
     padding: $sky-padding;
@@ -47,7 +47,7 @@
 }
 
 .sky-demo-button-icon {
-  color: $sky-color-gray;
+  color: $sky-color-gray-70;
   display: block;
   flex-grow: 0;
   padding: $sky-padding-double;
