@@ -9,10 +9,4 @@
   .sky-modal-header {
     font-weight: bold;
   }
-
-  .sky-modal-footer {
-    button {
-      @include sky-button-primary;
-    }
-  }
 }

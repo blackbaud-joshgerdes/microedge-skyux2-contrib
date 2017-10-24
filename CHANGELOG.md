@@ -54,3 +54,7 @@ and selectionEnabled is true; selection column checked state is set.
 - removed deprecated components (list-repeater, navbar, tabbar, spinner, omnibar, checklist)
 - updated scss files to use latest skyux styles
 - made list toolbar responsive.
+
+# 4.6.1 (2017-10-24)
+
+- updated button styles across the board to use skyux styles
