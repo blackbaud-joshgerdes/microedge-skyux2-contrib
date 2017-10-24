@@ -1,6 +1,6 @@
 {
   "name": "microedge-skyux2-contrib",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "description": "Holding place for Microedge SkyUX components that are yet contributed to the main SkyUX repo.",
   "homepage": "https://github.com/blackbaud/microedge-skyux2-contrib#readme",
   "main": "bundles/bundle.umd.js",

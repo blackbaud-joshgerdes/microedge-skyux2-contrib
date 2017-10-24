@@ -8,8 +8,8 @@
     </div>
   </sky-modal-content>
   <sky-modal-footer>
-    <button cmp-id="apply-filters" class="primary" (click)="applyFilters()" [disabled]="!isValid()">Apply filters</button>
-    <button cmp-id="clear-filters" class="link" (click)="clearFilters()">Clear all filters</button>
-    <button cmp-id="cancel" class="link" (click)="modal.closeButtonClick()">Cancel</button>
+    <button cmp-id="apply-filters" class="sky-btn sky-btn-primary" (click)="applyFilters()" [class.sky-btn-disabled]="!isValid()" [disabled]="!isValid()">Apply filters</button>
+    <button cmp-id="clear-filters" class="sky-btn sky-btn-link" (click)="clearFilters()">Clear all filters</button>
+    <button cmp-id="cancel" class="sky-btn sky-btn-link" (click)="modal.closeButtonClick()">Cancel</button>
   </sky-modal-footer>
 </sky-modal>
