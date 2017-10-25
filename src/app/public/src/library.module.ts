@@ -14,7 +14,6 @@ import { SkyContribListViewRepeaterModule } from './modules/list-view-repeater';
 import { SkyContribLocaleCurrencyMaskModule } from './modules/locale-currency-mask';
 import { SkyContribLocaleModule } from './modules/locale';
 import { SkyContribSharedModule } from './modules/shared';
-import { SkyContribTextExpandModule } from './modules/text-expand';
 import { SkyContribToastModule } from './modules/toast';
 import { SkyContribTranslateModule } from './modules/translation';
 import { SkyContribTreeViewModule } from './modules/tree-view';
@@ -37,7 +36,6 @@ export * from './modules/locale';
 export * from './modules/locale-currency-mask';
 export * from './modules/page';
 export * from './modules/shared';
-export * from './modules/text-expand';
 export * from './modules/toast';
 export * from './modules/translation';
 export * from './modules/tree-view';
@@ -63,7 +61,6 @@ export * from './modules/wizard';
     SkyContribLocaleCurrencyMaskModule,
     SkyContribLocaleModule,
     SkyContribSharedModule,
-    SkyContribTextExpandModule,
     SkyContribToastModule,
     SkyContribTranslateModule,
     SkyContribTreeViewModule,
@@ -86,7 +83,6 @@ export * from './modules/wizard';
     SkyContribLocaleCurrencyMaskModule,
     SkyContribLocaleModule,
     SkyContribSharedModule,
-    SkyContribTextExpandModule,
     SkyContribToastModule,
     SkyContribTranslateModule,
     SkyContribTreeViewModule,
