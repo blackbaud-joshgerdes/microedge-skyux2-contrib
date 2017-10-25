@@ -58,3 +58,4 @@ and selectionEnabled is true; selection column checked state is set.
 # 4.6.1 (2017-10-24)
 
 - updated button styles across the board to use skyux styles
+- removed text expand component
