@@ -3,8 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'sky-contrib-list-action-bar-demo',
-  templateUrl: './list-action-bar-demo.component.html',
-  styleUrls: ['./list-action-bar-demo.component.scss']
+  templateUrl: './list-action-bar-demo.component.html'
 })
 export class SkyContribListActionBarDemoComponent {
   public items: Observable<any> = Observable.of([

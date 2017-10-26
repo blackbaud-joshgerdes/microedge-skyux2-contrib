@@ -13,6 +13,10 @@ export class SkyContribWizardStepListComponent {
   @Input() public wizard: SkyContribWizardComponent;
 
   public isStepEnabled(step: SkyContribWizardStepComponent) {
+    if (step === this.currentStep) {
+      return true;
+    }
+
     let steps = this.steps.toArray();
     let index = steps.indexOf(step);
 

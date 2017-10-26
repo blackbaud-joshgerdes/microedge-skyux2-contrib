@@ -132,12 +132,3 @@
     width: 30px;
   }
 }
-
-@mixin sky-link() {
-  color: $sky-color-blue-50;
-  text-decoration: none;
-
-  &:hover, &:visited, &:active {
-    color: $sky-button-link-color-active;
-  }
-}

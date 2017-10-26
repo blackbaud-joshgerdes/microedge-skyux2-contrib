@@ -16,10 +16,6 @@
     font-size: $sky-font-size-md;
   }
 
-  /deep/ a {
-    @include sky-link();
-  }
-
   /deep/ .toolbar-item-container {
     position: relative;
 
@@ -69,7 +65,7 @@
 
   /deep/ button {
     border-radius: 3px;
-    color: $sky-color-black;
+    color: $sky-text-color-default;
     background-color: $sky-color-white;
     border: 1px solid #e7eaec;
     padding: 6px 12px;
