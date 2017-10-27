@@ -63,3 +63,7 @@ and selectionEnabled is true; selection column checked state is set.
 # 4.6.2 (2017-10-26)
 
 - addressed various style issues and fixed them.
+
+# 4.6.3 (2017-10-27)
+
+- fixed styles for wizard footer buttons
