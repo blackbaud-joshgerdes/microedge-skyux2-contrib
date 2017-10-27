@@ -45,7 +45,7 @@
     border-bottom: 1px dotted #ccc;
 
     &:nth-child(odd) {
-      background-color: #f3f3f4;
+      background-color: $sky-background-color-neutral-light;
     }
 
     td {
@@ -56,8 +56,9 @@
   th {
     border: 1px solid $sky-border-color-neutral-light;
     border-right-width: 0px;
-    font-weight: 600;
-    color: grey;
+    font-weight: 400;
+    color: $sky-color-gray-70;
+    font-size: $sky-font-size-base;
     cursor: pointer;
 
     overflow: hidden;

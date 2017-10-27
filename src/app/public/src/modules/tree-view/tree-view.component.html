@@ -1,8 +1,8 @@
 <div *ngIf="showControls" class="tree-header-bar">
-  <a href (click)="clickExpandAll(); false">Expand all</a>
-  <a href (click)="clickCollapseAll(); false">Collapse all</a>
-  <a *ngIf="selectable" href (click)="clickSelectAll(); false">Select all</a>
-  <a *ngIf="selectable" href (click)="clickClearAll(); false">Clear all</a>
+  <a class="sky-btn-link" href (click)="clickExpandAll(); false">Expand all</a>
+  <a class="sky-btn-link" href (click)="clickCollapseAll(); false">Collapse all</a>
+  <a class="sky-btn-link" *ngIf="selectable" href (click)="clickSelectAll(); false">Select all</a>
+  <a class="sky-btn-link" *ngIf="selectable" href (click)="clickClearAll(); false">Clear all</a>
 </div>
 <ul>
   <li *ngFor="let node of rootNodes | async">

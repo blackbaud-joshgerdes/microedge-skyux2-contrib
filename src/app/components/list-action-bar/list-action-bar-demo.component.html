@@ -11,10 +11,10 @@
 
   <sky-contrib-list-action-bar #bar>
     <sky-contrib-list-action-bar-item id="item1-button">
-      <ng-template><button id="btn" (click)="bar.selectAll()">Select all</button></ng-template>
+      <ng-template><button class="sky-btn sky-btn-primary" (click)="bar.selectAll()">Select all</button></ng-template>
     </sky-contrib-list-action-bar-item>
     <sky-contrib-list-action-bar-item id="item2-link">
-      <ng-template><a id="link" href (click)="bar.clearAll(); false;">Clear all</a></ng-template>
+      <ng-template><a class="sky-btn-link" href (click)="bar.clearAll(); false;">Clear all</a></ng-template>
     </sky-contrib-list-action-bar-item>
     <sky-contrib-list-action-bar-item id="item3-input-template" [template]="reusableTemplate">
     </sky-contrib-list-action-bar-item>

@@ -17,36 +17,35 @@
 
   li {
     float: left;
-    color: $sky-color-gray-70;
+    color: $sky-text-color-default;
     background-color: $sky-border-color-neutral-light;
+    border: 1px solid $sky-border-color-neutral-light;
     border-radius: 3px;
     padding: 5px 10px;
 
     max-width: 200px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-weight: 600;
+    font-weight: 400;
     margin-right: 5px;
     margin-bottom: 5px;
     cursor: pointer;
 
     &.active, &.active.disabled, &.active.visited.valid {
-      background-color: $sky-color-green-50;
-      color: $sky-color-white;
+      background-color: $sky-background-color-info;
     }
 
     &.visited.valid {
-      background-color: $sky-color-blue-30;
-      color: $sky-color-white;
+      background-color: $sky-color-white;
     }
 
     &.active.valid + li.visited.disabled:not(.active) {
-      color: $sky-color-blue-50;
       pointer-events: auto;
       cursor: pointer;
     }
 
     &.disabled, &:not(.visited) {
+      background-color: $sky-color-gray-05;
       color: $sky-color-gray-70;
       pointer-events: none;
       cursor: not-allowed;
