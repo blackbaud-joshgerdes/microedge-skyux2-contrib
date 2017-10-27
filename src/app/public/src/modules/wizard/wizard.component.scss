@@ -32,12 +32,6 @@
     }
   }
 
-  button[disabled] {
-    color: #cacaca;
-    pointer-events: none;
-    opacity: 0.65;
-  }
-
   button[hidden] {
     display: none;
   }
