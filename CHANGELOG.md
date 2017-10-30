@@ -64,6 +64,7 @@ and selectionEnabled is true; selection column checked state is set.
 
 - addressed various style issues and fixed them.
 
-# 4.6.3 (2017-10-27)
+# 4.6.3 (2017-10-30)
 
 - fixed styles for wizard footer buttons
+- Fixed button color for search bar
