@@ -124,6 +124,7 @@
   button {
     @include sky-button-link;
 
+    color: $sky-text-color-default;
     height: 30px;
     margin: 0 10px 0 0;
     overflow: hidden;
