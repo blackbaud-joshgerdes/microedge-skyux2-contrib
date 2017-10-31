@@ -68,3 +68,7 @@ and selectionEnabled is true; selection column checked state is set.
 
 - fixed styles for wizard footer buttons
 - Fixed button color for search bar
+
+# 4.6.4 (2017-10-31)
+
+- updated skyux dependency to 2.3.2 and skyux-builder to 1.4.0
