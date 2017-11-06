@@ -72,3 +72,8 @@ and selectionEnabled is true; selection column checked state is set.
 # 4.6.4 (2017-10-31)
 
 - updated skyux dependency to 2.3.2 and skyux-builder to 1.4.0
+
+# 4.6.5 (2017-11-6)
+
+- refactored analytics service to inject router directly
+- updated skyux builder reference to 1.5.0
