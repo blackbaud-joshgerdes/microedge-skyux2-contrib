@@ -77,3 +77,7 @@ and selectionEnabled is true; selection column checked state is set.
 
 - refactored analytics service to inject router directly
 - updated skyux builder reference to 1.5.0
+
+# 4.6.6 (2017-11-7)
+
+- fixed casing in wizard footer button text
