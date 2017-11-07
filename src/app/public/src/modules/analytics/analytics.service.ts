@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import * as moment from 'moment';
 let mixpanel = require('mixpanel-browser/build/mixpanel.umd.js');
 
@@ -9,7 +10,9 @@ export class SkyContribAnalyticsService {
     secure_cookie: true
   };
 
-  constructor() {}
+  constructor(
+    private router: Router
+  ) {}
 
   public init(token: string, config?: any) {
     if (!token || token.length === 0) {
@@ -51,22 +54,46 @@ export class SkyContribAnalyticsService {
     }
   }
 
-  public track(eventName: string, properties?: {[key: string]: string}) {
+  public track(eventName: string, properties?: {[key: string]: string}, logRoute = false) {
     if (!this.initialized ||
         !eventName || eventName.length === 0) {
       return;
     }
 
-    mixpanel.track(eventName, properties);
+    if (logRoute) {
+      this.router.events
+        .filter(event => event instanceof NavigationEnd)
+        .take(1)
+        .subscribe((navigationValue: NavigationEnd) => {
+          properties = (properties) ? properties : {};
+          properties['route-requested'] = navigationValue.url;
+
+          mixpanel.track(eventName, properties);
+        });
+    } else {
+      mixpanel.track(eventName, properties);
+    }
   }
 
-  public trackLinks(selector: string, eventName: string, properties?: {[key: string]: string}) {
+  public trackLinks(selector: string, eventName: string, properties?: {[key: string]: string}, logRoute = false) {
     if (!this.initialized ||
         !selector || selector.length === 0 ||
         !eventName || eventName.length === 0) {
       return;
     }
 
-    mixpanel.track_links(selector, eventName, properties);
+    if (logRoute) {
+      this.router.events
+        .filter(event => event instanceof NavigationEnd)
+        .take(1)
+        .subscribe((navigationValue: NavigationEnd) => {
+          properties = (properties) ? properties : {};
+          properties['route-requested'] = navigationValue.url;
+
+          mixpanel.track_links(selector, eventName, properties);
+        });
+    } else {
+      mixpanel.track_links(selector, eventName, properties);
+    }
   }
 }
