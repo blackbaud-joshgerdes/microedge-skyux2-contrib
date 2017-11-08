@@ -10,7 +10,7 @@
     <div>
       <button type="button" class="sky-btn sky-btn-default footer-btn" [hidden]="currentStep == steps.first" (click)="goToPrevious()">Previous</button>
       <button type="button" class="sky-btn sky-btn-default footer-btn" [class.sky-btn-disabled]="currentStep && !currentStep.validator(model)" [disabled]="currentStep && !currentStep.validator(model)" (click)="goToNext()" [hidden]="currentStep == steps.last">Next</button>
-      <button type="button" class="sky-btn sky-btn-default footer-btn" [class.sky-btn-disabled]="!isValid()" [disabled]="!isValid()" [hidden]="visitedSteps.length != steps.length" (click)="saveAndClose()">Save and Close</button>
+      <button type="button" class="sky-btn sky-btn-default footer-btn" [class.sky-btn-disabled]="!isValid()" [disabled]="!isValid()" [hidden]="visitedSteps.length != steps.length" (click)="saveAndClose()">Save and close</button>
       <button type="button" class="sky-btn sky-btn-link footer-btn" (click)="modalInstance.close()">Cancel</button>
     </div>
     <sky-contrib-wizard-renderer [template]="footerTemplate || defaultFooterTemplate"></sky-contrib-wizard-renderer>
