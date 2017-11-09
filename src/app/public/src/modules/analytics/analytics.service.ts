@@ -66,7 +66,7 @@ export class SkyContribAnalyticsService {
         .take(1)
         .subscribe((navigationValue: NavigationEnd) => {
           properties = (properties) ? properties : {};
-          properties['route-requested'] = navigationValue.url;
+          properties['Route Requested'] = navigationValue.url;
 
           mixpanel.track(eventName, properties);
         });
@@ -88,7 +88,7 @@ export class SkyContribAnalyticsService {
         .take(1)
         .subscribe((navigationValue: NavigationEnd) => {
           properties = (properties) ? properties : {};
-          properties['route-requested'] = navigationValue.url;
+          properties['Route Requested'] = navigationValue.url;
 
           mixpanel.track_links(selector, eventName, properties);
         });

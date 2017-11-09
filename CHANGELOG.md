@@ -81,3 +81,4 @@ and selectionEnabled is true; selection column checked state is set.
 # 4.6.6 (2017-11-7)
 
 - fixed casing in wizard footer button text
+- change "route-requested" analytics property to "Route Requested"
