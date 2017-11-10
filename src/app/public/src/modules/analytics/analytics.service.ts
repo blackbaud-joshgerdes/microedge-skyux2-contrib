@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 let mixpanel = require('mixpanel-browser/build/mixpanel.umd.js');
 
@@ -61,15 +61,10 @@ export class SkyContribAnalyticsService {
     }
 
     if (logRoute) {
-      this.router.events
-        .filter(event => event instanceof NavigationEnd)
-        .take(1)
-        .subscribe((navigationValue: NavigationEnd) => {
-          properties = (properties) ? properties : {};
-          properties['Route Requested'] = navigationValue.url;
+      properties = (properties) ? properties : {};
+      properties['Route Requested'] = this.formatUrl(this.router.url);
 
-          mixpanel.track(eventName, properties);
-        });
+      mixpanel.track(eventName, properties);
     } else {
       mixpanel.track(eventName, properties);
     }
@@ -83,17 +78,23 @@ export class SkyContribAnalyticsService {
     }
 
     if (logRoute) {
-      this.router.events
-        .filter(event => event instanceof NavigationEnd)
-        .take(1)
-        .subscribe((navigationValue: NavigationEnd) => {
-          properties = (properties) ? properties : {};
-          properties['Route Requested'] = navigationValue.url;
+      properties = (properties) ? properties : {};
+      properties['Route Requested'] = this.formatUrl(this.router.url);
 
-          mixpanel.track_links(selector, eventName, properties);
-        });
+      mixpanel.track_links(selector, eventName, properties);
     } else {
       mixpanel.track_links(selector, eventName, properties);
     }
+  }
+
+  private formatUrl(url: string): string {
+    let paramsIndx = url.indexOf('?');
+    url = paramsIndx === -1 ? url : url.substr(0, paramsIndx);
+
+    if (url.match(/^(\/grant\/|\/contact\/|\/organization\/)/)) {
+      url = url.substr(0, url.indexOf('/', 1));
+    }
+
+    return url;
   }
 }
