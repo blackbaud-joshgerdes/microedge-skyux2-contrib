@@ -21,8 +21,8 @@
 <ng-template #search>
   <div *ngIf="isSearchEnabled | async" class="toolbar-item-container">
     <input #searchBox (keyup.enter)="updateSearchText(searchBox.value)" type="text" value="{{searchText | async}}" placeholder="{{placeholder}}" />
-    <button cmp-id="search" type="button" title="Search">
-      <i class="fa fa-lg fa-search" (click)="updateSearchText(searchBox.value)"></i>
+    <button cmp-id="search" type="button" title="Search" (click)="updateSearchText(searchBox.value)">
+      <i class="fa fa-lg fa-search"></i>
     </button>
   </div>
 </ng-template>

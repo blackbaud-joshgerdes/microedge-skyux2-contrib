@@ -8,9 +8,9 @@
   </sky-modal-content>
   <sky-modal-footer>
     <div>
-      <button type="button" class="sky-btn sky-btn-default footer-btn" [hidden]="currentStep == steps.first" (click)="goToPrevious()">Previous</button>
-      <button type="button" class="sky-btn sky-btn-default footer-btn" [class.sky-btn-disabled]="currentStep && !currentStep.validator(model)" [disabled]="currentStep && !currentStep.validator(model)" (click)="goToNext()" [hidden]="currentStep == steps.last">Next</button>
-      <button type="button" class="sky-btn sky-btn-default footer-btn" [class.sky-btn-disabled]="!isValid()" [disabled]="!isValid()" [hidden]="visitedSteps.length != steps.length" (click)="saveAndClose()">Save and close</button>
+      <button type="button" class="sky-btn sky-btn-default footer-btn" *ngIf="currentStep != steps.first" (click)="goToPrevious()">Previous</button>
+      <button type="button" class="sky-btn sky-btn-default footer-btn" [class.sky-btn-disabled]="currentStep && !currentStep.validator(model)" [disabled]="currentStep && !currentStep.validator(model)" (click)="goToNext()" *ngIf="currentStep != steps.last">Next</button>
+      <button type="button" class="sky-btn sky-btn-default footer-btn" [class.sky-btn-disabled]="!isValid()" [disabled]="!isValid()" *ngIf="visitedSteps.length == steps.length" (click)="saveAndClose()">Save and close</button>
       <button type="button" class="sky-btn sky-btn-link footer-btn" (click)="modalInstance.close()">Cancel</button>
     </div>
     <sky-contrib-wizard-renderer [template]="footerTemplate || defaultFooterTemplate"></sky-contrib-wizard-renderer>
