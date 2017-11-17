@@ -21,7 +21,7 @@
     background-color: $sky-border-color-neutral-light;
     border: 1px solid $sky-border-color-neutral-light;
     border-radius: 3px;
-    padding: 5px 10px;
+    padding: 5px 16px;
 
     max-width: 200px;
     white-space: nowrap;
@@ -33,6 +33,7 @@
 
     &.active, &.active.disabled, &.active.visited.valid {
       background-color: $sky-background-color-info;
+      border-color: $sky-background-color-info;
     }
 
     &.visited.valid {

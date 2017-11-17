@@ -83,7 +83,12 @@ and selectionEnabled is true; selection column checked state is set.
 - fixed casing in wizard footer button text
 - change "route-requested" analytics property to "Route Requested"
 
-# 4.6.7 (2017-11-7)
+# 4.6.7 (2017-11-16)
 
 - fixed issue with grid search where clicking search icon would not apply search in IE
 - fixed padding in wizard footer
+
+# 4.6.8 (2017-11-17)
+
+- fixed padding issue in wizard steps
+- fixed vertical tab styles to match skyux
