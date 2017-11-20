@@ -54,7 +54,7 @@ export class SkyContribAnalyticsService {
     }
   }
 
-  public track(eventName: string, properties?: {[key: string]: string}, logRoute = false) {
+  public track(eventName: string, properties?: {[key: string]: any}, logRoute = false) {
     if (!this.initialized ||
         !eventName || eventName.length === 0) {
       return;
@@ -70,7 +70,7 @@ export class SkyContribAnalyticsService {
     }
   }
 
-  public trackLinks(selector: string, eventName: string, properties?: {[key: string]: string}, logRoute = false) {
+  public trackLinks(selector: string, eventName: string, properties?: {[key: string]: any}, logRoute = false) {
     if (!this.initialized ||
         !selector || selector.length === 0 ||
         !eventName || eventName.length === 0) {
