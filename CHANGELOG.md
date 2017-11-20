@@ -92,3 +92,7 @@ and selectionEnabled is true; selection column checked state is set.
 
 - fixed padding issue in wizard steps
 - fixed vertical tab styles to match skyux
+
+# 4.6.8 (2017-11-20)
+
+- change analytics property type to be of type 'any'
