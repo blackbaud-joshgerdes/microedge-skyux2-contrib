@@ -1,6 +1,7 @@
 # 4.6.10 (2017-11-21)
 
 - fixed line height on wizard steps
+- updated font size for draggable and list view repeater
 
 # 4.6.9 (2017-11-20)
 
