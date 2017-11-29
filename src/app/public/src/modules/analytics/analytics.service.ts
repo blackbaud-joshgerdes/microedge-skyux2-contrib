@@ -34,10 +34,13 @@ export class SkyContribAnalyticsService {
     let keys: Array<string> = Object.keys(data || {});
     if (data && keys.indexOf('emailAddress') > -1) {
       mixpanel.people.set({
+        '$first_name': data.firstName,
+        '$last_name': data.lastName,
         '$email': data.emailAddress,
         '$last_login': moment.utc().format(),
         'User Id': id,
-        'Email': data.emailAddress
+        'Email': data.emailAddress,
+        'Name': `${data.firstName} ${data.lastName}`
       });
     }
   }
