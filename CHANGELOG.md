@@ -1,3 +1,7 @@
+# 4.6.11 (2017-11-29)
+
+- added name property to mixpanel people setup
+
 # 4.6.10 (2017-11-21)
 
 - fixed line height on wizard steps
