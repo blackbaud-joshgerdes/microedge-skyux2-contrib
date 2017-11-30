@@ -51,9 +51,9 @@ export class SkyContribAnalyticsService {
     }
 
     if (once) {
-      mixpanel.register_once(JSON.stringify(data));
+      mixpanel.register_once(data);
     } else {
-      mixpanel.register(JSON.stringify(data));
+      mixpanel.register(data);
     }
   }
 
