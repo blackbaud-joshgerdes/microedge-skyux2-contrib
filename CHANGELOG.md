@@ -1,3 +1,8 @@
+# 4.6.12 (2017-12-04)
+
+- fixed issue with grid select all and paging
+- updated demo to have select all and paging functionality
+
 # 4.6.11 (2017-11-29)
 
 - added name property to mixpanel people setup

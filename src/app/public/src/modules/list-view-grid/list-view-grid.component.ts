@@ -275,7 +275,7 @@ export class SkyContribListViewGridComponent
       .take(1)
       .subscribe((items: any) => {
         this.dispatcher.next(
-          new ListSelectedSetItemsSelectedAction(event.checked ? items : [])
+          new ListSelectedSetItemsSelectedAction(items, event.checked, false)
         );
       });
   }

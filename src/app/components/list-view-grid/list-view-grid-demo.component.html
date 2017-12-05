@@ -2,12 +2,25 @@
   <sky-contrib-list-toolbar></sky-contrib-list-toolbar>
 
   <sky-contrib-list-view-grid fit="scroll" #grid>
+    <sky-contrib-list-view-grid-column id="column-select" class="column-selection" [width]="50" [locked]="true" [headingTemplate]="checkboxHeadingTemplate">
+      <ng-template let-row="row">
+        <div>
+          <sky-checkbox [checked]="grid.isSelected(row.id) | async" (change)="toggleSelected($event, row)"></sky-checkbox>
+        </div>
+      </ng-template>
+    </sky-contrib-list-view-grid-column>
     <sky-contrib-list-view-grid-column field="column1" heading="Column1" [template]="customColumnTemplate"></sky-contrib-list-view-grid-column>
     <sky-contrib-list-view-grid-column field="column2" heading="Column2"></sky-contrib-list-view-grid-column>
     <sky-contrib-list-view-grid-column field="column3" heading="Column3"></sky-contrib-list-view-grid-column>
   </sky-contrib-list-view-grid>
+
+  <sky-contrib-list-paging></sky-contrib-list-paging>
 </sky-contrib-list>
 
 <ng-template let-row="row" let-value="value" #customColumnTemplate>
   <strong>{{value}}</strong>
+</ng-template>
+
+<ng-template #checkboxHeadingTemplate>
+  <sky-checkbox [checked]="grid.isAllDisplayedSelected() | async" (change)="grid.toggleSelectAllDisplayed($event)"></sky-checkbox>
 </ng-template>
