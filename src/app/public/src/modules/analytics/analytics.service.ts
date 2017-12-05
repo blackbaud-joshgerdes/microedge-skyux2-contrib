@@ -39,7 +39,6 @@ export class SkyContribAnalyticsService {
         '$email': data.emailAddress,
         '$last_login': moment.utc().format(),
         'User Id': id,
-        'Email': data.emailAddress,
         'Name': `${data.firstName} ${data.lastName}`
       });
     }
