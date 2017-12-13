@@ -39,7 +39,11 @@ export class SkyContribAnalyticsService {
         '$email': data.emailAddress,
         '$last_login': moment.utc().format(),
         'User Id': id,
-        'Name': `${data.firstName} ${data.lastName}`
+        'Name': `${data.firstName} ${data.lastName}`,
+        'Environment IDs': data.environmentIds,
+        'Environment Names': data.environmentNames,
+        'Legal Entity IDs': data.entityIds,
+        'Legal Entity Names': data.entityNames
       });
     }
   }

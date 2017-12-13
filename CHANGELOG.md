@@ -1,3 +1,7 @@
+# 4.6.13 (2017-12-13)
+
+- Added environment and legal entity data to analytics service tracking
+
 # 4.6.12 (2017-12-04)
 
 - fixed issue with grid select all and paging
