@@ -218,7 +218,7 @@ describe('List Component', () => {
         .then(() => {
           fixture.detectChanges();
           element.query(
-            By.css('button[cmp-id="search"] i')
+            By.css('button[cmp-id="search"]')
           ).triggerEventHandler('click', undefined);
           fixture.detectChanges();
           expect(element.queryAll(By.css('tr.sky-contrib-list-view-grid-row')).length).toBe(2);
