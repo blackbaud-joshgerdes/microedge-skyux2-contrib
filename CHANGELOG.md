@@ -1,4 +1,4 @@
-# 4.6.13 (2017-12-13)
+# 4.6.14 (2017-12-13)
 
 - Added environment and legal entity data to analytics service tracking
 
